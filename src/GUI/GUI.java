@@ -33,11 +33,13 @@ public class GUI {
         JLabel label = new JLabel("Währungsrechner");
         label.setSize(new Dimension(100, 30));
         label.setFont(label.getFont().deriveFont(30f));
-        label.setBounds(370, 25, 1000, 50);
+        label.setBounds(335, 25, 1000, 50);
 
         JButton menuBtn = new JButton("Menü");
         menuBtn.setSize(new Dimension(10, 10));
-        menuBtn.setBounds(10, 10, 100, 30);
+        menuBtn.setBounds(755, 520, 100, 30);
+        menuBtn.setBackground(Color.decode("#00CCCC"));
+        menuBtn.setForeground(Color.WHITE);
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
