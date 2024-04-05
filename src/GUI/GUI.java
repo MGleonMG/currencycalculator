@@ -3,7 +3,6 @@ package GUI;
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
-import com.formdev.*;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 public class GUI {
@@ -32,7 +31,7 @@ public class GUI {
         MenuBtn.setSize(new Dimension(10, 10));
         MenuBtn.setBounds(860, 920, 100, 30);
 
-        JLabel build = new JLabel("v1.0 alpha by Leon, Jonas, Ewin");
+        JLabel build = new JLabel(version + " by Leon, Jonas, Ewin");
         build.setBounds(10, 900, 500, 100);
 
         build.setForeground(Color.GRAY);

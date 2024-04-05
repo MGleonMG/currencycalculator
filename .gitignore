@@ -4,6 +4,3 @@
 # Ignore IDE-specific files
 .idea/
 target/
-.vscode/
-.vscode
-.json
