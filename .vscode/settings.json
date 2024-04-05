@@ -2,5 +2,7 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "src/lib/**/*.jar"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.debug.settings.onBuildFailureProceed": true
 }
