@@ -10,6 +10,7 @@ public class GUI {
     public static final String version = "1.0_alpha";
 
     public static void createGUI() {
+        
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception e) {

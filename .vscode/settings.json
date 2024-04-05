@@ -3,6 +3,6 @@
         "lib/**/*.jar",
         "src/lib/**/*.jar"
     ],
-    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.updateBuildConfiguration": "automatic",
     "java.debug.settings.onBuildFailureProceed": true
 }
