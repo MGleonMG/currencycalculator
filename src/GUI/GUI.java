@@ -4,10 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Währungsumrechner"); // Titel setzen
-        frame.setSize(1000, 1000); // Größe setzen
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Beenden beim Schließen
+    public static final String title = "Währungsrechner";
+    public static final String version = "1.0_alpha";
+
+    public static void createGUI() {
+        JFrame frame = new JFrame(title + " " + version);
+        frame.setSize(900, 600);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // JPanel erstellen
         JPanel panel = new JPanel();
@@ -18,12 +22,15 @@ public class GUI {
         button.setPreferredSize(new Dimension(100, 100));
         // Hintergrundfarbe des Buttons auf Schwarz setzen
         button.setBackground(Color.BLACK);
+        button.setFocusable(false);
         // Den Button zum Panel hinzufügen
         panel.add(button);
 
         // Das Panel zum Frame hinzufügen
         frame.getContentPane().add(panel);
 
-        frame.setVisible(true); // Frame sichtbar machen
+        frame.setLocationRelativeTo(null);
+
+        frame.setVisible(true);
     }
 }
