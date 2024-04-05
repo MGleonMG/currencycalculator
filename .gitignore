@@ -4,3 +4,4 @@
 # Ignore IDE-specific files
 .idea/
 target/
+launch.json

@@ -1,8 +1,7 @@
-package Menu;
+package GUI.Menu;
 
 import javax.swing.*;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,16 +13,16 @@ public class Menu {
 
     public Menu() {
         frame = new JFrame("Menü");
-        frame.setLayout(new FlowLayout()); 
+        frame.setLayout(null); 
         frame.setResizable(false);
 
         backButton = new JButton("Zurück"); // Hier initialisieren
-        backButton.setBounds(100,1000,10,10); // ->>>>>>>>>>>>>>>>>>>>>>>>>> Kann nicht verschoben werden idk
+        backButton.setBounds(10,10, 50,50);
         backButton.setSize(new Dimension(100,100));
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Gui Klasse bei clicken
-                GUI.createGUI();
+                GUI.drawGUI();
                 frame.dispose(); // Schließe Menüfenster
             }
         });
@@ -33,12 +32,13 @@ public class Menu {
     }
 
     public void createMenu() {
-        frame.setSize(500, 500);
+        frame.setSize(GUI.width - 300, GUI.height - 300);
         frame.setVisible(true);
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
+            @SuppressWarnings("unused") // TODO: @Jonas kannst die zeile später einfach entfernen, ist unwichtig
             Menu menu = new Menu();
         });
     }
