@@ -13,7 +13,7 @@ TBD..
 
 ## Features
 
-Outline the main features and functionalities of the project.
+TBD
 
 ## Installation
 
