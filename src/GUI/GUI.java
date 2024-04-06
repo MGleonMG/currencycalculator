@@ -62,5 +62,7 @@ public class GUI {
         frame.add(menuBtn);
 
         frame.setVisible(true); // Frame sichtbar machen
+
+        //todo: DdMenu x2 und Color anpassungen
     }
 }
