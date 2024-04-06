@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import Data.Calculations;
 import GUI.GUI;
-import Menu.Menu;
 
 public class CurrencyCalculator {
     public static void main(String[] args) {
