@@ -1,6 +1,10 @@
 package GUI.Menu;
 
 import javax.swing.*;
+
+import com.formdev.flatlaf.FlatDarkLaf;
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,13 +16,20 @@ public class Menu {
     public JButton backButton;
 
     public Menu() {
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         frame = new JFrame("Menü");
-        frame.setLayout(null); 
+        frame.setLayout(null);
         frame.setResizable(false);
 
-        backButton = new JButton("Zurück"); // Hier initialisieren
-        backButton.setBounds(10,10, 50,50);
-        backButton.setSize(new Dimension(100,100));
+        backButton = new JButton("Zurück");
+        backButton.setBounds(475, 220, 100, 30); // corrected bounds and size
+        backButton.setForeground(Color.WHITE);
+        backButton.setBackground(Color.decode("#00CCCC"));
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //Gui Klasse bei clicken
