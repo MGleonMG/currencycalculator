@@ -1,19 +1,24 @@
 package Main;
 
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
-import Data.Calculations;
 import GUI.GUI;
-import GUI.Menu.Menu;
+import Utils.Utils;
+import Utils.Data.Calculations;
 
 public class CurrencyCalculator {
     public static void main(String[] args) {
         System.out.println("\n\nStarting...  " + GUI.title + " (" + GUI.version + ")");
         GUI.drawGUI();
-        new Menu();
 
-        testCurrencyBackend();
+        for (Map.Entry<String, String> entry : Utils.getAllCurrencies()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            System.out.println(value + " (" + key + ")");
+        }
     }
 
     private static void testCurrencyBackend() {

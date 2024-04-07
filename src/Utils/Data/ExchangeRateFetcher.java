@@ -1,9 +1,9 @@
-package Data;
+package Utils.Data;
 
 import java.net.URL;
 import java.util.Scanner;
 
-import Data.Utils.Utils;
+import Utils.Utils;
 
 public class ExchangeRateFetcher {
     public static double latestRate;
@@ -28,7 +28,7 @@ public class ExchangeRateFetcher {
             lastEndMillis = System.currentTimeMillis();
 
             System.out.println("Exchange rate fetched within " + (getLastFetchTime()) + "ms:");
-            latestRate = Utils.convertDoubleToTwoDecimals(Double.parseDouble(out), 4);
+            latestRate = Utils.adjustDecimal(Double.parseDouble(out), 4);
 
         } catch (Exception e) {
             System.err.print("[ERROR]");
