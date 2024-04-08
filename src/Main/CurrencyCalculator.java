@@ -17,5 +17,6 @@ public class CurrencyCalculator {
 
         // TODO: für @Jonas
         // Calculations.convertCurrencies(baseCurrency, targetCurrency, amount);
+        // ExchangeRateFetcher.getLastFetchTime();
     }
 }
