@@ -23,8 +23,7 @@ public class CurrencyCalculator {
          dropdown.addItem(currencyName + " (" + isoCode + ")");
          }
 
-        // TODO: für @Jonas
-
+        // TODO: remove later
         // am besten nochmal gemeinsam klaeren, wie wir das durchsetzen
         // Daten sind Temporaer da
         String baseCurrency = "USD";
