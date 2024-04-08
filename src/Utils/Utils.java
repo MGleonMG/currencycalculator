@@ -24,7 +24,7 @@ public class Utils {
         return Double.parseDouble(dfConverted.format(x));
     }
 
-    public static Set<Entry<String, String>> getAllCurrencies(){
+    public static Set<Entry<String, String>> getAllCurrencies() {
         Map<String, String> currencies = new HashMap<>();
 
         for (Currency currency : Currency.getAvailableCurrencies()) {
