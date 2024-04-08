@@ -5,13 +5,11 @@ import java.util.Scanner;
 
 import Data.Calculations;
 import GUI.GUI;
-import GUI.Menu.Menu;
 
 public class CurrencyCalculator {
     public static void main(String[] args) {
         System.out.println("\n\nStarting...  " + GUI.title + " (" + GUI.version + ")");
         GUI.drawGUI();
-        new Menu();
 
         testCurrencyBackend();
     }
