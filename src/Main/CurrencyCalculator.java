@@ -1,11 +1,14 @@
 package Main;
 
 import GUI.GUI;
+import Utils.Data.ExchangeRateFetcher;
 
 public class CurrencyCalculator {
 
     public static void main(String[] args) {
         GUI.drawGUI();
+        System.out.println("\n");
+        ExchangeRateFetcher.fetchExchangeRate("EUR", "");
 
         // TODO: für @Jonas
         // for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
