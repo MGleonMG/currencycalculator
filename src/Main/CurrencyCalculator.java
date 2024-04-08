@@ -9,13 +9,13 @@ import javax.swing.JComboBox;
 
 public class CurrencyCalculator {
 
+    // Erstellt eine Dropdown Liste der Currency 
+    // spezifisch fuer einen String -> vermeidet somit Fehler
+    static JComboBox<String> dropdown = new JComboBox<>();
+
     public static void main(String[] args) {
         GUI.drawGUI();
-
-        // Erstellt eine Dropdown Liste der Currency 
-        // spezifisch fuer einen String -> vermeidet somit Fehler
-        JComboBox<String> dropdown = new JComboBox<>();
-
+    
         for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
          String isoCode = currency.getKey();
          String currencyName = currency.getValue();
@@ -25,8 +25,8 @@ public class CurrencyCalculator {
 
         // TODO: für @Jonas
 
-        // Variablen brauchen noch einen User input
         // am besten nochmal gemeinsam klaeren, wie wir das durchsetzen
+        // Daten sind Temporaer da
         String baseCurrency = "USD";
         String targetCurrency = "EUR";
         double amount = 10.00;
