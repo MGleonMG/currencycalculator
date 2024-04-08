@@ -1,34 +1,36 @@
-//author: Hauptsächlich Jonas lmao
+// GUI.java
 package GUI;
 
-import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Menu.Menu;
 
 public class GUI {
     public static final String title = "Währungsrechner", version = "1.0_alpha";
     public static final int width = 900, height = 600;
-    private static Menu menuInstance; // Variable, um die Instanz von Menu zu speichern
+    private static Menu menuInstance; 
+    private static boolean isDarkMode = true; 
+    private static JFrame frame; 
 
     public static void drawGUI() {
+        frame = new JFrame(title + " " + version);
+        frame.setSize(width, height); 
+        frame.setLayout(new FlowLayout());
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        frame.setResizable(false);
+
         try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
+            setLookAndFeel(isDarkMode); // Setze das Look-and-Feel basierend auf dem aktuellen Modus
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        JFrame frame = new JFrame(title + " " + version);
-        frame.setSize(width, height); // Größe setzen
-        frame.setLayout(new FlowLayout());
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Beenden beim Schließen
-        frame.setResizable(false);
 
         JLabel label = new JLabel("Währungsrechner");
         label.setSize(new Dimension(100, 30));
@@ -55,14 +57,32 @@ public class GUI {
         authorLabel.setBounds(10, height - 100, 200, 100);
         authorLabel.setForeground(Color.GRAY);
 
-        // Das Panel zum Frame hinzufügen
         frame.setLayout(null);
         frame.add(authorLabel);
         frame.add(label);
         frame.add(menuBtn);
 
-        frame.setVisible(true); // Frame sichtbar machen
+        frame.setVisible(true);
+    }
 
-        //todo: DdMenu x2 und Color anpassungen
+    // Methode zum Setzen des Look-and-Feel im Hauptframe
+    public static void setLookAndFeel(boolean darkMode) {
+        try {
+            if (darkMode) {
+                UIManager.setLookAndFeel(new FlatDarkLaf());
+            } else {
+                UIManager.setLookAndFeel(new FlatLightLaf());
+            }
+            SwingUtilities.updateComponentTreeUI(frame); 
+            isDarkMode = darkMode; 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            drawGUI();
+        });
     }
 }
