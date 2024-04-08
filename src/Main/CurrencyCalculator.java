@@ -21,6 +21,7 @@ public class CurrencyCalculator {
         }
     }
 
+    @SuppressWarnings("unused")
     private static void testCurrencyBackend() {
         @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in).useLocale(Locale.US);
