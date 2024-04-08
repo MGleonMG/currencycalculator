@@ -1,16 +1,7 @@
 package Main;
 
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
-
-import javax.swing.JComboBox;
-
 import GUI.GUI;
-import Utils.Utils;
-import Utils.Data.Calculations;
 
-@SuppressWarnings("unused")
 public class CurrencyCalculator {
 
     public static void main(String[] args) {
