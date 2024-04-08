@@ -13,11 +13,11 @@ public class CurrencyCalculator {
         System.out.println("\n\nStarting...  " + GUI.title + " (" + GUI.version + ")");
         GUI.drawGUI();
 
-        for (Map.Entry<String, String> entry : Utils.getAllCurrencies()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
+        for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
+            String isoCode = currency.getKey();
+            String currencyName = currency.getValue();
 
-            System.out.println(value + " (" + key + ")");
+            System.out.println(currencyName + " (" + isoCode + ")");
         }
     }
 
