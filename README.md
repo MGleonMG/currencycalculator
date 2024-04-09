@@ -8,28 +8,44 @@ Dies ist ein Projekt von Leon, Jonas und Ewin aus der [BS IT 23c].
  - Ewin (github.com/Syhnx)
 
 ## Einführung
-In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
+In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
 
 ## Features
-• Enthält wichtige Währungen die berechnet werden können.
-• Entnimmt aktuelle Wechselkurse aus dem Internet und berechnet diese.
-• Enthält einen GUI -> Benutzerfreundlich
-• Easy to use
+- Enthält wichtige Währungen die berechnet werden können.
+- Entnimmt aktuelle Wechselkurse aus dem Internet und berechnet diese.
+- Enthält einen GUI -> Benutzerfreundlich
+- Easy to use
+- Enthält einen Darkmode
 
-## Installation
+## Download (Java Datei)
+TBD
+
+## Installation (Visual Studio Code)
 Um dieses Projekt zu installieren und auszuführen, benötigst du das Java Development Kit (JDK) auf deinem Computer.
 Das bekommst du auf der offiziellen Oracle Website: https://www.oracle.com/java/technologies/javase-jdk15-downloads.html
 
 Es wird hierbei empfohlen "Visual Studio Code" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
 
-"winget install --id Git.Git -e --source winget"
+## Powershell
 
+```powershell
+winget install --id Git.Git -e --source winget
+```
 Nachdem das erledigt ist, erstellst du dir einen Ordner (am besten auf dem Desktop). Darauf werden die heruntergeladenen Dateien abgespeichert. 
-Im Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Auf dem Terminal (mit "ctrl + ö) verbindest du dich mit der Repository. 
+Im Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Auf dem Terminal verbindest du dich mit der Repository. 
 Folgende Befehle müssen ausgeführt werden:
 
+### Terminal (Virtual Studio Code, ctrl + ö)
+
+```powershell
 git clone https://github.com/toxytoxy/currencycalculator.git
-Optional: git checkout main; git pull
+```
+
+### Optional (sucht nach aktualisierungen)
+
+```powershell
+git checkout main; git pull
+```
 
 So erhälst du die aktuelle Version des Codes.
 
