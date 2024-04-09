@@ -11,15 +11,15 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Menu.Menu;
 
 public class GUI {
-    private static final String title = "Währungsrechner", version = "1.0_alpha";
-    public static final int frameWidth = 900, frameHeight = 600;
+    private static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
+    public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static Menu menu;
     private static boolean isDarkMode = true;
     private static JFrame frame;
 
     public static void drawGUI() {
-        frame = new JFrame(title + " " + version);
-        frame.setSize(frameWidth, frameHeight);
+        frame = new JFrame(TITLE + " " + VERSION);
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLayout(new FlowLayout());
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +34,7 @@ public class GUI {
 
         JLabel label = new JLabel("Währungsrechner");
         label.setFont(label.getFont().deriveFont(30f));
-        label.setBounds(335, 25, GUI.frameWidth, 50);
+        label.setBounds(335, 25, GUI.FRAME_WIDTH, 50);
 
         JButton menuBtn = new JButton("Menü");
         menuBtn.setBounds(755, 520, 100, 30);
@@ -51,8 +51,8 @@ public class GUI {
             }
         });
 
-        JLabel authorLabel = new JLabel(version + " by Leon, Jonas, Ewin");
-        authorLabel.setBounds(10, frameHeight - 100, 200, 100);
+        JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
+        authorLabel.setBounds(10, FRAME_HEIGHT - 100, 200, 100);
         authorLabel.setForeground(Color.GRAY);
 
         frame.add(authorLabel);

@@ -89,7 +89,7 @@ public class Menu {
     }
 
     public void createMenu() {
-        frame.setSize(GUI.frameWidth - 300, GUI.frameHeight - 300);
+        frame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
         frame.setVisible(true);
     }
 }
