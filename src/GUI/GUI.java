@@ -1,4 +1,3 @@
-// GUI.java
 package GUI;
 
 import javax.swing.*;
@@ -12,52 +11,50 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Menu.Menu;
 
 public class GUI {
-    public static final String title = "Währungsrechner", version = "1.0_alpha";
-    public static final int width = 900, height = 600;
-    private static Menu menuInstance; 
-    private static boolean isDarkMode = true; 
-    private static JFrame frame; 
+    private static final String title = "Währungsrechner", version = "1.0_alpha";
+    public static final int frameWidth = 900, frameHeight = 600;
+    private static Menu menu;
+    private static boolean isDarkMode = true;
+    private static JFrame frame;
 
     public static void drawGUI() {
         frame = new JFrame(title + " " + version);
-        frame.setSize(width, height); 
+        frame.setSize(frameWidth, frameHeight);
         frame.setLayout(new FlowLayout());
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        frame.setLayout(null);
 
         try {
-            setLookAndFeel(isDarkMode); // Setze das Look-and-Feel basierend auf dem aktuellen Modus
+            setTheme(isDarkMode); // Setze das Look-and-Feel basierend auf dem aktuellen Modus
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         JLabel label = new JLabel("Währungsrechner");
-        label.setSize(new Dimension(100, 30));
         label.setFont(label.getFont().deriveFont(30f));
-        label.setBounds(335, 25, 1000, 50);
+        label.setBounds(335, 25, GUI.frameWidth, 50);
 
         JButton menuBtn = new JButton("Menü");
-        menuBtn.setSize(new Dimension(10, 10));
         menuBtn.setBounds(755, 520, 100, 30);
         menuBtn.setBackground(Color.decode("#00CCCC"));
         menuBtn.setForeground(Color.WHITE);
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (menuInstance == null) {
-                    menuInstance = new Menu();
+                if (menu == null) {
+                    menu = new Menu();
                 }
-                menuInstance.createMenu(); 
+                menu.createMenu();
                 frame.setVisible(false);
             }
         });
 
         JLabel authorLabel = new JLabel(version + " by Leon, Jonas, Ewin");
-        authorLabel.setBounds(10, height - 100, 200, 100);
+        authorLabel.setBounds(10, frameHeight - 100, 200, 100);
         authorLabel.setForeground(Color.GRAY);
 
-        frame.setLayout(null);
         frame.add(authorLabel);
         frame.add(label);
         frame.add(menuBtn);
@@ -66,23 +63,19 @@ public class GUI {
     }
 
     // Methode zum Setzen des Look-and-Feel im Hauptframe
-    public static void setLookAndFeel(boolean darkMode) {
+    public static void setTheme(boolean darkMode) {
         try {
             if (darkMode) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
             } else {
                 UIManager.setLookAndFeel(new FlatLightLaf());
             }
-            SwingUtilities.updateComponentTreeUI(frame); 
-            isDarkMode = darkMode; 
+            SwingUtilities.updateComponentTreeUI(frame);
+            isDarkMode = darkMode;
+
         } catch (Exception e) {
+            // TODO: Error popup once @Leon done with error class
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            drawGUI();
-        });
     }
 }

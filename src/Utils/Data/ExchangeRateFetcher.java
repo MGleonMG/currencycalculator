@@ -10,6 +10,7 @@ public class ExchangeRateFetcher {
     private static long lastStartMillis, lastEndMillis;
 
     // Webscraper um Daten von 'google.com/finance/' zu nutzen
+    // TODO: @Leon close scanner
     @SuppressWarnings({ "resource" })
     public static void fetchExchangeRate(String baseCur, String targetCur) {
         try {
@@ -27,7 +28,7 @@ public class ExchangeRateFetcher {
 
             lastEndMillis = System.currentTimeMillis();
 
-            System.out.println("Exchange rate fetched within " + (getLastFetchTime()) + "ms:");
+            System.out.println("Exchange rate fetched within " + (getLastFetchTime()) + "ms");
             latestRate = Utils.adjustDecimal(Double.parseDouble(out), 4);
 
         } catch (Exception e) {
