@@ -1,11 +1,8 @@
 package Main;
 
-import java.util.Map;
 import GUI.GUI;
-import Utils.Utils;
 import Utils.Data.Calculations;
 import Utils.Data.ExchangeRateFetcher;
-import javax.swing.JComboBox;
 
 public class CurrencyCalculator {
 
@@ -15,6 +12,10 @@ public class CurrencyCalculator {
     public static void main(String[] args) {
         GUI.drawGUI();
 
+
+
+
+        //ExchangeRateFetcher.getLastFetchTime();  In GUI bei ausgabe von wert
 
         // TODO: remove later
         // am besten nochmal gemeinsam klaeren, wie wir das durchsetzen
