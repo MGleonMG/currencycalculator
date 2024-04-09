@@ -10,7 +10,7 @@ public class ExchangeRateFetcher {
     private static long lastStartMillis, lastEndMillis;
 
     // Webscraper um Daten von 'google.com/finance/' zu nutzen
-    @SuppressWarnings({ "resource", "deprecation" })
+    @SuppressWarnings({ "resource" })
     public static void fetchExchangeRate(String baseCur, String targetCur) {
         try {
             System.out.println("Fetching Exchange rate...");
