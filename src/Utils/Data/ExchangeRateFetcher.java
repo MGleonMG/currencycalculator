@@ -18,19 +18,19 @@ public class ExchangeRateFetcher {
             System.out.println("Fetching Exchange rate...");
             lastStartMillis = System.currentTimeMillis();
             // Roher HTML code als String von 'google.com/finance/'
-            String out = new Scanner(
+            String htmlOutput = new Scanner(
                     new URL("https://www.google.com/finance/quote/" + baseCur + "-" + targetCur).openStream(), "UTF-8")
                     .useDelimiter("\\A").next();
 
             // Stelle finden an der der Wechselkurs angegeben ist und den String darauf
             // zuschneiden
-            out = out.substring(out.indexOf("YMlKec fxKbKc\">"));
-            out = out.substring(15, out.indexOf("<"));
+            htmlOutput = htmlOutput.substring(htmlOutput.indexOf("YMlKec fxKbKc\">"));
+            htmlOutput = htmlOutput.substring(15, htmlOutput.indexOf("<"));
 
             lastEndMillis = System.currentTimeMillis();
 
             System.out.println("Exchange rate fetched within " + (getLastFetchTime()) + "ms");
-            latestRate = Utils.adjustDecimal(Double.parseDouble(out), 4);
+            latestRate = Utils.adjustDecimal(Double.parseDouble(htmlOutput), 4);
 
         } catch (UnknownHostException uhExc) {
             // TODO: Kein Internet ODER Internet Proleme bei User
