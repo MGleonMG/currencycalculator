@@ -187,7 +187,7 @@ public class GUI {
             e.printStackTrace();
         }
     }
-
+  
     // Mit pfeiltasten Yallan
     public static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
         InputMap inputMap = comboBox.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);

@@ -1,6 +1,7 @@
 package Utils.Data;
 
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import Utils.Utils;
@@ -31,10 +32,24 @@ public class ExchangeRateFetcher {
             System.out.println("Exchange rate fetched within " + (getLastFetchTime()) + "ms");
             latestRate = Utils.adjustDecimal(Double.parseDouble(out), 4);
 
-        } catch (Exception e) {
-            System.err.print("[ERROR]");
-            e.printStackTrace();
+        } catch (UnknownHostException uhExc) {
+            // TODO: Kein Internet ODER Internet Proleme bei User
+            System.err.print("[ERROR] ");
+            uhExc.printStackTrace();
             latestRate = 0.0;
+
+        } catch (StringIndexOutOfBoundsException oobExc) {
+            // TODO: Währung existiert nicht (mehr) oder beim fetchen der Daten ist ein Fehler aufgetreten.
+            System.err.print("[ERROR] ");
+            oobExc.printStackTrace();
+            latestRate = 0.0;
+
+        } catch (Exception exc) {
+            // TODO: Irgendwas ist schief gelaufen aber keine Ahnung lmao
+            System.err.print("[UNKNOWN ERROR] ");
+            exc.printStackTrace();
+            latestRate = 0.0;
+
         }
     }
 
