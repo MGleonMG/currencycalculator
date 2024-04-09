@@ -18,7 +18,8 @@ public class CurrencyCalculator {
         String baseCurrency = "USD";
         String targetCurrency = "EUR";
         double amount = 10.00;
-
+      
+        //ExchangeRateFetcher.getLastFetchTime();  In GUI bei ausgabe von wert
         Calculations.convertCurrencies(baseCurrency, targetCurrency, amount);
         ExchangeRateFetcher.getLastFetchTime();
     }

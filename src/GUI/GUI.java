@@ -18,6 +18,7 @@ public class GUI {
     private static boolean isDarkMode = true;
     private static JFrame frame;
     private static JComboBox<String> dropdownChoose;
+    private static JComboBox<String> dropdownSelect;
 
     public static void drawGUI() {
         frame = new JFrame(TITLE + " " + VERSION);
@@ -43,7 +44,6 @@ public class GUI {
         menuBtn.setBackground(Color.decode("#00CCCC"));
         menuBtn.setForeground(Color.WHITE);
 
-
         JTextField searchSelectBar = new JTextField("Nach Währung Filtern");
         searchSelectBar.setBounds(530, 215, 300, 20);
         searchSelectBar.addFocusListener(new FocusAdapter() {
@@ -62,13 +62,33 @@ public class GUI {
             }
         });
 
+        searchSelectBar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String searchText = searchSelectBar.getText().toLowerCase();
+                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownSelect.getModel();
+                model.removeAllElements();
 
-        JTextField searchBar = new JTextField("Nach Währung Suchen");
+                for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
+                    String isoCode = currency.getKey();
+                    String currencyName = currency.getValue();
+
+                    if (currencyName.toLowerCase().contains(searchText) || isoCode.toLowerCase().contains(searchText)) {
+                        model.addElement(currencyName + " (" + isoCode + ")");
+                    }
+                }
+
+             // Dropdown öffnen bei Eingabe in search bars
+                dropdownSelect.showPopup();
+            }
+        });
+
+        JTextField searchBar = new JTextField("Nach Währung Filtern");
         searchBar.setBounds(50, 215, 300, 20);
         searchBar.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBar.getText().equals("Nach Währung Suchen")) {
+                if (searchBar.getText().equals("Nach Währung Filtern")) {
                     searchBar.setText("");
                 }
             }
@@ -76,7 +96,7 @@ public class GUI {
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchBar.getText().isEmpty()) {
-                    searchBar.setText("Nach Währung Suchen");
+                    searchBar.setText("Nach Währung Filtern");
                 }
             }
         });
@@ -96,16 +116,23 @@ public class GUI {
                         model.addElement(currencyName + " (" + isoCode + ")");
                     }
                 }
+
+                // Dropdown öffnen bei Eingabe in search bars
+                dropdownChoose.showPopup();
             }
         });
 
-        dropdownChoose = new JComboBox<>();
-        dropdownChoose.setBounds(50, 250, 150, 30);
-        dropdownChoose.setSize(new Dimension(300, 40));
+        JLabel transferLabel = new JLabel("Umrechnen zu:");
+        transferLabel.setSize(new Dimension(100,200));
+        transferLabel.setBounds(400, 180,100,25);
 
-        JComboBox<String> dropdownSelect = new JComboBox<>();
-        dropdownSelect.setBounds(530, 250, 150, 30);
-        dropdownSelect.setSize(new Dimension(300, 40));
+        dropdownChoose = new JComboBox<>();
+        dropdownChoose.setBounds(50, 250, 150, 50);
+        dropdownChoose.setSize(new Dimension(300, 50));
+
+        dropdownSelect = new JComboBox<>();
+        dropdownSelect.setBounds(530, 250, 150, 50);
+        dropdownSelect.setSize(new Dimension(300, 50));
 
         for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
             String isoCode = currency.getKey();
@@ -114,6 +141,10 @@ public class GUI {
             dropdownChoose.addItem(currencyName + " (" + isoCode + ")");
             dropdownSelect.addItem(currencyName + " (" + isoCode + ")");
         }
+
+        // Pfeiltasten zu den Dropdowns adden
+        addArrowKeyNavigationToComboBox(dropdownChoose);
+        addArrowKeyNavigationToComboBox(dropdownSelect);
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -136,6 +167,7 @@ public class GUI {
         frame.add(dropdownSelect);
         frame.add(searchBar);
         frame.add(searchSelectBar);
+        frame.add (transferLabel);
 
         frame.setVisible(true);
     }
@@ -154,5 +186,40 @@ public class GUI {
             // TODO: Error popup once @Leon done with error class
             e.printStackTrace();
         }
+    }
+  
+    // Mit pfeiltasten Yallan
+    public static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
+        InputMap inputMap = comboBox.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        ActionMap actionMap = comboBox.getActionMap();
+
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "UpAction");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "DownAction");
+
+        actionMap.put("UpAction", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = comboBox.getSelectedIndex();
+                if (index > 0) {
+                    comboBox.setSelectedIndex(index - 1);
+                }
+            }
+        });
+
+        actionMap.put("DownAction", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int index = comboBox.getSelectedIndex();
+                if (index < comboBox.getItemCount() - 1) {
+                    comboBox.setSelectedIndex(index + 1);
+                }
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            drawGUI();
+        });
     }
 }
