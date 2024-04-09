@@ -140,7 +140,7 @@ public class GUI {
         frame.setVisible(true);
     }
   
-    public static void setTheme(boolean darkMode) {) {
+    public static void setTheme(boolean darkMode) {
         try {
             if (darkMode) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
