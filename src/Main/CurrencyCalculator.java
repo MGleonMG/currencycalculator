@@ -6,13 +6,11 @@ import Utils.Data.ExchangeRateFetcher;
 
 public class CurrencyCalculator {
 
-    // Erstellt eine Dropdown Liste der Currency 
+    // Erstellt eine Dropdown Liste der Currency
     // spezifisch fuer einen String -> vermeidet somit Fehler
 
     public static void main(String[] args) {
         GUI.drawGUI();
-
-
 
 
         //ExchangeRateFetcher.getLastFetchTime();  In GUI bei ausgabe von wert
@@ -23,8 +21,8 @@ public class CurrencyCalculator {
         String baseCurrency = "USD";
         String targetCurrency = "EUR";
         double amount = 10.00;
-        
-         Calculations.convertCurrencies(baseCurrency, targetCurrency, amount);
-         ExchangeRateFetcher.getLastFetchTime();
+
+        Calculations.convertCurrencies(baseCurrency, targetCurrency, amount);
+        ExchangeRateFetcher.getLastFetchTime();
     }
 }
