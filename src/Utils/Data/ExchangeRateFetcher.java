@@ -33,18 +33,23 @@ public class ExchangeRateFetcher {
             latestRate = Utils.adjustDecimal(Double.parseDouble(out), 4);
 
         } catch (UnknownHostException uhExc) {
+            // TODO: Kein Internet ODER Internet Proleme bei User
             System.err.print("[ERROR] ");
             uhExc.printStackTrace();
             latestRate = 0.0;
 
         } catch (StringIndexOutOfBoundsException oobExc) {
+            // TODO: Währung existiert nicht (mehr) oder beim fetchen der Daten ist ein Fehler aufgetreten.
             System.err.print("[ERROR] ");
             oobExc.printStackTrace();
             latestRate = 0.0;
+
         } catch (Exception exc) {
+            // TODO: Irgendwas ist schief gelaufen aber keine Ahnung lmao
             System.err.print("[UNKNOWN ERROR] ");
             exc.printStackTrace();
             latestRate = 0.0;
+
         }
     }
 
