@@ -156,10 +156,14 @@ public class GUI {
             }
         });
 
+        JLabel outputLabel = new JLabel("Bitte wähle oben Währungen aus");
+        outputLabel.setBounds(150, 280, 300, 150);
+
         JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
-        authorLabel.setBounds(10, FRAME_HEIGHT - 100, 200, 100);
+        authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
 
+        //TODO: Die Zeilen hier drunter sortieren
         frame.add(authorLabel);
         frame.add(label);
         frame.add(menuBtn);
@@ -168,6 +172,7 @@ public class GUI {
         frame.add(searchBar);
         frame.add(searchSelectBar);
         frame.add(transferLabel);
+        frame.add(outputLabel);
 
         frame.setVisible(true);
     }
