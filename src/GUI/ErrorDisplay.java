@@ -1,9 +1,9 @@
 package GUI;
 
-public class ErrorDisplay {
+import javax.swing.JOptionPane;
 
-    //TODO @Leon: make a function for 2 errors and 3rd one for unknown / other errors??
-    public static void throwError(String errorMsg) {
-        // JOptionPane ...
+public class ErrorDisplay {
+    public static void throwErrorPopup(String errorMsg) {
+        JOptionPane.showMessageDialog(null, errorMsg, "Ein Fehler ist aufgetreten", JOptionPane.ERROR_MESSAGE);
     }
 }
