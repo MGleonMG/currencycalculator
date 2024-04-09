@@ -78,7 +78,7 @@ public class GUI {
                     }
                 }
 
-             // Dropdown öffnen bei Eingabe in search bars
+                // Dropdown öffnen bei Eingabe in search bars
                 dropdownSelect.showPopup();
             }
         });
@@ -123,8 +123,8 @@ public class GUI {
         });
 
         JLabel transferLabel = new JLabel("Umrechnen zu:");
-        transferLabel.setSize(new Dimension(100,200));
-        transferLabel.setBounds(400, 180,100,25);
+        transferLabel.setSize(new Dimension(100, 200));
+        transferLabel.setBounds(400, 180, 100, 25);
 
         dropdownChoose = new JComboBox<>();
         dropdownChoose.setBounds(50, 250, 150, 50);
@@ -167,11 +167,11 @@ public class GUI {
         frame.add(dropdownSelect);
         frame.add(searchBar);
         frame.add(searchSelectBar);
-        frame.add (transferLabel);
+        frame.add(transferLabel);
 
         frame.setVisible(true);
     }
-  
+
     public static void setTheme(boolean darkMode) {
         try {
             if (darkMode) {
@@ -187,7 +187,7 @@ public class GUI {
             e.printStackTrace();
         }
     }
-  
+
     // Mit pfeiltasten Yallan
     public static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
         InputMap inputMap = comboBox.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
