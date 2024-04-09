@@ -1,11 +1,8 @@
 package Main;
 
-import java.util.Map;
 import GUI.GUI;
-import Utils.Utils;
 import Utils.Data.Calculations;
 import Utils.Data.ExchangeRateFetcher;
-import javax.swing.JComboBox;
 
 public class CurrencyCalculator {
 
