@@ -20,13 +20,19 @@ public class GUI extends JFrame {
     private static JComboBox<String> dropdownChoose;
     private static JComboBox<String> dropdownSelect;
 
+        /*
+         * @TODO: Vielleicht kann man es so machen,
+         * dass die ganzen Buttons sich mit bewegen?
+         */
+
     public static void drawGUI() {
         frame = new JFrame(TITLE + " " + VERSION);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setMinimumSize(new Dimension(600, 400));
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setLayout(null);
 
         try {
@@ -217,56 +223,4 @@ public class GUI extends JFrame {
         });
     }
 
-        // Wichtig für dynamisches Fenster
-        private static int mouseX, mouseY;
-
-        /*
-        private final int MIN_WIDTH = 200;
-        private final int MIN_HEIGHT = 150;
-        */
-    
-        /*
-         * Erstellt ein Dynamisches Fenster
-         * und setzt die Größe dynamisch ein
-         * wie der End User es haben will 
-         * 
-         * @TODO: Fenster wird auf einer minimalen Größe erstellt
-         * und man sieht keine GUI Oberfläche
-         */
-    public void BewegbaresFenster() {
-    
-        addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
-                mouseX = e.getX();
-                mouseY = e.getY();
-            }
-        });
-        
-        addMouseMotionListener(new MouseMotionAdapter() {
-            public void mouseDragged(MouseEvent e) {
-                int x = getLocation().x;
-                int y = getLocation().y;
-                setLocation(x + e.getX() - mouseX, y + e.getY() - mouseY);
-            }
-        });
-    
-        /* Funktioniert nicht (mit Zeile 27-28)
-        addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent e) {
-                Dimension size = getSize();
-                if(size.width < MIN_WIDTH || size.height < MIN_HEIGHT) {
-                    setSize(Math.max(size.width, MIN_WIDTH), Math.max(size.height, MIN_HEIGHT));
-                }
-            }
-        });
-        */
-    }
-    
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
-        });
-    }
 }
