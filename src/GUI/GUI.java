@@ -12,15 +12,52 @@ import GUI.Menu.Menu;
 import Utils.Utils;
 
 public class GUI {
+    // static final vars for info and
     private static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
-    private static Menu menu;
+
+    // Helpers
     private static boolean isDarkMode = true;
+    private static Menu menu;
+
+    // Components
     private static JFrame frame;
-    private static JComboBox<String> dropdownChoose;
-    private static JComboBox<String> dropdownSelect;
+    private static JLabel headlineLabel = new JLabel("Währungsrechner");
+    private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"), searchBarTargetcur = new JTextField("Nach Währung Filtern");
+    private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
+    private static JButton calculateButton = new JButton("Umrechnen");
+    private static JTextField inputField = new JTextField();
+    private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
+    private static JButton menuBtn = new JButton("Einstellungen");
+    private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
 
     public static void drawGUI() {
+        setBasicFrameProps();
+
+        addCalulateButton();
+        addInputOutput();
+        addDropdownWithFilters();
+        addFooter();
+
+        // TODO: Die Zeilen hier drunter sortieren.  @Ewin oder @Jonas??
+        frame.add(authorLabel);
+        frame.add(headlineLabel);
+        frame.add(menuBtn);
+        frame.add(calculateButton);
+        frame.add(inputField);
+        frame.add(outputLabel);
+        frame.add(searchBarBaseCur);
+        frame.add(searchBarTargetcur);
+        frame.add(dropdownBaseCur);
+        frame.add(dropdownTargetCur);
+
+        setTheme(isDarkMode);
+
+        frame.requestFocus();
+        frame.setVisible(true);
+    }
+
+    private static void setBasicFrameProps() {
         frame = new JFrame(TITLE + " " + VERSION);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLayout(null);
@@ -29,83 +66,35 @@ public class GUI {
         frame.setResizable(false);
         frame.setLayout(null);
 
-        try {
-            setTheme(isDarkMode); // Setze das Look-and-Feel basierend auf dem aktuellen Modus
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        headlineLabel.setFont(headlineLabel.getFont().deriveFont(30f));
+        headlineLabel.setBounds(335, 25, GUI.FRAME_WIDTH, 50);
+    }
 
-        JLabel label = new JLabel("Währungsrechner");
-        label.setFont(label.getFont().deriveFont(30f));
-        label.setBounds(335, 25, GUI.FRAME_WIDTH, 50);
-
-        JButton menuBtn = new JButton("Menü");
-        menuBtn.setBounds(755, 520, 100, 30);
-        menuBtn.setBackground(Color.decode("#00CCCC"));
-        menuBtn.setForeground(Color.WHITE);
-
-        JTextField searchSelectBar = new JTextField("Nach Währung Filtern");
-        searchSelectBar.setBounds(530, 215, 300, 20);
-        searchSelectBar.addFocusListener(new FocusAdapter() {
+    private static void addSearchBars() {
+        // Bar 1
+        searchBarBaseCur.setBounds(50, 215, 290, 20);
+        searchBarBaseCur.setHighlighter(null);
+        searchBarBaseCur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchSelectBar.getText().equals("Nach Währung Filtern")) {
-                    searchSelectBar.setText("");
+                if (searchBarBaseCur.getText().equals("Nach Währung Filtern")) {
+                    searchBarBaseCur.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (searchSelectBar.getText().isEmpty()) {
-                    searchSelectBar.setText("Nach Währung Filtern");
+                if (searchBarBaseCur.getText().isEmpty()) {
+                    searchBarBaseCur.setText("Nach Währung Filtern");
                 }
             }
         });
 
-        searchSelectBar.addKeyListener(new KeyAdapter() {
+        searchBarBaseCur.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String searchText = searchSelectBar.getText().toLowerCase();
-                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownSelect.getModel();
-                model.removeAllElements();
-
-                for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
-                    String isoCode = currency.getKey();
-                    String currencyName = currency.getValue();
-
-                    if (currencyName.toLowerCase().contains(searchText) || isoCode.toLowerCase().contains(searchText)) {
-                        model.addElement(currencyName + " (" + isoCode + ")");
-                    }
-                }
-
-             // Dropdown öffnen bei Eingabe in search bars
-                dropdownSelect.showPopup();
-            }
-        });
-
-        JTextField searchBar = new JTextField("Nach Währung Filtern");
-        searchBar.setBounds(50, 215, 300, 20);
-        searchBar.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (searchBar.getText().equals("Nach Währung Filtern")) {
-                    searchBar.setText("");
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (searchBar.getText().isEmpty()) {
-                    searchBar.setText("Nach Währung Filtern");
-                }
-            }
-        });
-
-        searchBar.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                String searchText = searchBar.getText().toLowerCase();
-                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownChoose.getModel();
+                String searchText = searchBarBaseCur.getText().toLowerCase();
+                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownBaseCur.getModel();
                 model.removeAllElements();
 
                 for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
@@ -118,33 +107,102 @@ public class GUI {
                 }
 
                 // Dropdown öffnen bei Eingabe in search bars
-                dropdownChoose.showPopup();
+                dropdownBaseCur.showPopup();
             }
         });
 
-        JLabel transferLabel = new JLabel("Umrechnen zu:");
-        transferLabel.setSize(new Dimension(100,200));
-        transferLabel.setBounds(400, 180,100,25);
+        // Bar 2
+        searchBarTargetcur.setBounds(530, 215, 290, 20);
+        searchBarTargetcur.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (searchBarTargetcur.getText().equals("Nach Währung Filtern")) {
+                    searchBarTargetcur.setText("");
+                }
+            }
 
-        dropdownChoose = new JComboBox<>();
-        dropdownChoose.setBounds(50, 250, 150, 50);
-        dropdownChoose.setSize(new Dimension(300, 50));
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (searchBarTargetcur.getText().isEmpty()) {
+                    searchBarTargetcur.setText("Nach Währung Filtern");
+                }
+            }
+        });
 
-        dropdownSelect = new JComboBox<>();
-        dropdownSelect.setBounds(530, 250, 150, 50);
-        dropdownSelect.setSize(new Dimension(300, 50));
+        searchBarTargetcur.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String searchText = searchBarTargetcur.getText().toLowerCase();
+                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownTargetCur.getModel();
+                model.removeAllElements();
+
+                for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
+                    String isoCode = currency.getKey();
+                    String currencyName = currency.getValue();
+
+                    if (currencyName.toLowerCase().contains(searchText) || isoCode.toLowerCase().contains(searchText)) {
+                        model.addElement(currencyName + " (" + isoCode + ")");
+                    }
+                }
+
+                // Dropdown öffnen bei Eingabe in search bars
+                dropdownTargetCur.showPopup();
+            }
+        });
+    }
+
+    private static void addDropdownWithFilters() {
+        addSearchBars();
+
+        dropdownBaseCur = new JComboBox<>();
+        dropdownBaseCur.setBounds(50, 250, 290, 50);
+
+        dropdownTargetCur = new JComboBox<>();
+        dropdownTargetCur.setBounds(530, 250, 290, 50);
 
         for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
             String isoCode = currency.getKey();
             String currencyName = currency.getValue();
 
-            dropdownChoose.addItem(currencyName + " (" + isoCode + ")");
-            dropdownSelect.addItem(currencyName + " (" + isoCode + ")");
+            dropdownBaseCur.addItem(currencyName + " (" + isoCode + ")");
+            dropdownTargetCur.addItem(currencyName + " (" + isoCode + ")");
         }
 
         // Pfeiltasten zu den Dropdowns adden
-        addArrowKeyNavigationToComboBox(dropdownChoose);
-        addArrowKeyNavigationToComboBox(dropdownSelect);
+        addArrowKeyNavigationToComboBox(dropdownBaseCur);
+        addArrowKeyNavigationToComboBox(dropdownTargetCur);
+
+        frame.add(dropdownBaseCur);
+        frame.add(dropdownTargetCur);
+    }
+
+    private static void addCalulateButton() {
+        calculateButton.setBounds(380, 250, 100, 25);
+        calculateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        Utils.runCalcThread();
+                    }
+                });
+            }
+        });
+    }
+
+    private static void addInputOutput(){
+        outputLabel.setBounds(250, 280, 300, 150);
+        setOuput("Bitte wähle oben zwei Währungen aus und gib einen Betrag ein.");
+
+        inputField.setBounds(385, 290, 90, 30);
+    }
+
+    private static void addFooter() {
+        authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
+        authorLabel.setForeground(Color.GRAY);
+
+        menuBtn.setBounds(745, 520, 110, 30);
+        menuBtn.setBackground(Color.decode("#00CCCC"));
+        menuBtn.setForeground(Color.WHITE);
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -155,23 +213,8 @@ public class GUI {
                 frame.setVisible(false);
             }
         });
-
-        JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
-        authorLabel.setBounds(10, FRAME_HEIGHT - 100, 200, 100);
-        authorLabel.setForeground(Color.GRAY);
-
-        frame.add(authorLabel);
-        frame.add(label);
-        frame.add(menuBtn);
-        frame.add(dropdownChoose);
-        frame.add(dropdownSelect);
-        frame.add(searchBar);
-        frame.add(searchSelectBar);
-        frame.add (transferLabel);
-
-        frame.setVisible(true);
     }
-  
+
     public static void setTheme(boolean darkMode) {
         try {
             if (darkMode) {
@@ -183,11 +226,12 @@ public class GUI {
             isDarkMode = darkMode;
 
         } catch (Exception e) {
-            // TODO: Error popup once @Leon done with error class
+            ErrorDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
+                    "Das Programm wird möglicherweise etwas anders aussehen als sonst!");
             e.printStackTrace();
         }
     }
-  
+
     // Mit pfeiltasten Yallan
     public static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
         InputMap inputMap = comboBox.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -215,5 +259,23 @@ public class GUI {
                 }
             }
         });
+    }
+
+    public static void setOuput(String output) {
+        // Using HTML formatting here as JLabels dont accept a simple line break (\n)
+        outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
+    }
+
+    public static void displayAsLoading(boolean isLoading) {
+        if (isLoading) {
+            calculateButton.setEnabled(false);
+            setOuput("Lädt...");
+            calculateButton.setText("Lädt...");
+
+        } else {
+
+            calculateButton.setEnabled(true);
+            calculateButton.setText("Umrechnen");
+        }
     }
 }
