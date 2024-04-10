@@ -17,8 +17,8 @@ public class GUI {
     private static Menu menu;
     private static boolean isDarkMode = true;
     private static JFrame frame;
-    private static JComboBox<String> dropdownChoose;
-    private static JComboBox<String> dropdownSelect;
+    private static JComboBox<String> dropdownBaseCur;
+    private static JComboBox<String> dropdownTargetCur;
 
     public static void drawGUI() {
         frame = new JFrame(TITLE + " " + VERSION);
@@ -66,7 +66,7 @@ public class GUI {
             @Override
             public void keyReleased(KeyEvent e) {
                 String searchText = searchSelectBar.getText().toLowerCase();
-                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownSelect.getModel();
+                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownTargetCur.getModel();
                 model.removeAllElements();
 
                 for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
@@ -79,7 +79,7 @@ public class GUI {
                 }
 
                 // Dropdown öffnen bei Eingabe in search bars
-                dropdownSelect.showPopup();
+                dropdownTargetCur.showPopup();
             }
         });
 
@@ -105,7 +105,7 @@ public class GUI {
             @Override
             public void keyReleased(KeyEvent e) {
                 String searchText = searchBar.getText().toLowerCase();
-                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownChoose.getModel();
+                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownBaseCur.getModel();
                 model.removeAllElements();
 
                 for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
@@ -118,33 +118,13 @@ public class GUI {
                 }
 
                 // Dropdown öffnen bei Eingabe in search bars
-                dropdownChoose.showPopup();
+                dropdownBaseCur.showPopup();
             }
         });
 
         JLabel transferLabel = new JLabel("Umrechnen zu:");
         transferLabel.setSize(new Dimension(100, 200));
         transferLabel.setBounds(400, 180, 100, 25);
-
-        dropdownChoose = new JComboBox<>();
-        dropdownChoose.setBounds(50, 250, 150, 50);
-        dropdownChoose.setSize(new Dimension(300, 50));
-
-        dropdownSelect = new JComboBox<>();
-        dropdownSelect.setBounds(530, 250, 150, 50);
-        dropdownSelect.setSize(new Dimension(300, 50));
-
-        for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
-            String isoCode = currency.getKey();
-            String currencyName = currency.getValue();
-
-            dropdownChoose.addItem(currencyName + " (" + isoCode + ")");
-            dropdownSelect.addItem(currencyName + " (" + isoCode + ")");
-        }
-
-        // Pfeiltasten zu den Dropdowns adden
-        addArrowKeyNavigationToComboBox(dropdownChoose);
-        addArrowKeyNavigationToComboBox(dropdownSelect);
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -156,7 +136,7 @@ public class GUI {
             }
         });
 
-        JLabel outputLabel = new JLabel("Bitte wähle oben Währungen aus und gib einen Betrag ein.");
+        JLabel outputLabel = new JLabel("Bitte wähle oben zwei Währungen aus und gib einen Betrag ein.");
         outputLabel.setBounds(250, 280, 300, 150);
 
         JTextField inputField = new JTextField();
@@ -166,18 +146,43 @@ public class GUI {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
 
+        implementDropdownWithFilters();
+
         //TODO: Die Zeilen hier drunter sortieren
         frame.add(authorLabel);
         frame.add(label);
         frame.add(menuBtn);
-        frame.add(dropdownChoose);
-        frame.add(dropdownSelect);
         frame.add(searchBar);
         frame.add(searchSelectBar);
         frame.add(transferLabel);
         frame.add(outputLabel);
 
         frame.setVisible(true);
+    }
+
+    private static void implementDropdownWithFilters(){
+        dropdownBaseCur = new JComboBox<>();
+        dropdownBaseCur.setBounds(50, 250, 150, 50);
+        dropdownBaseCur.setSize(new Dimension(300, 50));
+
+        dropdownTargetCur = new JComboBox<>();
+        dropdownTargetCur.setBounds(530, 250, 150, 50);
+        dropdownTargetCur.setSize(new Dimension(300, 50));
+
+        for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
+            String isoCode = currency.getKey();
+            String currencyName = currency.getValue();
+
+            dropdownBaseCur.addItem(currencyName + " (" + isoCode + ")");
+            dropdownTargetCur.addItem(currencyName + " (" + isoCode + ")");
+        }
+
+        // Pfeiltasten zu den Dropdowns adden
+        addArrowKeyNavigationToComboBox(dropdownBaseCur);
+        addArrowKeyNavigationToComboBox(dropdownTargetCur);
+
+        frame.add(dropdownBaseCur);
+        frame.add(dropdownTargetCur);
     }
 
     public static void setTheme(boolean darkMode) {
