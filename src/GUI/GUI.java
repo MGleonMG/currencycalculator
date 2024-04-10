@@ -33,7 +33,6 @@ public class GUI extends JFrame {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
-        frame.setLayout(null);
 
         try {
             setTheme(isDarkMode); // Setze das Look-and-Feel basierend auf dem aktuellen Modus
