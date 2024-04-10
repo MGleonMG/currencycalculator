@@ -28,7 +28,7 @@ public class GUI extends JFrame {
     public static void drawGUI() {
         frame = new JFrame(TITLE + " " + VERSION);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setMinimumSize(new Dimension(600, 400));
+        frame.setMinimumSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +48,17 @@ public class GUI extends JFrame {
         menuBtn.setBounds(755, 520, 100, 30);
         menuBtn.setBackground(Color.decode("#00CCCC"));
         menuBtn.setForeground(Color.WHITE);
+
+        /*
+         * @TODO: Button schöner machen und dem eine Funktion geben
+         * 
+         */
+
+        JButton rechnerBtn = new JButton("Rechnen");
+        rechnerBtn.setBounds(390, 215, 100, 100);
+        rechnerBtn.setBackground(Color.BLACK);
+        rechnerBtn.setForeground(Color.WHITE);
+        frame.add(rechnerBtn);
 
         JTextField searchSelectBar = new JTextField("Nach Währung Filtern");
         searchSelectBar.setBounds(530, 215, 300, 20);

@@ -7,12 +7,13 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import GUI.GUI;
 
-public class Menu {
+public class Menu extends JFrame {
     private JFrame frame;
     public JButton backButton;
     boolean isDarkMode = true;
@@ -26,7 +27,8 @@ public class Menu {
 
         frame = new JFrame("Menü");
         frame.setLayout(null);
-        frame.setResizable(false);
+        frame.setResizable(true);
+        frame.setMinimumSize(new Dimension(600, 300));
         frame.setLocation(600, 300);
 
         JButton lightButton = new JButton("Heller Modus");
