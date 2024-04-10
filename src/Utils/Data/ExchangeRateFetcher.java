@@ -40,8 +40,10 @@ public class ExchangeRateFetcher {
             latestRate = 0.0;
 
         } catch (StringIndexOutOfBoundsException oobExc) {
-            // TODO: Währung existiert nicht (mehr) oder beim fetchen der Daten ist ein Fehler aufgetreten.
-            ErrorDisplay.throwErrorPopup("Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten");
+            // TODO: Währung existiert nicht (mehr) oder beim fetchen der Daten ist ein
+            // Fehler aufgetreten.
+            ErrorDisplay.throwErrorPopup(
+                    "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten");
             oobExc.printStackTrace();
             latestRate = 0.0;
 
