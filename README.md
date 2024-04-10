@@ -12,10 +12,10 @@ In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" au
 
 ## Features
 - Enthält wichtige Währungen die berechnet werden können.
-- Entnimmt aktuelle Wechselkurse aus dem Internet und berechnet diese.
-- Enthält einen GUI -> Benutzerfreundlich
+- Entnimmt aktuelle Wechselkurse von Google Finances und berechnet diese.
+- Enthält ein GUI -> Benutzerfreundlich
 - Easy to use
-- Enthält einen Darkmode
+- Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode
 
 ## Download (Java Datei)
 TBD
@@ -26,7 +26,7 @@ Das bekommst du auf der offiziellen Oracle Website: https://www.oracle.com/java/
 
 Es wird hierbei empfohlen "Visual Studio Code" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
 
-## Powershell
+### Powershell
 
 ```powershell
 winget install --id Git.Git -e --source winget
@@ -41,7 +41,7 @@ Folgende Befehle müssen ausgeführt werden:
 git clone https://github.com/toxytoxy/currencycalculator.git
 ```
 
-### Optional (sucht nach aktualisierungen)
+- Optional (sucht nach aktualisierungen)
 
 ```powershell
 git checkout main; git pull
