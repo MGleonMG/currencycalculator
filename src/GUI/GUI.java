@@ -20,25 +20,6 @@ public class GUI extends JFrame {
     private static JComboBox<String> dropdownChoose;
     private static JComboBox<String> dropdownSelect;
 
-    private static int mouseX, mouseY;
-
-    public void BewegbaresFenster() {
-
-    addMouseListener(new MouseAdapter() {
-        public void mousePressed(MouseEvent e) {
-            mouseX = e.getX();
-            mouseY = e.getY();
-        }
-    });
-    
-    addMouseMotionListener(new MouseMotionAdapter() {
-        public void mouseDragged(MouseEvent e) {
-            int x = getLocation().x;
-            int y = getLocation().y;
-            setLocation(x + e.getX() - mouseX, y + e.getY() - mouseY);
-        }
-    });
-}
 
 public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
@@ -243,5 +224,49 @@ public static void main(String[] args) {
                 }
             }
         });
+    }
+        // Wichtig für dynamisches Fenster
+        private static int mouseX, mouseY;
+
+        /*
+        private final int MIN_WIDTH = 200;
+        private final int MIN_HEIGHT = 150;
+        */
+    
+        /*
+         * Erstellt ein Dynamisches Fenster
+         * und setzt die Größe dynamisch ein
+         * wie der End User es haben will 
+         * 
+         * @TODO: Fenster wird auf einer minimalen Größe erstellt
+         * und man sieht keine GUI Oberfläche
+         */
+    public void BewegbaresFenster() {
+    
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                mouseX = e.getX();
+                mouseY = e.getY();
+            }
+        });
+        
+        addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                int x = getLocation().x;
+                int y = getLocation().y;
+                setLocation(x + e.getX() - mouseX, y + e.getY() - mouseY);
+            }
+        });
+    
+        /* Funktioniert nicht (mit Zeile 27-28)
+        addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+                Dimension size = getSize();
+                if(size.width < MIN_WIDTH || size.height < MIN_HEIGHT) {
+                    setSize(Math.max(size.width, MIN_WIDTH), Math.max(size.height, MIN_HEIGHT));
+                }
+            }
+        });
+        */
     }
 }
