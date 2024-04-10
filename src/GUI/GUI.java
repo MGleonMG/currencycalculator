@@ -11,7 +11,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Menu.Menu;
 import Utils.Utils;
 
-public class GUI {
+public class GUI extends JFrame {
     private static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static Menu menu;
@@ -19,6 +19,36 @@ public class GUI {
     private static JFrame frame;
     private static JComboBox<String> dropdownChoose;
     private static JComboBox<String> dropdownSelect;
+
+    private static int mouseX, mouseY;
+
+    public void BewegbaresFenster() {
+
+    addMouseListener(new MouseAdapter() {
+        public void mousePressed(MouseEvent e) {
+            mouseX = e.getX();
+            mouseY = e.getY();
+        }
+    });
+    
+    addMouseMotionListener(new MouseMotionAdapter() {
+        public void mouseDragged(MouseEvent e) {
+            int x = getLocation().x;
+            int y = getLocation().y;
+            setLocation(x + e.getX() - mouseX, y + e.getY() - mouseY);
+        }
+    });
+
+}
+
+public static void main(String[] args) {
+    SwingUtilities.invokeLater(new Runnable() {
+        public void run() {
+            new GUI().setVisible(true);
+        }
+    });
+
+}
 
     public static void drawGUI() {
         frame = new JFrame(TITLE + " " + VERSION);
