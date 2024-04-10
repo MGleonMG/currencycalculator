@@ -156,8 +156,11 @@ public class GUI {
             }
         });
 
-        JLabel outputLabel = new JLabel("Bitte wähle oben Währungen aus");
-        outputLabel.setBounds(150, 280, 300, 150);
+        JLabel outputLabel = new JLabel("Bitte wähle oben Währungen aus und gib einen Betrag ein.");
+        outputLabel.setBounds(250, 280, 300, 150);
+
+        JTextField inputField = new JTextField();
+        inputField.setBounds(250, 280, 300, 150); // change numbers
 
         JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
