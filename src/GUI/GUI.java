@@ -20,15 +20,6 @@ public class GUI extends JFrame {
     private static JComboBox<String> dropdownChoose;
     private static JComboBox<String> dropdownSelect;
 
-
-public static void main(String[] args) {
-    SwingUtilities.invokeLater(new Runnable() {
-        public void run() {
-            new GUI().setVisible(true);
-        }
-    });
-}
-
     public static void drawGUI() {
         frame = new JFrame(TITLE + " " + VERSION);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -225,6 +216,7 @@ public static void main(String[] args) {
             }
         });
     }
+
         // Wichtig für dynamisches Fenster
         private static int mouseX, mouseY;
 
@@ -268,5 +260,13 @@ public static void main(String[] args) {
             }
         });
         */
+    }
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new GUI().setVisible(true);
+            }
+        });
     }
 }
