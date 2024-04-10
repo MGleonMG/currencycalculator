@@ -8,6 +8,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import GUI.GUI;
+import Utils.Data.Calculations;
+import Utils.Data.ExchangeRateFetcher;
+
 public class Utils {
 
     public static double adjustDecimal(double x, int decimalPlaces) {
@@ -36,4 +40,19 @@ public class Utils {
         return currencies.entrySet();
     }
 
+    public static void runCalcThread() {
+        // lambda funktion in der runCalcThread() funktion um asynchrones ausführen zu
+        // ermöglichen (=> GUI kann sich dadurch updaten)
+        Thread thread = new Thread(() -> {
+            GUI.displayAsLoading(true);
+
+            String resultAsString = "" + Calculations.convertCurrencies("EUR", "USD", 29.99);
+            GUI.setOuput("Ergebnis ist " + resultAsString.replace('.', ',') +
+                    "<br>Web fetch time: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
+
+            GUI.displayAsLoading(false);
+        });
+
+        thread.start();
+    }
 }
