@@ -38,7 +38,6 @@ public class GUI extends JFrame {
             setLocation(x + e.getX() - mouseX, y + e.getY() - mouseY);
         }
     });
-
 }
 
 public static void main(String[] args) {
@@ -47,7 +46,6 @@ public static void main(String[] args) {
             new GUI().setVisible(true);
         }
     });
-
 }
 
     public static void drawGUI() {
