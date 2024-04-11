@@ -10,7 +10,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Menu.Menu;
 import Utils.Utils;
-
+// test
 public class GUI {
     // static final vars for info and
     private static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
