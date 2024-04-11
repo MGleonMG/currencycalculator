@@ -1,5 +1,5 @@
 // Menu.java
-package GUI.Menu;
+package GUI.Settings;
 
 import javax.swing.*;
 
@@ -12,49 +12,49 @@ import java.awt.event.ActionListener;
 
 import GUI.GUI;
 
-public class Menu {
-    private JFrame frame;
-    public JButton backButton;
-    boolean isDarkMode = true;
+public class Settings {
+    private static JFrame frame;
+    private static JButton backButton; 
+    static boolean isDarkMode = true; // move to own class with getCurrentTheme() ??
+    private static JButton darkButton = new JButton("Dunkler Modus");
+    private static JButton lightButton = new JButton("Heller Modus");
 
-    public Menu() {
+    public Settings() {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        frame = new JFrame("Menü");
+        frame = new JFrame();
+        GUI.updateTitle(frame, "Einstellungen");
         frame.setLayout(null);
         frame.setResizable(false);
         frame.setLocation(600, 300);
 
-        JButton lightButton = new JButton("Heller Modus");
+        addThemeButtons();
+
+        addBackButton();
+
+        createMenu();
+    }
+
+    public void createMenu() {
+        frame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
+        frame.setVisible(true);
+    }
+
+    private static void addThemeButtons(){
         lightButton.setBounds(10, 220, 105, 30);
         lightButton.setBackground(Color.WHITE);
         lightButton.setForeground(Color.BLACK);
         frame.add(lightButton);
 
-        JButton darkButton = new JButton("Dunkler Modus");
         darkButton.setBounds(120, 220, 112, 30);
         darkButton.setBackground(Color.decode("#5A5A5A"));
         darkButton.setForeground(Color.WHITE);
         frame.add(darkButton);
-
-        backButton = new JButton("Zurück");
-        backButton.setBounds(475, 220, 100, 30);
-        backButton.setForeground(Color.WHITE);
-        backButton.setBackground(Color.decode("#00CCCC"));
-        backButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // GUI Klasse bei clicken
-                GUI.drawGUI();
-                frame.dispose(); // Schließe Menüfenster
-            }
-        });
-        frame.add(backButton);
-
-        // TODO: merge into one button, possibly with a switching moon / sun icon / text
+        
         lightButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -84,12 +84,25 @@ public class Menu {
                 }
             }
         });
-
-        createMenu();
     }
 
-    public void createMenu() {
-        frame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
-        frame.setVisible(true);
+    private static void addBackButton(){
+        backButton = new JButton("Zurück");
+        backButton.setBounds(475, 220, 100, 30);
+        backButton.setForeground(Color.WHITE);
+        backButton.setBackground(Color.decode("#00CCCC"));
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // GUI Klasse bei clicken
+                GUI.drawGUI();
+                frame.dispose(); // Schließe Menüfenster
+            }
+        });
+
+        frame.add(backButton);
+    }
+
+    public static JButton getBackButton(){
+        return backButton;
     }
 }

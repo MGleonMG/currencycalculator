@@ -8,17 +8,17 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
-import GUI.Menu.Menu;
+import GUI.Settings.Settings;
 import Utils.Utils;
 
 public class GUI {
     // static final vars for info and
-    private static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
+    public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
 
     // Helpers
     private static boolean isDarkMode = true;
-    private static Menu menu;
+    private static Settings menu;
 
     // Components
     private static JFrame frame;
@@ -57,8 +57,13 @@ public class GUI {
         frame.setVisible(true);
     }
 
+    public static void updateTitle(JFrame jframe, String titleAddition){
+        jframe.setTitle(TITLE + " " + VERSION + " - " + titleAddition);
+    }
+
     private static void setBasicFrameProps() {
-        frame = new JFrame(TITLE + " " + VERSION);
+        frame = new JFrame();
+        updateTitle(frame, "");
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
@@ -207,7 +212,7 @@ public class GUI {
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (menu == null) {
-                    menu = new Menu();
+                    menu = new Settings();
                 }
                 menu.createMenu();
                 frame.setVisible(false);
