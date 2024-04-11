@@ -10,7 +10,6 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Errors.ErrorDisplay;
 import GUI.Settings.Settings;
-import Main.CurrencyCalculator;
 import Utils.Utils;
 
 public class GUI {
