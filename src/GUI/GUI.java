@@ -10,6 +10,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Errors.ErrorDisplay;
 import GUI.Settings.Settings;
+import Main.CurrencyCalculator;
 import Utils.Utils;
 
 public class GUI {
@@ -28,7 +29,7 @@ public class GUI {
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
-    private static JButton clipBoardBtn = new JButton("Kopieren");
+    private static JButton clipBoardBtn = new JButton("Copy");
     private static JTextField inputField = new JTextField();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
@@ -207,6 +208,12 @@ public class GUI {
 
     private static void addClipBoardButton() {
         clipBoardBtn.setBounds(745, 480, 110, 30);
+
+        ImageIcon originalIcon = new ImageIcon(Map.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        clipBoardBtn.setIcon (scaledIcon);
         clipBoardBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
