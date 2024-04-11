@@ -16,14 +16,14 @@ public class GUI {
     // static final vars for info and
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
-    private static ImageIcon icon = new ImageIcon(GUI.class.getClassLoader().getResource("resources/app_icon/app_icon.png"));
+    private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Helpers
     private static boolean isDarkMode = true;
     private static Settings menu;
 
     // Components
-    private static JFrame frame;
+    private static JFrame frame = new JFrame();
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
@@ -65,11 +65,9 @@ public class GUI {
     }
 
     private static void setBasicFrameProps() {
-        frame = new JFrame();
         updateTitle(frame, "");
         frame.setIconImage(icon.getImage());
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
