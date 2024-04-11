@@ -20,7 +20,6 @@ public class GUI {
 
     // Helpers
     private static boolean isDarkMode = true;
-    private static Settings menu;
 
     // Components
     private static JFrame frame = new JFrame();
@@ -215,9 +214,6 @@ public class GUI {
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (menu == null) {
-                    menu = new Settings();
-                }
                 Settings.drawSettingsGUI();
                 frame.setVisible(false);
             }
