@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Errors;
 
 import javax.swing.JOptionPane;
 

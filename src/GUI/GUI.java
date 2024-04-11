@@ -8,6 +8,7 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import GUI.Errors.ErrorDisplay;
 import GUI.Settings.Settings;
 import Utils.Utils;
 
@@ -58,7 +59,7 @@ public class GUI {
     }
 
     public static void updateTitle(JFrame jframe, String titleAddition){
-        jframe.setTitle(TITLE + " " + VERSION + " - " + titleAddition);
+        jframe.setTitle(TITLE + " " + VERSION + (titleAddition != null ? (" - " + titleAddition) : ""));
     }
 
     private static void setBasicFrameProps() {
