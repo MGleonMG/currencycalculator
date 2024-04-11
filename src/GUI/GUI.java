@@ -154,6 +154,8 @@ public class GUI {
     private static void addDropdownWithFilters() {
         addSearchBars();
 
+
+        //testn
         dropdownBaseCur = new JComboBox<>();
         dropdownBaseCur.setBounds(50, 250, 290, 50);
 
