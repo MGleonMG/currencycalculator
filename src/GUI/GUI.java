@@ -28,6 +28,7 @@ public class GUI {
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
+    private static JButton clipBoardBtn = new JButton("Kopieren");
     private static JTextField inputField = new JTextField();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
@@ -36,7 +37,8 @@ public class GUI {
     public static void drawGUI() {
         setBasicFrameProps();
 
-        addCalulateButton();
+        addClipBoardButton();
+        addCalculateButton();
         addInputOutput();
         addDropdownWithFilters();
         addFooter();
@@ -45,6 +47,7 @@ public class GUI {
         frame.add(headlineLabel);
 
         frame.add(calculateBtn);
+        frame.add(clipBoardBtn);
 
         frame.add(inputField);
         frame.add(outputLabel);
@@ -189,7 +192,7 @@ public class GUI {
         frame.add(dropdownTargetCur);
     }
 
-    private static void addCalulateButton() {
+    private static void addCalculateButton() {
         calculateBtn.setBounds(380, 250, 100, 25);
         calculateBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -199,6 +202,20 @@ public class GUI {
                     }
                 });
             }
+        });
+    }
+
+    private static void addClipBoardButton() {
+        clipBoardBtn.setBounds(745, 480, 110, 30);
+        clipBoardBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        Utils.Clipboard();
+                    }
+                });
+            }
+
         });
     }
 

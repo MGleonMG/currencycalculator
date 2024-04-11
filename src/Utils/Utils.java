@@ -12,6 +12,10 @@ import GUI.GUI;
 import Utils.Data.Calculations;
 import Utils.Data.ExchangeRateFetcher;
 
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+
 public class Utils {
 
     public static double adjustDecimal(double x, int decimalPlaces) {
@@ -55,4 +59,18 @@ public class Utils {
 
         thread.start();
     }
+
+    // TODO: Clipboard ist fast fertig
+    // Es muss noch so geändert werden, dass es in .convertCurrencies
+    // die Daten vom Enduser entnimmt
+
+    // Problem -> Es fetcht nochmal die Sachen vom Internet
+    public static void Clipboard(){
+        double umrechnung = Calculations.convertCurrencies(null, null, 0);
+            String myString = String.valueOf(umrechnung);
+                StringSelection stringSelection = new StringSelection(myString);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(stringSelection, null);
+    }
+
 }
