@@ -60,8 +60,8 @@ public class Utils {
         thread.start();
     }
 
-    public static void Clipboard() {
-        double umrechnung = Calculations.rechnung;
+    public static void copyToClipboard() {
+        double umrechnung = Calculations.calculation;
             if(umrechnung != 0.0) {
                 String myString = String.valueOf(umrechnung);
                 StringSelection stringSelection = new StringSelection(myString);

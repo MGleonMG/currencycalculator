@@ -13,9 +13,9 @@ import java.awt.event.*;
 public class Settings {
     private static JFrame settingsFrame = new JFrame();
     private static JButton backBtn;
-    static boolean isDarkMode = true; // TODO: Siehe Theme Class
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
+    public  static boolean isDarkMode = true;
 
     public static void drawSettingsGUI() {
         setBasicFrameProps();
@@ -103,5 +103,4 @@ public class Settings {
     public static JButton getBackBtn() {
         return backBtn;
     }
-
 }

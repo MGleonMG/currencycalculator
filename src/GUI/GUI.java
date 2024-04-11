@@ -28,7 +28,7 @@ public class GUI {
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
-    private static JButton clipBoardBtn = new JButton("Copy");
+    private static JButton clipboardBtn = new JButton("Copy");
     private static JTextField inputField = new JTextField();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
@@ -37,7 +37,7 @@ public class GUI {
     public static void drawGUI() {
         setBasicFrameProps();
 
-        addClipBoardButton();
+        addCopyOutputButton();
         addCalculateButton();
         addInputOutput();
         addDropdownWithFilters();
@@ -47,7 +47,7 @@ public class GUI {
         frame.add(headlineLabel);
 
         frame.add(calculateBtn);
-        frame.add(clipBoardBtn);
+        frame.add(clipboardBtn);
 
         frame.add(inputField);
         frame.add(outputLabel);
@@ -205,23 +205,24 @@ public class GUI {
         });
     }
 
-    private static void addClipBoardButton() {
-        clipBoardBtn.setBounds(745, 480, 110, 30);
+    private static void addCopyOutputButton() {
+        clipboardBtn.setBounds(745, 480, 110, 30);
 
-        ImageIcon originalIcon = new ImageIcon(Map.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
+        //Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten Auflösung
+        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem Bild
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipBoardBtn.setIcon (scaledIcon);
-        clipBoardBtn.addActionListener(new ActionListener() {
+        clipboardBtn.setIcon (scaledIcon);
+        clipboardBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        Utils.Clipboard();
+                        Utils.copyToClipboard();
                     }
                 });
             }
-
         });
     }
 
