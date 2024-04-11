@@ -1,4 +1,3 @@
-// Menu.java
 package GUI.Settings;
 
 import javax.swing.*;
@@ -13,38 +12,34 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Settings {
-    private static JFrame settingsFrame;
-    private static JButton backButton; 
+    private static JFrame settingsFrame = new JFrame();
+    private static JButton backButton;
     static boolean isDarkMode = true; // TODO: move to own class with getCurrentTheme() ??
     private static JButton darkButton = new JButton("Dunkler Modus");
     private static JButton lightButton = new JButton("Heller Modus");
 
-    public Settings() {
-        try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void drawSettingsGUI() {
+        setBasicFrameProps();
 
-        settingsFrame = new JFrame();
+        addThemeButtons();
+        addBackButton();
+
+        settingsFrame.requestFocus();
+        settingsFrame.setVisible(true);
+    }
+    
+    private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
+        settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
         settingsFrame.setLocation(600, 300);
-
-        addThemeButtons();
-
-        addBackButton();
-
-        createMenu();
+        settingsFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        // TODO: Instead of preventing the closing (line above),
+        // we could add a WindowListener?
     }
 
-    public void createMenu() {
-        settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
-        settingsFrame.setVisible(true);
-    }
-
-    private static void addThemeButtons(){
+    private static void addThemeButtons() {
         lightButton.setBounds(10, 220, 105, 30);
         lightButton.setBackground(Color.WHITE);
         lightButton.setForeground(Color.BLACK);
@@ -54,7 +49,7 @@ public class Settings {
         darkButton.setBackground(Color.decode("#5A5A5A"));
         darkButton.setForeground(Color.WHITE);
         settingsFrame.add(darkButton);
-        
+
         lightButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,7 +81,7 @@ public class Settings {
         });
     }
 
-    private static void addBackButton(){
+    private static void addBackButton() {
         backButton = new JButton("Zurück");
         backButton.setBounds(475, 220, 100, 30);
         backButton.setForeground(Color.WHITE);
@@ -102,7 +97,7 @@ public class Settings {
         settingsFrame.add(backButton);
     }
 
-    public static JButton getBackButton(){
+    public static JButton getBackButton() {
         return backButton;
     }
 }

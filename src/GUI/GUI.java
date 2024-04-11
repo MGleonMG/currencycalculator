@@ -11,9 +11,9 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Errors.ErrorDisplay;
 import GUI.Settings.Settings;
 import Utils.Utils;
-// test
+
 public class GUI {
-    // static final vars for info and
+    // static final vars
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
@@ -60,8 +60,10 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    public static void updateTitle(JFrame jframe, String titleAddition) {
-        jframe.setTitle(TITLE + " " + VERSION + (titleAddition != null ? (" - " + titleAddition) : ""));
+    // TODO: @Leon optimize this function
+    public static void updateTitle(JFrame jframe, String rawTitleAddition) {
+        String titleAddition = " - " + rawTitleAddition;
+        jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
     }
 
     private static void setBasicFrameProps() {
@@ -216,7 +218,7 @@ public class GUI {
                 if (menu == null) {
                     menu = new Settings();
                 }
-                menu.createMenu();
+                Settings.drawSettingsGUI();
                 frame.setVisible(false);
             }
         });
