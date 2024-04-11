@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import GUI.GUI;
-
 import Utils.Data.Calculations;
 import Utils.Data.ExchangeRateFetcher;
 
