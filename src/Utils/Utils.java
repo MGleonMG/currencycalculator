@@ -60,17 +60,13 @@ public class Utils {
         thread.start();
     }
 
-    // TODO: Clipboard ist fast fertig
-    // Es muss noch so geändert werden, dass es in .convertCurrencies
-    // die Daten vom Enduser entnimmt
-
-    // Problem -> Es fetcht nochmal die Sachen vom Internet
-    public static void Clipboard(){
-        double umrechnung = Calculations.convertCurrencies(null, null, 0);
-            String myString = String.valueOf(umrechnung);
+    public static void Clipboard() {
+        double umrechnung = Calculations.rechnung;
+            if(umrechnung != 0.0) {
+                String myString = String.valueOf(umrechnung);
                 StringSelection stringSelection = new StringSelection(myString);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(stringSelection, null);
+        }
     }
-
 }
