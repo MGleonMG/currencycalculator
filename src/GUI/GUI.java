@@ -16,6 +16,7 @@ public class GUI {
     // static final vars for info and
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
+    private static ImageIcon icon = new ImageIcon(GUI.class.getClassLoader().getResource("resources/app_icon/app_icon.png"));
 
     // Helpers
     private static boolean isDarkMode = true;
@@ -24,7 +25,8 @@ public class GUI {
     // Components
     private static JFrame frame;
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
-    private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"), searchBarTargetcur = new JTextField("Nach Währung Filtern");
+    private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
+            searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateButton = new JButton("Umrechnen");
     private static JTextField inputField = new JTextField();
@@ -40,7 +42,7 @@ public class GUI {
         addDropdownWithFilters();
         addFooter();
 
-        // TODO: Die Zeilen hier drunter sortieren.  @Ewin oder @Jonas??
+        // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
         frame.add(authorLabel);
         frame.add(headlineLabel);
         frame.add(menuBtn);
@@ -58,13 +60,14 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    public static void updateTitle(JFrame jframe, String titleAddition){
+    public static void updateTitle(JFrame jframe, String titleAddition) {
         jframe.setTitle(TITLE + " " + VERSION + (titleAddition != null ? (" - " + titleAddition) : ""));
     }
 
     private static void setBasicFrameProps() {
         frame = new JFrame();
         updateTitle(frame, "");
+        frame.setIconImage(icon.getImage());
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLayout(null);
         frame.setLocationRelativeTo(null);
@@ -195,7 +198,7 @@ public class GUI {
         });
     }
 
-    private static void addInputOutput(){
+    private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
         setOuput("Bitte wähle oben zwei Währungen aus und gib einen Betrag ein.");
 
