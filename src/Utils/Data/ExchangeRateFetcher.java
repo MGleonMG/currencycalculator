@@ -34,13 +34,11 @@ public class ExchangeRateFetcher {
             latestRate = Utils.adjustDecimal(Double.parseDouble(htmlOutput), 4);
 
         } catch (UnknownHostException uhExc) {
-            // TODO: Kein Internet ODER Internet Proleme bei User
             ErrorDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden");
             uhExc.printStackTrace();
             latestRate = 0.0;
 
         } catch (StringIndexOutOfBoundsException oobExc) {
-            // TODO: Währung existiert nicht (mehr) oder beim fetchen der Daten ist ein
             // Fehler aufgetreten.
             ErrorDisplay.throwErrorPopup(
                     "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten");
@@ -48,7 +46,6 @@ public class ExchangeRateFetcher {
             latestRate = 0.0;
 
         } catch (Exception exc) {
-            // TODO: Irgendwas ist schief gelaufen aber keine Ahnung lmao
             System.err.print("[UNKNOWN ERROR] ");
             ErrorDisplay.throwErrorPopup("Ein unbekannter Fehler ist aufgetreten");
             exc.printStackTrace();
