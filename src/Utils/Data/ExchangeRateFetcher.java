@@ -4,7 +4,7 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import GUI.ErrorDisplay;
+import GUI.Errors.ErrorDisplay;
 import Utils.Utils;
 
 public class ExchangeRateFetcher {

@@ -8,22 +8,24 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
-import GUI.Menu.Menu;
+import GUI.Errors.ErrorDisplay;
+import GUI.Settings.Settings;
 import Utils.Utils;
-// test
+
 public class GUI {
-    // static final vars for info and
-    private static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
+    // static final vars
+    public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
+    private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Helpers
     private static boolean isDarkMode = true;
-    private static Menu menu;
 
     // Components
-    private static JFrame frame;
+    private static JFrame frame = new JFrame();
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
-    private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"), searchBarTargetcur = new JTextField("Nach Währung Filtern");
+    private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
+            searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateButton = new JButton("Umrechnen");
     private static JTextField inputField = new JTextField();
@@ -39,7 +41,7 @@ public class GUI {
         addDropdownWithFilters();
         addFooter();
 
-        // TODO: Die Zeilen hier drunter sortieren.  @Ewin oder @Jonas??
+        // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
         frame.add(authorLabel);
         frame.add(headlineLabel);
         frame.add(menuBtn);
@@ -57,10 +59,16 @@ public class GUI {
         frame.setVisible(true);
     }
 
+    // TODO: @Leon optimize this function
+    public static void updateTitle(JFrame jframe, String rawTitleAddition) {
+        String titleAddition = " - " + rawTitleAddition;
+        jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
+    }
+
     private static void setBasicFrameProps() {
-        frame = new JFrame(TITLE + " " + VERSION);
+        updateTitle(frame, "");
+        frame.setIconImage(icon.getImage());
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -189,7 +197,7 @@ public class GUI {
         });
     }
 
-    private static void addInputOutput(){
+    private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
         setOuput("Bitte wähle oben zwei Währungen aus und gib einen Betrag ein.");
 
@@ -206,10 +214,7 @@ public class GUI {
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (menu == null) {
-                    menu = new Menu();
-                }
-                menu.createMenu();
+                Settings.drawSettingsGUI();
                 frame.setVisible(false);
             }
         });
