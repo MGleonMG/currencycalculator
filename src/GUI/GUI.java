@@ -27,7 +27,7 @@ public class GUI {
     private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
-    private static JButton calculateButton = new JButton("Umrechnen");
+    private static JButton calculateBtn = new JButton("Umrechnen");
     private static JTextField inputField = new JTextField();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
@@ -42,17 +42,22 @@ public class GUI {
         addFooter();
 
         // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
-        frame.add(authorLabel);
         frame.add(headlineLabel);
-        frame.add(menuBtn);
-        frame.add(calculateButton);
+
+        frame.add(calculateBtn);
+
         frame.add(inputField);
         frame.add(outputLabel);
+
         frame.add(searchBarBaseCur);
         frame.add(searchBarTargetcur);
+
         frame.add(dropdownBaseCur);
         frame.add(dropdownTargetCur);
 
+        frame.add(authorLabel);
+        frame.add(menuBtn);
+        
         setTheme(isDarkMode);
 
         frame.requestFocus();
@@ -185,8 +190,8 @@ public class GUI {
     }
 
     private static void addCalulateButton() {
-        calculateButton.setBounds(380, 250, 100, 25);
-        calculateButton.addActionListener(new ActionListener() {
+        calculateBtn.setBounds(380, 250, 100, 25);
+        calculateBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
@@ -273,14 +278,14 @@ public class GUI {
 
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
-            calculateButton.setEnabled(false);
+            calculateBtn.setEnabled(false);
             setOuput("Lädt...");
-            calculateButton.setText("Lädt...");
+            calculateBtn.setText("Lädt...");
 
         } else {
 
-            calculateButton.setEnabled(true);
-            calculateButton.setText("Umrechnen");
+            calculateBtn.setEnabled(true);
+            calculateBtn.setText("Umrechnen");
         }
     }
 }
