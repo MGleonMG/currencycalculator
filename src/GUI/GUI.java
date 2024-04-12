@@ -29,13 +29,22 @@ public class GUI {
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
     private static JButton clipboardBtn = new JButton();
-    private static JTextField inputField = new JTextField();
+    public static JTextField inputField = new JTextField();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
 
-    public static String currencyBar1 = "";
-    public static String currencyBar2 = "";
+    /*
+     * TODO Code Optimization
+     */
+    public static String inputValue;
+    public static double inputValueAsDouble;
+
+    public static String baseCur;
+    public static String targetCur;
+
+    public static String result;
+    public static String result2;
 
     public static void drawGUI() {
         setBasicFrameProps();
@@ -91,11 +100,6 @@ public class GUI {
 
     private static void addSearchBars() {
 
-        /*
-         * 
-         * TODO
-         */
-
         // Bar 1
         searchBarBaseCur.setBounds(50, 215, 290, 20);
         searchBarBaseCur.setHighlighter(null);
@@ -135,11 +139,6 @@ public class GUI {
                 dropdownBaseCur.showPopup();
             }
         });
-
-        /*
-         * TODO
-         * 
-         */
 
         // Bar 2
         searchBarTargetcur.setBounds(530, 215, 290, 20);
@@ -198,6 +197,36 @@ public class GUI {
             dropdownTargetCur.addItem(currencyName + " (" + isoCode + ")");
         }
 
+        /*
+         * 
+         * TODO Code Optimization
+         * 
+         */
+        dropdownBaseCur.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    baseCur = (String) dropdownBaseCur.getSelectedItem();
+                    result = baseCur.split("\\(")[1].replace(")", "").trim();
+                }
+            }
+        });
+
+        /*
+         * 
+         * TODO Code Optimization
+         * 
+         */
+        dropdownTargetCur.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    targetCur = (String) dropdownTargetCur.getSelectedItem();
+                    result2 = targetCur.split("\\(")[1].replace(")", "").trim();
+                }
+            }
+        });
+
         // Pfeiltasten zu den Dropdowns adden
         addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
@@ -212,6 +241,16 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
+                        /*
+                         * TODO Code Optimization
+                         * 
+                         * inputValue muss drinne bleiben, damit er in dem Moment die eingegebenen Daten
+                         * entzieht
+                         * InputValueAsDouble könnte im Utils geschrieben werden
+                         */
+                        inputValue = inputField.getText();
+                        inputValueAsDouble = Double.parseDouble(GUI.inputValue);
+
                         Utils.runCalcThread();
                     }
                 });
@@ -242,11 +281,6 @@ public class GUI {
         });
     }
 
-    /*
-     * 
-     * TODO
-     * 
-     */
     private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
         setOuput("Bitte wähle Währungen aus und gib einen Betrag ein.");

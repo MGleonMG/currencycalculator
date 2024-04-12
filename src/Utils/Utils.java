@@ -52,13 +52,11 @@ public class Utils {
 
             /*
              * 
-             * TODO: convertCurrencies ist hardcoded, weswegen die Rechnung nicht stimmt
+             * TODO: Code Optimization (GUI.result etc.)
              * 
              */
-
-            String resultAsString = "" + Calculations.convertCurrencies(GUI.currencyBar1, GUI.currencyBar2, 30);
-
-            System.out.println(GUI.currencyBar1 + GUI.currencyBar2);
+            String resultAsString = ""
+                    + Calculations.convertCurrencies(GUI.result, GUI.result2, GUI.inputValueAsDouble);
 
             GUI.setOuput("Ergebnis ist " + resultAsString.replace('.', ',') +
                     "<br>Web fetch time: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
@@ -71,11 +69,11 @@ public class Utils {
 
     public static void copyToClipboard() {
         double umrechnung = Calculations.calculation;
-            if(umrechnung != 0.0) {
-                String myString = String.valueOf(umrechnung);
-                StringSelection stringSelection = new StringSelection(myString);
-                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                clipboard.setContents(stringSelection, null);
+        if (umrechnung != 0.0) {
+            String myString = String.valueOf(umrechnung);
+            StringSelection stringSelection = new StringSelection(myString);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
         }
     }
 }
