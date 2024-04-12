@@ -50,6 +50,13 @@ public class Utils {
         Thread thread = new Thread(() -> {
             GUI.displayAsLoading(true);
 
+
+            /*
+             * 
+             * TODO: convertCurrencies ist hardcoded, weswegen die Rechnung nicht stimmt
+             * 
+             */
+
             String resultAsString = "" + Calculations.convertCurrencies("EUR", "USD", 29.99);
             GUI.setOuput("Ergebnis ist " + resultAsString.replace('.', ',') +
                     "<br>Web fetch time: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
