@@ -34,6 +34,9 @@ public class GUI {
     private static JButton menuBtn = new JButton("Einstellungen");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
 
+    public static String currencyBar1 = "";
+    public static String currencyBar2 = "";
+
     public static void drawGUI() {
         setBasicFrameProps();
 
@@ -60,7 +63,7 @@ public class GUI {
 
         frame.add(authorLabel);
         frame.add(menuBtn);
-        
+
         setTheme(isDarkMode);
 
         frame.requestFocus();
@@ -87,6 +90,12 @@ public class GUI {
     }
 
     private static void addSearchBars() {
+
+        /*
+         * 
+         * TODO
+         */
+
         // Bar 1
         searchBarBaseCur.setBounds(50, 215, 290, 20);
         searchBarBaseCur.setHighlighter(null);
@@ -126,6 +135,11 @@ public class GUI {
                 dropdownBaseCur.showPopup();
             }
         });
+
+        /*
+         * TODO
+         * 
+         */
 
         // Bar 2
         searchBarTargetcur.setBounds(530, 215, 290, 20);
@@ -208,13 +222,15 @@ public class GUI {
     private static void addCopyOutputButton() {
         clipboardBtn.setBounds(490, 290, 30, 30);
 
-        //Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten Auflösung
-        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem Bild
+        // Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten
+        // Auflösung
+        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem
+        // Bild
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipboardBtn.setIcon (scaledIcon);
+        clipboardBtn.setIcon(scaledIcon);
         clipboardBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
@@ -226,6 +242,11 @@ public class GUI {
         });
     }
 
+    /*
+     * 
+     * TODO
+     * 
+     */
     private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
         setOuput("Bitte wähle Währungen aus und gib einen Betrag ein.");

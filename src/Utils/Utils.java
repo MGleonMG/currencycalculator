@@ -18,6 +18,8 @@ import java.awt.datatransfer.Clipboard;
 
 public class Utils {
 
+    private static final String ConvertCurrency = null;
+
     public static double adjustDecimal(double x, int decimalPlaces) {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator('.');
@@ -50,14 +52,16 @@ public class Utils {
         Thread thread = new Thread(() -> {
             GUI.displayAsLoading(true);
 
-
             /*
              * 
              * TODO: convertCurrencies ist hardcoded, weswegen die Rechnung nicht stimmt
              * 
              */
 
-            String resultAsString = "" + Calculations.convertCurrencies("EUR", "USD", 29.99);
+            String resultAsString = "" + Calculations.convertCurrencies(GUI.currencyBar1, GUI.currencyBar2, 30);
+
+            System.out.println(GUI.currencyBar1 + GUI.currencyBar2);
+
             GUI.setOuput("Ergebnis ist " + resultAsString.replace('.', ',') +
                     "<br>Web fetch time: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
