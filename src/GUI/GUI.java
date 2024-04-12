@@ -228,7 +228,7 @@ public class GUI {
 
     private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
-        setOuput("Bitte wähle oben zwei Währungen aus und gib einen Betrag ein.");
+        setOuput("Bitte wähle Währungen aus und gib einen Betrag ein.");
 
         inputField.setBounds(385, 290, 90, 30);
     }
