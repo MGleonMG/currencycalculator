@@ -69,4 +69,8 @@ public class Utils {
             clipboard.setContents(stringSelection, null);
         }
     }
+
+    public static void runFirstTimeSetup() {
+        // TODO
+    }
 }

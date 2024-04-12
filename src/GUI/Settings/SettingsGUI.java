@@ -10,7 +10,7 @@ import GUI.GUI;
 import java.awt.Color;
 import java.awt.event.*;
 
-public class Settings {
+public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
