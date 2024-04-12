@@ -242,7 +242,7 @@ public class GUI {
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
     
-        menuBtnTest.setBounds(700, 380, 300, 300);
+        menuBtnTest.setBounds(GUI.FRAME_WIDTH-80, GUI.FRAME_HEIGHT-95, 50, 50);
         menuBtnTest.setIcon(scaledIcon);
 
         menuBtnTest.addMouseListener(new MouseAdapter() {
