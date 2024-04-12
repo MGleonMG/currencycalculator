@@ -8,15 +8,14 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.GUI;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Settings {
     private static JFrame settingsFrame = new JFrame();
-    private static JButton backButton;
-    static boolean isDarkMode = true; // TODO: move to own class with getCurrentTheme() ??
-    private static JButton darkButton = new JButton("Dunkler Modus");
-    private static JButton lightButton = new JButton("Heller Modus");
+    private static JButton backBtn;
+    private static JButton darkBtn = new JButton("Dunkler Modus");
+    private static JButton lightBtn = new JButton("Heller Modus");
+    public static boolean isDarkMode = true;
 
     public static void drawSettingsGUI() {
         setBasicFrameProps();
@@ -34,46 +33,50 @@ public class Settings {
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
         settingsFrame.setLocation(600, 300);
-        settingsFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        // TODO: Instead of preventing the closing (line above),
-        // we could add a WindowListener?
+       settingsFrame.addWindowListener(new WindowAdapter() {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            GUI.drawGUI();
+            settingsFrame.dispose();
+        }
+       });
     }
 
     private static void addThemeButtons() {
-        lightButton.setBounds(10, 220, 105, 30);
-        lightButton.setBackground(Color.WHITE);
-        lightButton.setForeground(Color.BLACK);
-        settingsFrame.add(lightButton);
+        lightBtn.setBounds(10, 220, 105, 30);
+        lightBtn.setBackground(Color.WHITE);
+        lightBtn.setForeground(Color.BLACK);
+        settingsFrame.add(lightBtn);
 
-        darkButton.setBounds(120, 220, 112, 30);
-        darkButton.setBackground(Color.decode("#5A5A5A"));
-        darkButton.setForeground(Color.WHITE);
-        settingsFrame.add(darkButton);
+        darkBtn.setBounds(120, 220, 112, 30);
+        darkBtn.setBackground(Color.decode("#5A5A5A"));
+        darkBtn.setForeground(Color.WHITE);
+        settingsFrame.add(darkBtn);
 
-        lightButton.addActionListener(new ActionListener() {
+        lightBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     UIManager.setLookAndFeel(new FlatLightLaf()); // Setze Look-and-Feel auf Lightmode
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     GUI.setTheme(false); // Übertrage das Theme auf die GUI-Klasse
-                    lightButton.setEnabled(false);
-                    darkButton.setEnabled(true);
+                    lightBtn.setEnabled(false);
+                    darkBtn.setEnabled(true);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
 
-        darkButton.addActionListener(new ActionListener() {
+        darkBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     UIManager.setLookAndFeel(new FlatDarkLaf()); // Setze Look-and-Feel auf Darkmode
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     GUI.setTheme(true); // Übertrage das Theme auf die GUI-Klasse
-                    lightButton.setEnabled(true);
-                    darkButton.setEnabled(false);
+                    lightBtn.setEnabled(true);
+                    darkBtn.setEnabled(false);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -82,11 +85,11 @@ public class Settings {
     }
 
     private static void addBackButton() {
-        backButton = new JButton("Zurück");
-        backButton.setBounds(475, 220, 100, 30);
-        backButton.setForeground(Color.WHITE);
-        backButton.setBackground(Color.decode("#00CCCC"));
-        backButton.addActionListener(new ActionListener() {
+        backBtn = new JButton("Zurück");
+        backBtn.setBounds(475, 220, 100, 30);
+        backBtn.setForeground(Color.WHITE);
+        backBtn.setBackground(Color.decode("#00CCCC"));
+        backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // GUI Klasse bei clicken
                 GUI.drawGUI();
@@ -94,10 +97,10 @@ public class Settings {
             }
         });
 
-        settingsFrame.add(backButton);
+        settingsFrame.add(backBtn);
     }
 
-    public static JButton getBackButton() {
-        return backButton;
+    public static JButton getBackBtn() {
+        return backBtn;
     }
 }

@@ -12,6 +12,10 @@ import GUI.GUI;
 import Utils.Data.Calculations;
 import Utils.Data.ExchangeRateFetcher;
 
+import java.awt.datatransfer.StringSelection;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+
 public class Utils {
 
     public static double adjustDecimal(double x, int decimalPlaces) {
@@ -54,5 +58,15 @@ public class Utils {
         });
 
         thread.start();
+    }
+
+    public static void copyToClipboard() {
+        double umrechnung = Calculations.calculation;
+            if(umrechnung != 0.0) {
+                String myString = String.valueOf(umrechnung);
+                StringSelection stringSelection = new StringSelection(myString);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(stringSelection, null);
+        }
     }
 }
