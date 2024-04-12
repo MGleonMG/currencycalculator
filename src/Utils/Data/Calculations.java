@@ -4,6 +4,8 @@ import Utils.Utils;
 
 public class Calculations {
 
+    // @TODO: Leon possibly Cleanup Code
+
     public static double calculation;
 
     public static double convertCurrencies(String baseCur, String targetCur, double amount) {

@@ -15,7 +15,7 @@ public class Settings {
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
-    public  static boolean isDarkMode = true;
+    public static boolean isDarkMode = true;
 
     public static void drawSettingsGUI() {
         setBasicFrameProps();
