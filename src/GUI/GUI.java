@@ -28,7 +28,7 @@ public class GUI {
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
-    private static JButton clipboardBtn = new JButton("Copy");
+    private static JButton clipboardBtn = new JButton();
     private static JTextField inputField = new JTextField();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
@@ -206,7 +206,7 @@ public class GUI {
     }
 
     private static void addCopyOutputButton() {
-        clipboardBtn.setBounds(745, 480, 110, 30);
+        clipboardBtn.setBounds(490, 290, 30, 30);
 
         //Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten Auflösung
         // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem Bild
@@ -228,7 +228,7 @@ public class GUI {
 
     private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
-        setOuput("Bitte wähle oben zwei Währungen aus und gib einen Betrag ein.");
+        setOuput("Bitte wähle Währungen aus und gib einen Betrag ein.");
 
         inputField.setBounds(385, 290, 90, 30);
     }
