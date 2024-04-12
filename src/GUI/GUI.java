@@ -60,7 +60,7 @@ public class GUI {
 
         frame.add(authorLabel);
         frame.add(menuBtn);
-        
+
         setTheme(isDarkMode);
 
         frame.requestFocus();
@@ -208,13 +208,15 @@ public class GUI {
     private static void addCopyOutputButton() {
         clipboardBtn.setBounds(745, 480, 110, 30);
 
-        //Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten Auflösung
-        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem Bild
+        // Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten
+        // Auflösung
+        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem
+        // Bild
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipboardBtn.setIcon (scaledIcon);
+        clipboardBtn.setIcon(scaledIcon);
         clipboardBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {

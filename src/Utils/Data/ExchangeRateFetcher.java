@@ -53,7 +53,7 @@ public class ExchangeRateFetcher {
 
         }
     }
-        
+
     public static long getLastFetchTime() {
         return lastEndMillis - lastStartMillis;
     }

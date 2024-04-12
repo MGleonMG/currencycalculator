@@ -62,11 +62,11 @@ public class Utils {
 
     public static void copyToClipboard() {
         double umrechnung = Calculations.calculation;
-            if(umrechnung != 0.0) {
-                String myString = String.valueOf(umrechnung);
-                StringSelection stringSelection = new StringSelection(myString);
-                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-                clipboard.setContents(stringSelection, null);
+        if (umrechnung != 0.0) {
+            String myString = String.valueOf(umrechnung);
+            StringSelection stringSelection = new StringSelection(myString);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
         }
     }
 }

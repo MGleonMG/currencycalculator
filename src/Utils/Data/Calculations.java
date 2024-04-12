@@ -12,7 +12,7 @@ public class Calculations {
         ExchangeRateFetcher.fetchExchangeRate(baseCur, targetCur);
 
         calculation = Utils.adjustDecimal(amount * ExchangeRateFetcher.latestRate, 2);
-        
+
         if (ExchangeRateFetcher.latestRate != 0.0) {
             return calculation;
         } else {
