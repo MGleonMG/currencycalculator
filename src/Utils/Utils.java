@@ -18,8 +18,6 @@ import java.awt.datatransfer.Clipboard;
 
 public class Utils {
 
-    private static final String ConvertCurrency = null;
-
     public static double adjustDecimal(double x, int decimalPlaces) {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator('.');
