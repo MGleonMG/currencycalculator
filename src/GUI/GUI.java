@@ -29,7 +29,7 @@ public class GUI {
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
     private static JButton clipboardBtn = new JButton();
-    public static JTextField inputField = new JTextField();
+    private static JTextField inputField = new JTextField();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
