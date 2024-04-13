@@ -37,14 +37,14 @@ public class GUI {
     /*
      * TODO Code Optimization
      */
-    public static String inputValue;
+    private static String inputValue;
     public static double inputValueAsDouble;
 
-    public static String baseCur;
-    public static String targetCur;
+    private static String baseCur;
+    private static String targetCur;
 
-    public static String result;
-    public static String result2;
+    public static String baseCurResult;
+    public static String targetCurResult;
 
     public static void drawGUI() {
         setBasicFrameProps();
@@ -207,7 +207,7 @@ public class GUI {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCur = (String) dropdownBaseCur.getSelectedItem();
-                    result = baseCur.split("\\(")[1].replace(")", "").trim();
+                    baseCurResult = baseCur.split("\\(")[1].replace(")", "").trim();
                 }
             }
         });
@@ -222,7 +222,7 @@ public class GUI {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     targetCur = (String) dropdownTargetCur.getSelectedItem();
-                    result2 = targetCur.split("\\(")[1].replace(")", "").trim();
+                    targetCurResult = targetCur.split("\\(")[1].replace(")", "").trim();
                 }
             }
         });
@@ -367,4 +367,11 @@ public class GUI {
             calculateBtn.setText("Umrechnen");
         }
     }
+
+    private static String getUserInput(){
+
+      return baseCurResult;
+
+    }
+
 }

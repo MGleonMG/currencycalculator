@@ -56,7 +56,7 @@ public class Utils {
              * 
              */
             String resultAsString = ""
-                    + Calculations.convertCurrencies(GUI.result, GUI.result2, GUI.inputValueAsDouble);
+                    + Calculations.convertCurrencies(GUI.baseCurResult, GUI.targetCurResult, GUI.inputValueAsDouble);
 
             GUI.setOuput("Ergebnis ist " + resultAsString.replace('.', ',') +
                     "<br>Web fetch time: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
