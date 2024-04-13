@@ -21,7 +21,7 @@ public class GUI {
 
     // Styling
     private static boolean isDarkMode = true;
-    enum Theme{
+    public enum Theme{
         LIGHT_MODE,
         DARK_MODE
     }

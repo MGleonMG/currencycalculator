@@ -6,7 +6,7 @@ import Utils.Utils;
 public class CurrencyCalculator {
 
     public static void main(String[] args) {
-        Utils.runFirstTimeSetup();
+        Utils.runFirstTimeSetupCheck();
         GUI.drawGUI();
     }
 }
