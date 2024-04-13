@@ -61,8 +61,8 @@ public class GUI {
         frame.add(dropdownTargetCur);
 
         frame.add(authorLabel);
-       // frame.add(menuBtn);
-        
+        // frame.add(menuBtn);
+
         frame.add(menuBtnTest);
 
         setTheme(isDarkMode);
@@ -212,13 +212,15 @@ public class GUI {
     private static void addCopyOutputButton() {
         clipboardBtn.setBounds(490, 290, 30, 30);
 
-        //Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten Auflösung
-        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem Bild
+        // Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten
+        // Auflösung
+        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem
+        // Bild
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipboardBtn.setIcon (scaledIcon);
+        clipboardBtn.setIcon(scaledIcon);
         clipboardBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
@@ -237,12 +239,12 @@ public class GUI {
         inputField.setBounds(385, 290, 90, 30);
     }
 
-    private static void drawMenuBtn () {
+    private static void drawMenuBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
-    
-        menuBtnTest.setBounds(GUI.FRAME_WIDTH-80, GUI.FRAME_HEIGHT-95, 50, 50);
+
+        menuBtnTest.setBounds(GUI.FRAME_WIDTH - 80, GUI.FRAME_HEIGHT - 95, 50, 50);
         menuBtnTest.setIcon(scaledIcon);
 
         menuBtnTest.addMouseListener(new MouseAdapter() {
@@ -252,9 +254,9 @@ public class GUI {
                 frame.setVisible(false);
             }
         });
-    
-        
+
     }
+
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);

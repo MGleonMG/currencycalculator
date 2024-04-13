@@ -26,20 +26,20 @@ public class Settings {
         settingsFrame.requestFocus();
         settingsFrame.setVisible(true);
     }
-    
+
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
         settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
         settingsFrame.setLocation(600, 300);
-       settingsFrame.addWindowListener(new WindowAdapter() {
-        @Override
-        public void windowClosing(WindowEvent e) {
-            GUI.drawGUI();
-            settingsFrame.dispose();
-        }
-       });
+        settingsFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                GUI.drawGUI();
+                settingsFrame.dispose();
+            }
+        });
     }
 
     private static void addThemeButtons() {
