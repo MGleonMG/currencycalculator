@@ -33,6 +33,7 @@ public class GUI {
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
+    private static JLabel menuBtnTest = new JLabel(new ImageIcon("src/resources/buttons/settings_button.png"));
 
     /*
      * TODO Code Optimization
@@ -48,6 +49,7 @@ public class GUI {
 
     public static void drawGUI() {
         setBasicFrameProps();
+        drawMenuBtn();
 
         addCopyOutputButton();
         addCalculateButton();
@@ -71,7 +73,8 @@ public class GUI {
         frame.add(dropdownTargetCur);
 
         frame.add(authorLabel);
-        frame.add(menuBtn);
+        // frame.add(menuBtn);
+        frame.add(menuBtnTest);
 
         setTheme(isDarkMode);
 
@@ -288,6 +291,24 @@ public class GUI {
         inputField.setBounds(385, 290, 90, 30);
     }
 
+    private static void drawMenuBtn () {
+        ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+    
+        menuBtnTest.setBounds(GUI.FRAME_WIDTH-80, GUI.FRAME_HEIGHT-95, 50, 50);
+        menuBtnTest.setIcon(scaledIcon);
+
+        menuBtnTest.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Settings.drawSettingsGUI();
+                frame.setVisible(false);
+            }
+        });
+    
+        
+    }
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
