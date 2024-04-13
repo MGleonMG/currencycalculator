@@ -291,12 +291,12 @@ public class GUI {
         inputField.setBounds(385, 290, 90, 30);
     }
 
-    private static void drawMenuBtn () {
+    private static void drawMenuBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
-    
-        menuBtnTest.setBounds(GUI.FRAME_WIDTH-80, GUI.FRAME_HEIGHT-95, 50, 50);
+
+        menuBtnTest.setBounds(GUI.FRAME_WIDTH - 80, GUI.FRAME_HEIGHT - 95, 50, 50);
         menuBtnTest.setIcon(scaledIcon);
 
         menuBtnTest.addMouseListener(new MouseAdapter() {
@@ -306,9 +306,9 @@ public class GUI {
                 frame.setVisible(false);
             }
         });
-    
-        
+
     }
+
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
