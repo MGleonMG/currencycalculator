@@ -12,6 +12,11 @@ import GUI.Errors.ErrorDisplay;
 import GUI.Settings.Settings;
 import Utils.Utils;
 
+/*
+ * Diese Klasse erstellt einen "Graphical User Interface"
+ * 
+ * Dadurch muss der Enduser nicht auf dem Terminal arbeiten
+ */
 public class GUI {
     // static final vars
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
@@ -39,14 +44,17 @@ public class GUI {
      * TODO Code Optimization
      */
     private static String inputValue;
-    public static double inputValueAsDouble;
+    private static double inputValueAsDouble;
 
     private static String baseCur;
     private static String targetCur;
 
-    public static String baseCurResult;
-    public static String targetCurResult;
+    private static String baseCurResult;
+    private static String targetCurResult;
 
+    /*
+     * Diese Methode fügt die einzelnen Objekte in der GUI hinzu
+     */
     public static void drawGUI() {
         setBasicFrameProps();
         drawMenuBtn();
@@ -88,6 +96,9 @@ public class GUI {
         jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
     }
 
+    /*
+     * Erstellt das Hauptfenster für die GUI
+     */
     private static void setBasicFrameProps() {
         updateTitle(frame, "");
         frame.setIconImage(icon.getImage());
@@ -101,9 +112,14 @@ public class GUI {
         headlineLabel.setBounds(335, 25, GUI.FRAME_WIDTH, 50);
     }
 
+    /*
+     * Erstellt eine Suchleiste
+     * 
+     * Mit dieser Methode kann man eine Währung suchen und dadurch schnell finden
+     */
     private static void addSearchBars() {
 
-        // Bar 1
+        // Erstellt links eine Suchleiste
         searchBarBaseCur.setBounds(50, 215, 290, 20);
         searchBarBaseCur.setHighlighter(null);
         searchBarBaseCur.addFocusListener(new FocusAdapter() {
@@ -143,7 +159,9 @@ public class GUI {
             }
         });
 
-        // Bar 2
+        /*
+         * Erstellt rechts eine Suchleiste
+         */
         searchBarTargetcur.setBounds(530, 215, 290, 20);
         searchBarTargetcur.addFocusListener(new FocusAdapter() {
             @Override
@@ -183,6 +201,13 @@ public class GUI {
         });
     }
 
+    /*
+     * Erstellt einen Dropdown, mit dem man Währungen auswählen kann.
+     * Dies wird auf den beiden Seiten erstellt.
+     * 
+     * Dabei nimmt es den Namen der Währung, mit dem jeweiligen
+     * Isocodes. Dies verwendet man für den Empfang des Wechselskurses
+     */
     private static void addDropdownWithFilters() {
         addSearchBars();
 
@@ -201,9 +226,10 @@ public class GUI {
         }
 
         /*
-         * 
          * TODO Code Optimization
          * 
+         * Die ItemListener nehmen den isocode raus und werden in der
+         * jeweiligen Variable zugewiesen
          */
         dropdownBaseCur.addItemListener(new ItemListener() {
             @Override
@@ -216,9 +242,7 @@ public class GUI {
         });
 
         /*
-         * 
          * TODO Code Optimization
-         * 
          */
         dropdownTargetCur.addItemListener(new ItemListener() {
             @Override
@@ -230,7 +254,9 @@ public class GUI {
             }
         });
 
-        // Pfeiltasten zu den Dropdowns adden
+        /*
+         * Initialisert die Methode, um mit Pfeiltasten zu navigieren
+         */
         addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
 
@@ -238,6 +264,11 @@ public class GUI {
         frame.add(dropdownTargetCur);
     }
 
+    /*
+     * Erstellt einen Rechnerknopf
+     * 
+     * Es nimmt den Betrag auf und wird in der Umwandlung der Währung verrechnet
+     */
     private static void addCalculateButton() {
         calculateBtn.setBounds(380, 250, 100, 25);
         calculateBtn.addActionListener(new ActionListener() {
@@ -261,6 +292,11 @@ public class GUI {
         });
     }
 
+    /*
+     * Erstellt einen Kopier Knopf
+     * 
+     * Nimmt das Ergebnis und steckt es in den Clipboard
+     */
     private static void addCopyOutputButton() {
         clipboardBtn.setBounds(490, 290, 30, 30);
 
@@ -291,6 +327,11 @@ public class GUI {
         inputField.setBounds(385, 290, 90, 30);
     }
 
+    /*
+     * Erstellt einen "Einstellungsknopf"
+     * 
+     * Mit dem Knopf kann man in die Einstellungen wechseln
+     */
     private static void drawMenuBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
@@ -309,6 +350,9 @@ public class GUI {
 
     }
 
+    /*
+     * TODO: Kommentar
+     */
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
@@ -325,6 +369,12 @@ public class GUI {
         });
     }
 
+    /*
+     * Setzt den Theme fest
+     * 
+     * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
+     * Darkmode
+     */
     public static void setTheme(boolean darkMode) {
         try {
             if (darkMode) {
@@ -343,6 +393,9 @@ public class GUI {
     }
 
     // Mit pfeiltasten Yallan
+    /*
+     * Erstellt die Möglichkeit im Dropdown Menü mit Pfeiltasten zu navigieren
+     */
     public static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
         InputMap inputMap = comboBox.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         ActionMap actionMap = comboBox.getActionMap();
@@ -371,11 +424,20 @@ public class GUI {
         });
     }
 
+    /*
+     * TODO Kommentar
+     */
     public static void setOuput(String output) {
         // Using HTML formatting here as JLabels dont accept a simple line break (\n)
         outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
 
+    /*
+     * Zeigt dem Enduser, dass das Programm läuft
+     * 
+     * TODO Idee: Könnte man vielleicht einen drehenden Rad implementieren, sodass es anzeigt,
+     * dass das Programm am arbeiten ist?
+     */
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
             calculateBtn.setEnabled(false);
@@ -389,10 +451,19 @@ public class GUI {
         }
     }
 
-    private static String getUserInput(){
+    public static double getValue() {
 
-      return baseCurResult;
+        return inputValueAsDouble;
+    }
 
+    public static String getBaseCur() {
+
+        return baseCurResult;
+    }
+
+    public static String getTargetCur() {
+
+        return targetCurResult;
     }
 
 }
