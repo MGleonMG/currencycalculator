@@ -3,7 +3,7 @@ package Utils.Data;
 import Utils.Utils;
 
 /*
- * Diese Klasse ist für die Rechnung zu ständig 
+ * Diese Klasse ist für die Rechnung zuständig 
  */
 public class Calculations {
 
@@ -12,7 +12,8 @@ public class Calculations {
     public static double endErgebnis;
 
     /*
-     * Diese Methode rechnet die Währungen aus
+     * Diese Methode rechnet die Währungen aus und gibt gegebenfalls das Endergebnis
+     * zurück
      */
     public static double convertCurrencies(String baseCur, String targetCur, double amount) {
         ExchangeRateFetcher.fetchExchangeRate(baseCur, targetCur);

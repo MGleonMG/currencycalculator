@@ -43,6 +43,9 @@ public class Utils {
         return Double.parseDouble(dfConverted.format(x));
     }
 
+    /*
+     * TODO Kommentar
+     */
     public static Set<Entry<String, String>> getAllCurrencies() {
         Map<String, String> currencies = new HashMap<>();
 
@@ -56,7 +59,7 @@ public class Utils {
     }
 
     /*
-     * Dies ist der Hauptprozess für die Rechnung
+     * Diese Methode ist der Hauptprozess für die Rechnung
      */
     public static void runCalcThread() {
         // lambda funktion in der runCalcThread() funktion um asynchrones ausführen zu

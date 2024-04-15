@@ -3,7 +3,7 @@ package Main;
 import GUI.GUI;
 
 /*
- * Dies ist die Haupt Klasse
+ * Dies ist die HauptKlasse
  */
 public class CurrencyCalculator {
 

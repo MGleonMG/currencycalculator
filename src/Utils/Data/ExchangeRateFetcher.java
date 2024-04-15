@@ -14,6 +14,10 @@ public class ExchangeRateFetcher {
     public static double latestRate;
     private static long lastStartMillis, lastEndMillis;
 
+    /*
+     * Um die Währungen auszurechnen, braucht die Methode die Währungen die der
+     * Enduser umwandeln möchte
+     */
     // Webscraper um Daten von 'google.com/finance/' zu nutzen
     public static void fetchExchangeRate(String baseCur, String targetCur) {
         try {
@@ -64,7 +68,7 @@ public class ExchangeRateFetcher {
     }
 
     /*
-     * Setzt bei einer Fehlermeldung die Daten zurück
+     * Diese Methode setzt bei einer Fehlermeldung die Daten zurück
      */
     private static void clearDataOnError() {
         latestRate = 0.0;

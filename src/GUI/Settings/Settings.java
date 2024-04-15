@@ -13,7 +13,6 @@ import java.awt.event.*;
 /*
  * Diese Klasse erstellt eine GUI für die Einstellungen 
  */
-
 public class Settings {
     private static JFrame settingsFrame = new JFrame();
     private static JButton backBtn;
@@ -54,7 +53,7 @@ public class Settings {
     }
 
     /*
-     * Diese Methode fügt "Theme" Knöpfe hinzu, sodass man die einzelnen Themes
+     * Diese Methode fügt die "Theme" Knöpfe hinzu, sodass man die einzelnen Themes
      * ändern kann
      */
     private static void addThemeButtons() {
@@ -100,7 +99,7 @@ public class Settings {
     }
 
     /*
-     * Durch diese Methode kehrt man in das Haupt GUI zurück
+     * Diese Methode fügt einen Knopf hinzu, womit man in das Hauptfenster zurückkehrt
      */
     private static void addBackButton() {
         backBtn = new JButton("Zurück");

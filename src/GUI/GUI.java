@@ -53,7 +53,8 @@ public class GUI {
     private static String targetCurResult;
 
     /*
-     * Diese Methode fügt die einzelnen Objekte in der GUI hinzu
+     * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
+     * Objekten hinzu
      */
     public static void drawGUI() {
         setBasicFrameProps();
@@ -454,17 +455,14 @@ public class GUI {
     }
 
     public static double getValue() {
-
         return inputValueAsDouble;
     }
 
     public static String getBaseCur() {
-
         return baseCurResult;
     }
 
     public static String getTargetCur() {
-
         return targetCurResult;
     }
 
