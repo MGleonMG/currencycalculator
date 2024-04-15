@@ -206,7 +206,7 @@ public class GUI {
      * Dies wird auf den beiden Seiten erstellt.
      * 
      * Dabei nimmt es den Namen der Währung, mit dem jeweiligen
-     * Isocodes. Dies verwendet man für den Empfang des Wechselskurses
+     * Isocode auf. Dies verwendet man für den Empfang des Wechselskurses
      */
     private static void addDropdownWithFilters() {
         addSearchBars();
@@ -265,7 +265,7 @@ public class GUI {
     }
 
     /*
-     * Erstellt einen Rechnerknopf
+     * Diese Methode erstellt einen "Rechner" Knopf
      * 
      * Es nimmt den Betrag auf und wird in der Umwandlung der Währung verrechnet
      */
@@ -278,9 +278,6 @@ public class GUI {
                         /*
                          * TODO Code Optimization
                          * 
-                         * inputValue muss drinne bleiben, damit er in dem Moment die eingegebenen Daten
-                         * entzieht
-                         * InputValueAsDouble könnte im Utils geschrieben werden
                          */
                         inputValue = inputField.getText();
                         inputValueAsDouble = Double.parseDouble(GUI.inputValue);
@@ -293,9 +290,9 @@ public class GUI {
     }
 
     /*
-     * Erstellt einen Kopier Knopf
+     * Erstellt einen "Kopier" Knopf
      * 
-     * Nimmt das Ergebnis und steckt es in den Clipboard
+     * Es nimmt das Ergebnis und steckt es in den Clipboard
      */
     private static void addCopyOutputButton() {
         clipboardBtn.setBounds(490, 290, 30, 30);
@@ -320,6 +317,9 @@ public class GUI {
         });
     }
 
+    /*
+     * TODO Kommentar
+     */
     private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
         setOuput("Bitte wähle Währungen aus und gib einen Betrag ein.");
@@ -328,9 +328,9 @@ public class GUI {
     }
 
     /*
-     * Erstellt einen "Einstellungsknopf"
+     * Erstellt einen Knopf für die Einstellungen
      * 
-     * Mit dem Knopf kann man in die Einstellungen wechseln
+     * Man kann dadurch in die Einstellungen wechseln
      */
     private static void drawMenuBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
@@ -370,7 +370,7 @@ public class GUI {
     }
 
     /*
-     * Setzt den Theme fest
+     * Diese Methode setzt den Theme fest
      * 
      * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
      * Darkmode
@@ -394,7 +394,8 @@ public class GUI {
 
     // Mit pfeiltasten Yallan
     /*
-     * Erstellt die Möglichkeit im Dropdown Menü mit Pfeiltasten zu navigieren
+     * Diese Methode erstellt die Möglichkeit im Dropdown Menü mit Pfeiltasten zu
+     * navigieren
      */
     public static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
         InputMap inputMap = comboBox.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
@@ -433,9 +434,10 @@ public class GUI {
     }
 
     /*
-     * Zeigt dem Enduser, dass das Programm läuft
+     * Diese Methode zeigt dem Enduser, dass das Programm am laufen ist
      * 
-     * TODO Idee: Könnte man vielleicht einen drehenden Rad implementieren, sodass es anzeigt,
+     * TODO Idee: Könnte man vielleicht einen drehenden Rad implementieren, sodass
+     * es anzeigt,
      * dass das Programm am arbeiten ist?
      */
     public static void displayAsLoading(boolean isLoading) {
