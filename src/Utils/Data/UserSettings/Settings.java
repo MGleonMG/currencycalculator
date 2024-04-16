@@ -9,8 +9,14 @@ public class Settings {
     private static String filePath = folderPath +
             FileSystems.getDefault().getSeparator() + "settings.json";
 
+    String setting, value;
+
     // private Theme theme;
     // TODO: @Leon add more..
+    public Settings(String setting, String value){
+        this.setting = setting;
+        this.value = value;
+    }
 
     public static String getFolderPath() {
         return folderPath;

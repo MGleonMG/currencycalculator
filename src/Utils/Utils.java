@@ -84,14 +84,15 @@ public class Utils {
     public static void runFirstTimeSetupCheck() {
         File settingsFile = new File(Settings.getFilePath());
         if (!settingsFile.exists()) {
-            try {
+            try (FileWriter writer = new FileWriter(Settings.getFilePath())) {
                 new File(Settings.getFolderPath()).mkdir();
                 settingsFile.createNewFile();
-                Gson configHandler = new GsonBuilder().create();
-                HashMap<String, String> setting = new HashMap<>();
-                setting.put("AppTheme", /* GUI.Theme.DARK_MODE */ "test");
-                FileWriter writer = new FileWriter(Settings.getFilePath());
-                configHandler.toJson(setting, writer);
+
+                Gson gson = new Gson();
+
+                Settings setting = new Settings("AppTheme", "test");
+
+                gson.toJson(setting, writer);
 
             } catch (Exception e) {
                 e.printStackTrace();
