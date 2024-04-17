@@ -11,9 +11,9 @@ import Utils.Data.Config.Settings.AppTheme;
 
 public class CurrencyCalculator {
 
-    public static void main(String[] args) throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+    public static void main(String[] args) throws JsonSyntaxException, JsonIOException, FileNotFoundException { // TODO: @Leon remove throws
         Config.runFirstTimeSetupCheck();
-        AppTheme.getConfigAppTheme();
+        AppTheme.getConfigAppTheme(); // TODO: @Leon remove this line (debug)
         GUI.drawGUI();
     }
 }

@@ -7,20 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.gson.Gson;
-
 import java.util.Set;
 
 import GUI.GUI;
-import GUI.Errors.ErrorDisplay;
 import Utils.Data.Calculations;
 import Utils.Data.ExchangeRateFetcher;
-import Utils.Data.Config.Config;
-import Utils.Data.Config.Settings.AppTheme;
 
 import java.awt.datatransfer.StringSelection;
-import java.io.File;
-import java.io.FileWriter;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 
