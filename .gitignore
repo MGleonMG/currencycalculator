@@ -1,5 +1,6 @@
 # Ignore compiled Java classes
 *.class
+bin/
 
 # Ignore IDE-specific files
 .idea/
