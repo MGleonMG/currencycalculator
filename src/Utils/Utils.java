@@ -71,11 +71,10 @@ public class Utils {
              * TODO: GUI.getUserInput() in ConvertCurrencies ?
              */
 
-            String resultAsString = ""
-                    + Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
+             Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             GUI.setOuput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
-                    " Das Ergebnis ist " + resultAsString.replace('.', ',') + " " + GUI.getTargetCur() + "\n" +
+                    " Das Ergebnis ist " + Calculations.endErgebnis + " " + GUI.getTargetCur() + "\n" +
                     " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
             GUI.displayAsLoading(false);
