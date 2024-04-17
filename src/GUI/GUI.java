@@ -19,12 +19,8 @@ public class GUI {
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
-    // Styling
+    // Helpers
     private static boolean isDarkMode = true;
-    public enum Theme{
-        LIGHT_MODE,
-        DARK_MODE
-    }
 
     // Components
     private static JFrame frame = new JFrame();

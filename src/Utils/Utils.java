@@ -77,32 +77,4 @@ public class Utils {
             clipboard.setContents(stringSelection, null);
         }
     }
-
-    public static void runFirstTimeSetupCheck() {
-        File settingsFile = new File(Config.getFILE_PATH());
-
-        if (!settingsFile.exists()) {
-            System.out.println("\n[INFO] Running first time setup...");
-            new File(Config.getFolderPath()).mkdir();
-
-            try (FileWriter writer = new FileWriter(Config.getFILE_PATH())) {
-                settingsFile.createNewFile();
-
-                Gson gson = new Gson();
-
-                AppTheme obj = new AppTheme("App_Theme", "DARK");
-                gson.toJson(obj, writer);
-
-                writer.flush();
-                writer.close();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                ErrorDisplay.throwErrorPopup(e.getMessage());
-            }
-
-        } else {
-            System.out.println("First time setup not necessary. Skipping..");
-        }
-    }
 }
