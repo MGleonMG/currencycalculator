@@ -15,7 +15,6 @@ public class Config {
             + "currencycalculator";
     private static final String FILE_PATH = FOLDER_PATH +
             FileSystems.getDefault().getSeparator() + "settings.json";
-
     public static Gson gson = new Gson();
 
     public static String getFolderPath() {
@@ -26,17 +25,18 @@ public class Config {
         return FILE_PATH;
     }
 
+    // Überprüft ob config folder und datei vorhanden sind
     public static void runFirstTimeSetupCheck() {
         File settingsFile = new File(getFilePath());
 
         if (!settingsFile.exists()) {
-            System.out.println("\n[INFO] Running first time setup...");
+            System.out.println("\n[INFO] Running first time setup..."); // debug / indev. TODO: remove in the future
             new File(getFolderPath()).mkdir();
 
             try (FileWriter writer = new FileWriter(getFilePath())) {
                 settingsFile.createNewFile();
 
-                AppTheme obj = new AppTheme("DARK");
+                AppTheme obj = new AppTheme(AppTheme.Theme.DARK_MODE.toString());
                 gson.toJson(obj, writer);
 
                 writer.flush();
@@ -48,7 +48,8 @@ public class Config {
             }
 
         } else {
-            System.out.println("First time setup not necessary. Skipping..");
+
+            System.out.println("\nFirst time setup not necessary. Skipping.."); // debug / indev. TODO: remove in the future
         }
     }
 }
