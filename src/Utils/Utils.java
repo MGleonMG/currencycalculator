@@ -8,18 +8,15 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonWriter;
 
 import java.util.Set;
 
 import GUI.GUI;
 import GUI.Errors.ErrorDisplay;
-import GUI.GUI.Theme;
 import Utils.Data.Calculations;
 import Utils.Data.ExchangeRateFetcher;
-import Utils.Data.UserSettings.Settings;
-import netscape.javascript.JSException;
+import Utils.Data.Config.Config;
+import Utils.Data.Config.Settings.AppTheme;
 
 import java.awt.datatransfer.StringSelection;
 import java.io.File;
@@ -82,22 +79,30 @@ public class Utils {
     }
 
     public static void runFirstTimeSetupCheck() {
-        File settingsFile = new File(Settings.getFilePath());
+        File settingsFile = new File(Config.getFILE_PATH());
+
         if (!settingsFile.exists()) {
-            try (FileWriter writer = new FileWriter(Settings.getFilePath())) {
-                new File(Settings.getFolderPath()).mkdir();
+            System.out.println("\n[INFO] Running first time setup...");
+            new File(Config.getFolderPath()).mkdir();
+
+            try (FileWriter writer = new FileWriter(Config.getFILE_PATH())) {
                 settingsFile.createNewFile();
 
                 Gson gson = new Gson();
 
-                Settings setting = new Settings("AppTheme", "test");
+                AppTheme obj = new AppTheme("App_Theme", "DARK");
+                gson.toJson(obj, writer);
 
-                gson.toJson(setting, writer);
+                writer.flush();
+                writer.close();
 
             } catch (Exception e) {
                 e.printStackTrace();
                 ErrorDisplay.throwErrorPopup(e.getMessage());
             }
+
+        } else {
+            System.out.println("First time setup not necessary. Skipping..");
         }
     }
 }
