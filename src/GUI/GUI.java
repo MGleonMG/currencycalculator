@@ -296,7 +296,7 @@ public class GUI {
      * Es nimmt das Ergebnis und steckt es in den Clipboard
      */
     private static void addCopyOutputButton() {
-        clipboardBtn.setBounds(490, 290, 30, 30);
+        clipboardBtn.setBounds(380, 400, 100, 30);
 
         // Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten
         // Auflösung
@@ -454,7 +454,7 @@ public class GUI {
         }
     }
 
-    public static double getValue() {
+    public static double getAmount() {
         return inputValueAsDouble;
     }
 

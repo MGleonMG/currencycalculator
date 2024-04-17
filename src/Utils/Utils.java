@@ -23,7 +23,7 @@ import java.awt.datatransfer.Clipboard;
 public class Utils {
 
     /*
-     * Diese Methode stellt das End ergebnis auf zwei (nach) Kommastellen um 
+     * Diese Methode stellt das End ergebnis auf zwei (nach) Kommastellen um
      * 
      * bsp: 12.04405
      * 
@@ -67,11 +67,16 @@ public class Utils {
         Thread thread = new Thread(() -> {
             GUI.displayAsLoading(true);
 
-            String resultAsString = ""
-                    + Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getValue());
+            /*
+             * TODO: GUI.getUserInput() in ConvertCurrencies ?
+             */
 
-            GUI.setOuput("Ergebnis ist " + resultAsString.replace('.', ',') +
-                    "<br>Web fetch time: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
+            String resultAsString = ""
+                    + Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
+
+            GUI.setOuput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
+                    " Das Ergebnis ist " + resultAsString.replace('.', ',') + " " + GUI.getTargetCur() + "\n" +
+                    " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
             GUI.displayAsLoading(false);
         });

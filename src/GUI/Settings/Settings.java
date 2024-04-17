@@ -99,7 +99,8 @@ public class Settings {
     }
 
     /*
-     * Diese Methode fügt einen Knopf hinzu, womit man in das Hauptfenster zurückkehrt
+     * Diese Methode fügt einen Knopf hinzu, womit man in das Hauptfenster
+     * zurückkehrt
      */
     private static void addBackButton() {
         backBtn = new JButton("Zurück");
