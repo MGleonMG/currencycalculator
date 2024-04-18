@@ -19,6 +19,7 @@ public class SettingsGUI {
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
     public static boolean isDarkMode = true;
+    public static JLabel changeLog = new JLabel();
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
@@ -26,7 +27,7 @@ public class SettingsGUI {
      */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
-
+        addChangeLog();
         addThemeButtons();
         addBackButton();
 
@@ -39,10 +40,10 @@ public class SettingsGUI {
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
-        settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
+        settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 20);
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
-        settingsFrame.setLocation(600, 300);
+        settingsFrame.setLocationRelativeTo(null);
         settingsFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -52,17 +53,29 @@ public class SettingsGUI {
         });
     }
 
+    private static void addChangeLog() {
+        changeLog.setForeground(Color.GRAY);
+        changeLog.setText("<html>" +
+                "GUI & Elemente hinzugefügt <br> "
+                + "Java Bibliothek für Währungen implementiert <br> "
+                + "Google Werte Implementierung <br>"
+                + "Einstellungsmenü mit Changelog und Farbpräferenz-Knöpfen hinzugefügt <br>"
+                + "</html>");
+        changeLog.setBounds(170, 1, 500, 300);
+        settingsFrame.add(changeLog);
+    }
+
     /*
      * Diese Methode fügt die "Theme" Knöpfe hinzu, sodass man die einzelnen Themes
      * ändern kann
      */
     private static void addThemeButtons() {
-        lightBtn.setBounds(10, 220, 105, 30);
+        lightBtn.setBounds(10, 500, 105, 30);
         lightBtn.setBackground(Color.WHITE);
         lightBtn.setForeground(Color.BLACK);
         settingsFrame.add(lightBtn);
 
-        darkBtn.setBounds(120, 220, 112, 30);
+        darkBtn.setBounds(120, 500, 112, 30);
         darkBtn.setBackground(Color.decode("#5A5A5A"));
         darkBtn.setForeground(Color.WHITE);
         settingsFrame.add(darkBtn);
@@ -104,7 +117,7 @@ public class SettingsGUI {
      */
     private static void addBackButton() {
         backBtn = new JButton("Zurück");
-        backBtn.setBounds(475, 220, 100, 30);
+        backBtn.setBounds(475, 500, 100, 30);
         backBtn.setForeground(Color.WHITE);
         backBtn.setBackground(Color.decode("#00CCCC"));
         backBtn.addActionListener(new ActionListener() {
