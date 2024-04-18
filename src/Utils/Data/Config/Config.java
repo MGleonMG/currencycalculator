@@ -36,8 +36,8 @@ public class Config {
             try (FileWriter writer = new FileWriter(getFilePath())) {
                 settingsFile.createNewFile();
 
-                AppTheme obj = new AppTheme(AppTheme.Theme.DARK_MODE.toString());
-                gson.toJson(obj, writer);
+                AppTheme themeObject = new AppTheme(AppTheme.Theme.DARK_MODE.toString());
+                gson.toJson(themeObject, writer);
 
                 writer.flush();
                 writer.close();
