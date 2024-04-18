@@ -72,7 +72,7 @@ public class Utils {
              * TODO: GUI.getUserInput() in ConvertCurrencies ?
              */
 
-             Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
+            Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             GUI.setOuput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
                     " Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +

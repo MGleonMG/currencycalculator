@@ -49,7 +49,8 @@ public class Config {
 
         } else {
 
-            System.out.println("\nFirst time setup not necessary. Skipping.."); // debug / indev. TODO: remove in the future
+            // debug / indev. TODO: remove in the future
+            System.out.println("\nFirst time setup not necessary. Skipping..");
         }
     }
 }
