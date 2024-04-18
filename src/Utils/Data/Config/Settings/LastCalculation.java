@@ -16,16 +16,17 @@ import GUI.Errors.ErrorDisplay;
 import Utils.Data.Config.Config;
 
 public class LastCalculation {
-    String baseCur, targetCur, amount;
+    String baseCur, targetCur, amount, lastFetchTime;
     private static final String keyLastBaseCur = "lastBaseCurrency",
             keyLastTargetCur = "lastTargetCurrency",
             keyLastAmount = "lastAmount",
             keyLastFetchTime = "lastFetchTime";
 
-    public LastCalculation(String baseCur, String targetCur, String amount) {
+    public LastCalculation(String baseCur, String targetCur, String amount, String lastFetchTime) {
         this.baseCur = baseCur;
         this.targetCur = targetCur;
         this.amount = amount;
+        this.lastFetchTime = lastFetchTime;
     }
 
     public static String[] getConfigLastCalc() {
@@ -57,6 +58,7 @@ public class LastCalculation {
             newConfig.addProperty(keyLastBaseCur, baseCur);
             newConfig.addProperty(keyLastTargetCur, targetCur);
             newConfig.addProperty(keyLastAmount, amount);
+            newConfig.addProperty(keyLastFetchTime, lastFetchTime);
 
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(newConfig, writer);

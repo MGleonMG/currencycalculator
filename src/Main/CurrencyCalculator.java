@@ -12,7 +12,7 @@ public class CurrencyCalculator {
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();
         GUI.drawGUI();
-        //LastCalculation.setConfigLastCalc("EUR", "USD", "2.50", "6969ms");
-        System.out.println(LastCalculation.getConfigLastCalc());
+        LastCalculation.setConfigLastCalc("EUR", "USD", "2.50", "6969ms");
+        //System.out.println(LastCalculation.getConfigLastCalc());
     }
 }
