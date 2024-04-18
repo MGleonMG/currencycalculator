@@ -7,10 +7,17 @@ import java.util.Scanner;
 import GUI.Errors.ErrorDisplay;
 import Utils.Utils;
 
+/*
+ * Diese Klasse ruft die Wechselkurse von Google Finances ab
+ */
 public class ExchangeRateFetcher {
     public static double latestRate;
     private static long lastStartMillis, lastEndMillis;
 
+    /*
+     * Um die Währungen auszurechnen, braucht die Methode die Währungen die der
+     * Enduser umwandeln möchte
+     */
     // Webscraper um Daten von 'google.com/finance/' zu nutzen
     public static void fetchExchangeRate(String baseCur, String targetCur) {
         try {
@@ -31,6 +38,10 @@ public class ExchangeRateFetcher {
             latestRate = Utils.adjustDecimal(Double.parseDouble(htmlOutput), 4);
 
             webScanner.close();
+
+            /*
+             * Die catch Methoden geben dem Enduser die jeweilige Fehlermeldung zurück
+             */
         } catch (UnknownHostException uhExc) {
             ErrorDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden");
             uhExc.printStackTrace();
@@ -56,6 +67,9 @@ public class ExchangeRateFetcher {
         return lastEndMillis - lastStartMillis;
     }
 
+    /*
+     * Diese Methode setzt bei einer Fehlermeldung die Daten zurück
+     */
     private static void clearDataOnError() {
         latestRate = 0.0;
         lastStartMillis = 0;

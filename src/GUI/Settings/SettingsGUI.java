@@ -10,6 +10,9 @@ import GUI.GUI;
 import java.awt.Color;
 import java.awt.event.*;
 
+/*
+ * Diese Klasse erstellt eine GUI für die Einstellungen 
+ */
 public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
     private static JButton backBtn;
@@ -17,6 +20,10 @@ public class SettingsGUI {
     private static JButton lightBtn = new JButton("Heller Modus");
     public static boolean isDarkMode = true;
 
+    /*
+     * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
+     * Objekten hinzu
+     */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
 
@@ -27,6 +34,9 @@ public class SettingsGUI {
         settingsFrame.setVisible(true);
     }
 
+    /*
+     * Diese Methode erstellt das Fenster
+     */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
         settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 300);
@@ -42,6 +52,10 @@ public class SettingsGUI {
         });
     }
 
+    /*
+     * Diese Methode fügt die "Theme" Knöpfe hinzu, sodass man die einzelnen Themes
+     * ändern kann
+     */
     private static void addThemeButtons() {
         lightBtn.setBounds(10, 220, 105, 30);
         lightBtn.setBackground(Color.WHITE);
@@ -84,6 +98,10 @@ public class SettingsGUI {
         });
     }
 
+    /*
+     * Diese Methode fügt einen Knopf hinzu, womit man in das Hauptfenster
+     * zurückkehrt
+     */
     private static void addBackButton() {
         backBtn = new JButton("Zurück");
         backBtn.setBounds(475, 220, 100, 30);

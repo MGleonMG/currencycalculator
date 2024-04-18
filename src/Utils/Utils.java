@@ -17,8 +17,19 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 
+/*
+ * In dieser Klasse sind alle Tools (Werkzeuge) verfügbar
+ * Diese werden in einer anderen Klasse verwendet
+ */
 public class Utils {
 
+    /*
+     * Diese Methode stellt das End ergebnis auf zwei (nach) Kommastellen um
+     * 
+     * bsp: 12.04405
+     * 
+     * -> 12.04
+     */
     public static double adjustDecimal(double x, int decimalPlaces) {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setDecimalSeparator('.');
@@ -33,6 +44,9 @@ public class Utils {
         return Double.parseDouble(dfConverted.format(x));
     }
 
+    /*
+     * TODO Kommentar
+     */
     public static Set<Entry<String, String>> getAllCurrencies() {
         Map<String, String> currencies = new HashMap<>();
 
@@ -45,15 +59,24 @@ public class Utils {
         return currencies.entrySet();
     }
 
+    /*
+     * Diese Methode ist der Hauptprozess für die Rechnung
+     */
     public static void runCalcThread() {
         // lambda funktion in der runCalcThread() funktion um asynchrones ausführen zu
         // ermöglichen (=> GUI kann sich dadurch updaten)
         Thread thread = new Thread(() -> {
             GUI.displayAsLoading(true);
 
-            String resultAsString = "" + Calculations.convertCurrencies("EUR", "USD", 29.99);
-            GUI.setOuput("Ergebnis ist " + resultAsString.replace('.', ',') +
-                    "<br>Web fetch time: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
+            /*
+             * TODO: GUI.getUserInput() in ConvertCurrencies ?
+             */
+
+             Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
+
+            GUI.setOuput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
+                    " Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
+                    " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
             GUI.displayAsLoading(false);
         });
@@ -61,8 +84,13 @@ public class Utils {
         thread.start();
     }
 
+    /*
+     * Diese Methode kopiert das Ergebnis in den Clipboard
+     * 
+     * GUI -> siehe GUI.addCopyOutputButton
+     */
     public static void copyToClipboard() {
-        double umrechnung = Calculations.calculation;
+        double umrechnung = Calculations.finalResult;
         if (umrechnung != 0.0) {
             String myString = String.valueOf(umrechnung);
             StringSelection stringSelection = new StringSelection(myString);
