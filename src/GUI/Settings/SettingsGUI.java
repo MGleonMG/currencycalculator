@@ -13,7 +13,7 @@ import java.awt.event.*;
 /*
  * Diese Klasse erstellt eine GUI für die Einstellungen 
  */
-public class Settings {
+public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
