@@ -9,10 +9,11 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Errors.ErrorDisplay;
-import GUI.Settings.Settings;
+import GUI.Settings.SettingsGUI;
 import Utils.Utils;
 
 public class GUI {
+
     // static final vars
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
@@ -62,7 +63,6 @@ public class GUI {
 
         frame.add(authorLabel);
         // frame.add(menuBtn);
-
         frame.add(menuBtnTest);
 
         setTheme(isDarkMode);
@@ -250,7 +250,7 @@ public class GUI {
         menuBtnTest.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Settings.drawSettingsGUI();
+                SettingsGUI.drawSettingsGUI();
                 frame.setVisible(false);
             }
         });
@@ -267,7 +267,7 @@ public class GUI {
 
         menuBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Settings.drawSettingsGUI();
+                SettingsGUI.drawSettingsGUI();
                 frame.setVisible(false);
             }
         });
