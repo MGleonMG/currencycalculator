@@ -20,6 +20,7 @@ public class SettingsGUI {
     private static JButton lightBtn = new JButton("Heller Modus");
     public static boolean isDarkMode = true;
     public static JLabel changeLog = new JLabel();
+    private static JLabel changeLogHeader = new JLabel();
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
@@ -28,6 +29,7 @@ public class SettingsGUI {
     public static void drawSettingsGUI() {
         setBasicFrameProps();
         addChangeLog();
+        addChangeLogHeader();
         addThemeButtons();
         addBackButton();
 
@@ -51,6 +53,12 @@ public class SettingsGUI {
                 settingsFrame.dispose();
             }
         });
+    }
+    private static void addChangeLogHeader () {
+        changeLogHeader.setBounds(170, -60, 170, 300);
+        changeLogHeader.setFont(changeLogHeader.getFont().deriveFont(30f));
+        changeLogHeader.setText("Changelog");
+        settingsFrame.add(changeLogHeader);
     }
 
     private static void addChangeLog() {
