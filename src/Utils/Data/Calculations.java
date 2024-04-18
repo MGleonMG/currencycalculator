@@ -9,7 +9,7 @@ public class Calculations {
 
     // @TODO: Leon possibly Cleanup Code
 
-    public static double endErgebnis;
+    public static double finalResult;
 
     /*
      * Diese Methode rechnet die Währungen aus und gibt gegebenfalls das Endergebnis
@@ -18,10 +18,10 @@ public class Calculations {
     public static double convertCurrencies(String baseCur, String targetCur, double amount) {
         ExchangeRateFetcher.fetchExchangeRate(baseCur, targetCur);
 
-        endErgebnis = Utils.adjustDecimal(amount * ExchangeRateFetcher.latestRate, 2);
+        finalResult = Utils.adjustDecimal(amount * ExchangeRateFetcher.latestRate, 2);
 
         if (ExchangeRateFetcher.latestRate != 0.0) {
-            return endErgebnis;
+            return finalResult;
         } else {
             return 0.0;
         }

@@ -75,7 +75,7 @@ public class Utils {
              Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             GUI.setOuput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
-                    " Das Ergebnis ist " + Calculations.endErgebnis + " " + GUI.getTargetCur() + "\n" +
+                    " Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
                     " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
             GUI.displayAsLoading(false);
@@ -90,7 +90,7 @@ public class Utils {
      * GUI -> siehe GUI.addCopyOutputButton
      */
     public static void copyToClipboard() {
-        double umrechnung = Calculations.endErgebnis;
+        double umrechnung = Calculations.finalResult;
         if (umrechnung != 0.0) {
             String myString = String.valueOf(umrechnung);
             StringSelection stringSelection = new StringSelection(myString);
