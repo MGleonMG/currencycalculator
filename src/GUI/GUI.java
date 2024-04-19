@@ -492,17 +492,13 @@ public class GUI {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         
-                        LastCalculation.getConfigLastCalc();
+                        String[] config = LastCalculation.getConfigLastCalc();
+                        // Es löscht die "" im String
+                        config[2] = config[2].replace("\"", "");
 
-                        /*
-                         * TODO: Daten beim abruf jeweils in den inputField tun
-                         */
-
-                        //String[] a = LastCalculation.getConfigLastCalc();
- 
-                        //baseCur = a[0];
-                        //targetCur = a[1];
-                        //nputField = a[2];
+                        dropdownBaseCur.setSelectedItem(config[0]); 
+                        dropdownTargetCur.setSelectedItem(config[1]);
+                        inputField.setText(config[2]);
 
                     }
                 });

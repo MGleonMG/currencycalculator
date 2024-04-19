@@ -15,7 +15,7 @@ import GUI.Errors.ErrorDisplay;
 import Utils.Data.Config.Config;
 
 public class LastCalculation {
-    String baseCur, targetCur, amount, lastFetchTime;
+    String baseCur, targetCur, amount;
     private static final String keyLastBaseCur = "lastBaseCurrency",
             keyLastTargetCur = "lastTargetCurrency",
             keyLastAmount = "lastAmount";
