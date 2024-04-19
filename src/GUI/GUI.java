@@ -492,11 +492,17 @@ public class GUI {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         
-                        String[] a = LastCalculation.getConfigLastCalc();
+                        LastCalculation.getConfigLastCalc();
 
-                        baseCur = a[0];
-                        targetCur = a[1];
-                        inputValue = a[2];
+                        /*
+                         * TODO: Daten beim abruf jeweils in den inputField tun
+                         */
+
+                        //String[] a = LastCalculation.getConfigLastCalc();
+ 
+                        //baseCur = a[0];
+                        //targetCur = a[1];
+                        //nputField = a[2];
 
                     }
                 });
