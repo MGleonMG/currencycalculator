@@ -16,10 +16,10 @@ import Utils.Data.Config.Config;
 
 public class LastCalculation {
     String baseCur, targetCur, amount, lastFetchTime;
-    private static final String keyLastBaseCur = "lastBaseCurrency",
-            keyLastTargetCur = "lastTargetCurrency",
-            keyLastAmount = "lastAmount",
-            keyLastFetchTime = "lastFetchTime";
+    private static final String KEY_LASTBASECUR = "lastBaseCurrency",
+            KEY_LASTTARGETCUR = "lastTargetCurrency",
+            KEY_LASTAMOUNT = "lastAmount",
+            KEY_LASTFETCHTIME = "lastFetchTime";
 
     public LastCalculation(String baseCur, String targetCur, String amount, String lastFetchTime) {
         this.baseCur = baseCur;
@@ -33,10 +33,10 @@ public class LastCalculation {
 
         try {
             JsonObject newConfig = Config.gson.fromJson(new FileReader(Config.getFilePath()), JsonObject.class);
-            calcInfo[0] = newConfig.get(keyLastBaseCur).toString();
-            calcInfo[1] = newConfig.get(keyLastTargetCur).toString();
-            calcInfo[2] = newConfig.get(keyLastAmount).toString();
-            calcInfo[3] = newConfig.get(keyLastFetchTime).toString();
+            calcInfo[0] = newConfig.get(KEY_LASTBASECUR).toString();
+            calcInfo[1] = newConfig.get(KEY_LASTTARGETCUR).toString();
+            calcInfo[2] = newConfig.get(KEY_LASTAMOUNT).toString();
+            calcInfo[3] = newConfig.get(KEY_LASTFETCHTIME).toString();
 
             return calcInfo;
 
@@ -54,10 +54,10 @@ public class LastCalculation {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject newConfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
 
-            newConfig.addProperty(keyLastBaseCur, baseCur);
-            newConfig.addProperty(keyLastTargetCur, targetCur);
-            newConfig.addProperty(keyLastAmount, amount);
-            newConfig.addProperty(keyLastFetchTime, lastFetchTime);
+            newConfig.addProperty(KEY_LASTBASECUR, baseCur);
+            newConfig.addProperty(KEY_LASTTARGETCUR, targetCur);
+            newConfig.addProperty(KEY_LASTAMOUNT, amount);
+            newConfig.addProperty(KEY_LASTFETCHTIME, lastFetchTime);
 
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(newConfig, writer);
