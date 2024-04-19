@@ -7,7 +7,6 @@ import java.nio.file.FileSystems;
 import com.google.gson.Gson;
 
 import GUI.Errors.ErrorDisplay;
-import Utils.Data.Config.Settings.AppTheme;
 
 public class Config {
     private static final String FOLDER_PATH = System.getProperty("user.home") +
@@ -30,14 +29,13 @@ public class Config {
         File settingsFile = new File(getFilePath());
 
         if (!settingsFile.exists()) {
-            System.out.println("\n[INFO] Running first time setup..."); // debug / indev. TODO: remove in the future
             new File(getFolderPath()).mkdir();
 
             try (FileWriter writer = new FileWriter(getFilePath())) {
                 settingsFile.createNewFile();
 
-                AppTheme themeObject = new AppTheme(AppTheme.Theme.DARK_MODE.toString());
-                gson.toJson(themeObject, writer);
+                ConfigDefaults defaults = new ConfigDefaults();
+                gson.toJson(defaults.getAllConfigDefaults(), writer);
 
                 writer.flush();
                 writer.close();
@@ -47,10 +45,6 @@ public class Config {
                 ErrorDisplay.throwErrorPopup(e.getMessage());
             }
 
-        } else {
-
-            // debug / indev. TODO: remove in the future
-            System.out.println("\nFirst time setup not necessary. Skipping..");
         }
     }
 }

@@ -13,47 +13,39 @@ import com.google.gson.stream.JsonReader;
 
 import GUI.Errors.ErrorDisplay;
 import Utils.Data.Config.Config;
+import lang.Language.Languages;
 
-public class AppTheme {
-    Theme appTheme;
-    private static final String KEY_APPTHEME = "appTheme";
+public class AppLanguage {
+    Languages appLanguage;
+    private static final String KEY_APPLANG = "appLanguage";
 
-    public AppTheme(Theme appTheme) {
-        this.appTheme = appTheme;
-    }
-
-    public enum Theme {
-        LIGHT_MODE,
-        DARK_MODE
+    public AppLanguage(Languages appLanguage) {
+        this.appLanguage = appLanguage;
     }
 
     // Gibt einen Wert von der Auflistung (enum) "Theme" je nach Config-Eintrag
-    public static Theme getConfigAppTheme() {
+    public static Languages getConfigAppLanguage() {
 
         try {
             JsonObject jsonconfig = Config.gson.fromJson(new FileReader(Config.getFilePath()), JsonObject.class);
 
-            if (jsonconfig.get(KEY_APPTHEME).toString().contains("DARK")) {
-                return Theme.DARK_MODE;
-            } else {
-                return Theme.LIGHT_MODE;
-            }
+            return Languages.valueOf(jsonconfig.get(KEY_APPLANG).getAsString());
 
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
             ErrorDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner AppTheme Einstellungen! \nFehlermeldung:\n"
+                    "Es gab scheinbar ein Problem beim abrufen deiner Sprachen Einstellungen! \nFehlermeldung:\n"
                             + e.getMessage());
             return null;
         }
 
     }
 
-    public static void setConfigAppTheme(Theme newTheme) {
+    public static void setConfigAppLanguage(Languages newLanguage) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject jsonconfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
 
-            jsonconfig.addProperty(KEY_APPTHEME, newTheme.toString());
+            jsonconfig.addProperty(KEY_APPLANG, newLanguage.toString());
 
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(jsonconfig, writer);
@@ -62,7 +54,7 @@ public class AppTheme {
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             ErrorDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim speichern deiner AppTheme Einstellungen! \nFehlermeldung:\n "
+                    "Es gab scheinbar ein Problem beim speichern deiner Sprachen Einstellungen! \nFehlermeldung:\n "
                             + e.getMessage());
         }
     }
