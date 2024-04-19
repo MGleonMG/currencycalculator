@@ -15,10 +15,10 @@ import GUI.Errors.ErrorDisplay;
 import Utils.Data.Config.Config;
 
 public class AppTheme {
-    String appTheme;
-    private static final String key = "appTheme";
+    Theme appTheme;
+    public static final String KEY_APPTHEME = "appTheme";
 
-    public AppTheme(String appTheme) {
+    public AppTheme(Theme appTheme) {
         this.appTheme = appTheme;
     }
 
@@ -33,7 +33,7 @@ public class AppTheme {
         try {
             JsonObject jsonconfig = Config.gson.fromJson(new FileReader(Config.getFilePath()), JsonObject.class);
 
-            if (jsonconfig.get(key).toString().contains("DARK")) {
+            if (jsonconfig.get(KEY_APPTHEME).toString().contains("DARK")) {
                 return Theme.DARK_MODE;
             } else {
                 return Theme.LIGHT_MODE;
@@ -53,11 +53,13 @@ public class AppTheme {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject jsonconfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
 
-            jsonconfig.addProperty(key, newTheme.toString());
+            jsonconfig.addProperty(KEY_APPTHEME, newTheme.toString());
 
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(jsonconfig, writer);
             writer.close();
+
+            ErrorDisplay.throwErrorPopup("setConfigAppTheme() SUCCESSFULL");
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 

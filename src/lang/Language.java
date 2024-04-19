@@ -2,6 +2,8 @@ package lang;
 
 import java.util.Locale;
 
+import Utils.Data.Config.Settings.AppLanguage;
+
 public class Language {
     private static Locale locale;
 
@@ -11,19 +13,30 @@ public class Language {
         ENGLISH
     }
 
-    public static void switchAppLanguage(Languages language) {
+    /*
+     * Funktion um die Anzeige-Sprache zu ändern.
+     * "language" nimmt ein eine Auflistung namens Languages entgegen
+     * "updateConfig" nimmt einen boolean entgegen der bestimmt ob eine Änderung in
+     * der config Datei des benutzers nötig ist
+     */
+    public static void setAppLanguage(Languages language, boolean updateConfig) {
         switch (language) {
             case Languages.ENGLISH:
                 locale = Locale.US;
                 Locale.setDefault(locale);
+                if (updateConfig) {
+                    AppLanguage.setConfigAppLanguage(Languages.ENGLISH);
+                }
                 break;
 
             case Languages.GERMAN:
-                locale = Locale.US;
+                locale = Locale.GERMANY;
                 Locale.setDefault(locale);
+                AppLanguage.setConfigAppLanguage(Languages.GERMAN);
+                if (updateConfig) {
+                    AppLanguage.setConfigAppLanguage(Languages.GERMAN);
+                }
                 break;
         }
-
-        // TODO: ..
     }
 }
