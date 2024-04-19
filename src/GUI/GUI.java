@@ -11,6 +11,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Errors.ErrorDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
+import Utils.Data.Config.Settings.LastCalculation;
 
 /*
  * Diese Klasse erstellt einen "Graphical User Interface"
@@ -39,7 +40,7 @@ public class GUI {
     private static JButton menuBtn = new JButton("Einstellungen");
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");
-    private static JButton deleteBtn = new JButton("Löschen");
+    private static JLabel presetLabel = new JLabel("Preset");
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
@@ -49,7 +50,7 @@ public class GUI {
      * TODO Code Optimization
      */
     private static String inputValue;
-    private static double inputValueAsResult;
+    private static double inputValueResult;
 
     private static String baseCur;
     private static String targetCur;
@@ -70,6 +71,9 @@ public class GUI {
         addInputOutput();
         addDropdownWithFilters();
         addFooter();
+        addLoadButton();
+        addSaveButton();
+        addPresetLabel();
 
         // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
         frame.add(headlineLabel);
@@ -89,6 +93,10 @@ public class GUI {
         frame.add(authorLabel);
         // frame.add(menuBtn);
         frame.add(menuBtnTest);
+
+        frame.add(saveBtn);
+        frame.add(loadBtn);
+        frame.add(presetLabel);
 
         setTheme(isDarkMode);
 
@@ -286,7 +294,7 @@ public class GUI {
                          * 
                          */
                         inputValue = inputField.getText();
-                        inputValueAsResult = Double.parseDouble(GUI.inputValue);
+                        inputValueResult = Double.parseDouble(GUI.inputValue);
 
                         Utils.runCalcThread();
                     }
@@ -459,8 +467,45 @@ public class GUI {
         }
     }
 
+    private static void addPresetLabel() {
+        presetLabel.setBounds(50, 400, 100, 25);
+
+    }
+
+    private static void addSaveButton() {
+        saveBtn.setBounds(50, 450, 100, 25);
+        saveBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
+                    }
+                });
+            }
+        });
+    }
+
+    private static void addLoadButton() {
+        loadBtn.setBounds(50, 500, 100, 25);
+        loadBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        
+                        String[] a = LastCalculation.getConfigLastCalc();
+
+                        baseCur = a[0];
+                        targetCur = a[1];
+                        inputValue = a[2];
+
+                    }
+                });
+            }
+        });
+    }
+
     public static double getAmount() {
-        return inputValueAsResult;
+        return inputValueResult;
     }
 
     public static String getBaseCur() {
