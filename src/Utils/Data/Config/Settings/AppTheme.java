@@ -16,7 +16,7 @@ import Utils.Data.Config.Config;
 
 public class AppTheme {
     Theme appTheme;
-    public static final String KEY_APPTHEME = "appTheme";
+    private static final String KEY_APPTHEME = "appTheme";
 
     public AppTheme(Theme appTheme) {
         this.appTheme = appTheme;
@@ -58,8 +58,6 @@ public class AppTheme {
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(jsonconfig, writer);
             writer.close();
-
-            ErrorDisplay.throwErrorPopup("setConfigAppTheme() SUCCESSFULL");
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 

@@ -51,8 +51,6 @@ public class AppLanguage {
             Config.gson.toJson(jsonconfig, writer);
             writer.close();
 
-            ErrorDisplay.throwErrorPopup("setConfigAppLanguage() SUCCESSFULL");
-
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             ErrorDisplay.throwErrorPopup(
