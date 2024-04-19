@@ -1,7 +1,6 @@
 package Main;
 
 import GUI.GUI;
-import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Config;
 
 /*
