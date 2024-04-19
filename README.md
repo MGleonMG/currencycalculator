@@ -1,76 +1,98 @@
-# CurrencyCalculator / Währungsrechner
-Währungsrechner um verschiedene Währungen umzurechnen.
-Dies ist ein Projekt von Leon, Jonas und Ewin aus der [BS IT 23c].
+<div align="center" id="top"> 
+  <img src="./.github/app.gif" alt="Currencycalculator" />
 
-## Autoren
- - Leon (github.com/toxytoxy)
- - Jonas (github.com/JonasOFFF & github.com/GetGemueseKebapInYourLife)
- - Ewin (github.com/Syhnx)
+  &#xa0;
 
-## Einführung
-In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
+  <!-- <a href="https://currencycalculator.netlify.app">Demo</a> -->
+</div>
 
-## Features
-- Enthält wichtige Währungen die berechnet werden können.
-- Entnimmt aktuelle Wechselkurse von Google Finances und berechnet diese.
-- Enthält ein GUI -> Benutzerfreundlich
-- Easy to use
-- Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode
+<h1 align="center">Currencycalculator</h1>
 
-## Download (Java Datei)
-TBD
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8">
 
-## Installation (Visual Studio Code)
-Um dieses Projekt zu installieren und auszuführen, benötigst du das Java Development Kit (JDK) auf deinem Computer.
-Das bekommst du auf der offiziellen Oracle Website: https://www.oracle.com/java/technologies/javase-jdk15-downloads.html
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8">
 
-Es wird hierbei empfohlen "Visual Studio Code" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8">
 
-### Powershell
+  <img alt="License" src="https://img.shields.io/github/license/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8">
 
-```powershell
-winget install --id Git.Git -e --source winget
+  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8" /> -->
+
+  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8" /> -->
+
+  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8" /> -->
+</p>
+
+<!-- Status -->
+
+<!-- <h4 align="center"> 
+	🚧  Currencycalculator 🚀 Under construction...  🚧
+</h4> 
+
+<hr> -->
+
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0; | &#xa0;
+  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+</p>
+
+<br>
+
+## :dart: About ##
+
+Describe your project
+
+## :sparkles: Features ##
+
+:heavy_check_mark: Feature 1;\
+:heavy_check_mark: Feature 2;\
+:heavy_check_mark: Feature 3;
+
+## :rocket: Technologies ##
+
+The following tools were used in this project:
+
+- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/)
+- [React](https://pt-br.reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+## :white_check_mark: Requirements ##
+
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+
+## :checkered_flag: Starting ##
+
+```bash
+# Clone this project
+$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/currencycalculator
+
+# Access
+$ cd currencycalculator
+
+# Install dependencies
+$ yarn
+
+# Run the project
+$ yarn start
+
+# The server will initialize in the <http://localhost:3000>
 ```
-Nachdem das erledigt ist, erstellst du dir einen Ordner (am besten auf dem Desktop). Darauf werden die heruntergeladenen Dateien abgespeichert. 
-Im Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Auf dem Terminal verbindest du dich mit der Repository. 
-Folgende Befehle müssen ausgeführt werden:
 
-### Terminal (Virtual Studio Code, ctrl + ö)
+## :memo: License ##
 
-```powershell
-git clone https://github.com/toxytoxy/currencycalculator.git
-```
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-- Optional (sucht nach aktualisierungen)
 
-```powershell
-git checkout main; git pull
-```
+Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
 
-So erhälst du die aktuelle Version des Codes.
+&#xa0;
 
-## Projekt Struktur [Work in Progress]
-currencycalculator/
-│
-├── src/
-│   ├── Main/                             // Hauptpaket
-│   │   └── CurrencyCalculator.java       // Hauptklasse, in der die Anwendung startet
-│   │
-│   ├── Utils/                            // Hilfsprogramme-Paket
-│   │   ├── Utils.java                    // Hilfsklasse mit allgemeinen Dienstprogrammfunktionen
-│   │   │
-│   │   └── Data/                         // Daten-Paket
-│   │       ├── Calculations.java         // Klasse für Berechnungen
-│   │       └── ExchangeRateFetcher.java  // Klasse zum Abrufen von Wechselkursen
-│   │
-│   └── GUI/                              // GUI-Paket
-│       ├── GUI.java                      // Hauptklasse für die grafische Benutzeroberfläche
-│       │
-│       └── Menu/                         // Menü-Paket
-│           └── Menu.java                 // Klasse für das Menü der Anwendung
-│
-├── lib/                                  // Externe Bibliothekenverzeichnis
-│   └── flatlaf-3.4.1.jar                 // Bibliothek für das FlatLaf-Look-and-Feel
-│
-├── .gitignore                            // Git Ignorieren-Datei
-└── README.md                             // Projekt-README-Datei
+<a href="#top">Back to top</a>
