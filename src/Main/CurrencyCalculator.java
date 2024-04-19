@@ -10,6 +10,7 @@ public class CurrencyCalculator {
 
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();
+        // Language.switchLanguage(Lang.Language.GERMAN); TODO: implement config read and language set from config
         GUI.drawGUI();
     }
 }
