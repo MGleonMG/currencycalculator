@@ -29,15 +29,19 @@ public class GUI {
 
     // Components
     private static JFrame frame = new JFrame();
-    private static JLabel headlineLabel = new JLabel("Währungsrechner");
+
+    private static JTextField inputField = new JTextField();
     private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
     private static JButton clipboardBtn = new JButton();
-    private static JTextField inputField = new JTextField();
-    private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
+    private static JButton saveBtn = new JButton("Speichern");
+    private static JButton loadBtn = new JButton("Laden");
+    private static JButton deleteBtn = new JButton("Löschen");
+    private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
+    private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
     private static JLabel menuBtnTest = new JLabel(new ImageIcon("src/resources/buttons/settings_button.png"));
 
@@ -45,7 +49,7 @@ public class GUI {
      * TODO Code Optimization
      */
     private static String inputValue;
-    private static double inputValueAsDouble;
+    private static double inputValueAsResult;
 
     private static String baseCur;
     private static String targetCur;
@@ -282,7 +286,7 @@ public class GUI {
                          * 
                          */
                         inputValue = inputField.getText();
-                        inputValueAsDouble = Double.parseDouble(GUI.inputValue);
+                        inputValueAsResult = Double.parseDouble(GUI.inputValue);
 
                         Utils.runCalcThread();
                     }
@@ -456,7 +460,7 @@ public class GUI {
     }
 
     public static double getAmount() {
-        return inputValueAsDouble;
+        return inputValueAsResult;
     }
 
     public static String getBaseCur() {
