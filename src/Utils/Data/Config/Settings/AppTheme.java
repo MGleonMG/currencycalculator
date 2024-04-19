@@ -11,7 +11,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Config;
 
 public class AppTheme {
@@ -41,7 +41,7 @@ public class AppTheme {
 
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
-            ErrorDisplay.throwErrorPopup(
+            PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim abrufen deiner AppTheme Einstellungen! \nFehlermeldung:\n"
                             + e.getMessage());
             return null;
@@ -61,7 +61,7 @@ public class AppTheme {
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
-            ErrorDisplay.throwErrorPopup(
+            PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim speichern deiner AppTheme Einstellungen! \nFehlermeldung:\n "
                             + e.getMessage());
         }

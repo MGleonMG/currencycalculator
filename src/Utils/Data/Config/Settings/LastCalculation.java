@@ -11,7 +11,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Config;
 
 public class LastCalculation {
@@ -42,7 +42,7 @@ public class LastCalculation {
 
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
-            ErrorDisplay.throwErrorPopup(
+            PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen! \nFehlermeldung:\n"
                             + e.getMessage());
             return null;
@@ -65,7 +65,7 @@ public class LastCalculation {
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
-            ErrorDisplay.throwErrorPopup(
+            PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim speichern deiner Einstellungen! \nFehlermeldung:\n "
                             + e.getMessage());
         }
