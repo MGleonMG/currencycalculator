@@ -49,7 +49,7 @@ public class Utils {
      */
     public static Set<Entry<String, String>> getAllCurrencies() {
         Map<String, String> currencies = new HashMap<>();
-        
+
         for (Currency currency : Currency.getAvailableCurrencies()) {
             String currencyCode = currency.getCurrencyCode();
             String displayName = currency.getDisplayName();
