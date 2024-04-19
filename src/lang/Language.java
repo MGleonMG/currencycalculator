@@ -21,7 +21,7 @@ public class Language {
      */
     public static void setAppLanguage(Languages language, boolean updateConfig) {
         switch (language) {
-            case Languages.ENGLISH:
+            case ENGLISH:
                 locale = Locale.US;
                 Locale.setDefault(locale);
                 if (updateConfig) {
@@ -29,7 +29,7 @@ public class Language {
                 }
                 break;
 
-            case Languages.GERMAN:
+            case GERMAN:
                 locale = Locale.GERMANY;
                 Locale.setDefault(locale);
                 AppLanguage.setConfigAppLanguage(Languages.GERMAN);
