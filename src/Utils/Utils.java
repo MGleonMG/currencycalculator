@@ -76,7 +76,7 @@ public class Utils {
 
             GUI.setOuput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
                     " Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
-                    " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime());
+                    " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
             GUI.displayAsLoading(false);
         });
