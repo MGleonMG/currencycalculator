@@ -6,7 +6,8 @@ import java.nio.file.FileSystems;
 
 import com.google.gson.Gson;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
+import Utils.Data.Config.Settings.AppTheme;
 
 public class Config {
     private static final String FOLDER_PATH = System.getProperty("user.home") +
@@ -42,7 +43,7 @@ public class Config {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                ErrorDisplay.throwErrorPopup(e.getMessage());
+                PopupDisplay.throwErrorPopup(e.getMessage());
             }
 
         }
