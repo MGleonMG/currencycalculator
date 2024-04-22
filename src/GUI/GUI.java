@@ -8,7 +8,7 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
 import Utils.Data.ExchangeRateFetcher;
@@ -404,7 +404,7 @@ public class GUI {
             isDarkMode = darkMode;
 
         } catch (Exception e) {
-            ErrorDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
+            PopupDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
                     "Das Programm wird möglicherweise etwas anders aussehen als sonst!");
             e.printStackTrace();
         }

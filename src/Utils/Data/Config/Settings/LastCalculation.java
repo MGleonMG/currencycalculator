@@ -11,15 +11,15 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Config;
 
 public class LastCalculation {
     String baseCur, targetCur, amount, lastFetchTime;
-    private static final String keyLastBaseCur = "lastBaseCurrency",
-            keyLastTargetCur = "lastTargetCurrency",
-            keyLastAmount = "lastAmount",
-            keyLastFetchTime = "lastFetchTime";
+    private static final String KEY_LASTBASECUR = "lastBaseCurrency",
+            KEY_LASTTARGETCUR = "lastTargetCurrency",
+            KEY_LASTAMOUNT = "lastAmount",
+            KEY_LASTFETCHTIME = "lastFetchTime";
 
     public LastCalculation(String baseCur, String targetCur, String amount, String lastFetchTime) {
         this.baseCur = baseCur;
@@ -36,16 +36,16 @@ public class LastCalculation {
 
         try {
             JsonObject newConfig = Config.gson.fromJson(new FileReader(Config.getFilePath()), JsonObject.class);
-            calcInfo[0] = newConfig.get(keyLastBaseCur).toString();
-            calcInfo[1] = newConfig.get(keyLastTargetCur).toString();
-            calcInfo[2] = newConfig.get(keyLastAmount).toString();
-            calcInfo[3] = newConfig.get(keyLastFetchTime).toString();
+            calcInfo[0] = newConfig.get(KEY_LASTBASECUR).toString();
+            calcInfo[1] = newConfig.get(KEY_LASTTARGETCUR).toString();
+            calcInfo[2] = newConfig.get(KEY_LASTAMOUNT).toString();
+            calcInfo[3] = newConfig.get(KEY_LASTFETCHTIME).toString();
 
             return calcInfo;
 
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
-            ErrorDisplay.throwErrorPopup(
+            PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen! \nFehlermeldung:\n"
                             + e.getMessage());
             return null;
@@ -60,10 +60,10 @@ public class LastCalculation {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject newConfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
 
-            newConfig.addProperty(keyLastBaseCur, baseCurResult);
-            newConfig.addProperty(keyLastTargetCur, targetCurResult);
-            newConfig.addProperty(keyLastAmount, inputValue);
-            newConfig.addProperty(keyLastFetchTime, lastFetchTime);
+            newConfig.addProperty(KEY_LASTBASECUR, baseCurResult);
+            newConfig.addProperty(KEY_LASTTARGETCUR, targetCurResult);
+            newConfig.addProperty(KEY_LASTAMOUNT, inputValue);
+            newConfig.addProperty(KEY_LASTFETCHTIME, lastFetchTime);
 
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(newConfig, writer);
@@ -71,7 +71,7 @@ public class LastCalculation {
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
-            ErrorDisplay.throwErrorPopup(
+            PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim speichern deiner Einstellungen! \nFehlermeldung:\n "
                             + e.getMessage());
         }
