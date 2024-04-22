@@ -42,7 +42,7 @@ public class GUI {
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");
     private static JLabel presetLabel = new JLabel("Letzte Rechnung");
-    public static JLabel fadeLabel = new JLabel("Gespeichert!");
+    private static JLabel fadeLabel = new JLabel("Gespeichert!");
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
