@@ -473,6 +473,8 @@ public class GUI {
 
     /*
      * TODO Code Optimization
+     * 
+     * Diese Methode erstellt einen Knopf, um die Daten zu speichern
      */
     private static void addSaveCalculationButton() {
         saveBtn.setBounds(50, 450, 100, 25);
@@ -489,6 +491,9 @@ public class GUI {
         });
     }
 
+    /*
+     * Diese Methode erstellt einen Knopf, um Daten zu laden
+     */
     private static void addLoadCalculationButton() {
         loadBtn.setBounds(50, 500, 100, 25);
         loadBtn.addActionListener(new ActionListener() {
@@ -529,6 +534,9 @@ public class GUI {
     /*
      * TODO so implementieren, dass der "FadeLabel" transparenter wird, bis es weg
      * ist?
+     * 
+     * Diese Methode erstellt einen Label, dass dem benutzer zurückgibt, dass die
+     * eingegebenen Daten gespeichert sind
      */
     public static void runFadeLabel() {
         fadeLabel.setVisible(true);

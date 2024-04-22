@@ -28,6 +28,9 @@ public class LastCalculation {
         this.lastFetchTime = lastFetchTime;
     }
 
+    /*
+     * Diese Methode ruft die letzt gespeicherte Daten ab
+     */
     public static String[] getConfigLastCalc() {
         String[] calcInfo = new String[4];
 
@@ -50,6 +53,9 @@ public class LastCalculation {
 
     }
 
+    /*
+     * Diese Methode speichert die Werte, die der Benutzer eingegeben hat
+     */
     public static void setConfigLastCalc(String baseCurResult, String targetCurResult, String inputValue, String lastFetchTime) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject newConfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
