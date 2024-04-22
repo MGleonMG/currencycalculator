@@ -522,16 +522,18 @@ public class GUI {
 
     private static void addFadeLabel() {
         fadeLabel.setBounds(200, 450, 100, 25);
+        fadeLabel.setVisible(false);
 
     }
 
     /*
-     * TODO noch nicht richtig implementiert
-     * 
+     * TODO so implementieren, dass der "FadeLabel" transparenter wird, bis es weg
+     * ist?
      */
     public static void runFadeLabel() {
+        fadeLabel.setVisible(true);
         Timer timer = new Timer(50, new ActionListener() {
-            private float opacity = 1.0f;
+            private float opacity = 1.0f; // opacity = transparenz
 
             @Override
             public void actionPerformed(ActionEvent e) {
