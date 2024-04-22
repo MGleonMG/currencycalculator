@@ -11,6 +11,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Errors.ErrorDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
+import Utils.Data.ExchangeRateFetcher;
 import Utils.Data.Config.Settings.LastCalculation;
 
 /*
@@ -40,7 +41,8 @@ public class GUI {
     private static JButton menuBtn = new JButton("Einstellungen");
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");
-    private static JLabel presetLabel = new JLabel("Preset");
+    private static JLabel presetLabel = new JLabel("Letzte Rechnung");
+    public static JLabel fadeLabel = new JLabel("Gespeichert!");
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
@@ -71,9 +73,10 @@ public class GUI {
         addInputOutput();
         addDropdownWithFilters();
         addFooter();
-        addLoadButton();
-        addSaveButton();
+        addLoadCalculationButton();
+        addSaveCalculationButton();
         addPresetLabel();
+        addFadeLabel();
 
         // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
         frame.add(headlineLabel);
@@ -97,6 +100,7 @@ public class GUI {
         frame.add(saveBtn);
         frame.add(loadBtn);
         frame.add(presetLabel);
+        frame.add(fadeLabel);
 
         setTheme(isDarkMode);
 
@@ -336,7 +340,7 @@ public class GUI {
      */
     private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
-        setOuput("Bitte wähle Währungen aus und gib einen Betrag ein.");
+        setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
 
         inputField.setBounds(385, 290, 90, 30);
     }
@@ -442,7 +446,7 @@ public class GUI {
     /*
      * TODO Kommentar
      */
-    public static void setOuput(String output) {
+    public static void setOutput(String output) {
         // Using HTML formatting here as JLabels dont accept a simple line break (\n)
         outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
@@ -457,7 +461,7 @@ public class GUI {
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
             calculateBtn.setEnabled(false);
-            setOuput("Lädt...");
+            setOutput("Lädt...");
             calculateBtn.setText("Lädt...");
 
         } else {
@@ -467,43 +471,78 @@ public class GUI {
         }
     }
 
-    private static void addPresetLabel() {
-        presetLabel.setBounds(50, 400, 100, 25);
-
-    }
-
-    private static void addSaveButton() {
+    /*
+     * TODO Code Optimization
+     */
+    private static void addSaveCalculationButton() {
         saveBtn.setBounds(50, 450, 100, 25);
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
+                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue,
+                                ExchangeRateFetcher.getLastFetchTimeAsString());
+                        runFadeLabel();
                     }
                 });
             }
         });
     }
 
-    private static void addLoadButton() {
+    private static void addLoadCalculationButton() {
         loadBtn.setBounds(50, 500, 100, 25);
         loadBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        
+
                         String[] config = LastCalculation.getConfigLastCalc();
                         // Es löscht die "" im String
+                        config[0] = config[0].replace("\"", "");
+                        config[1] = config[1].replace("\"", "");
                         config[2] = config[2].replace("\"", "");
 
-                        dropdownBaseCur.setSelectedItem(config[0]); 
-                        dropdownTargetCur.setSelectedItem(config[1]);
-                        inputField.setText(config[2]);
+                        baseCurResult = (config[0]);
+                        targetCurResult = (config[1]);
+                        inputValue = (config[2]);
+
+                        inputValueResult = Double.parseDouble(GUI.inputValue);
+                        Utils.runCalcThread();
 
                     }
                 });
             }
         });
+    }
+
+    private static void addPresetLabel() {
+        presetLabel.setBounds(50, 400, 100, 25);
+
+    }
+
+    private static void addFadeLabel() {
+        fadeLabel.setBounds(200, 450, 100, 25);
+
+    }
+
+    /*
+     * TODO noch nicht richtig implementiert
+     * 
+     */
+    public static void runFadeLabel() {
+        Timer timer = new Timer(50, new ActionListener() {
+            private float opacity = 1.0f;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                opacity -= 0.05f;
+                if (opacity <= 0.0f) {
+                    ((Timer) e.getSource()).stop();
+                    fadeLabel.setVisible(false);
+                }
+            }
+        });
+        timer.start();
     }
 
     public static double getAmount() {

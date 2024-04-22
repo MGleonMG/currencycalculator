@@ -15,28 +15,28 @@ import GUI.Errors.ErrorDisplay;
 import Utils.Data.Config.Config;
 
 public class LastCalculation {
-    String baseCur, targetCur, amount;
+    String baseCur, targetCur, amount, lastFetchTime;
     private static final String keyLastBaseCur = "lastBaseCurrency",
             keyLastTargetCur = "lastTargetCurrency",
-            keyLastAmount = "lastAmount";
-           // keyLastFetchTime = "lastFetchTime";
+            keyLastAmount = "lastAmount",
+            keyLastFetchTime = "lastFetchTime";
 
-    public LastCalculation(String baseCur, String targetCur, String amount) {
+    public LastCalculation(String baseCur, String targetCur, String amount, String lastFetchTime) {
         this.baseCur = baseCur;
         this.targetCur = targetCur;
         this.amount = amount;
-        //this.lastFetchTime = lastFetchTime;
+        this.lastFetchTime = lastFetchTime;
     }
 
     public static String[] getConfigLastCalc() {
-        String[] calcInfo = new String[3];
+        String[] calcInfo = new String[4];
 
         try {
             JsonObject newConfig = Config.gson.fromJson(new FileReader(Config.getFilePath()), JsonObject.class);
             calcInfo[0] = newConfig.get(keyLastBaseCur).toString();
             calcInfo[1] = newConfig.get(keyLastTargetCur).toString();
             calcInfo[2] = newConfig.get(keyLastAmount).toString();
-           // calcInfo[3] = newConfig.get(keyLastFetchTime).toString();
+            calcInfo[3] = newConfig.get(keyLastFetchTime).toString();
 
             return calcInfo;
 
@@ -50,14 +50,14 @@ public class LastCalculation {
 
     }
 
-    public static void setConfigLastCalc(String baseCur, String targetCur, String amount) {
+    public static void setConfigLastCalc(String baseCurResult, String targetCurResult, String inputValue, String lastFetchTime) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject newConfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
 
-            newConfig.addProperty(keyLastBaseCur, baseCur);
-            newConfig.addProperty(keyLastTargetCur, targetCur);
-            newConfig.addProperty(keyLastAmount, amount);
-           // newConfig.addProperty(keyLastFetchTime, lastFetchTime);
+            newConfig.addProperty(keyLastBaseCur, baseCurResult);
+            newConfig.addProperty(keyLastTargetCur, targetCurResult);
+            newConfig.addProperty(keyLastAmount, inputValue);
+            newConfig.addProperty(keyLastFetchTime, lastFetchTime);
 
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(newConfig, writer);

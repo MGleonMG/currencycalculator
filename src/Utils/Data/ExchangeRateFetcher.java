@@ -13,6 +13,7 @@ import Utils.Utils;
 public class ExchangeRateFetcher {
     public static double latestRate;
     private static long lastStartMillis, lastEndMillis;
+    private static Object getLastFetchTime;
 
     /*
      * Um die Währungen auszurechnen, braucht die Methode die Währungen die der
@@ -65,6 +66,11 @@ public class ExchangeRateFetcher {
 
     public static long getLastFetchTime() {
         return lastEndMillis - lastStartMillis;
+    }
+
+    public static String getLastFetchTimeAsString() {
+        String fetchTimeAsString = String.valueOf(getLastFetchTime);
+        return fetchTimeAsString;
     }
 
     /*

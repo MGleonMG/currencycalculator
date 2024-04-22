@@ -74,7 +74,7 @@ public class Utils {
 
             Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
-            GUI.setOuput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
+            GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
                     " Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
                     " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
