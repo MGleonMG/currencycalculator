@@ -31,7 +31,6 @@ public class GUI {
 
     // Components
     private static JFrame frame = new JFrame();
-
     private static JTextField inputField = new JTextField();
     private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
