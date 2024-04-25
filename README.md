@@ -1,79 +1,66 @@
-# CurrencyCalculator / Währungsrechner
-Währungsrechner um verschiedene Währungen umzurechnen.
-Dies ist ein Projekt von Leon, Jonas und Ewin aus der [BS IT 23c].
+<div align="center" id="top"> 
+  <img src="src\resources\app_icon\app_icon.png" alt="Currencycalculator" />
 
-## Autoren
- - Leon (github.com/toxytoxy)
- - Jonas (github.com/JonasOFFF & github.com/GetGemueseKebapInYourLife)
- - Ewin (github.com/Syhnx)
+  &#xa0;
 
-## Einführung
-In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
+</div>
 
-## Features
-- Enthält wichtige Währungen die berechnet werden können.
-- Entnimmt aktuelle Wechselkurse von Google Finances und berechnet diese.
-- Enthält ein GUI -> Benutzerfreundlich
-- Easy to use
-- Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode
+<h1 align="center">Währungsrechner</h1>
+ 
+ &#xa0;
 
-## Download (Java Datei)
+<p align="center">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/toxytoxy/currencycalculator?color=56BEB8">
+  <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/toxytoxy/currencycalculator">
+  <img alt="last commit" src="https://img.shields.io/github/last-commit/toxytoxy/currencycalculator">
+</p>
+ 
+ &#xa0;
+<hr>
+
+<!-- ================================= -->
+<!-- @Ewin hier das ist nicht updated -->
+<!-- ================================= -->
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
+  <a href="#memo-license">License</a> &#xa0; | &#xa0;
+  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+</p>
+
+<br>
+
+## :dart: About ##
+
 TBD
 
-## Installation (Visual Studio Code)
-Um dieses Projekt zu installieren und auszuführen, benötigst du das Java Development Kit (JDK) auf deinem Computer.
-Das bekommst du auf der offiziellen Oracle Website: 
-```
-https://www.oracle.com/java/technologies/javase-jdk15-downloads.html
-```
+## :sparkles: Features ##
 
-Es wird hierbei empfohlen "[Visual Studio Code](https://code.visualstudio.com/)" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
+:heavy_check_mark: Feature 1;\
+:heavy_check_mark: Feature 2;\
+:heavy_check_mark: Feature 3;
 
-### Powershell
+## :rocket: Technologies ##
 
-```powershell
-winget install --id Git.Git -e --source winget
-```
-Nachdem das erledigt ist, erstellst du dir einen Ordner (am besten auf dem Desktop). Darauf werden die heruntergeladenen Dateien abgespeichert. 
-Im Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Auf dem Terminal verbindest du dich mit der Repository. 
-Folgende Befehle müssen ausgeführt werden:
+The following tools were used in this project:
 
-### Terminal (Virtual Studio Code, ctrl + ö)
+- [Java](orcale)
+- [FlatLaf Lib](https://github.com/JFormDesigner/FlatLaf)
 
-```powershell
-git clone https://github.com/toxytoxy/currencycalculator.git
-```
+## :white_check_mark: Requirements ##
 
-- Optional (sucht nach aktualisierungen)
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
-```powershell
-git checkout main; git pull
+## :checkered_flag: Starting ##
+
+```bash
+# Projekt auf ein lokales Gerät klonen
+$ git clone https://github.com/toxytoxy/currencycalculator
 ```
 
-So erhälst du die aktuelle Version des Codes.
+&#xa0;
 
-## Projekt Struktur [Work in Progress]
-currencycalculator/
-│
-├── src/
-│   ├── Main/                             // Hauptpaket
-│   │   └── CurrencyCalculator.java       // Hauptklasse, in der die Anwendung startet
-│   │
-│   ├── Utils/                            // Hilfsprogramme-Paket
-│   │   ├── Utils.java                    // Hilfsklasse mit allgemeinen Dienstprogrammfunktionen
-│   │   │
-│   │   └── Data/                         // Daten-Paket
-│   │       ├── Calculations.java         // Klasse für Berechnungen
-│   │       └── ExchangeRateFetcher.java  // Klasse zum Abrufen von Wechselkursen
-│   │
-│   └── GUI/                              // GUI-Paket
-│       ├── GUI.java                      // Hauptklasse für die grafische Benutzeroberfläche
-│       │
-│       └── Menu/                         // Menü-Paket
-│           └── Menu.java                 // Klasse für das Menü der Anwendung
-│
-├── lib/                                  // Externe Bibliothekenverzeichnis
-│   └── flatlaf-3.4.1.jar                 // Bibliothek für das FlatLaf-Look-and-Feel
-│
-├── .gitignore                            // Git Ignorieren-Datei
-└── README.md                             // Projekt-README-Datei
+<a href="#top">Zurück zum Anfang</a>
