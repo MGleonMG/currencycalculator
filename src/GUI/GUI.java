@@ -32,9 +32,10 @@ public class GUI {
     // Components
     private static JFrame frame = new JFrame();
     private static JTextField inputField = new JTextField();
-    private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
+    public static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
-    private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
+    private static JComboBox<String> dropdownBaseCur;
+    private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
     private static JButton clipboardBtn = new JButton();
     private static JButton menuBtn = new JButton("Einstellungen");
@@ -58,6 +59,10 @@ public class GUI {
 
     private static String baseCurResult;
     private static String targetCurResult;
+
+    public static void redrawMain() {
+        frame.setVisible(true);
+    }
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen

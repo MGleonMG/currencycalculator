@@ -132,7 +132,7 @@ public class SettingsGUI {
         backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // GUI Klasse bei clicken
-                GUI.drawGUI();
+                GUI.redrawMain();
                 settingsFrame.dispose(); // Schließe Menüfenster
             }
         });
