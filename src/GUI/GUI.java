@@ -12,7 +12,9 @@ import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
 import Utils.Data.ExchangeRateFetcher;
+import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
+import Utils.Data.Config.Settings.AppTheme.Theme;
 
 /*
  * Diese Klasse erstellt einen "Graphical User Interface"
@@ -25,9 +27,6 @@ public class GUI {
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_indev";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
-
-    // Helpers
-    private static boolean isDarkMode = true;
 
     // Components
     private static JFrame frame = new JFrame();
@@ -106,7 +105,7 @@ public class GUI {
         frame.add(presetLabel);
         frame.add(fadeLabel);
 
-        setTheme(isDarkMode);
+        setAppTheme();
 
         frame.requestFocus();
         frame.setVisible(true);
@@ -397,15 +396,14 @@ public class GUI {
      * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
      * Darkmode
      */
-    public static void setTheme(boolean darkMode) {
+    public static void setAppTheme() {
         try {
-            if (darkMode) {
+            if (AppTheme.getConfigAppTheme() == Theme.DARK_MODE) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
-            } else {
+            } else { // TODO: add light mode here (else if)
                 UIManager.setLookAndFeel(new FlatLightLaf());
             }
             SwingUtilities.updateComponentTreeUI(frame);
-            isDarkMode = darkMode;
 
         } catch (Exception e) {
             PopupDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +

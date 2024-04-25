@@ -6,6 +6,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.GUI;
+import Utils.Data.Config.Settings.AppTheme;
+import Utils.Data.Config.Settings.AppTheme.Theme;
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -94,8 +96,9 @@ public class SettingsGUI {
             public void actionPerformed(ActionEvent e) {
                 try {
                     UIManager.setLookAndFeel(new FlatLightLaf()); // Setze Look-and-Feel auf Lightmode
+                    AppTheme.setConfigAppTheme(Theme.LIGHT_MODE);
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
-                    GUI.setTheme(false); // Übertrage das Theme auf die GUI-Klasse
+                    GUI.setAppTheme(); // Übertrage das Theme auf die GUI-Klasse
                     lightBtn.setEnabled(false);
                     darkBtn.setEnabled(true);
                 } catch (Exception ex) {
@@ -110,7 +113,7 @@ public class SettingsGUI {
                 try {
                     UIManager.setLookAndFeel(new FlatDarkLaf()); // Setze Look-and-Feel auf Darkmode
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
-                    GUI.setTheme(true); // Übertrage das Theme auf die GUI-Klasse
+                    GUI.setAppTheme(); // Übertrage das Theme auf die GUI-Klasse
                     lightBtn.setEnabled(true);
                     darkBtn.setEnabled(false);
                 } catch (Exception ex) {
@@ -119,7 +122,7 @@ public class SettingsGUI {
             }
         });
     }
-
+    
     /*
      * Diese Methode fügt einen Knopf hinzu, womit man in das Hauptfenster
      * zurückkehrt
