@@ -5,7 +5,7 @@
 
 </div>
 
-<h1 align="center">Currencycalculator</h1>
+<h1 align="center">Währungsrechner</h1>
  
  &#xa0;
 
@@ -13,12 +13,14 @@
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/toxytoxy/currencycalculator?color=56BEB8">
   <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/toxytoxy/currencycalculator">
   <img alt="last commit" src="https://img.shields.io/github/last-commit/toxytoxy/currencycalculator">
-  <img alt="Github stars" src="https://img.shields.io/github/stars/toxytoxy/currencycalculator?color=56BEB8" />
 </p>
  
  &#xa0;
 <hr>
 
+<!-- ================================= -->
+<!-- @Ewin hier das ist nicht updated -->
+<!-- ================================= -->
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
