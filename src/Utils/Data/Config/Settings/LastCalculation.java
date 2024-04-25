@@ -28,6 +28,9 @@ public class LastCalculation {
         this.lastFetchTime = lastFetchTime;
     }
 
+    /*
+     * Diese Methode ruft die letzt gespeicherte Daten ab
+     */
     public static String[] getConfigLastCalc() {
         String[] calcInfo = new String[4];
 
@@ -40,7 +43,7 @@ public class LastCalculation {
 
             return calcInfo;
 
-        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException | NullPointerException e) {
 
             PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen! \nFehlermeldung:\n"
@@ -50,13 +53,16 @@ public class LastCalculation {
 
     }
 
-    public static void setConfigLastCalc(String baseCur, String targetCur, String amount, String lastFetchTime) {
+    /*
+     * Diese Methode speichert die Werte, die der Benutzer eingegeben hat
+     */
+    public static void setConfigLastCalc(String baseCurResult, String targetCurResult, String inputValue, String lastFetchTime) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject newConfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
 
-            newConfig.addProperty(KEY_LASTBASECUR, baseCur);
-            newConfig.addProperty(KEY_LASTTARGETCUR, targetCur);
-            newConfig.addProperty(KEY_LASTAMOUNT, amount);
+            newConfig.addProperty(KEY_LASTBASECUR, baseCurResult);
+            newConfig.addProperty(KEY_LASTTARGETCUR, targetCurResult);
+            newConfig.addProperty(KEY_LASTAMOUNT, inputValue);
             newConfig.addProperty(KEY_LASTFETCHTIME, lastFetchTime);
 
             FileWriter writer = new FileWriter(Config.getFilePath());

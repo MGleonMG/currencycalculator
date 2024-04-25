@@ -54,7 +54,8 @@ public class SettingsGUI {
             }
         });
     }
-    private static void addChangeLogHeader () {
+
+    private static void addChangeLogHeader() {
         changeLogHeader.setBounds(170, -60, 170, 300);
         changeLogHeader.setFont(changeLogHeader.getFont().deriveFont(30f));
         changeLogHeader.setText("Changelog");

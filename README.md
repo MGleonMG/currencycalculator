@@ -22,9 +22,12 @@ TBD
 
 ## Installation (Visual Studio Code)
 Um dieses Projekt zu installieren und auszuführen, benötigst du das Java Development Kit (JDK) auf deinem Computer.
-Das bekommst du auf der offiziellen Oracle Website: https://www.oracle.com/java/technologies/javase-jdk15-downloads.html
+Das bekommst du auf der offiziellen Oracle Website: 
+```
+https://www.oracle.com/java/technologies/javase-jdk15-downloads.html
+```
 
-Es wird hierbei empfohlen "Visual Studio Code" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
+Es wird hierbei empfohlen "[Visual Studio Code](https://code.visualstudio.com/)" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
 
 ### Powershell
 
