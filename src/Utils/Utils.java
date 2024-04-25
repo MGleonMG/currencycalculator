@@ -75,8 +75,9 @@ public class Utils {
             Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
-                    " Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
-                    " Die Operation dauerte: " + ExchangeRateFetcher.getLastFetchTime() + "ms");
+                    "Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
+                    "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
+                    "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
 
             GUI.displayAsLoading(false);
         });

@@ -312,7 +312,7 @@ public class GUI {
      * Es nimmt das Ergebnis und steckt es in den Clipboard
      */
     private static void addCopyOutputButton() {
-        clipboardBtn.setBounds(380, 400, 100, 30);
+        clipboardBtn.setBounds(380, 405, 100, 30);
 
         // Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten
         // Auflösung
@@ -338,7 +338,7 @@ public class GUI {
      * TODO Kommentar
      */
     private static void addInputOutput() {
-        outputLabel.setBounds(250, 280, 300, 150);
+        outputLabel.setBounds(250, 285, 300, 150);
         setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
 
         inputField.setBounds(385, 290, 90, 30);

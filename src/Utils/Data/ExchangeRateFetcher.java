@@ -11,7 +11,7 @@ import Utils.Utils;
  * Diese Klasse ruft die Wechselkurse von Google Finances ab
  */
 public class ExchangeRateFetcher {
-    public static double latestRate;
+    private static double latestRate;
     private static long lastStartMillis, lastEndMillis;
     private static Object getLastFetchTime;
 
@@ -71,6 +71,10 @@ public class ExchangeRateFetcher {
     public static String getLastFetchTimeAsString() {
         String fetchTimeAsString = String.valueOf(getLastFetchTime);
         return fetchTimeAsString;
+    }
+
+    public static double getLatestExchangeRate() {
+        return latestRate;
     }
 
     /*
