@@ -8,9 +8,11 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
+import Utils.Data.ExchangeRateFetcher;
+import Utils.Data.Config.Settings.LastCalculation;
 
 /*
  * Diese Klasse erstellt einen "Graphical User Interface"
@@ -20,7 +22,7 @@ import Utils.Utils;
 public class GUI {
 
     // static final vars
-    public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
+    public static final String TITLE = "Währungsrechner", VERSION = "1.0_indev";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
@@ -29,15 +31,19 @@ public class GUI {
 
     // Components
     private static JFrame frame = new JFrame();
-    private static JLabel headlineLabel = new JLabel("Währungsrechner");
+    private static JTextField inputField = new JTextField();
     private static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur, dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
     private static JButton clipboardBtn = new JButton();
-    private static JTextField inputField = new JTextField();
-    private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JButton menuBtn = new JButton("Einstellungen");
+    private static JButton saveBtn = new JButton("Speichern");
+    private static JButton loadBtn = new JButton("Laden");
+    private static JLabel presetLabel = new JLabel("Letzte Rechnung");
+    private static JLabel fadeLabel = new JLabel("Gespeichert!");
+    private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
+    private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
     private static JLabel menuBtnTest = new JLabel(new ImageIcon("src/resources/buttons/settings_button.png"));
 
@@ -45,7 +51,7 @@ public class GUI {
      * TODO Code Optimization
      */
     private static String inputValue;
-    private static double inputValueAsDouble;
+    private static double inputValueResult;
 
     private static String baseCur;
     private static String targetCur;
@@ -66,6 +72,10 @@ public class GUI {
         addInputOutput();
         addDropdownWithFilters();
         addFooter();
+        addLoadCalculationButton();
+        addSaveCalculationButton();
+        addPresetLabel();
+        addFadeLabel();
 
         // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
         frame.add(headlineLabel);
@@ -85,6 +95,11 @@ public class GUI {
         frame.add(authorLabel);
         // frame.add(menuBtn);
         frame.add(menuBtnTest);
+
+        frame.add(saveBtn);
+        frame.add(loadBtn);
+        frame.add(presetLabel);
+        frame.add(fadeLabel);
 
         setTheme(isDarkMode);
 
@@ -282,7 +297,7 @@ public class GUI {
                          * 
                          */
                         inputValue = inputField.getText();
-                        inputValueAsDouble = Double.parseDouble(GUI.inputValue);
+                        inputValueResult = Double.parseDouble(GUI.inputValue);
 
                         Utils.runCalcThread();
                     }
@@ -324,7 +339,7 @@ public class GUI {
      */
     private static void addInputOutput() {
         outputLabel.setBounds(250, 280, 300, 150);
-        setOuput("Bitte wähle Währungen aus und gib einen Betrag ein.");
+        setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
 
         inputField.setBounds(385, 290, 90, 30);
     }
@@ -388,7 +403,7 @@ public class GUI {
             isDarkMode = darkMode;
 
         } catch (Exception e) {
-            ErrorDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
+            PopupDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
                     "Das Programm wird möglicherweise etwas anders aussehen als sonst!");
             e.printStackTrace();
         }
@@ -430,7 +445,7 @@ public class GUI {
     /*
      * TODO Kommentar
      */
-    public static void setOuput(String output) {
+    public static void setOutput(String output) {
         // Using HTML formatting here as JLabels dont accept a simple line break (\n)
         outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
@@ -445,7 +460,7 @@ public class GUI {
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
             calculateBtn.setEnabled(false);
-            setOuput("Lädt...");
+            setOutput("Lädt...");
             calculateBtn.setText("Lädt...");
 
         } else {
@@ -455,8 +470,90 @@ public class GUI {
         }
     }
 
+    /*
+     * TODO Code Optimization
+     * 
+     * Diese Methode erstellt einen Knopf, um die Daten zu speichern
+     */
+    private static void addSaveCalculationButton() {
+        saveBtn.setBounds(50, 450, 100, 25);
+        saveBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue,
+                                ExchangeRateFetcher.getLastFetchTimeAsString());
+                        runFadeLabel();
+                    }
+                });
+            }
+        });
+    }
+
+    /*
+     * Diese Methode erstellt einen Knopf, um Daten zu laden
+     */
+    private static void addLoadCalculationButton() {
+        loadBtn.setBounds(50, 480, 100, 25);
+        loadBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+
+                        String[] config = LastCalculation.getConfigLastCalc();
+                        // Es löscht die "" im String
+                        config[0] = config[0].replace("\"", "");
+                        config[1] = config[1].replace("\"", "");
+                        config[2] = config[2].replace("\"", "");
+
+                        baseCurResult = (config[0]);
+                        targetCurResult = (config[1]);
+                        inputValue = (config[2]);
+
+                        inputValueResult = Double.parseDouble(GUI.inputValue);
+                        Utils.runCalcThread();
+
+                    }
+                });
+            }
+        });
+    }
+
+    private static void addPresetLabel() {
+        presetLabel.setBounds(50, 420, 100, 25);
+    }
+
+    private static void addFadeLabel() {
+        fadeLabel.setBounds(200, 450, 100, 25);
+        fadeLabel.setVisible(false);
+    }
+
+    /*
+     * TODO so implementieren, dass der "FadeLabel" transparenter wird, bis es weg
+     * ist?
+     * 
+     * Diese Methode erstellt einen Label, dass dem benutzer zurückgibt, dass die
+     * eingegebenen Daten gespeichert sind
+     */
+    public static void runFadeLabel() {
+        fadeLabel.setVisible(true);
+        Timer timer = new Timer(50, new ActionListener() {
+            private float opacity = 1.0f; // opacity = transparenz
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                opacity -= 0.05f;
+                if (opacity <= 0.0f) {
+                    ((Timer) e.getSource()).stop();
+                    fadeLabel.setVisible(false);
+                }
+            }
+        });
+        timer.start();
+    }
+
     public static double getAmount() {
-        return inputValueAsDouble;
+        return inputValueResult;
     }
 
     public static String getBaseCur() {

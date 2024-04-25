@@ -10,7 +10,7 @@
 
 <p align="center">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/toxytoxy/currencycalculator?color=56BEB8">
-
+  
   <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/toxytoxy/currencycalculator">
 
   <img alt="last commit" src="https://img.shields.io/github/last-commit/toxytoxy/currencycalculator">

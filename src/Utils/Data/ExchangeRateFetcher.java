@@ -4,7 +4,7 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
 import Utils.Utils;
 
 /*
@@ -13,6 +13,7 @@ import Utils.Utils;
 public class ExchangeRateFetcher {
     public static double latestRate;
     private static long lastStartMillis, lastEndMillis;
+    private static Object getLastFetchTime;
 
     /*
      * Um die Währungen auszurechnen, braucht die Methode die Währungen die der
@@ -43,20 +44,20 @@ public class ExchangeRateFetcher {
              * Die catch Methoden geben dem Enduser die jeweilige Fehlermeldung zurück
              */
         } catch (UnknownHostException uhExc) {
-            ErrorDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden");
+            PopupDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden");
             uhExc.printStackTrace();
             clearDataOnError();
 
         } catch (StringIndexOutOfBoundsException oobExc) {
             // Fehler aufgetreten.
-            ErrorDisplay.throwErrorPopup(
+            PopupDisplay.throwErrorPopup(
                     "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten");
             oobExc.printStackTrace();
             clearDataOnError();
 
         } catch (Exception exc) {
             System.err.print("[UNKNOWN ERROR] ");
-            ErrorDisplay.throwErrorPopup("Ein unbekannter Fehler ist aufgetreten");
+            PopupDisplay.throwErrorPopup("Ein unbekannter Fehler ist aufgetreten");
             exc.printStackTrace();
             clearDataOnError();
 
@@ -65,6 +66,11 @@ public class ExchangeRateFetcher {
 
     public static long getLastFetchTime() {
         return lastEndMillis - lastStartMillis;
+    }
+
+    public static String getLastFetchTimeAsString() {
+        String fetchTimeAsString = String.valueOf(getLastFetchTime);
+        return fetchTimeAsString;
     }
 
     /*

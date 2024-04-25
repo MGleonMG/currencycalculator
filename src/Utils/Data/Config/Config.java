@@ -6,7 +6,7 @@ import java.nio.file.FileSystems;
 
 import com.google.gson.Gson;
 
-import GUI.Errors.ErrorDisplay;
+import GUI.Popups.PopupDisplay;
 
 public class Config {
     private static final String FOLDER_PATH = System.getProperty("user.home") +
@@ -42,7 +42,9 @@ public class Config {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                ErrorDisplay.throwErrorPopup(e.getMessage());
+                PopupDisplay.throwErrorPopup(
+                        "Es gab ein Problem beim einrichten der Config Dateien! Program wird beendet.\n\""
+                                + e.getMessage() + "\"");
             }
 
         }
