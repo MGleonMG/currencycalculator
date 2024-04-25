@@ -494,7 +494,7 @@ public class GUI {
      * Diese Methode erstellt einen Knopf, um Daten zu laden
      */
     private static void addLoadCalculationButton() {
-        loadBtn.setBounds(50, 500, 100, 25);
+        loadBtn.setBounds(50, 480, 100, 25);
         loadBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
@@ -520,14 +520,12 @@ public class GUI {
     }
 
     private static void addPresetLabel() {
-        presetLabel.setBounds(50, 400, 100, 25);
-
+        presetLabel.setBounds(50, 420, 100, 25);
     }
 
     private static void addFadeLabel() {
         fadeLabel.setBounds(200, 450, 100, 25);
         fadeLabel.setVisible(false);
-
     }
 
     /*
