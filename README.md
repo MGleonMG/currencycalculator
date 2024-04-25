@@ -3,32 +3,21 @@
 
   &#xa0;
 
-  <!-- <a href="https://currencycalculator.netlify.app">Demo</a> -->
 </div>
 
 <h1 align="center">Currencycalculator</h1>
+ 
+ &#xa0;
 
 <p align="center">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/toxytoxy/currencycalculator?color=56BEB8">
-  
   <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/toxytoxy/currencycalculator">
-
   <img alt="last commit" src="https://img.shields.io/github/last-commit/toxytoxy/currencycalculator">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/currencycalculator?color=56BEB8" /> -->
+  <img alt="Github stars" src="https://img.shields.io/github/stars/toxytoxy/currencycalculator?color=56BEB8" />
 </p>
-
-<!-- Status -->
-
-<!-- <h4 align="center"> 
-	🚧  Currencycalculator 🚀 Under construction...  🚧
-</h4> 
-
-<hr> -->
+ 
+ &#xa0;
+<hr>
 
 <p align="center">
   <a href="#dart-about">About</a> &#xa0; | &#xa0; 
@@ -44,7 +33,7 @@
 
 ## :dart: About ##
 
-Describe your project
+TBD
 
 ## :sparkles: Features ##
 
@@ -56,11 +45,8 @@ Describe your project
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Java](orcale)
+- [FlatLaf Lib](https://github.com/JFormDesigner/FlatLaf)
 
 ## :white_check_mark: Requirements ##
 
@@ -69,28 +55,10 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 ## :checkered_flag: Starting ##
 
 ```bash
-# Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/currencycalculator
-
-# Access
-$ cd currencycalculator
-
-# Install dependencies
-$ yarn
-
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
+# Projekt auf ein lokales Gerät klonen
+$ git clone https://github.com/toxytoxy/currencycalculator
 ```
-
-## :memo: License ##
-
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
-
-
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
 
 &#xa0;
 
-<a href="#top">Back to top</a>
+<a href="#top">Zurück zum Anfang</a>
