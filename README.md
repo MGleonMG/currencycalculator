@@ -1,5 +1,5 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Currencycalculator" />
+  <img src="src\resources\app_icon\app_icon.png" alt="Currencycalculator" />
 
   &#xa0;
 
