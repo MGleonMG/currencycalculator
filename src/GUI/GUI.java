@@ -20,7 +20,7 @@ import Utils.Utils;
 public class GUI {
 
     // static final vars
-    public static final String TITLE = "Währungsrechner", VERSION = "1.0_alpha";
+    public static final String TITLE = "Währungsrechner", VERSION = "1.0_indev";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
