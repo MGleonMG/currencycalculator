@@ -42,7 +42,9 @@ public class Config {
 
             } catch (Exception e) {
                 e.printStackTrace();
-                PopupDisplay.throwErrorPopup(e.getMessage());
+                PopupDisplay.throwErrorPopup(
+                        "Es gab ein Problem beim einrichten der Config Dateien! Program wird beendet.\n\""
+                                + e.getMessage() + "\"");
             }
 
         }

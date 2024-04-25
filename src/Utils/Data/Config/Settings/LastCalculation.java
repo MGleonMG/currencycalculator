@@ -43,7 +43,7 @@ public class LastCalculation {
 
             return calcInfo;
 
-        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException | NullPointerException e) {
 
             PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen! \nFehlermeldung:\n"
