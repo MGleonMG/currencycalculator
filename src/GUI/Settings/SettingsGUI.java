@@ -45,6 +45,7 @@ public class SettingsGUI {
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
         settingsFrame.setLocationRelativeTo(null);
+        GUI.setAppIcon(settingsFrame);
         settingsFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
