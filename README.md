@@ -10,9 +10,9 @@
  &#xa0;
 
 <p align="center">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/666leon666/currencycalculator?color=56BEB8">
-  <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/666leon666/currencycalculator">
-  <img alt="last commit" src="https://img.shields.io/github/last-commit/666leon666/currencycalculator">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/mgleonmg/currencycalculator?color=56BEB8">
+  <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/mgleonmg/currencycalculator">
+  <img alt="last commit" src="https://img.shields.io/github/last-commit/mgleonmg/currencycalculator">
 </p>
  
  &#xa0;
@@ -59,7 +59,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Projekt auf ein lokales Gerät klonen
-$ git clone https://github.com/666leon666/currencycalculator
+$ git clone https://github.com/mgleonmg/currencycalculator
 
 # Auf Main Branch wechseln und die neusten infos und code runterladen
 $ git checkout main; git fetch; git pull
