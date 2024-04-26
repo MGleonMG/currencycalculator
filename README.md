@@ -47,18 +47,28 @@ TBD
 
 The following tools were used in this project:
 
-- [Java](orcale)
+- [Java](https://www.java.com/de/)
 - [FlatLaf Lib](https://github.com/JFormDesigner/FlatLaf)
+- [Gson](https://github.com/google/gson)
 
 ## :white_check_mark: Requirements ##
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
-## :checkered_flag: Starting ##
+## :checkered_flag: Starting | Git Commands to know ##
 
 ```bash
 # Projekt auf ein lokales Gerät klonen
 $ git clone https://github.com/666leon666/currencycalculator
+
+# Auf Main Branch wechseln und die neusten infos und code runterladen
+$ git checkout main; git fetch; git pull
+
+# Neue branch erstellen und zu dieser wechseln
+$ git checkout -b some-new-branch-name
+
+# Die neusten Änderungen auf der main branch in einer deiner beliebigen branches mergen
+$ git pull origin main
 ```
 
 &#xa0;
