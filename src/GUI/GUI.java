@@ -105,7 +105,7 @@ public class GUI {
         frame.add(presetLabel);
         frame.add(fadeLabel);
 
-        setAppTheme();
+        setAppTheme(AppTheme.getConfigAppTheme());
 
         frame.requestFocus();
         frame.setVisible(true);
@@ -396,12 +396,14 @@ public class GUI {
      * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
      * Darkmode
      */
-    public static void setAppTheme() {
+    public static void setAppTheme(Theme theme) {
         try {
-            if (AppTheme.getConfigAppTheme() == Theme.DARK_MODE) {
+            if (theme == Theme.DARK_MODE) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
-            } else { // TODO: add light mode here (else if)
+                AppTheme.setConfigAppTheme(Theme.DARK_MODE);
+            } else if (theme == Theme.LIGHT_MODE) {
                 UIManager.setLookAndFeel(new FlatLightLaf());
+                AppTheme.setConfigAppTheme(Theme.LIGHT_MODE);
             }
             SwingUtilities.updateComponentTreeUI(frame);
 
@@ -412,7 +414,6 @@ public class GUI {
         }
     }
 
-    // Mit pfeiltasten Yallan
     /*
      * Diese Methode erstellt die Möglichkeit im Dropdown Menü mit Pfeiltasten zu
      * navigieren
