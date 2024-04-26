@@ -10,9 +10,9 @@
  &#xa0;
 
 <p align="center">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/toxytoxy/currencycalculator?color=56BEB8">
-  <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/toxytoxy/currencycalculator">
-  <img alt="last commit" src="https://img.shields.io/github/last-commit/toxytoxy/currencycalculator">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/666leon666/currencycalculator?color=56BEB8">
+  <img alt="commit activity" src="https://img.shields.io/github/commit-activity/w/666leon666/currencycalculator">
+  <img alt="last commit" src="https://img.shields.io/github/last-commit/666leon666/currencycalculator">
 </p>
  
  &#xa0;
@@ -58,7 +58,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Projekt auf ein lokales Gerät klonen
-$ git clone https://github.com/toxytoxy/currencycalculator
+$ git clone https://github.com/666leon666/currencycalculator
 ```
 
 &#xa0;

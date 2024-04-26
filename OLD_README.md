@@ -3,7 +3,7 @@ Währungsrechner um verschiedene Währungen umzurechnen.
 Dies ist ein Projekt von Leon, Jonas und Ewin aus der [BS IT 23c].
 
 ## Autoren
- - Leon (github.com/toxytoxy)
+ - Leon (github.com/666leon666)
  - Jonas (github.com/JonasOFFF & github.com/GetGemueseKebapInYourLife)
  - Ewin (github.com/Syhnx)
 
@@ -38,7 +38,7 @@ Folgende Befehle müssen ausgeführt werden:
 ### Terminal (Virtual Studio Code, ctrl + ö)
 
 ```powershell
-git clone https://github.com/toxytoxy/currencycalculator.git
+git clone https://github.com/666leon666/currencycalculator.git
 ```
 
 - Optional (sucht nach aktualisierungen)
