@@ -25,7 +25,6 @@ public class ExchangeRateFetcher {
             lastStartMillis = System.currentTimeMillis();
 
             // Roher HTML code als String von 'google.com/finance/'
-            @SuppressWarnings("deprecation")
             Scanner webScanner = new Scanner(
                     new URL("https://www.google.com/finance/quote/" + baseCur + "-" + targetCur).openStream(), "UTF-8");
             String htmlOutput = webScanner.useDelimiter("\\A").next();
