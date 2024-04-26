@@ -2,9 +2,6 @@ package GUI.Settings;
 
 import javax.swing.*;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLightLaf;
-
 import GUI.GUI;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.AppTheme.Theme;
@@ -84,20 +81,25 @@ public class SettingsGUI {
         lightBtn.setBounds(10, 500, 105, 30);
         lightBtn.setBackground(Color.WHITE);
         lightBtn.setForeground(Color.BLACK);
+        if (AppTheme.getConfigAppTheme() == Theme.LIGHT_MODE) {
+            lightBtn.setEnabled(false);
+        }
         settingsFrame.add(lightBtn);
 
         darkBtn.setBounds(120, 500, 112, 30);
         darkBtn.setBackground(Color.decode("#5A5A5A"));
         darkBtn.setForeground(Color.WHITE);
+        if (AppTheme.getConfigAppTheme() == Theme.DARK_MODE) {
+            darkBtn.setEnabled(false);
+        }
         settingsFrame.add(darkBtn);
 
         lightBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    UIManager.setLookAndFeel(new FlatLightLaf()); // Setze Look-and-Feel auf Lightmode
-                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     GUI.setAppTheme(Theme.LIGHT_MODE); // Übertrage das Theme auf die GUI-Klasse
+                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     lightBtn.setEnabled(false);
                     darkBtn.setEnabled(true);
                 } catch (Exception ex) {
@@ -110,9 +112,8 @@ public class SettingsGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    UIManager.setLookAndFeel(new FlatDarkLaf()); // Setze Look-and-Feel auf Darkmode
-                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     GUI.setAppTheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
+                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     lightBtn.setEnabled(true);
                     darkBtn.setEnabled(false);
                 } catch (Exception ex) {
