@@ -117,12 +117,16 @@ public class GUI {
         jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
     }
 
+    public static void setAppIcon(JFrame jframe) {
+        jframe.setIconImage(icon.getImage());
+    }
+
     /*
      * Erstellt das Hauptfenster für die GUI
      */
     private static void setBasicFrameProps() {
         updateTitle(frame, "");
-        frame.setIconImage(icon.getImage());
+        setAppIcon(frame);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
