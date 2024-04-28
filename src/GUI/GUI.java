@@ -11,14 +11,12 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
-import Utils.Data.ExchangeRateFetcher;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 
 /*
- * Diese Klasse erstellt einen "Graphical User Interface"
- * 
+ * Diese Klasse erstellt das "Graphical User Interface"
  * Dadurch muss der Enduser nicht auf dem Terminal arbeiten
  */
 public class GUI {
@@ -26,7 +24,7 @@ public class GUI {
     // static final vars
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_indev";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
-    private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
+    private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Components
     private static JFrame frame = new JFrame();
@@ -37,7 +35,6 @@ public class GUI {
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
     private static JButton clipboardBtn = new JButton();
-    private static JButton menuBtn = new JButton("Einstellungen");
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");
     private static JLabel presetLabel = new JLabel("Letzte Rechnung");
@@ -45,7 +42,7 @@ public class GUI {
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
-    private static JLabel menuBtnTest = new JLabel(new ImageIcon("src/resources/buttons/settings_button.png"));
+    private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
 
     /*
      * TODO Code Optimization
@@ -69,7 +66,7 @@ public class GUI {
      */
     public static void drawGUI() {
         setBasicFrameProps();
-        drawMenuBtn();
+        drawSettingsBtn();
 
         addCopyOutputButton();
         addCalculateButton();
@@ -97,8 +94,7 @@ public class GUI {
         frame.add(dropdownTargetCur);
 
         frame.add(authorLabel);
-        // frame.add(menuBtn);
-        frame.add(menuBtnTest);
+        frame.add(settingsLblBtn);
 
         frame.add(saveBtn);
         frame.add(loadBtn);
@@ -284,9 +280,6 @@ public class GUI {
          */
         addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
-
-        frame.add(dropdownBaseCur);
-        frame.add(dropdownTargetCur);
     }
 
     /*
@@ -357,15 +350,15 @@ public class GUI {
      * 
      * Man kann dadurch in die Einstellungen wechseln
      */
-    private static void drawMenuBtn() {
+    private static void drawSettingsBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        menuBtnTest.setBounds(GUI.FRAME_WIDTH - 80, GUI.FRAME_HEIGHT - 95, 50, 50);
-        menuBtnTest.setIcon(scaledIcon);
+        settingsLblBtn.setBounds(GUI.FRAME_WIDTH - 80, GUI.FRAME_HEIGHT - 95, 50, 50);
+        settingsLblBtn.setIcon(scaledIcon);
 
-        menuBtnTest.addMouseListener(new MouseAdapter() {
+        settingsLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 SettingsGUI.drawSettingsGUI();
@@ -375,23 +368,9 @@ public class GUI {
 
     }
 
-    /*
-     * TODO: Kommentar
-     */
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
-
-        menuBtn.setBounds(745, 520, 110, 30);
-        menuBtn.setBackground(Color.decode("#00CCCC"));
-        menuBtn.setForeground(Color.WHITE);
-
-        menuBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SettingsGUI.drawSettingsGUI();
-                frame.setVisible(false);
-            }
-        });
     }
 
     /*
@@ -454,33 +433,27 @@ public class GUI {
      * TODO Kommentar
      */
     public static void setOutput(String output) {
-        // Using HTML formatting here as JLabels dont accept a simple line break (\n)
+        // JLabels akzeptueren kein normales \n als Line break, deshalb benutzen wir
+        // hier HTML formatierung mit dem <br> Tag
         outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
 
     /*
-     * Diese Methode zeigt dem Enduser, dass das Programm am laufen ist
-     * 
-     * TODO Idee: Könnte man vielleicht einen drehenden Rad implementieren, sodass
-     * es anzeigt,
-     * dass das Programm am arbeiten ist?
+     * Diese Methode zeigt dem Endnutzer, dass das Programm am Arbeiten ist und den
+     * Wechselkurs herausfindet
      */
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
             calculateBtn.setEnabled(false);
             setOutput("Lädt...");
             calculateBtn.setText("Lädt...");
-
         } else {
-
             calculateBtn.setEnabled(true);
             calculateBtn.setText("Umrechnen");
         }
     }
 
     /*
-     * TODO Code Optimization
-     * 
      * Diese Methode erstellt einen Knopf, um die Daten zu speichern
      */
     private static void addSaveCalculationButton() {
@@ -489,8 +462,7 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue,
-                                ExchangeRateFetcher.getLastFetchTimeAsString());
+                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
                         runFadeLabel();
                     }
                 });
@@ -537,11 +509,8 @@ public class GUI {
     }
 
     /*
-     * TODO so implementieren, dass der "FadeLabel" transparenter wird, bis es weg
-     * ist?
-     * 
-     * Diese Methode erstellt einen Label, dass dem benutzer zurückgibt, dass die
-     * eingegebenen Daten gespeichert sind
+     * Diese Methode erstellt ein Label, dass dem Benutzer zurückgibt,
+     * dass die eingegebenen Daten gespeichert sind.
      */
     public static void runFadeLabel() {
         fadeLabel.setVisible(true);

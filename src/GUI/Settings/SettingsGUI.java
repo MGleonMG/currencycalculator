@@ -17,9 +17,9 @@ public class SettingsGUI {
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
-    public static boolean isDarkMode = true;
-    public static JLabel changeLog = new JLabel();
-    private static JLabel changeLogHeader = new JLabel();
+    public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das noch??
+    public static JLabel changeLog = new JLabel(); // TODO: @Jonas muss das public sein?
+    private static JLabel changelogHeader = new JLabel();
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
@@ -56,10 +56,10 @@ public class SettingsGUI {
     }
 
     private static void addChangeLogHeader() {
-        changeLogHeader.setBounds(170, -60, 170, 300);
-        changeLogHeader.setFont(changeLogHeader.getFont().deriveFont(30f));
-        changeLogHeader.setText("Changelog");
-        settingsFrame.add(changeLogHeader);
+        changelogHeader.setBounds(170, -60, 170, 300);
+        changelogHeader.setFont(changelogHeader.getFont().deriveFont(30f));
+        changelogHeader.setText("Changelog");
+        settingsFrame.add(changelogHeader);
     }
 
     private static void addChangeLog() {
