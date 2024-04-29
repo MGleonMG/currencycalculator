@@ -17,13 +17,14 @@ import lang.Language.Languages;
 
 public class AppLanguage {
     Languages appLanguage;
+    // JSON keywords um die korrekten Einstellungen auszulesen
     private static final String KEY_APPLANG = "appLanguage";
 
     public AppLanguage(Languages appLanguage) {
         this.appLanguage = appLanguage;
     }
 
-    // Gibt einen Wert von der Auflistung (enum) "Theme" je nach Config-Eintrag
+    // Gibt einen Wert von der Auflistung (enum) "Languages" je nach Config-Eintrag
     public static Languages getConfigAppLanguage() {
 
         try {
@@ -34,8 +35,8 @@ public class AppLanguage {
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner Sprachen Einstellungen! \nFehlermeldung:\n"
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim abrufen deiner Sprachen Einstellungen!",
+                    e.getMessage());
             return null;
         }
 
@@ -54,8 +55,8 @@ public class AppLanguage {
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim speichern deiner Sprachen Einstellungen! \nFehlermeldung:\n "
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim speichern deiner Sprachen Einstellungen!",
+                    e.getMessage());
         }
     }
 }

@@ -10,7 +10,9 @@ public class Language {
     // Auflistung aller unterstützten Sprachen
     public enum Languages {
         GERMAN,
-        ENGLISH
+        ENGLISH,
+        SPANISH,
+        DANISH
     }
 
     /*
@@ -35,6 +37,26 @@ public class Language {
                 AppLanguage.setConfigAppLanguage(Languages.GERMAN);
                 if (updateConfig) {
                     AppLanguage.setConfigAppLanguage(Languages.GERMAN);
+                }
+                break;
+
+            case SPANISH:
+                // TODO: Spanish missing in Locale class? Check later..
+                // locale = Locale.;
+                Locale.setDefault(locale);
+                AppLanguage.setConfigAppLanguage(Languages.SPANISH);
+                if (updateConfig) {
+                    AppLanguage.setConfigAppLanguage(Languages.SPANISH);
+                }
+                break;
+
+            case DANISH:
+                // TODO: same here as above??
+                // locale = Locale.DANISH;
+                Locale.setDefault(locale);
+                AppLanguage.setConfigAppLanguage(Languages.DANISH);
+                if (updateConfig) {
+                    AppLanguage.setConfigAppLanguage(Languages.DANISH);
                 }
                 break;
         }

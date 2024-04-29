@@ -2,12 +2,15 @@ package lang;
 
 public class LangStrings {
         /*
-         * Auflistung von Strings mit allen titeln, button-texten, und mehr in
-         * verschiedenen Sprachen
+         * Auflistung von Strings mit allen titeln, button-texten,
+         * und mehr in verschiedenen Sprachen
          */
 
         // TODO: @Ewin oder @Jonas LBL_OUTPUT muss geändert werden
         // da wir jetzt exchange rates drin haben
+
+        // TODO: @Ewin oder @Jonas Bitte denkt dran wir brauchen
+        // auch error messages übersetzt!
 
         // Deutsch
         public static final String GER_TITLE = "Währungsrechner";

@@ -16,38 +16,34 @@ import Utils.Data.Config.Config;
 
 public class LastCalculation {
     String baseCur, targetCur, amount, lastFetchTime;
+    // JSON keywords um die korrekten Einstellungen auszulesen
     private static final String KEY_LASTBASECUR = "lastBaseCurrency",
             KEY_LASTTARGETCUR = "lastTargetCurrency",
-            KEY_LASTAMOUNT = "lastAmount",
-            KEY_LASTFETCHTIME = "lastFetchTime";
+            KEY_LASTAMOUNT = "lastAmount";
 
-    public LastCalculation(String baseCur, String targetCur, String amount, String lastFetchTime) {
+    public LastCalculation(String baseCur, String targetCur, String amount) {
         this.baseCur = baseCur;
         this.targetCur = targetCur;
         this.amount = amount;
-        this.lastFetchTime = lastFetchTime;
     }
 
-    /*
-     * Diese Methode ruft die letzt gespeicherte Daten ab
-     */
+    // Diese Methode ruft die zu letzt gespeicherte Daten ab
     public static String[] getConfigLastCalc() {
-        String[] calcInfo = new String[4];
+        String[] calcInfo = new String[3];
 
         try {
             JsonObject newConfig = Config.gson.fromJson(new FileReader(Config.getFilePath()), JsonObject.class);
             calcInfo[0] = newConfig.get(KEY_LASTBASECUR).toString();
             calcInfo[1] = newConfig.get(KEY_LASTTARGETCUR).toString();
             calcInfo[2] = newConfig.get(KEY_LASTAMOUNT).toString();
-            calcInfo[3] = newConfig.get(KEY_LASTFETCHTIME).toString();
 
             return calcInfo;
 
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException | NullPointerException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen! \nFehlermeldung:\n"
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen!",
+                    e.getMessage());
             return null;
         }
 
@@ -56,14 +52,13 @@ public class LastCalculation {
     /*
      * Diese Methode speichert die Werte, die der Benutzer eingegeben hat
      */
-    public static void setConfigLastCalc(String baseCurResult, String targetCurResult, String inputValue, String lastFetchTime) {
+    public static void setConfigLastCalc(String baseCurResult, String targetCurResult, String inputValue) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {
             JsonObject newConfig = JsonParser.parseReader(jsonReader).getAsJsonObject();
 
             newConfig.addProperty(KEY_LASTBASECUR, baseCurResult);
             newConfig.addProperty(KEY_LASTTARGETCUR, targetCurResult);
             newConfig.addProperty(KEY_LASTAMOUNT, inputValue);
-            newConfig.addProperty(KEY_LASTFETCHTIME, lastFetchTime);
 
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(newConfig, writer);
@@ -72,8 +67,8 @@ public class LastCalculation {
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim speichern deiner Einstellungen! \nFehlermeldung:\n "
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim speichern deiner Einstellungen!",
+                    e.getMessage());
         }
     }
 }

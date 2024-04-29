@@ -16,6 +16,7 @@ import Utils.Data.Config.Config;
 
 public class AppTheme {
     Theme appTheme;
+    // JSON keywords um die korrekten Einstellungen auszulesen
     private static final String KEY_APPTHEME = "appTheme";
 
     public AppTheme(Theme appTheme) {
@@ -42,8 +43,8 @@ public class AppTheme {
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner AppTheme Einstellungen! \nFehlermeldung:\n"
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim abrufen deiner AppTheme Einstellungen!",
+                    e.getMessage());
             return null;
         }
 
@@ -62,8 +63,8 @@ public class AppTheme {
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim speichern deiner AppTheme Einstellungen! \nFehlermeldung:\n "
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim speichern deiner AppTheme Einstellungen!",
+                    e.getMessage());
         }
     }
 }
