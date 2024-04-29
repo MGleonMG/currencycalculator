@@ -37,7 +37,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Diese Methode erstellt das Fenster
+     * Erstellt das Einstellungs Fenster indem es einge props (Properties =>
+     * Eigenschaften) zuweist
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
@@ -103,6 +104,7 @@ public class SettingsGUI {
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     lightBtn.setEnabled(false);
                     darkBtn.setEnabled(true);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -114,9 +116,10 @@ public class SettingsGUI {
             public void actionPerformed(ActionEvent e) {
                 try {
                     GUI.setAppTheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
-                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
+                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiert das UI des Frames
                     lightBtn.setEnabled(true);
                     darkBtn.setEnabled(false);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -19,7 +19,7 @@ import java.awt.datatransfer.Clipboard;
 
 /*
  * In dieser Klasse sind alle Tools (Werkzeuge) verfügbar
- * Diese werden in einer anderen Klasse verwendet
+ * Diese werden in anderen Klassen verwendet
  */
 public class Utils {
 
@@ -27,7 +27,6 @@ public class Utils {
      * Diese Methode stellt das End ergebnis auf zwei (nach) Kommastellen um
      * 
      * bsp: 12.04405
-     * 
      * -> 12.04
      */
     public static double adjustDecimal(double x, int decimalPlaces) {
@@ -45,7 +44,9 @@ public class Utils {
     }
 
     /*
-     * TODO Kommentar
+     * Ein Set von Einträgen mit jeweils 2 Strings als Paaren
+     * werden zurück gegeben welche immer pro Eintrag eine
+     * Währung und dessen 3 stelligen ISO Code enthalten
      */
     public static Set<Entry<String, String>> getAllCurrencies() {
         Map<String, String> currencies = new HashMap<>();
@@ -68,10 +69,6 @@ public class Utils {
         Thread thread = new Thread(() -> {
             GUI.displayAsLoading(true);
 
-            /*
-             * TODO: GUI.getUserInput() in ConvertCurrencies ?
-             */
-
             Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
@@ -86,9 +83,8 @@ public class Utils {
     }
 
     /*
-     * Diese Methode kopiert das Ergebnis in den Clipboard
-     * 
-     * GUI -> siehe GUI.addCopyOutputButton
+     * Diese Methode kopiert das Ergebnis in den Clipboard des Benutzers
+     * siehe src\GUI\GUI.java\addCopyOutputButton()
      */
     public static void copyToClipboard() {
         double umrechnung = Calculations.finalResult;

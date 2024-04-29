@@ -16,6 +16,7 @@ import Utils.Data.Config.Config;
 
 public class LastCalculation {
     String baseCur, targetCur, amount, lastFetchTime;
+    // JSON keywords um die korrekten Einstellungen auszulesen
     private static final String KEY_LASTBASECUR = "lastBaseCurrency",
             KEY_LASTTARGETCUR = "lastTargetCurrency",
             KEY_LASTAMOUNT = "lastAmount";
@@ -26,9 +27,7 @@ public class LastCalculation {
         this.amount = amount;
     }
 
-    /*
-     * Diese Methode ruft die letzt gespeicherte Daten ab
-     */
+    // Diese Methode ruft die zu letzt gespeicherte Daten ab
     public static String[] getConfigLastCalc() {
         String[] calcInfo = new String[3];
 
@@ -43,8 +42,8 @@ public class LastCalculation {
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException | NullPointerException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen! \nFehlermeldung:\n"
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen!",
+                    e.getMessage());
             return null;
         }
 
@@ -68,8 +67,8 @@ public class LastCalculation {
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim speichern deiner Einstellungen! \nFehlermeldung:\n "
-                            + e.getMessage());
+                    "Es gab scheinbar ein Problem beim speichern deiner Einstellungen!",
+                    e.getMessage());
         }
     }
 }

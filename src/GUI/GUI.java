@@ -56,10 +56,6 @@ public class GUI {
     private static String baseCurResult;
     private static String targetCurResult;
 
-    public static void redrawMain() {
-        frame.setVisible(true);
-    }
-
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
      * Objekten hinzu
@@ -68,8 +64,8 @@ public class GUI {
         setBasicFrameProps();
         drawSettingsBtn();
 
-        addCopyOutputButton();
         addCalculateButton();
+        addCopyOutputButton();
         addInputOutput();
         addDropdownWithFilters();
         addFooter();
@@ -77,21 +73,6 @@ public class GUI {
         addSaveCalculationButton();
         addPresetLabel();
         addFadeLabel();
-
-        // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
-        frame.add(headlineLabel);
-
-        frame.add(calculateBtn);
-        frame.add(clipboardBtn);
-
-        frame.add(inputField);
-        frame.add(outputLabel);
-
-        frame.add(searchBarBaseCur);
-        frame.add(searchBarTargetcur);
-
-        frame.add(dropdownBaseCur);
-        frame.add(dropdownTargetCur);
 
         frame.add(authorLabel);
         frame.add(settingsLblBtn);
@@ -107,7 +88,11 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    // TODO: @Leon optimize this function
+    // Bringt das Hauptfenster zurück
+    public static void redrawMain() {
+        frame.setVisible(true);
+    }
+
     public static void updateTitle(JFrame jframe, String rawTitleAddition) {
         String titleAddition = " - " + rawTitleAddition;
         jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
@@ -131,6 +116,8 @@ public class GUI {
 
         headlineLabel.setFont(headlineLabel.getFont().deriveFont(30f));
         headlineLabel.setBounds(335, 25, GUI.FRAME_WIDTH, 50);
+
+        frame.add(headlineLabel);
     }
 
     /*
@@ -223,11 +210,10 @@ public class GUI {
     }
 
     /*
-     * Erstellt einen Dropdown, mit dem man Währungen auswählen kann.
-     * Dies wird auf den beiden Seiten erstellt.
+     * Erstellt zwei Dropdowns, mit denen man Währungen auswählen kann.
      * 
      * Dabei nimmt es den Namen der Währung, mit dem jeweiligen
-     * Isocode auf. Dies verwendet man für den Empfang des Wechselskurses
+     * ISO Code auf. Es wird verwendet für den Empfang des Wechselskurses.
      */
     private static void addDropdownWithFilters() {
         addSearchBars();
@@ -247,10 +233,9 @@ public class GUI {
         }
 
         /*
-         * TODO Code Optimization
-         * 
-         * Die ItemListener nehmen den isocode raus und werden in der
-         * jeweiligen Variable zugewiesen
+         * Ein ItemListener reagiert auf Änderungen bezüglich der Auswahl
+         * und extrahiert mit regex syntax regeln den ISO Code aus der ausgewählten
+         * Währung
          */
         dropdownBaseCur.addItemListener(new ItemListener() {
             @Override
@@ -262,9 +247,6 @@ public class GUI {
             }
         });
 
-        /*
-         * TODO Code Optimization
-         */
         dropdownTargetCur.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -280,6 +262,12 @@ public class GUI {
          */
         addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
+
+        frame.add(searchBarBaseCur);
+        frame.add(searchBarTargetcur);
+
+        frame.add(dropdownBaseCur);
+        frame.add(dropdownTargetCur);
     }
 
     /*
@@ -293,10 +281,6 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        /*
-                         * TODO Code Optimization
-                         * 
-                         */
                         inputValue = inputField.getText();
                         inputValueResult = Double.parseDouble(GUI.inputValue);
 
@@ -305,6 +289,8 @@ public class GUI {
                 });
             }
         });
+
+        frame.add(calculateBtn);
     }
 
     /*
@@ -315,10 +301,10 @@ public class GUI {
     private static void addCopyOutputButton() {
         clipboardBtn.setBounds(380, 405, 100, 30);
 
-        // Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten
-        // Auflösung
-        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem
-        // Bild
+        /*
+         * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
+         * Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt
+         */
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -333,22 +319,26 @@ public class GUI {
                 });
             }
         });
+
+        frame.add(clipboardBtn);
     }
 
     /*
-     * TODO Kommentar
+     * Fügt Komponenten hinzu die für input des users und output verantwortlich sind
      */
     private static void addInputOutput() {
         outputLabel.setBounds(250, 285, 300, 150);
         setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
 
         inputField.setBounds(385, 290, 90, 30);
+
+        frame.add(inputField);
+        frame.add(outputLabel);
     }
 
     /*
-     * Erstellt einen Knopf für die Einstellungen
-     * 
-     * Man kann dadurch in die Einstellungen wechseln
+     * Erstellt ein klickbares Label mit Icon
+     * das als Button für das Einstellungs Menu agiert
      */
     private static void drawSettingsBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
@@ -392,8 +382,7 @@ public class GUI {
 
         } catch (Exception e) {
             PopupDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
-                    "Das Programm wird möglicherweise etwas anders aussehen als sonst!");
-            e.printStackTrace();
+                    "Das Programm wird möglicherweise etwas anders aussehen als sonst!", e.getMessage());
         }
     }
 

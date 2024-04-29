@@ -41,24 +41,23 @@ public class ExchangeRateFetcher {
             webScanner.close();
 
             /*
-             * Die catch Methoden geben dem Enduser die jeweilige Fehlermeldung zurück
+             * Die Catch Methoden geben dem Endnutzer die jeweilige Fehlermeldung zurück.
+             * Auf genauere Beschreibung wird verzichtet da die Strings
+             * für die Popup Message eine ausreichende Bezeichnung bieten.
              */
         } catch (UnknownHostException uhExc) {
-            PopupDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden");
-            uhExc.printStackTrace();
+            PopupDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden",
+                    uhExc.getMessage());
             clearDataOnError();
 
         } catch (StringIndexOutOfBoundsException oobExc) {
-            // Fehler aufgetreten.
             PopupDisplay.throwErrorPopup(
-                    "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten");
-            oobExc.printStackTrace();
+                    "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten",
+                    "Ein Wechselkurs für diese Währung konnte ");
             clearDataOnError();
 
         } catch (Exception exc) {
-            System.err.print("[UNKNOWN ERROR] ");
-            PopupDisplay.throwErrorPopup("Ein unbekannter Fehler ist aufgetreten");
-            exc.printStackTrace();
+            PopupDisplay.throwErrorPopup("Ein unbekannter Fehler ist aufgetreten", exc.getMessage());
             clearDataOnError();
 
         }
