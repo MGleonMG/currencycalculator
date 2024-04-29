@@ -46,6 +46,9 @@ public class GUI {
 
     /*
      * TODO Code Optimization
+     * 
+     * @Ewin was diese?
+     * pls fix und sortieren dangee
      */
     private static String inputValue;
     private static double inputValueResult;
@@ -57,30 +60,22 @@ public class GUI {
     private static String targetCurResult;
 
     /*
-     * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
-     * Objekten hinzu
+     * Diese Methode führt andere Methoden aus
+     * und fügt dadurch die einzelnen Komponenten hinzu
      */
     public static void drawGUI() {
         setBasicFrameProps();
-        drawSettingsBtn();
 
+        drawSettingsBtn();
         addCalculateButton();
         addCopyOutputButton();
         addInputOutput();
         addDropdownWithFilters();
-        addFooter();
-        addLoadCalculationButton();
-        addSaveCalculationButton();
         addPresetLabel();
+        addSaveCalculationButton();
+        addLoadCalculationButton();
         addFadeLabel();
-
-        frame.add(authorLabel);
-        frame.add(settingsLblBtn);
-
-        frame.add(saveBtn);
-        frame.add(loadBtn);
-        frame.add(presetLabel);
-        frame.add(fadeLabel);
+        addFooter();
 
         setAppTheme(AppTheme.getConfigAppTheme());
 
@@ -356,11 +351,14 @@ public class GUI {
             }
         });
 
+        frame.add(settingsLblBtn);
     }
 
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
+
+        frame.add(authorLabel);
     }
 
     /*
@@ -457,6 +455,8 @@ public class GUI {
                 });
             }
         });
+
+        frame.add(saveBtn);
     }
 
     /*
@@ -486,15 +486,21 @@ public class GUI {
                 });
             }
         });
+
+        frame.add(loadBtn);
     }
 
     private static void addPresetLabel() {
         presetLabel.setBounds(50, 420, 100, 25);
+
+        frame.add(presetLabel);
     }
 
     private static void addFadeLabel() {
         fadeLabel.setBounds(200, 450, 100, 25);
         fadeLabel.setVisible(false);
+
+        frame.add(fadeLabel);
     }
 
     /*

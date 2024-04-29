@@ -60,6 +60,7 @@ public class SettingsGUI {
         changelogHeader.setBounds(170, -60, 170, 300);
         changelogHeader.setFont(changelogHeader.getFont().deriveFont(30f));
         changelogHeader.setText("Changelog");
+
         settingsFrame.add(changelogHeader);
     }
 
@@ -72,6 +73,7 @@ public class SettingsGUI {
                 + "Einstellungsmenü mit Changelog und Farbpräferenz-Knöpfen hinzugefügt <br>"
                 + "</html>");
         changeLog.setBounds(170, 1, 500, 300);
+
         settingsFrame.add(changeLog);
     }
 
@@ -86,6 +88,7 @@ public class SettingsGUI {
         if (AppTheme.getConfigAppTheme() == Theme.LIGHT_MODE) {
             lightBtn.setEnabled(false);
         }
+
         settingsFrame.add(lightBtn);
 
         darkBtn.setBounds(120, 500, 112, 30);
@@ -94,6 +97,7 @@ public class SettingsGUI {
         if (AppTheme.getConfigAppTheme() == Theme.DARK_MODE) {
             darkBtn.setEnabled(false);
         }
+
         settingsFrame.add(darkBtn);
 
         lightBtn.addActionListener(new ActionListener() {
