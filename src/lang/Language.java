@@ -6,7 +6,7 @@ import Utils.Data.Config.Settings.AppLanguage;
 
 public class Language {
     private static Locale locale;
-
+    // ..
     // Auflistung aller unterstützten Sprachen
     public enum Languages {
         GERMAN,
