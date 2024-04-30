@@ -39,10 +39,15 @@ public class LastCalculation {
 
             return calcInfo;
 
-        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException | NullPointerException e) {
+        } catch (NullPointerException npe) {
+            PopupDisplay.throwErrorPopup(
+                    "Es gab scheinbar ein Problem beim Abrufen deiner Einstellungen!",
+                    "Du hast scheinbar noch keine letzte Rechnung abgespeichert");
+            return null;
+        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner Einstellungen!",
+                    "Es gab scheinbar ein Problem beim Abrufen deiner Einstellungen!",
                     e.getMessage());
             return null;
         }
