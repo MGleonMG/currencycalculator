@@ -17,7 +17,14 @@ public class SettingsGUI {
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
-    //public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das noch??
+    private static JLabel btnThemeSwitch = new JLabel(new ImageIcon());
+    private static final ImageIcon darkmodeDM = new ImageIcon("resources/buttons/Darkmode_DM.png"),
+            darkmodeLM = new ImageIcon("resources/buttons/Darkmode_LM.png"),
+            lightmodeLM = new ImageIcon("resources/buttons/lightmode_LM.png"),
+            lightmodeDM = new ImageIcon("resources/buttons/lightmode_DM.png");
+    private static Theme currentTheme = AppTheme.getConfigAppTheme();
+    // public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das
+    // noch??
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
@@ -60,6 +67,7 @@ public class SettingsGUI {
         lightBtn.setBounds(10, 500, 105, 30);
         lightBtn.setBackground(Color.WHITE);
         lightBtn.setForeground(Color.BLACK);
+
         if (AppTheme.getConfigAppTheme() == Theme.LIGHT_MODE) {
             lightBtn.setEnabled(false);
         }
