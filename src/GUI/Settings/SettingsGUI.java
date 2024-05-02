@@ -17,9 +17,7 @@ public class SettingsGUI {
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
-    public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das noch??
-    public static JLabel changeLog = new JLabel(); // TODO: @Jonas muss das public sein?
-    private static JLabel changelogHeader = new JLabel();
+    //public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das noch??
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
@@ -27,8 +25,6 @@ public class SettingsGUI {
      */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
-        addChangeLog();
-        addChangeLogHeader();
         addThemeButtons();
         addBackButton();
 
@@ -54,27 +50,6 @@ public class SettingsGUI {
                 settingsFrame.dispose();
             }
         });
-    }
-
-    private static void addChangeLogHeader() {
-        changelogHeader.setBounds(170, -60, 170, 300);
-        changelogHeader.setFont(changelogHeader.getFont().deriveFont(30f));
-        changelogHeader.setText("Changelog");
-
-        settingsFrame.add(changelogHeader);
-    }
-
-    private static void addChangeLog() {
-        changeLog.setForeground(Color.GRAY);
-        changeLog.setText("<html>" +
-                "GUI & Elemente hinzugefügt <br> "
-                + "Java Bibliothek für Währungen implementiert <br> "
-                + "Google Werte Implementierung <br>"
-                + "Einstellungsmenü mit Changelog und Farbpräferenz-Knöpfen hinzugefügt <br>"
-                + "</html>");
-        changeLog.setBounds(170, 1, 500, 300);
-
-        settingsFrame.add(changeLog);
     }
 
     /*
