@@ -53,7 +53,7 @@ public class ExchangeRateFetcher {
         } catch (StringIndexOutOfBoundsException oobExc) {
             PopupDisplay.throwErrorPopup(
                     "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten",
-                    "Ein Wechselkurs für diese Währung konnte ");
+                    "Ein Wechselkurs für diese Währung konnte nicht gefunden werden");
             clearDataOnError();
 
         } catch (Exception exc) {
