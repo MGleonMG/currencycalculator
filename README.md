@@ -44,7 +44,7 @@ TBD
 - [FlatLaf Lib](https://github.com/JFormDesigner/FlatLaf)
 - [Gson](https://github.com/google/gson)
 
-## :tree: Projektstruktur ##
+## :deciduous_tree: Projektstruktur ##
 ```
 [currencycalculator]
 ├─ .gitignore                        // Verzeichnis für Git-ignorierte Dateien und Ordner
