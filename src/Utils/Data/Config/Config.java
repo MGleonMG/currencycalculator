@@ -1,6 +1,8 @@
 package Utils.Data.Config;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.nio.file.FileSystems;
 
@@ -27,6 +29,17 @@ public class Config {
 
     public static String getFilePath() {
         return FILE_PATH;
+    }
+
+    public static FileReader getFileReader() {
+        try {
+            @SuppressWarnings("unused")
+            FileReader fileReader;
+            return fileReader = new FileReader(FILE_PATH);
+        } catch (FileNotFoundException e) {
+            PopupDisplay.throwErrorPopup("Die Config Datei konnte nicht gefunden werden!", e.getMessage());
+            return null;
+        }
     }
 
     /*

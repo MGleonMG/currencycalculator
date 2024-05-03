@@ -68,6 +68,7 @@ public class LastCalculation {
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(newConfig, writer);
             writer.close();
+            jsonReader.close();
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
