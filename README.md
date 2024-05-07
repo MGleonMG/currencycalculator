@@ -18,7 +18,7 @@
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#arrow_down-download">Download</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-Starting">Commands</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-Git-Commands">Commands</a> &#xa0; | &#xa0;
 </p>
 <hr>
 <br>
@@ -59,7 +59,7 @@ Folgende Befehle müssen ausgeführt werden:
 
 TBD
 
-## :checkered_flag: Starting | Git Commands to know ##
+## :checkered_flag: Git Commands ##
 ```bash
 # Projekt auf ein lokales Gerät klonen
 $ git clone https://github.com/mgleonmg/currencycalculator
