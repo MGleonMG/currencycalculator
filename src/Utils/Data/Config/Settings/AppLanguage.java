@@ -51,6 +51,7 @@ public class AppLanguage {
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(jsonconfig, writer);
             writer.close();
+            jsonReader.close();
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
