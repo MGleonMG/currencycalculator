@@ -237,10 +237,18 @@ public class GUI {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCur = (String) dropdownBaseCur.getSelectedItem();
-                    baseCurResult = baseCur.split("\\(")[1].replace(")", "").trim();
+                    String[] parts = targetCur.split("\\)");
+                    for (String part : parts) {
+                        if (!containsDigit(part)) {
+                            targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
+                            break; // Found the bracket without digits, no need to check further
+                        }
+                    }
                 }
+            
             }
         });
+        
 
         dropdownTargetCur.addItemListener(new ItemListener() {
             @Override
