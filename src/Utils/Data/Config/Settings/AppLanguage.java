@@ -32,10 +32,13 @@ public class AppLanguage {
 
             return Languages.valueOf(jsonconfig.get(KEY_APPLANG).getAsString());
 
-        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException | IllegalArgumentException
+                | NullPointerException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner Sprachen Einstellungen!",
+                    "Es gab scheinbar ein Problem beim abrufen deiner Sprachen Einstellungen!\n"
+                            + "Wenn dieser Fehler andauern sollte dann lösche bitte die Datei:\n"
+                            + Config.getFilePath(),
                     e.getMessage());
             return null;
         }
@@ -51,6 +54,7 @@ public class AppLanguage {
             FileWriter writer = new FileWriter(Config.getFilePath());
             Config.gson.toJson(jsonconfig, writer);
             writer.close();
+            jsonReader.close();
 
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
