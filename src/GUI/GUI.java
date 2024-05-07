@@ -237,10 +237,10 @@ public class GUI {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCur = (String) dropdownBaseCur.getSelectedItem();
-                    String[] parts = targetCur.split("\\)");
+                    String[] parts = baseCur.split("\\)");
                     for (String part : parts) {
                         if (!containsDigit(part)) {
-                            targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
+                            baseCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
                             break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
