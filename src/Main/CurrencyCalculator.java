@@ -18,6 +18,6 @@ public class CurrencyCalculator {
         Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false);
         GUI.drawGUI();
 
-        ConfigDefaults.resetAllDefaults();
+        //ConfigDefaults.resetAllDefaults();
     }
 }
