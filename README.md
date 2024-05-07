@@ -13,16 +13,12 @@
   <img alt="last commit" src="https://img.shields.io/github/last-commit/mgleonmg/currencycalculator">
 </p>
 
-<!-- ================================= -->
-<!-- @Ewin hier das muss noch geupdatet werden -->
-<!-- Für https://currencycalculator.atlassian.net/browse/CUR-28 -->
-<!-- ================================= -->
 <p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#dart-Einführung">About</a> &#xa0; | &#xa0; 
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="https://currencycalculator.atlassian.net/browse/CUR-28" >Jiro</a> &#xa0; | &#xa0;
+  <a href="#arrow_down-download">Download</a> &#xa0; | &#xa0;
+  <a href="#checkered_flag-Starting">Commands</a> &#xa0; | &#xa0;
 </p>
 <hr>
 <br>
@@ -39,16 +35,16 @@ In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" au
 :heavy_check_mark: Easy to use
 :heavy_check_mark: Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode
 
-## :rocket: Libs / APIs ##
+## :rocket: LIBs und APIs ##
 - [Java](https://www.java.com/de/)
 - [FlatLaf Lib](https://github.com/JFormDesigner/FlatLaf)
 - [Gson](https://github.com/google/gson)
 
 ## :white_check_mark: Requirements ##
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com), [Node](https://nodejs.org/en/) and Java Development Kit [JDK](https://www.oracle.com/java/technologies/javase-jdk15-downloads.html) installed.
+Für den Start des Programmes :checkered_flag: musst du [Git](https://git-scm.com) und Java Development Kit [JDK](https://www.oracle.com/java/technologies/javase-jdk15-downloads.html) auf dem System installiert haben.
 
-Es wird hierbei empfohlen "Visual Studio Code" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
+Es wird hierbei empfohlen "Visual Studio Code" zu benutzen. Dabei brauchst du eine winget Erweiterung in Powershell, die benötigt wird, um die nötigen Dateien herunterzuladen. Hierzu musst du Powershell als Admin starten und den folgenden Befehl ausführen:
 
 ### Powershell
 
