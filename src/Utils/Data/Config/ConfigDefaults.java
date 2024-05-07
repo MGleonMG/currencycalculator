@@ -1,13 +1,6 @@
 package Utils.Data.Config;
 
-import java.io.File;
-import java.util.Currency;
-import java.util.Scanner;
-
-import javax.swing.Popup;
-
 import GUI.Popups.PopupDisplay;
-import Main.CurrencyCalculator;
 import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
