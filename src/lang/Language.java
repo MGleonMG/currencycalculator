@@ -28,7 +28,6 @@ public class Language {
      * - "updateConfig" nimmt einen boolean entgegen der bestimmt ob eine Änderung
      * in der config Datei des benutzers nötig ist
      */
-    @SuppressWarnings("deprecation")
     public static void setAppLanguage(Languages language, boolean updateConfig) throws IOException {
         fileName = "/resources/languages/lang_" + language.name().toLowerCase() + ".properties";
         inputStream = Language.class.getResource(fileName).openStream();

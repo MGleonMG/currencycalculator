@@ -247,15 +247,24 @@ public class GUI {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     targetCur = (String) dropdownTargetCur.getSelectedItem();
-                    targetCurResult = targetCur.split("\\(")[1].replace(")", "").trim();
+                    String[] parts = targetCur.split("\\)");
+                    for (String part : parts) {
+                        if (!containsDigit(part)) {
+                            targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
+                            break; // Found the bracket without digits, no need to check further
+                        }
+                    }
                 }
+            
             }
         });
+        
 
-        /*
-         * Initialisert die Methode, um mit Pfeiltasten zu navigieren
-         */
-        addArrowKeyNavigationToComboBox(dropdownBaseCur);
+
+    /*
+     * Initialisert die Methode, um mit Pfeiltasten zu navigieren
+     */
+    addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
 
         frame.add(searchBarBaseCur);
@@ -263,6 +272,15 @@ public class GUI {
 
         frame.add(dropdownBaseCur);
         frame.add(dropdownTargetCur);
+    }
+
+    private static boolean containsDigit(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
