@@ -241,14 +241,13 @@ public class GUI {
                     for (String part : parts) {
                         if (!containsDigit(part)) {
                             targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
-                            break; // Found the bracket without digits, no need to check further
+                            break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
                 }
-            
+
             }
         });
-        
 
         dropdownTargetCur.addItemListener(new ItemListener() {
             @Override
@@ -259,20 +258,18 @@ public class GUI {
                     for (String part : parts) {
                         if (!containsDigit(part)) {
                             targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
-                            break; // Found the bracket without digits, no need to check further
+                            break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
                 }
-            
+
             }
         });
-        
 
-
-    /*
-     * Initialisert die Methode, um mit Pfeiltasten zu navigieren
-     */
-    addArrowKeyNavigationToComboBox(dropdownBaseCur);
+        /*
+         * Initialisert die Methode, um mit Pfeiltasten zu navigieren
+         */
+        addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
 
         frame.add(searchBarBaseCur);

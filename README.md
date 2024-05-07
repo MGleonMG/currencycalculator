@@ -22,9 +22,6 @@
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
   <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
   <a href="https://currencycalculator.atlassian.net/browse/CUR-28" >Jiro</a> &#xa0; | &#xa0;
 </p>
 <hr>
@@ -59,7 +56,7 @@ Es wird hierbei empfohlen "Visual Studio Code" zu benutzen. Dabei brauchst du ei
 winget install --id Git.Git -e --source winget
 ```
 Nachdem das erledigt ist, erstellst du dir einen Ordner (am besten auf dem Desktop). Darauf werden die heruntergeladenen Dateien abgespeichert. 
-Im Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Auf dem Terminal verbindest du dich mit der Repository. 
+Im Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Auf dem Terminal verbindest du dich mit dem Repository. 
 Folgende Befehle müssen ausgeführt werden:
 
 ## :arrow_down: Download
@@ -85,7 +82,7 @@ $ git pull origin main
 ```
 [currencycalculator]
 ├─ .gitignore                        // Verzeichnis für Git-ignorierte Dateien und Ordner
-├─ README.md                        // Readme-Datei mit Projektinformationen
+├─ README.md                         // Readme-Datei mit Projektinformationen
 └─ src
    ├─ GUI                            // Paket für die grafische Benutzeroberfläche
    │    ├─ GUI.java                  // Hauptklasse für die GUI
@@ -94,7 +91,6 @@ $ git pull origin main
    │    └─ Settings                  // Paket für das Einstellungs-GUI
    │         └─ SettingsGUI.java     // Klasse für das Einstellungs-GUI
    ├─ lang                           // Paket für Sprachunterstützung
-   │    ├─ LangStrings.java          // Klasse für Sprachzeichenfolgen
    │    └─ Language.java             // Klasse für Spracheinstellungen
    ├─ lib                            // Bibliotheksordner für externe JAR-Dateien
    │    ├─ flatlaf-3.4.1.jar         // Bibliothek für Look and Feel
@@ -104,11 +100,18 @@ $ git pull origin main
    ├─ resources                      // Ressourcenverzeichnis für Anwendungsdaten
    │    ├─ app_icon                  // Verzeichnis für Anwendungsicons
    │    │    └─ app_icon.png         // Anwendungsicon-Datei
-   │    └─ buttons                   // Verzeichnis für Schaltflächenbilder
-   │         ├─ button_loading.gif   // Ladeanimation für Schaltflächen
-   │         ├─ icon_copy-button-dark.png   // Schaltflächenbild zum Kopieren (dunkel)
-   │         ├─ icon_copy-button-light.png  // Schaltflächenbild zum Kopieren (hell)
-   │         └─ settings_button.png         // Schaltflächenbild für Einstellungen
+   │    ├─ buttons                   // Verzeichnis für Schaltflächenbilder
+   │    │    ├─ button_loading.gif   // Ladeanimation für Schaltflächen
+   │    │    ├─ icon_copy-button-dark.png   // Schaltflächenbild zum Kopieren (dunkel)
+   │    │    ├─ icon_copy-button-light.png  // Schaltflächenbild zum Kopieren (hell)
+   │    │    └─ settings_button.png         // Schaltflächenbild für Einstellungen
+   │    │
+   │    └─ languages
+   │         ├─ lang_danish.properties // Paketsprache: Dänsich
+   │         ├─ lang_english.properties // Paketsprache: Englisch
+   │         ├─ lang_german.properties // Paketsprache: Deutsch
+   │         └─ lang_spanish.properties // Paketsprache: Spanisch
+   │ 
    └─ Utils                          // Paket für Hilfsklassen
          ├─ Data                     // Paket für Datenverarbeitung
          │    ├─ Calculations.java   // Klasse für Berechnungen
