@@ -17,9 +17,9 @@ public class SettingsGUI {
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
-    public static boolean isDarkMode = true;
-    public static JLabel changeLog = new JLabel();
-    private static JLabel changeLogHeader = new JLabel();
+    public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das noch??
+    public static JLabel changeLog = new JLabel(); // TODO: @Jonas muss das public sein?
+    private static JLabel changelogHeader = new JLabel();
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
@@ -37,7 +37,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Diese Methode erstellt das Fenster
+     * Erstellt das Einstellungs Fenster indem es einge props (Properties =>
+     * Eigenschaften) zuweist
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
@@ -45,6 +46,7 @@ public class SettingsGUI {
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
         settingsFrame.setLocationRelativeTo(null);
+        GUI.setAppIcon(settingsFrame);
         settingsFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -55,10 +57,11 @@ public class SettingsGUI {
     }
 
     private static void addChangeLogHeader() {
-        changeLogHeader.setBounds(170, -60, 170, 300);
-        changeLogHeader.setFont(changeLogHeader.getFont().deriveFont(30f));
-        changeLogHeader.setText("Changelog");
-        settingsFrame.add(changeLogHeader);
+        changelogHeader.setBounds(170, -60, 170, 300);
+        changelogHeader.setFont(changelogHeader.getFont().deriveFont(30f));
+        changelogHeader.setText("Changelog");
+
+        settingsFrame.add(changelogHeader);
     }
 
     private static void addChangeLog() {
@@ -70,6 +73,7 @@ public class SettingsGUI {
                 + "Einstellungsmenü mit Changelog und Farbpräferenz-Knöpfen hinzugefügt <br>"
                 + "</html>");
         changeLog.setBounds(170, 1, 500, 300);
+
         settingsFrame.add(changeLog);
     }
 
@@ -84,6 +88,7 @@ public class SettingsGUI {
         if (AppTheme.getConfigAppTheme() == Theme.LIGHT_MODE) {
             lightBtn.setEnabled(false);
         }
+
         settingsFrame.add(lightBtn);
 
         darkBtn.setBounds(120, 500, 112, 30);
@@ -92,6 +97,7 @@ public class SettingsGUI {
         if (AppTheme.getConfigAppTheme() == Theme.DARK_MODE) {
             darkBtn.setEnabled(false);
         }
+
         settingsFrame.add(darkBtn);
 
         lightBtn.addActionListener(new ActionListener() {
@@ -102,6 +108,7 @@ public class SettingsGUI {
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     lightBtn.setEnabled(false);
                     darkBtn.setEnabled(true);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -113,9 +120,10 @@ public class SettingsGUI {
             public void actionPerformed(ActionEvent e) {
                 try {
                     GUI.setAppTheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
-                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
+                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiert das UI des Frames
                     lightBtn.setEnabled(true);
                     darkBtn.setEnabled(false);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

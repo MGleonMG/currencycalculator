@@ -11,14 +11,12 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
-import Utils.Data.ExchangeRateFetcher;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 
 /*
- * Diese Klasse erstellt einen "Graphical User Interface"
- * 
+ * Diese Klasse erstellt das "Graphical User Interface"
  * Dadurch muss der Enduser nicht auf dem Terminal arbeiten
  */
 public class GUI {
@@ -26,7 +24,7 @@ public class GUI {
     // static final vars
     public static final String TITLE = "Währungsrechner", VERSION = "1.0_indev";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
-    private static ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
+    private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Components
     private static JFrame frame = new JFrame();
@@ -37,7 +35,6 @@ public class GUI {
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
     private static JButton clipboardBtn = new JButton();
-    private static JButton menuBtn = new JButton("Einstellungen");
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");
     private static JLabel presetLabel = new JLabel("Letzte Rechnung");
@@ -45,10 +42,13 @@ public class GUI {
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
-    private static JLabel menuBtnTest = new JLabel(new ImageIcon("src/resources/buttons/settings_button.png"));
+    private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
 
     /*
      * TODO Code Optimization
+     * 
+     * @Ewin was diese?
+     * pls fix und sortieren dangee
      */
     private static String inputValue;
     private static double inputValueResult;
@@ -59,51 +59,23 @@ public class GUI {
     private static String baseCurResult;
     private static String targetCurResult;
 
-    public static void redrawMain() {
-        frame.setVisible(true);
-    }
-
     /*
-     * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
-     * Objekten hinzu
+     * Diese Methode führt andere Methoden aus
+     * und fügt dadurch die einzelnen Komponenten hinzu
      */
     public static void drawGUI() {
         setBasicFrameProps();
-        drawMenuBtn();
 
-        addCopyOutputButton();
+        drawSettingsBtn();
         addCalculateButton();
+        addCopyOutputButton();
         addInputOutput();
         addDropdownWithFilters();
-        addFooter();
-        addLoadCalculationButton();
-        addSaveCalculationButton();
         addPresetLabel();
+        addSaveCalculationButton();
+        addLoadCalculationButton();
         addFadeLabel();
-
-        // TODO: Die Zeilen hier drunter sortieren. @Ewin oder @Jonas??
-        frame.add(headlineLabel);
-
-        frame.add(calculateBtn);
-        frame.add(clipboardBtn);
-
-        frame.add(inputField);
-        frame.add(outputLabel);
-
-        frame.add(searchBarBaseCur);
-        frame.add(searchBarTargetcur);
-
-        frame.add(dropdownBaseCur);
-        frame.add(dropdownTargetCur);
-
-        frame.add(authorLabel);
-        // frame.add(menuBtn);
-        frame.add(menuBtnTest);
-
-        frame.add(saveBtn);
-        frame.add(loadBtn);
-        frame.add(presetLabel);
-        frame.add(fadeLabel);
+        addFooter();
 
         setAppTheme(AppTheme.getConfigAppTheme());
 
@@ -111,10 +83,18 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    // TODO: @Leon optimize this function
+    // Bringt das Hauptfenster zurück
+    public static void redrawMain() {
+        frame.setVisible(true);
+    }
+
     public static void updateTitle(JFrame jframe, String rawTitleAddition) {
         String titleAddition = " - " + rawTitleAddition;
         jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
+    }
+
+    public static void setAppIcon(JFrame jframe) {
+        jframe.setIconImage(icon.getImage());
     }
 
     /*
@@ -122,7 +102,7 @@ public class GUI {
      */
     private static void setBasicFrameProps() {
         updateTitle(frame, "");
-        frame.setIconImage(icon.getImage());
+        setAppIcon(frame);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,6 +111,8 @@ public class GUI {
 
         headlineLabel.setFont(headlineLabel.getFont().deriveFont(30f));
         headlineLabel.setBounds(335, 25, GUI.FRAME_WIDTH, 50);
+
+        frame.add(headlineLabel);
     }
 
     /*
@@ -223,11 +205,10 @@ public class GUI {
     }
 
     /*
-     * Erstellt einen Dropdown, mit dem man Währungen auswählen kann.
-     * Dies wird auf den beiden Seiten erstellt.
+     * Erstellt zwei Dropdowns, mit denen man Währungen auswählen kann.
      * 
      * Dabei nimmt es den Namen der Währung, mit dem jeweiligen
-     * Isocode auf. Dies verwendet man für den Empfang des Wechselskurses
+     * ISO Code auf. Es wird verwendet für den Empfang des Wechselskurses.
      */
     private static void addDropdownWithFilters() {
         addSearchBars();
@@ -247,10 +228,9 @@ public class GUI {
         }
 
         /*
-         * TODO Code Optimization
-         * 
-         * Die ItemListener nehmen den isocode raus und werden in der
-         * jeweiligen Variable zugewiesen
+         * Ein ItemListener reagiert auf Änderungen bezüglich der Auswahl
+         * und extrahiert mit regex syntax regeln den ISO Code aus der ausgewählten
+         * Währung
          */
         dropdownBaseCur.addItemListener(new ItemListener() {
             @Override
@@ -262,27 +242,45 @@ public class GUI {
             }
         });
 
-        /*
-         * TODO Code Optimization
-         */
         dropdownTargetCur.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     targetCur = (String) dropdownTargetCur.getSelectedItem();
-                    targetCurResult = targetCur.split("\\(")[1].replace(")", "").trim();
+                    String[] parts = targetCur.split("\\)");
+                    for (String part : parts) {
+                        if (!containsDigit(part)) {
+                            targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
+                            break; // Found the bracket without digits, no need to check further
+                        }
+                    }
                 }
+            
             }
         });
+        
 
-        /*
-         * Initialisert die Methode, um mit Pfeiltasten zu navigieren
-         */
-        addArrowKeyNavigationToComboBox(dropdownBaseCur);
+
+    /*
+     * Initialisert die Methode, um mit Pfeiltasten zu navigieren
+     */
+    addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
+
+        frame.add(searchBarBaseCur);
+        frame.add(searchBarTargetcur);
 
         frame.add(dropdownBaseCur);
         frame.add(dropdownTargetCur);
+    }
+
+    private static boolean containsDigit(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
@@ -296,10 +294,6 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        /*
-                         * TODO Code Optimization
-                         * 
-                         */
                         inputValue = inputField.getText();
                         inputValueResult = Double.parseDouble(GUI.inputValue);
 
@@ -308,6 +302,8 @@ public class GUI {
                 });
             }
         });
+
+        frame.add(calculateBtn);
     }
 
     /*
@@ -318,10 +314,10 @@ public class GUI {
     private static void addCopyOutputButton() {
         clipboardBtn.setBounds(380, 405, 100, 30);
 
-        // Nimmt das originale .png und skaliert das ganze runter zu dem bestimmten
-        // Auflösung
-        // ...Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt zu dem
-        // Bild
+        /*
+         * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
+         * Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt
+         */
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -336,32 +332,36 @@ public class GUI {
                 });
             }
         });
+
+        frame.add(clipboardBtn);
     }
 
     /*
-     * TODO Kommentar
+     * Fügt Komponenten hinzu die für input des users und output verantwortlich sind
      */
     private static void addInputOutput() {
         outputLabel.setBounds(250, 285, 300, 150);
         setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
 
         inputField.setBounds(385, 290, 90, 30);
+
+        frame.add(inputField);
+        frame.add(outputLabel);
     }
 
     /*
-     * Erstellt einen Knopf für die Einstellungen
-     * 
-     * Man kann dadurch in die Einstellungen wechseln
+     * Erstellt ein klickbares Label mit Icon
+     * das als Button für das Einstellungs Menu agiert
      */
-    private static void drawMenuBtn() {
+    private static void drawSettingsBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        menuBtnTest.setBounds(GUI.FRAME_WIDTH - 80, GUI.FRAME_HEIGHT - 95, 50, 50);
-        menuBtnTest.setIcon(scaledIcon);
+        settingsLblBtn.setBounds(GUI.FRAME_WIDTH - 80, GUI.FRAME_HEIGHT - 95, 50, 50);
+        settingsLblBtn.setIcon(scaledIcon);
 
-        menuBtnTest.addMouseListener(new MouseAdapter() {
+        settingsLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 SettingsGUI.drawSettingsGUI();
@@ -369,25 +369,14 @@ public class GUI {
             }
         });
 
+        frame.add(settingsLblBtn);
     }
 
-    /*
-     * TODO: Kommentar
-     */
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
 
-        menuBtn.setBounds(745, 520, 110, 30);
-        menuBtn.setBackground(Color.decode("#00CCCC"));
-        menuBtn.setForeground(Color.WHITE);
-
-        menuBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SettingsGUI.drawSettingsGUI();
-                frame.setVisible(false);
-            }
-        });
+        frame.add(authorLabel);
     }
 
     /*
@@ -409,8 +398,7 @@ public class GUI {
 
         } catch (Exception e) {
             PopupDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
-                    "Das Programm wird möglicherweise etwas anders aussehen als sonst!");
-            e.printStackTrace();
+                    "Das Programm wird möglicherweise etwas anders aussehen als sonst!", e.getMessage());
         }
     }
 
@@ -450,33 +438,27 @@ public class GUI {
      * TODO Kommentar
      */
     public static void setOutput(String output) {
-        // Using HTML formatting here as JLabels dont accept a simple line break (\n)
+        // JLabels akzeptueren kein normales \n als Line break, deshalb benutzen wir
+        // hier HTML formatierung mit dem <br> Tag
         outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
 
     /*
-     * Diese Methode zeigt dem Enduser, dass das Programm am laufen ist
-     * 
-     * TODO Idee: Könnte man vielleicht einen drehenden Rad implementieren, sodass
-     * es anzeigt,
-     * dass das Programm am arbeiten ist?
+     * Diese Methode zeigt dem Endnutzer, dass das Programm am Arbeiten ist und den
+     * Wechselkurs herausfindet
      */
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
             calculateBtn.setEnabled(false);
             setOutput("Lädt...");
             calculateBtn.setText("Lädt...");
-
         } else {
-
             calculateBtn.setEnabled(true);
             calculateBtn.setText("Umrechnen");
         }
     }
 
     /*
-     * TODO Code Optimization
-     * 
      * Diese Methode erstellt einen Knopf, um die Daten zu speichern
      */
     private static void addSaveCalculationButton() {
@@ -485,13 +467,14 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue,
-                                ExchangeRateFetcher.getLastFetchTimeAsString());
+                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
                         runFadeLabel();
                     }
                 });
             }
         });
+
+        frame.add(saveBtn);
     }
 
     /*
@@ -521,23 +504,26 @@ public class GUI {
                 });
             }
         });
+
+        frame.add(loadBtn);
     }
 
     private static void addPresetLabel() {
         presetLabel.setBounds(50, 420, 100, 25);
+
+        frame.add(presetLabel);
     }
 
     private static void addFadeLabel() {
         fadeLabel.setBounds(200, 450, 100, 25);
         fadeLabel.setVisible(false);
+
+        frame.add(fadeLabel);
     }
 
     /*
-     * TODO so implementieren, dass der "FadeLabel" transparenter wird, bis es weg
-     * ist?
-     * 
-     * Diese Methode erstellt einen Label, dass dem benutzer zurückgibt, dass die
-     * eingegebenen Daten gespeichert sind
+     * Diese Methode erstellt ein Label, dass dem Benutzer zurückgibt,
+     * dass die eingegebenen Daten gespeichert sind.
      */
     public static void runFadeLabel() {
         fadeLabel.setVisible(true);
