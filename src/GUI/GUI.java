@@ -240,12 +240,11 @@ public class GUI {
                     String[] parts = baseCur.split("\\)");
                     for (String part : parts) {
                         if (!containsDigit(part)) {
-                            baseCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
                             break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
                 }
-
             }
         });
 
@@ -257,12 +256,11 @@ public class GUI {
                     String[] parts = targetCur.split("\\)");
                     for (String part : parts) {
                         if (!containsDigit(part)) {
-                            targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
                             break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
                 }
-
             }
         });
 
