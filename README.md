@@ -33,7 +33,7 @@ In diesem Projekt geht es darum, Währungen umzurechnen, beispielsweise "Euro" a
 :heavy_check_mark: Enthält wichtige Währungen die berechnet werden können.\
 :heavy_check_mark: Entnimmt aktuelle Wechselkurse von [Google Finances](https://www.google.com/finance/) und berechnet diese.\
 :heavy_check_mark: Enthält ein GUI -> Benutzerfreundlich und Easy to use\
-:heavy_check_mark: Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode
+:heavy_check_mark: Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode\
 :heavy_check_mark: Benutzereinstellungen können gespeichert werden
 
 ## :rocket: Libs und APIs ##
