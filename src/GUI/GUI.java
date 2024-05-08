@@ -42,20 +42,19 @@ public class GUI {
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
-    private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
+    private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/settings_button.png"));
+    private static JLabel gif = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
 
-    /*
-     * TODO Code Optimization
-     * 
-     * @Ewin was diese?
-     * pls fix und sortieren dangee
-     */
+     /*
+      * Das vom Benutzer eingeschriebene muss als String eingegeben werden.
+      * Dies wird dann zum double umgewandelt
+      */
     private static String inputValue;
     private static double inputValueResult;
 
-    private static String baseCur;
-    private static String targetCur;
-
+    /*
+     * Nimmt den Isocode von den Währungen raus
+     */
     private static String baseCurResult;
     private static String targetCurResult;
 
@@ -76,6 +75,7 @@ public class GUI {
         addLoadCalculationButton();
         addFadeLabel();
         addFooter();
+        addGIF();
 
         setAppTheme(AppTheme.getConfigAppTheme());
 
@@ -236,8 +236,8 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    baseCur = (String) dropdownBaseCur.getSelectedItem();
-                    baseCurResult = baseCur.split("\\(")[1].replace(")", "").trim();
+                    baseCurResult = (String) dropdownBaseCur.getSelectedItem();
+                    baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
                 }
             }
         });
@@ -246,8 +246,8 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    targetCur = (String) dropdownTargetCur.getSelectedItem();
-                    targetCurResult = targetCur.split("\\(")[1].replace(")", "").trim();
+                    targetCurResult = (String) dropdownTargetCur.getSelectedItem();
+                    targetCurResult = targetCurResult.split("\\(")[1].replace(")", "").trim();
                 }
             }
         });
@@ -433,12 +433,19 @@ public class GUI {
         if (isLoading) {
             calculateBtn.setEnabled(false);
             setOutput("Lädt...");
+            gif.setVisible(true);
             calculateBtn.setText("Lädt...");
         } else {
             calculateBtn.setEnabled(true);
             calculateBtn.setText("Umrechnen");
         }
     }
+
+    private static void addGIF() {
+        frame.getContentPane().add(gif);
+        gif.setBounds(50, 450, 100, 25);
+        gif.setVisible(true);
+        }
 
     /*
      * Diese Methode erstellt einen Knopf, um die Daten zu speichern
