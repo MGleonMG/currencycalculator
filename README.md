@@ -103,9 +103,9 @@ $ git pull origin main
    │    │    └─ settings_button.png         // Schaltflächenbild für Einstellungen
    │    │
    │    └─ languages
-   │         ├─ lang_danish.properties // Paketsprache: Dänsich
+   │         ├─ lang_danish.properties  // Paketsprache: Dänsich
    │         ├─ lang_english.properties // Paketsprache: Englisch
-   │         ├─ lang_german.properties // Paketsprache: Deutsch
+   │         ├─ lang_german.properties  // Paketsprache: Deutsch
    │         └─ lang_spanish.properties // Paketsprache: Spanisch
    │ 
    └─ Utils                          // Paket für Hilfsklassen
