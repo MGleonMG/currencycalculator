@@ -92,8 +92,8 @@ $ git pull origin main
    │    ├─ flatlaf-3.4.1.jar         // Bibliothek für Look and Feel
    │    └─ gson-2.10.1.jar           // Bibliothek für JSON-Verarbeitung
    ├─ Main                           // Paket für die Hauptklasse
-   │    └─ CurrencyCalculator.java   // Hauptklasse für den Währungsrechner
-   ├─ resources                      // Ressourcenverzeichnis für Anwendungsdaten
+   │    └─ CurrencyCalculator.java   // Hauptklasse für dieses Projekt
+   ├─ resources                      // Ressourcenverzeichnis für Icons, Sprachpakete, etc.
    │    ├─ app_icon                  // Verzeichnis für Anwendungsicons
    │    │    └─ app_icon.png         // Anwendungsicon-Datei
    │    ├─ buttons                   // Verzeichnis für Schaltflächenbilder
