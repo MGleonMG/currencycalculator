@@ -15,7 +15,7 @@ import java.awt.event.*;
  */
 public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
-    private static JButton configResetBtn = new JButton("Einstellungen \nzurücksetzen");
+    private static JButton configResetBtn = new JButton("<html>Einstellungen<br>zurücksetzen</html>");
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
     private static JButton backBtn = new JButton("Zurück");
@@ -35,8 +35,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Erstellt das Einstellungs Fenster indem es einge props (Properties =>
-     * Eigenschaften) zuweist
+     * Erstellt das Einstellungs Fenster indem es
+     * einige props (Properties => Eigenschaften) zuweist
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
@@ -59,7 +59,7 @@ public class SettingsGUI {
      * Standardeinstellungen zurücksetzen kann
      */
     private static void addConfigDefaultsButton() {
-        configResetBtn.setBounds(10, 300, 200, 100);
+        configResetBtn.setBounds(465, 410, 110, 45);
         configResetBtn.setBackground(Color.WHITE);
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
@@ -143,9 +143,6 @@ public class SettingsGUI {
         });
 
         settingsFrame.add(backBtn);
-    }
 
-    public static JButton getBackBtn() {
-        return backBtn;
     }
 }
