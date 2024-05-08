@@ -20,6 +20,7 @@ public class ExchangeRateFetcher {
      * Enduser umwandeln möchte
      */
     // Webscraper um Daten von 'google.com/finance/' zu nutzen
+    @SuppressWarnings("deprecation")
     public static void fetchExchangeRate(String baseCur, String targetCur) {
         try {
             lastStartMillis = System.currentTimeMillis();
