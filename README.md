@@ -29,13 +29,16 @@ In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" au
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Enthält wichtige Währungen die berechnet werden können.
-:heavy_check_mark: Entnimmt aktuelle Wechselkurse von Google Finances und berechnet diese.
-:heavy_check_mark: Enthält ein GUI -> Benutzerfreundlich
-:heavy_check_mark: Easy to use
+## :rocket: LIBs und APIs ##
+
+:heavy_check_mark: Enthält wichtige Währungen die berechnet werden können.\
+:heavy_check_mark: Entnimmt aktuelle Wechselkurse von Google Finances und berechnet diese.\
+:heavy_check_mark: Enthält ein GUI -> Benutzerfreundlich\
+:heavy_check_mark: Easy to use\
 :heavy_check_mark: Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode
 
-## :rocket: LIBs und APIs ##
+## :rocket: Libs und APIs ##
+
 - [Java](https://www.java.com/de/)
 - [FlatLaf Lib](https://github.com/JFormDesigner/FlatLaf)
 - [Gson](https://github.com/google/gson)
@@ -103,9 +106,9 @@ $ git pull origin main
    │    │    └─ settings_button.png         // Schaltflächenbild für Einstellungen
    │    │
    │    └─ languages
-   │         ├─ lang_danish.properties // Paketsprache: Dänsich
+   │         ├─ lang_danish.properties  // Paketsprache: Dänsich
    │         ├─ lang_english.properties // Paketsprache: Englisch
-   │         ├─ lang_german.properties // Paketsprache: Deutsch
+   │         ├─ lang_german.properties  // Paketsprache: Deutsch
    │         └─ lang_spanish.properties // Paketsprache: Spanisch
    │ 
    └─ Utils                          // Paket für Hilfsklassen
