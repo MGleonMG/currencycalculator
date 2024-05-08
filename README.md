@@ -35,7 +35,7 @@ In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" au
 :heavy_check_mark: Easy to use\
 :heavy_check_mark: Ermöglicht Theme-Wechsel zwischen Darkmode und Lightmode
 
-## :rocket: LIBs und APIs ##
+## :rocket: Libs und APIs ##
 - [Java](https://www.java.com/de/)
 - [FlatLaf Lib](https://github.com/JFormDesigner/FlatLaf)
 - [Gson](https://github.com/google/gson)
