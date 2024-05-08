@@ -17,7 +17,6 @@ public class SettingsGUI {
     private static JButton backBtn;
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
-    //public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das noch??
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
