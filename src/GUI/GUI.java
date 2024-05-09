@@ -11,6 +11,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
+import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
@@ -279,7 +280,7 @@ public class GUI {
                         inputValue = inputField.getText();
                         inputValueResult = Double.parseDouble(GUI.inputValue);
 
-                        Utils.runCalcThread();
+                        Calculations.runThreadedCalculation();
                     }
                 });
             }
@@ -480,7 +481,7 @@ public class GUI {
                         inputValue = (config[2]);
 
                         inputValueResult = Double.parseDouble(GUI.inputValue);
-                        Utils.runCalcThread();
+                        Calculations.runThreadedCalculation();
 
                     }
                 });
