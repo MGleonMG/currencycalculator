@@ -46,15 +46,19 @@ public class GUI {
     private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
 
     /*
-     * Diese Variablen speichern den Betrag des Nutzers
+     * TODO Code Optimization
+     * 
+     * @Ewin was diese?
+     * pls fix und sortieren dangee
      */
     private static String inputValue;
     private static double inputValueResult;
 
-    /*
-     * Diese Variablen speichern die ISO-codes von den Währungen
-     */
-    private static String baseCurResult, targetCurResult;
+    private static String baseCur;
+    private static String targetCur;
+
+    private static String baseCurResult;
+    private static String targetCurResult;
 
     /*
      * Diese Methode führt andere Methoden aus
@@ -233,14 +237,8 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
-                    baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den ISO-Code
-                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt. 
-                        if (containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
-                        }
-                    }
+                    baseCur = (String) dropdownBaseCur.getSelectedItem();
+                    baseCurResult = baseCur.split("\\(")[1].replace(")", "").trim();
                 }
             }
         });
@@ -249,14 +247,8 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    targetCurResult = (String) dropdownTargetCur.getSelectedItem();
-                    targetCurResult = targetCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = targetCurResult.split("\\)");
-                    for (String part : parts) {
-                        if (containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
-                        }
-                    }
+                    targetCur = (String) dropdownTargetCur.getSelectedItem();
+                    targetCurResult = targetCur.split("\\(")[1].replace(")", "").trim();
                 }
             }
         });
@@ -272,19 +264,6 @@ public class GUI {
 
         frame.add(dropdownBaseCur);
         frame.add(dropdownTargetCur);
-    }
-
-    /*
-     * Diese Methode überprüft, ob es in der Klammer Zahlen gibt.
-     * Je nach Inhalt gibt dies einen Wert zurück.
-     */
-    private static boolean containsDigit(String str) {
-        for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /*
@@ -472,7 +451,7 @@ public class GUI {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         if (inputValue == null || baseCurResult == null || targetCurResult == null) {
-                            PopupDisplay.throwErrorPopup("Es gibt nichts zum Speichern!", "");
+                            PopupDisplay.throwErrorPopup("Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
                         } else {
                             LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
                             runFadeLabel();
