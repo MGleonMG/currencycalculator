@@ -14,8 +14,7 @@ public class Language {
     private static Locale locale;
     private static Properties langBundle;
     private static String fileName;
-    private static InputStream inputStream;
-    private static Properties properties;
+    private static Properties properties = new Properties();
 
     // Auflistung aller unterstützten Sprachen
     public enum Languages {
@@ -34,7 +33,6 @@ public class Language {
     @SuppressWarnings("deprecation")
     public static void setAppLanguage(Languages language, boolean updateConfig) {
         fileName = "/resources/languages/lang_" + language.name().toLowerCase() + ".properties";
-        properties = new Properties();
 
         try (InputStream inputStream = Language.class.getResourceAsStream(fileName)) {
             try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {

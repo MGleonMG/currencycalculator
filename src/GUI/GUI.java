@@ -35,7 +35,7 @@ public class GUI {
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
-    private static JButton calculateBtn = new JButton(Language.getLangStringByKey("btn_calc"));
+    private static JButton calculateBtn = new JButton(Language.getLangStringByKey("calculateBtn"));
     private static JButton clipboardBtn = new JButton();
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");

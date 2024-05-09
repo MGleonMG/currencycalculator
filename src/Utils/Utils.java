@@ -59,6 +59,11 @@ public class Utils {
     }
 
     /*
+     * TODO | @Leon: Add function to refetch all
+     * TODO | currencies in the event of a language change
+     */
+
+    /*
      * Diese Methode kopiert das Ergebnis in den Clipboard des Benutzers
      * siehe src\GUI\GUI.java\addCopyOutputButton()
      */
