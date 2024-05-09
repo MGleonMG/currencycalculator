@@ -471,8 +471,12 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
-                        runFadeLabel();
+                        if (inputValue == null || baseCurResult == null || targetCurResult == null) {
+                            PopupDisplay.throwErrorPopup("Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
+                        } else {
+                            LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
+                            runFadeLabel();
+                        }
                     }
                 });
             }
