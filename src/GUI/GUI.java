@@ -46,17 +46,15 @@ public class GUI {
     private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
 
     /*
-     * Das vom Benutzer eingeschriebene muss als String eingegeben werden.
-     * Dies wird dann zum double umgewandelt
+     * Diese Variablen speichern den Betrag des Nutzers
      */
     private static String inputValue;
     private static double inputValueResult;
 
     /*
-     * Nimmt den Isocode von den Währungen raus
+     * Diese Variablen speichern die ISO-codes von den Währungen
      */
-    private static String baseCurResult;
-    private static String targetCurResult;
+    private static String baseCurResult, targetCurResult;
 
     /*
      * Diese Methode führt andere Methoden aus
@@ -235,14 +233,12 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    baseCurResult = (String) dropdownBaseCur.getSelectedItem();
+                    baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)");
-                    for (String part : parts) {
+                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den ISO-Code
+                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt. 
                         if (containsDigit(part)) {
-                            baseCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
-                            break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
                 }
@@ -258,9 +254,7 @@ public class GUI {
                     String[] parts = targetCurResult.split("\\)");
                     for (String part : parts) {
                         if (containsDigit(part)) {
-                            targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
-                            break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
                 }
@@ -280,6 +274,10 @@ public class GUI {
         frame.add(dropdownTargetCur);
     }
 
+    /*
+     * Diese Methode überprüft, ob es in der Klammer Zahlen gibt.
+     * Je nach Inhalt gibt dies einen Wert zurück.
+     */
     private static boolean containsDigit(String str) {
         for (char c : str.toCharArray()) {
             if (Character.isDigit(c)) {
