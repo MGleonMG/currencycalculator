@@ -240,7 +240,7 @@ public class GUI {
                     for (String part : parts) {
                         if (containsDigit(part)) {
                             baseCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                             break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
@@ -258,7 +258,7 @@ public class GUI {
                     for (String part : parts) {
                         if (containsDigit(part)) {
                             targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                             break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
                     }
