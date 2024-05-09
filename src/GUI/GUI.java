@@ -45,17 +45,15 @@ public class GUI {
     private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
 
     /*
-     * TODO Code Optimization
-     * 
-     * @Ewin was diese?
-     * pls fix und sortieren dangee
+     * Das vom Benutzer eingeschriebene muss als String eingegeben werden.
+     * Dies wird dann zum double umgewandelt
      */
     private static String inputValue;
     private static double inputValueResult;
 
-    private static String baseCur;
-    private static String targetCur;
-
+    /*
+     * Nimmt den Isocode von den Währungen raus
+     */
     private static String baseCurResult;
     private static String targetCurResult;
 
@@ -236,8 +234,14 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    baseCur = (String) dropdownBaseCur.getSelectedItem();
-                    baseCurResult = baseCur.split("\\(")[1].replace(")", "").trim();
+                    baseCurResult = (String) dropdownBaseCur.getSelectedItem();
+                    String[] parts = baseCurResult.split("\\)");
+                    for (String part : parts) {
+                        if (!containsDigit(part)) {
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
+                            break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
+                        }
+                    }
                 }
             }
         });
@@ -246,8 +250,14 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    targetCur = (String) dropdownTargetCur.getSelectedItem();
-                    targetCurResult = targetCur.split("\\(")[1].replace(")", "").trim();
+                    targetCurResult = (String) dropdownTargetCur.getSelectedItem();
+                    String[] parts = targetCurResult.split("\\)");
+                    for (String part : parts) {
+                        if (!containsDigit(part)) {
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
+                            break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
+                        }
+                    }
                 }
             }
         });
@@ -263,6 +273,15 @@ public class GUI {
 
         frame.add(dropdownBaseCur);
         frame.add(dropdownTargetCur);
+    }
+
+    private static boolean containsDigit(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
