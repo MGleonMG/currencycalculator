@@ -15,6 +15,7 @@ import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
+import lang.Language;
 
 /*
  * Diese Klasse erstellt das "Graphical User Interface"
@@ -23,7 +24,7 @@ import Utils.Data.Config.Settings.AppTheme.Theme;
 public class GUI {
 
     // static final vars
-    public static final String TITLE = "Währungsrechner", VERSION = "1.0_indev";
+    public static final String TITLE = Language.getLangStringByKey("title"), VERSION = "1.0_indev";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
@@ -34,7 +35,7 @@ public class GUI {
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
-    private static JButton calculateBtn = new JButton("Umrechnen");
+    private static JButton calculateBtn = new JButton(Language.getLangStringByKey("btn_calc"));
     private static JButton clipboardBtn = new JButton();
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");

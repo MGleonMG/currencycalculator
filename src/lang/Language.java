@@ -2,9 +2,12 @@ package lang;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Properties;
 
+import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Settings.AppLanguage;
 
 public class Language {
@@ -29,12 +32,19 @@ public class Language {
      * in der config Datei des benutzers nötig ist
      */
     @SuppressWarnings("deprecation")
-    public static void setAppLanguage(Languages language, boolean updateConfig) throws IOException {
+    public static void setAppLanguage(Languages language, boolean updateConfig) {
         fileName = "/resources/languages/lang_" + language.name().toLowerCase() + ".properties";
-        inputStream = Language.class.getResource(fileName).openStream();
         properties = new Properties();
 
-        properties.load(inputStream);
+        try (InputStream inputStream = Language.class.getResourceAsStream(fileName)) {
+            try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+                properties.load(reader);
+            }
+        } catch (IOException e) {
+            PopupDisplay.throwErrorPopup("Es ist ein Fehler beim Laden der Spracheinstellungen aufgetreten",
+                    e.getMessage());
+            System.exit(1);
+        }
 
         switch (language) {
             case ENGLISH:
@@ -58,6 +68,7 @@ public class Language {
 
         if (updateConfig) {
             AppLanguage.setConfigAppLanguage(language);
+            PopupDisplay.throwInfoPopup("App Sprache", "Spracheinstellungen wurden geändert");
         }
 
         langBundle = properties;
