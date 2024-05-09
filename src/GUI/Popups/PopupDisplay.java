@@ -12,6 +12,11 @@ public class PopupDisplay {
                 "Ein Fehler ist aufgetreten", JOptionPane.ERROR_MESSAGE);
     }
 
+    public static void throwErrorPopup(String popupErrorMessage) {
+        JOptionPane.showMessageDialog(null, popupErrorMessage,
+                "Ein Fehler ist aufgetreten", JOptionPane.ERROR_MESSAGE);
+    }
+
     public static void throwInfoPopup(String popupTitle, String popupMessage) {
         JOptionPane.showMessageDialog(null, popupMessage, popupTitle, JOptionPane.INFORMATION_MESSAGE);
     }
