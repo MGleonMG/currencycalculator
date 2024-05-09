@@ -235,9 +235,11 @@ public class GUI {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCurResult = (String) dropdownBaseCur.getSelectedItem();
+                    baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
                     String[] parts = baseCurResult.split("\\)");
                     for (String part : parts) {
-                        if (!containsDigit(part)) {
+                        if (containsDigit(part)) {
+                            baseCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
                             break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
@@ -251,9 +253,11 @@ public class GUI {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     targetCurResult = (String) dropdownTargetCur.getSelectedItem();
+                    targetCurResult = targetCurResult.split("\\(")[1].replace(")", "").trim();
                     String[] parts = targetCurResult.split("\\)");
                     for (String part : parts) {
-                        if (!containsDigit(part)) {
+                        if (containsDigit(part)) {
+                            targetCurResult = part.substring(part.lastIndexOf("(") + 1).trim();
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt", "420");
                             break; // Falls es keine Zahlen in der Klammer findet, bricht es die Abfrage ab
                         }
