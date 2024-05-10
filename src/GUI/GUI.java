@@ -45,8 +45,6 @@ public class GUI {
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
-    private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
-    private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
 
