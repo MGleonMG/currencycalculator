@@ -98,7 +98,7 @@ public class SettingsGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    GUI.setAppTheme(Theme.LIGHT_MODE); // Übertrage das Theme auf die GUI-Klasse
+                    GUI.updateGUITheme(Theme.LIGHT_MODE); // Übertrage das Theme auf die GUI-Klasse
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     lightBtn.setEnabled(false);
                     darkBtn.setEnabled(true);
@@ -113,7 +113,7 @@ public class SettingsGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    GUI.setAppTheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
+                    GUI.updateGUITheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiert das UI des Frames
                     lightBtn.setEnabled(true);
                     darkBtn.setEnabled(false);

@@ -10,6 +10,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
+import Main.CurrencyCalculator;
 import Utils.Utils;
 import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.AppTheme;
@@ -24,7 +25,7 @@ import lang.Language;
 public class GUI {
 
     // static final vars
-    public static final String TITLE = Language.getLangStringByKey("title"), VERSION = "1.0_indev";
+    public static final String TITLE = Language.getLangStringByKey("title");
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
@@ -43,7 +44,7 @@ public class GUI {
     private static JLabel fadeLabel = new JLabel("Gespeichert!");
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
-    private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
+    private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
     private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
 
     /*
@@ -56,6 +57,10 @@ public class GUI {
      * Diese Variablen speichern die ISO-codes von den Währungen
      */
     private static String baseCurResult, targetCurResult;
+
+    private static void updateDisplayedLanguage() {
+
+    }
 
     /*
      * Diese Methode führt andere Methoden aus
@@ -75,7 +80,8 @@ public class GUI {
         addFadeLabel();
         addFooter();
 
-        setAppTheme(AppTheme.getConfigAppTheme());
+        updateGUITheme(AppTheme.getConfigAppTheme());
+        updateDisplayedLanguage();
 
         frame.requestFocus();
         frame.setVisible(true);
@@ -88,7 +94,7 @@ public class GUI {
 
     public static void updateTitle(JFrame jframe, String rawTitleAddition) {
         String titleAddition = " - " + rawTitleAddition;
-        jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
+        jframe.setTitle(TITLE + " " + CurrencyCalculator.getAppVersion() + (rawTitleAddition != "" ? titleAddition : ""));
     }
 
     public static void setAppIcon(JFrame jframe) {
@@ -391,7 +397,7 @@ public class GUI {
      * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
      * Darkmode
      */
-    public static void setAppTheme(Theme theme) {
+    public static void updateGUITheme(Theme theme) {
         try {
             if (theme == Theme.DARK_MODE) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());
@@ -556,9 +562,7 @@ public class GUI {
         timer.start();
     }
 
-    private static void updateDisplayedLanguage() {
-
-    }
+    // TODO: @Leon place updateDisplayedLanguage() here
 
     public static double getAmount() {
         return inputValueResult;
