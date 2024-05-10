@@ -70,8 +70,6 @@ public class Language {
         }
 
         langBundle = properties;
-
-        GUI.updateDisplayedLanguage();
     }
 
     // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus

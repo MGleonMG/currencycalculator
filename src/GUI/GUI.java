@@ -25,7 +25,7 @@ import lang.Language;
  */
 public class GUI {
 
-    //TODO @Leon: adjust this comment here below?
+    // TODO @Leon: adjust this comment here below?
     // static final vars
     public static final String TITLE = "title";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
@@ -38,7 +38,7 @@ public class GUI {
             searchBarTargetcur = new JTextField("Nach Währung Filtern");
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
-    private static JButton calculateBtn = new JButton(Language.getLangStringByKey("calculateBtn"));
+    private static JButton calculateBtn = new JButton();
     private static JButton clipboardBtn = new JButton();
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");
@@ -66,7 +66,7 @@ public class GUI {
 
         Utils.refreshCurrencyDropdowns();
 
-        // Component 1
+        calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
         // Component 2
         // Component 3
         // Component ...
