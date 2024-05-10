@@ -96,7 +96,8 @@ public class GUI {
 
     public static void updateTitle(JFrame jframe, String rawTitleAddition) {
         String titleAddition = " - " + rawTitleAddition;
-        jframe.setTitle(TITLE + " " + CurrencyCalculator.getAppVersion() + (rawTitleAddition != "" ? titleAddition : ""));
+        jframe.setTitle(
+                TITLE + " " + CurrencyCalculator.getAppVersion() + (rawTitleAddition != "" ? titleAddition : ""));
     }
 
     public static void setAppIcon(JFrame jframe) {
@@ -571,6 +572,12 @@ public class GUI {
     }
 
     // TODO: @Leon place updateDisplayedLanguage() here
+
+    @SuppressWarnings("rawtypes")
+    public static JComboBox[] getComboBoxes() {
+        JComboBox[] comboBoxes = { dropdownBaseCur, dropdownTargetCur };
+        return comboBoxes;
+    }
 
     public static double getAmount() {
         return inputValueResult;
