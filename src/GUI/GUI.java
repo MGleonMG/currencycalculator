@@ -11,6 +11,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Utils.Utils;
+import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
@@ -44,19 +45,20 @@ public class GUI {
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
     private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/settings_button.png"));
     private static JLabel gif = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
-
-     /*
-      * Das vom Benutzer eingeschriebene muss als String eingegeben werden.
-      * Dies wird dann zum double umgewandelt
-      */
+  
+    /*
+     * Diese Variablen speichern den Betrag des Nutzers
+     */
     private static String inputValue;
     private static double inputValueResult;
 
-    /*
-     * Nimmt den Isocode von den Währungen raus
-     */
     private static String baseCurResult;
     private static String targetCurResult;
+    
+    /*
+     * Diese Variablen speichern die ISO-codes von den Währungen
+     */
+    private static String baseCurResult, targetCurResult;
 
     /*
      * Diese Methode führt andere Methoden aus
@@ -236,8 +238,14 @@ public class GUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    baseCurResult = (String) dropdownBaseCur.getSelectedItem();
+                    baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
+                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den ISO-Code
+                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt. 
+                        if (containsDigit(part)) {
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
+                        }
+                    }
                 }
             }
         });
@@ -248,6 +256,12 @@ public class GUI {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     targetCurResult = (String) dropdownTargetCur.getSelectedItem();
                     targetCurResult = targetCurResult.split("\\(")[1].replace(")", "").trim();
+                    String[] parts = targetCurResult.split("\\)");
+                    for (String part : parts) {
+                        if (containsDigit(part)) {
+                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
+                        }
+                    }
                 }
             }
         });
@@ -266,6 +280,19 @@ public class GUI {
     }
 
     /*
+     * Diese Methode überprüft, ob es in der Klammer Zahlen gibt.
+     * Je nach Inhalt gibt dies einen Wert zurück.
+     */
+    private static boolean containsDigit(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*
      * Diese Methode erstellt einen "Rechner" Knopf
      * 
      * Es nimmt den Betrag auf und wird in der Umwandlung der Währung verrechnet
@@ -279,7 +306,7 @@ public class GUI {
                         inputValue = inputField.getText();
                         inputValueResult = Double.parseDouble(GUI.inputValue);
 
-                        Utils.runCalcThread();
+                        Calculations.runThreadedCalculation();
                     }
                 });
             }
@@ -456,8 +483,12 @@ public class GUI {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
-                        runFadeLabel();
+                        if (inputValue == null || baseCurResult == null || targetCurResult == null) {
+                            PopupDisplay.throwErrorPopup("Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
+                        } else {
+                            LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
+                            runFadeLabel();
+                        }
                     }
                 });
             }
@@ -487,7 +518,7 @@ public class GUI {
                         inputValue = (config[2]);
 
                         inputValueResult = Double.parseDouble(GUI.inputValue);
-                        Utils.runCalcThread();
+                        Calculations.runThreadedCalculation();
 
                     }
                 });

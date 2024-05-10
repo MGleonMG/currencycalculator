@@ -11,7 +11,7 @@ public class ConfigDefaults {
     public static class Container {
         AppTheme appTheme;
         AppLanguage appLanguage;
-        // TODO: add default umrechnung wie z.B. 5 euro in USD?
+        // TODO @Leon: add default umrechnung wie z.B. 5 euro in USD?
     }
 
     @SuppressWarnings("unused")
@@ -33,7 +33,7 @@ public class ConfigDefaults {
         LastCalculation.setConfigLastCalc("EUR", "USD", "5.0");
 
         PopupDisplay.throwInfoPopup("Config reset",
-                "Das Program schließt sich nun. Beim erneuten Öffnen sollten alle Einstellungen zurückgesetzt sein");
+                "Das Program schließt sich nun. Beim erneuten Öffnen sind alle Einstellungen zurückgesetzt.");
         System.exit(0);
     }
 }

@@ -9,9 +9,7 @@ import java.util.Map.Entry;
 
 import java.util.Set;
 
-import GUI.GUI;
 import Utils.Data.Calculations;
-import Utils.Data.ExchangeRateFetcher;
 
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
@@ -58,28 +56,6 @@ public class Utils {
         }
 
         return currencies.entrySet();
-    }
-
-    /*
-     * Diese Methode ist der Hauptprozess für die Rechnung
-     */
-    public static void runCalcThread() {
-        // lambda funktion in der runCalcThread() funktion um asynchrones ausführen zu
-        // ermöglichen (=> GUI kann sich dadurch updaten)
-        Thread thread = new Thread(() -> {
-            GUI.displayAsLoading(true);
-
-            Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
-
-            GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
-                    "Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
-                    "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
-                    "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
-
-            GUI.displayAsLoading(false);
-        });
-
-        thread.start();
     }
 
     /*
