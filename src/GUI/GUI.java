@@ -470,7 +470,7 @@ public class GUI {
      * sobald der User auf "umrechnen" gedrückt hat
      */
     private static void addGIF() {
-        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/GIF_Loading2.gif"));
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/GIF_Loading.gif"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_FAST);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         // Image.SCALE_FAST damit es das GIF anzeigt
