@@ -255,7 +255,7 @@ public class GUI {
                     targetCurResult = targetCurResult.split("\\(")[1].replace(")", "").trim();
                     String[] parts = targetCurResult.split("\\)");
                     for (String part : parts) {
-                        if (containsDigit(part)) {
+                        if (Utils.containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                         }
                     }
@@ -277,21 +277,7 @@ public class GUI {
     }
 
     /*
-     * Diese Methode überprüft, ob es in der Klammer Zahlen gibt.
-     * Je nach Inhalt gibt dies einen Wert zurück.
-     */
-    private static boolean containsDigit(String str) {
-        for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /*
      * Diese Methode erstellt einen "Rechner" Knopf
-     * 
      * Es nimmt den Betrag auf und wird in der Umwandlung der Währung verrechnet
      */
     private static void addCalculateButton() {
