@@ -43,8 +43,8 @@ public class GUI {
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
-    private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/settings_button.png"));
-    private static JLabel gif = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
+    private static JLabel settingsLblBtn = new JLabel();
+    private static JLabel loadingGIF = new JLabel();
 
     /*
      * Diese Variablen speichern den Betrag des Nutzers
@@ -237,8 +237,7 @@ public class GUI {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den
-                                                                 // ISO-Code
+                    String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer, also den ISO-Code
                     for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
                         if (containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
@@ -457,32 +456,28 @@ public class GUI {
         if (isLoading) {
             calculateBtn.setEnabled(false);
             setOutput("Lädt...");
-            gif.setVisible(true);
+            loadingGIF.setVisible(true);
             calculateBtn.setText("Lädt...");
         } else {
             calculateBtn.setEnabled(true);
-            gif.setVisible(false);
+            loadingGIF.setVisible(false);
             calculateBtn.setText("Umrechnen");
         }
     }
 
     /*
-     * Diese Methode fügt einen GIF hinzu,
+     * Diese Methode fügt ein GIF hinzu,
      * sobald der User auf "umrechnen" gedrückt hat
      */
     private static void addGIF() {
-
-        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/GIF_Loading2.gif"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_FAST);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         // Image.SCALE_FAST damit es das GIF anzeigt
-        gif.setIcon(scaledIcon);
-        gif.setBounds(350, 260, 200, 200);
-
-        frame.add(gif);
-
-        gif.setVisible(false);
-
+        loadingGIF.setIcon(scaledIcon);
+        loadingGIF.setBounds(370, 260, 200, 200);
+        frame.add(loadingGIF);
+        loadingGIF.setVisible(false);
     }
 
     /*
@@ -563,9 +558,9 @@ public class GUI {
             private float opacity = 1.0f; // opacity = transparenz
 
             /*
-             * Nachdem den "Speicher" Knopf gedrückt hat,
-             * taucht der Label auf und verschwindet nach einer
-             * gewissen Zeit
+             * Nachdem der User die Daten abgespeichert hat,
+             * erscheint das Label für ein paar Sekunden
+             * und verschwindet wieder.
              */
             @Override
             public void actionPerformed(ActionEvent e) {
