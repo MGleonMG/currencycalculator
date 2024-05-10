@@ -237,7 +237,7 @@ public class GUI {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer, also den ISO-Code
+                    String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer
                     for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
                         if (containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
