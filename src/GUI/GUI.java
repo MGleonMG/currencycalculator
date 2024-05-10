@@ -64,17 +64,17 @@ public class GUI {
     public static void drawGUI() {
         setBasicFrameProps();
 
-        drawSettingsBtn();
         addCalculateButton();
-        addCopyOutputButton();
-        addInputOutput();
         addDropdownWithFilters();
+        addInputOutput();
+        addLoadingCircleGIF();
+        addCopyOutputButton();
         addPresetLabel();
         addSaveCalculationButton();
         addLoadCalculationButton();
+        addSettingsLblBtn();
         addFadeLabel();
         addFooter();
-        addGIF();
 
         setAppTheme(AppTheme.getConfigAppTheme());
 
@@ -239,7 +239,7 @@ public class GUI {
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
                     String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer
                     for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
-                        if (containsDigit(part)) {
+                        if (Utils.containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                         }
                     }
@@ -344,7 +344,7 @@ public class GUI {
      * Erstellt ein klickbares Label mit Icon
      * das als Button für das Einstellungs Menu agiert
      */
-    private static void drawSettingsBtn() {
+    private static void addSettingsLblBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -455,8 +455,8 @@ public class GUI {
      * Diese Methode fügt ein GIF hinzu,
      * sobald der User auf "umrechnen" gedrückt hat
      */
-    private static void addGIF() {
-        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/GIF_Loading.gif"));
+    private static void addLoadingCircleGIF() {
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_FAST);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         // Image.SCALE_FAST damit es das GIF anzeigt
