@@ -30,17 +30,17 @@ public class Calculations {
         // ermöglichen (=> GUI kann sich dadurch updaten)
         Thread thread = new Thread(() -> {
             GUI.displayAsLoading(true);
-    
+
             convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
-    
+
             GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
                     "Das Ergebnis ist " + finalResult + " " + GUI.getTargetCur() + "\n" +
                     "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
                     "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
-    
+
             GUI.displayAsLoading(false);
         });
-    
+
         thread.start();
     }
 }
