@@ -46,6 +46,9 @@ public class GUI {
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
     private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
+    private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
+    private static JLabel settingsLblBtn = new JLabel();
+    private static JLabel loadingGIF = new JLabel();
 
     /*
      * Diese Variablen speichern den Betrag des Nutzers
@@ -69,14 +72,15 @@ public class GUI {
     public static void drawGUI() {
         setBasicFrameProps();
 
-        drawSettingsBtn();
         addCalculateButton();
-        addCopyOutputButton();
-        addInputOutput();
         addDropdownWithFilters();
+        addInputOutput();
+        addLoadingCircleGIF();
+        addCopyOutputButton();
         addPresetLabel();
         addSaveCalculationButton();
         addLoadCalculationButton();
+        addSettingsLblBtn();
         addFadeLabel();
         addFooter();
 
@@ -242,10 +246,9 @@ public class GUI {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den
-                                                                 // ISO-Code
+                    String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer
                     for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
-                        if (containsDigit(part)) {
+                        if (Utils.containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                         }
                     }
@@ -261,7 +264,7 @@ public class GUI {
                     targetCurResult = targetCurResult.split("\\(")[1].replace(")", "").trim();
                     String[] parts = targetCurResult.split("\\)");
                     for (String part : parts) {
-                        if (containsDigit(part)) {
+                        if (Utils.containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                         }
                     }
@@ -283,21 +286,7 @@ public class GUI {
     }
 
     /*
-     * Diese Methode überprüft, ob es in der Klammer Zahlen gibt.
-     * Je nach Inhalt gibt dies einen Wert zurück.
-     */
-    private static boolean containsDigit(String str) {
-        for (char c : str.toCharArray()) {
-            if (Character.isDigit(c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /*
      * Diese Methode erstellt einen "Rechner" Knopf
-     * 
      * Es nimmt den Betrag auf und wird in der Umwandlung der Währung verrechnet
      */
     private static void addCalculateButton() {
@@ -354,7 +343,6 @@ public class GUI {
     private static void addInputOutput() {
         outputLabel.setBounds(250, 285, 300, 150);
         setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
-
         inputField.setBounds(385, 290, 90, 30);
 
         frame.add(inputField);
@@ -365,7 +353,7 @@ public class GUI {
      * Erstellt ein klickbares Label mit Icon
      * das als Button für das Einstellungs Menu agiert
      */
-    private static void drawSettingsBtn() {
+    private static void addSettingsLblBtn() {
         ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -466,11 +454,28 @@ public class GUI {
         if (isLoading) {
             calculateBtn.setEnabled(false);
             setOutput("Lädt...");
+            loadingGIF.setVisible(true);
             calculateBtn.setText("Lädt...");
         } else {
             calculateBtn.setEnabled(true);
+            loadingGIF.setVisible(false);
             calculateBtn.setText("Umrechnen");
         }
+    }
+
+    /*
+     * Diese Methode fügt ein GIF hinzu,
+     * sobald der User auf "umrechnen" gedrückt hat
+     */
+    private static void addLoadingCircleGIF() {
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_FAST);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        // Image.SCALE_FAST damit es das GIF anzeigt
+        loadingGIF.setIcon(scaledIcon);
+        loadingGIF.setBounds(370, 260, 200, 200);
+        frame.add(loadingGIF);
+        loadingGIF.setVisible(false);
     }
 
     /*
@@ -498,7 +503,7 @@ public class GUI {
     }
 
     /*
-     * Diese Methode erstellt einen Knopf, um Daten zu laden
+     * Diese Methode erstellt einen Knopf, um gespeicherte Daten zu laden
      */
     private static void addLoadCalculationButton() {
         loadBtn.setBounds(50, 480, 100, 25);
@@ -550,6 +555,11 @@ public class GUI {
         Timer timer = new Timer(50, new ActionListener() {
             private float opacity = 1.0f; // opacity = transparenz
 
+            /*
+             * Nachdem der User die Daten abgespeichert hat,
+             * erscheint das Label für ein paar Sekunden
+             * und verschwindet wieder.
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 opacity -= 0.05f;
