@@ -15,18 +15,18 @@
 
 <p align="center"> 
   <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-    <a href="#sparkles-features">Libs und APIs</a> &#xa0; | &#xa0;
+  <a href="#sparkles-features">Libs und APIs</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#arrow_down-download">Download</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-Git-Commands">Commands</a> &#xa0; | &#xa0;
-    <a href="#trollface-Autoren">Autoren</a> &#xa0;
+  <a href="#trollface-Autoren">Autoren</a> &#xa0;
 </p>
 <hr>
 <br>
 
 ## :dart: Einführung ##
 
-In diesem Projekt geht es darum, Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Be^^nutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
+In diesem Projekt geht es darum, Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
 
 ## :sparkles: Features ##
 
@@ -109,13 +109,13 @@ TBD
          │    ├─ Calculations.java   // Klasse für Berechnungen
          │    ├─ Config              // Paket für die Config
          │    │    ├─ Config.java    // Klasse für Grundfunktionen der Config
-         │    │    ├─ ConfigDefaults.java   // Klasse für Standardkonfiguration
-         │    │    └─ Settings       // Paket für die einzelnen Einstellungen in der Config Datei
-         │    │         ├─ AppLanguage.java   // Klasse fürs Lesen und Schreiben der Spracheinstellungen
-         │    │         ├─ AppTheme.java      // Klasse fürs Lesen und Schreiben des AppThemes
+         │    │    ├─ ConfigDefaults.java         // Klasse für Standardkonfiguration
+         │    │    └─ Settings                    // Paket für die einzelnen Einstellungen in der Config Datei
+         │    │         ├─ AppLanguage.java       // Klasse fürs Lesen und Schreiben der Spracheinstellungen
+         │    │         ├─ AppTheme.java          // Klasse fürs Lesen und Schreiben des AppThemes
          │    │         └─ LastCalculation.java   // Klasse fürs Lesen und Schreiben der letzen Umrechnung
-         │    └─ ExchangeRateFetcher.java   // Klasse für den Abruf von Wechselkursen
-         └─ Utils.java                // Hilfsklasse mit allgemeinen Hilfsmethoden
+         │    └─ ExchangeRateFetcher.java         // Klasse für den Abruf von Wechselkursen
+         └─ Utils.java                            // Hilfsklasse mit allgemeinen Hilfsmethoden
 ```
 
 ## :trollface: Autoren
