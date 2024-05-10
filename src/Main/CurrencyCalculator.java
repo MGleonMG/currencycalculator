@@ -14,7 +14,7 @@ public class CurrencyCalculator {
 
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();
-        Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false);
+        // Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false);
         GUI.drawGUI();
     }
 

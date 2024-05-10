@@ -13,6 +13,7 @@ import GUI.Settings.SettingsGUI;
 import Main.CurrencyCalculator;
 import Utils.Utils;
 import Utils.Data.Calculations;
+import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
@@ -24,8 +25,9 @@ import lang.Language;
  */
 public class GUI {
 
+    //TODO @Leon: adjust this comment here below?
     // static final vars
-    public static final String TITLE = Language.getLangStringByKey("title");
+    public static final String TITLE = "title";
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
@@ -59,8 +61,15 @@ public class GUI {
      */
     private static String baseCurResult, targetCurResult;
 
-    private static void updateDisplayedLanguage() {
+    public static void updateDisplayedLanguage() {
+        Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false);
 
+        Utils.refreshCurrencyDropdowns();
+
+        // Component 1
+        // Component 2
+        // Component 3
+        // Component ...
     }
 
     /*

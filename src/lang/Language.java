@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Properties;
 
+import GUI.GUI;
 import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Settings.AppLanguage;
 
@@ -61,7 +62,6 @@ public class Language {
                 locale = new Locale("da", "DK");
                 break;
         }
-
         Locale.setDefault(locale);
 
         if (updateConfig) {
@@ -70,6 +70,8 @@ public class Language {
         }
 
         langBundle = properties;
+
+        GUI.updateDisplayedLanguage();
     }
 
     // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus
