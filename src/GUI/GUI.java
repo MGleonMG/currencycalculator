@@ -45,16 +45,13 @@ public class GUI {
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
     private static JLabel settingsLblBtn = new JLabel(new ImageIcon("resources/buttons/settings_button.png"));
     private static JLabel gif = new JLabel(new ImageIcon("resources/buttons/button_loading.gif"));
-  
+
     /*
      * Diese Variablen speichern den Betrag des Nutzers
      */
     private static String inputValue;
     private static double inputValueResult;
 
-    private static String baseCurResult;
-    private static String targetCurResult;
-    
     /*
      * Diese Variablen speichern die ISO-codes von den Währungen
      */
@@ -240,8 +237,9 @@ public class GUI {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den ISO-Code
-                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt. 
+                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den
+                                                                 // ISO-Code
+                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
                         if (containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                         }
@@ -351,7 +349,6 @@ public class GUI {
     private static void addInputOutput() {
         outputLabel.setBounds(250, 285, 300, 150);
         setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
-
         inputField.setBounds(385, 290, 90, 30);
 
         frame.add(inputField);
@@ -464,15 +461,29 @@ public class GUI {
             calculateBtn.setText("Lädt...");
         } else {
             calculateBtn.setEnabled(true);
+            gif.setVisible(false);
             calculateBtn.setText("Umrechnen");
         }
     }
 
+    /*
+     * Diese Methode fügt einen GIF hinzu,
+     * sobald der User auf "umrechnen" gedrückt hat
+     */
     private static void addGIF() {
-        frame.getContentPane().add(gif);
-        gif.setBounds(50, 450, 100, 25);
-        gif.setVisible(true);
-        }
+
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_FAST);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        // Image.SCALE_FAST damit es das GIF anzeigt
+        gif.setIcon(scaledIcon);
+        gif.setBounds(350, 260, 200, 200);
+
+        frame.add(gif);
+
+        gif.setVisible(false);
+
+    }
 
     /*
      * Diese Methode erstellt einen Knopf, um die Daten zu speichern
@@ -484,7 +495,8 @@ public class GUI {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         if (inputValue == null || baseCurResult == null || targetCurResult == null) {
-                            PopupDisplay.throwErrorPopup("Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
+                            PopupDisplay.throwErrorPopup(
+                                    "Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
                         } else {
                             LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
                             runFadeLabel();
@@ -498,7 +510,7 @@ public class GUI {
     }
 
     /*
-     * Diese Methode erstellt einen Knopf, um Daten zu laden
+     * Diese Methode erstellt einen Knopf, um gespeicherte Daten zu laden
      */
     private static void addLoadCalculationButton() {
         loadBtn.setBounds(50, 480, 100, 25);
@@ -550,6 +562,11 @@ public class GUI {
         Timer timer = new Timer(50, new ActionListener() {
             private float opacity = 1.0f; // opacity = transparenz
 
+            /*
+             * Nachdem den "Speicher" Knopf gedrückt hat,
+             * taucht der Label auf und verschwindet nach einer
+             * gewissen Zeit
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 opacity -= 0.05f;
