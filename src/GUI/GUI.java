@@ -236,8 +236,9 @@ public class GUI {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den ISO-Code
-                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt. 
+                    String[] parts = baseCurResult.split("\\)"); // 237-238 Speichert den Inhalt der Klammer, also den
+                                                                 // ISO-Code
+                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
                         if (containsDigit(part)) {
                             PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
                         }
@@ -440,11 +441,14 @@ public class GUI {
     }
 
     /*
-     * TODO Kommentar
+     * Setzt den formatierten Output (inklusive Endergebnis)
+     * mit richtigen Zeilenumbrüchen
      */
     public static void setOutput(String output) {
-        // JLabels akzeptueren kein normales \n als Line break, deshalb benutzen wir
-        // hier HTML formatierung mit dem <br> Tag
+        /*
+         * JLabels akzeptieren kein normales \n als Line break, deshalb benutzen wir
+         * hier HTML formatierung mit dem <br> Tag
+         */
         outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
 
@@ -473,7 +477,8 @@ public class GUI {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         if (inputValue == null || baseCurResult == null || targetCurResult == null) {
-                            PopupDisplay.throwErrorPopup("Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
+                            PopupDisplay.throwErrorPopup(
+                                    "Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
                         } else {
                             LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
                             runFadeLabel();
@@ -549,6 +554,10 @@ public class GUI {
             }
         });
         timer.start();
+    }
+
+    private static void updateDisplayedLanguage() {
+
     }
 
     public static double getAmount() {
