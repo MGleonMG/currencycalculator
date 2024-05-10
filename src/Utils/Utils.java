@@ -76,4 +76,17 @@ public class Utils {
             clipboard.setContents(stringSelection, null);
         }
     }
+
+    /*
+     * Diese Methode überprüft, ob es in der Klammer Zahlen gibt.
+     * Je nach Inhalt gibt dies einen Wert zurück.
+     */
+    public static boolean containsDigit(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
