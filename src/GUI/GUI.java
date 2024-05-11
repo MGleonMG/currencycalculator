@@ -18,6 +18,7 @@ import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 import lang.Language;
+import lang.Language.Languages;
 
 /*
  * Diese Klasse erstellt das "Graphical User Interface"
@@ -61,15 +62,20 @@ public class GUI {
      */
     private static String baseCurResult, targetCurResult;
 
+    /*
+     * Updatet die dargestellte Sprache auf den GUI Komponenten
+     */
+    // TODO @Leon: move down to bottom of the class
     public static void updateDisplayedLanguage() {
-        Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false);
-
         Utils.refreshCurrencyDropdowns();
 
+        searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
+        searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
         calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
-        // Component 2
-        // Component 3
-        // Component ...
+        presetLabel.setText(Language.getLangStringByKey("presetLabel"));
+        saveBtn.setText(Language.getLangStringByKey("saveBtn"));
+        loadBtn.setText(Language.getLangStringByKey("loadBtn"));
+        fadeLabel.setText(Language.getLangStringByKey("fadeLabel"));
     }
 
     /*

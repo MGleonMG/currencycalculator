@@ -44,6 +44,7 @@ public class Language {
                     e.getMessage());
             System.exit(1);
         }
+        langBundle = properties;
 
         switch (language) {
             case ENGLISH:
@@ -62,14 +63,14 @@ public class Language {
                 locale = new Locale("da", "DK");
                 break;
         }
-        Locale.setDefault(locale);
 
         if (updateConfig) {
             AppLanguage.setConfigAppLanguage(language);
             PopupDisplay.throwInfoPopup("App Sprache", "Spracheinstellungen wurden geändert");
         }
 
-        langBundle = properties;
+        Locale.setDefault(locale);
+        GUI.updateDisplayedLanguage();
     }
 
     // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus
