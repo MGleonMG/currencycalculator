@@ -38,7 +38,7 @@ public class AppLanguage {
             PopupDisplay.throwErrorPopup(
                     "Es gab scheinbar ein Problem beim abrufen deiner Sprachen Einstellungen!\n"
                             + "Wenn dieser Fehler andauern sollte dann lösche bitte die Datei:\n"
-                            + Config.getFilePath(),
+                            + Config.getFilePath(), /* TODO @Leon: remove this? */
                     e.getMessage());
             return null;
         }
