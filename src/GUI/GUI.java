@@ -468,7 +468,7 @@ public class GUI {
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         // Image.SCALE_FAST damit es das GIF anzeigt
         loadingGIF.setIcon(scaledIcon);
-        loadingGIF.setBounds(370, 260, 200, 200);
+        loadingGIF.setBounds(420, 260, 200, 200);
         frame.add(loadingGIF);
         loadingGIF.setVisible(false);
     }
