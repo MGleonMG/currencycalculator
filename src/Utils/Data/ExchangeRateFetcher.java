@@ -49,7 +49,6 @@ public class ExchangeRateFetcher {
         } catch (UnknownHostException uhExc) {
             PopupDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden",
                     uhExc.getMessage());
-            Utils.failed = true;
             clearDataOnError();
 
         } catch (StringIndexOutOfBoundsException oobExc) {
@@ -57,13 +56,10 @@ public class ExchangeRateFetcher {
                     "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten",
                     "Ein Wechselkurs für diese Währung konnte nicht gefunden werden");
             clearDataOnError();
-            Utils.failed = true;
 
         } catch (Exception exc) {
             PopupDisplay.throwErrorPopup("Ein unbekannter Fehler ist aufgetreten", exc.getMessage());
             clearDataOnError();
-            Utils.failed = true;
-
         }
     }
 
@@ -87,5 +83,6 @@ public class ExchangeRateFetcher {
         latestRate = 0.0;
         lastStartMillis = 0;
         lastEndMillis = 0;
+        Utils.failed = true;
     }
 }

@@ -39,7 +39,7 @@ public class Calculations {
                         "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
                         "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
             } else {
-                GUI.setOutput("Fehler");
+                GUI.setOutput("");
                 Utils.failed = false;
             }
             GUI.displayAsLoading(false);
