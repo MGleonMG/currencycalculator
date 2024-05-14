@@ -33,11 +33,11 @@ public class Calculations {
 
             convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
-            if(Utils.failed == false) {
-            GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
-                    "Das Ergebnis ist " + finalResult + " " + GUI.getTargetCur() + "\n" +
-                    "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
-                    "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
+            if (Utils.failed == false) {
+                GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
+                        "Das Ergebnis ist " + finalResult + " " + GUI.getTargetCur() + "\n" +
+                        "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
+                        "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
             } else {
                 GUI.setOutput("Fehler");
                 Utils.failed = false;

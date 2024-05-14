@@ -49,7 +49,7 @@ public class ExchangeRateFetcher {
         } catch (UnknownHostException uhExc) {
             PopupDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden",
                     uhExc.getMessage());
-                    Utils.failed = true;
+            Utils.failed = true;
             clearDataOnError();
 
         } catch (StringIndexOutOfBoundsException oobExc) {

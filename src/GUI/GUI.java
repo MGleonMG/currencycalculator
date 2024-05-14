@@ -58,7 +58,7 @@ public class GUI {
     private static String baseCurResult, targetCurResult;
 
     /*
-     * Diese Variablen werden für das Headline benutzt. 
+     * Diese Variablen werden für das Headline benutzt.
      */
     private static int textWidth, textHeight;
 
@@ -114,9 +114,9 @@ public class GUI {
         frame.setLayout(null);
 
         headlineLabel.setFont(headlineLabel.getFont().deriveFont(30f));
-        
+
         // Durch den Inhalt wird das Label mittig gesetzt
-        headlineLabel.setBounds((FRAME_WIDTH - getTextWidth()) /2, 25, getTextWidth(), getTextHeight());
+        headlineLabel.setBounds((FRAME_WIDTH - getTextWidth()) / 2, 25, getTextWidth(), getTextHeight());
 
         frame.add(headlineLabel);
     }
@@ -583,7 +583,7 @@ public class GUI {
      * Diese Methode nimmt die Höhe der HeadlineLabel raus
      * und setzt es in eine Variable.
      */
-    private static int getTextHeight(){
+    private static int getTextHeight() {
 
         FontMetrics fontMetrics = headlineLabel.getFontMetrics(headlineLabel.getFont());
         textHeight = fontMetrics.getHeight();
@@ -595,7 +595,7 @@ public class GUI {
      * und setzt es in eine Variable. Dies wird verwendet, um den Label
      * mittig zu halten.
      */
-    private static int getTextWidth(){
+    private static int getTextWidth() {
 
         FontMetrics fontMetrics = headlineLabel.getFontMetrics(headlineLabel.getFont());
         textWidth = fontMetrics.stringWidth(headlineLabel.getText());
