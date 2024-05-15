@@ -3,6 +3,7 @@ package GUI.Settings;
 import javax.swing.*;
 
 import GUI.GUI;
+import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 
@@ -14,7 +15,7 @@ import java.awt.event.*;
  */
 public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
-    private static JButton backBtn;
+    private static JButton configResetBtn = new JButton("<html>Einstellungen<br>zurücksetzen</html>");
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
     private static JLabel btnThemeSwitch = new JLabel(new ImageIcon());
@@ -25,6 +26,7 @@ public class SettingsGUI {
     private static Theme currentTheme = AppTheme.getConfigAppTheme();
     // public static boolean isDarkMode = true; // TODO: @Jonas brauchen wir das
     // noch??
+    private static JButton backBtn = new JButton("Zurück");
 
     /*
      * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
@@ -32,6 +34,7 @@ public class SettingsGUI {
      */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
+        addConfigDefaultsButton();
         addThemeButtons();
         addBackButton();
 
@@ -40,8 +43,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Erstellt das Einstellungs Fenster indem es einge props (Properties =>
-     * Eigenschaften) zuweist
+     * Erstellt das Einstellungs Fenster indem es
+     * einige props (Properties => Eigenschaften) zuweist
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
@@ -57,6 +60,23 @@ public class SettingsGUI {
                 settingsFrame.dispose();
             }
         });
+    }
+
+    /*
+     * Diese Methode fügt einen Knopf hinzu, womit man Config Einstellungen auf die
+     * Standardeinstellungen zurücksetzen kann
+     */
+    private static void addConfigDefaultsButton() {
+        configResetBtn.setBounds(465, 410, 110, 45);
+        configResetBtn.setBackground(Color.WHITE);
+        configResetBtn.setForeground(Color.BLACK);
+        configResetBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ConfigDefaults.restoreAllDefaults();
+            }
+        });
+
+        settingsFrame.add(configResetBtn);
     }
 
     /*
@@ -132,9 +152,6 @@ public class SettingsGUI {
         });
 
         settingsFrame.add(backBtn);
-    }
 
-    public static JButton getBackBtn() {
-        return backBtn;
     }
 }

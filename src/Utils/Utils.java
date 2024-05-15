@@ -9,9 +9,7 @@ import java.util.Map.Entry;
 
 import java.util.Set;
 
-import GUI.GUI;
 import Utils.Data.Calculations;
-import Utils.Data.ExchangeRateFetcher;
 
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
@@ -61,28 +59,6 @@ public class Utils {
     }
 
     /*
-     * Diese Methode ist der Hauptprozess für die Rechnung
-     */
-    public static void runCalcThread() {
-        // lambda funktion in der runCalcThread() funktion um asynchrones ausführen zu
-        // ermöglichen (=> GUI kann sich dadurch updaten)
-        Thread thread = new Thread(() -> {
-            GUI.displayAsLoading(true);
-
-            Calculations.convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
-
-            GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
-                    "Das Ergebnis ist " + Calculations.finalResult + " " + GUI.getTargetCur() + "\n" +
-                    "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
-                    "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
-
-            GUI.displayAsLoading(false);
-        });
-
-        thread.start();
-    }
-
-    /*
      * Diese Methode kopiert das Ergebnis in den Clipboard des Benutzers
      * siehe src\GUI\GUI.java\addCopyOutputButton()
      */
@@ -94,5 +70,18 @@ public class Utils {
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(stringSelection, null);
         }
+    }
+
+    /*
+     * Diese Methode überprüft, ob es in der Klammer Zahlen gibt.
+     * Je nach Inhalt gibt dies einen Wert zurück.
+     */
+    public static boolean containsDigit(String str) {
+        for (char c : str.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
