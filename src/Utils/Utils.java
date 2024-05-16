@@ -23,6 +23,8 @@ import java.awt.datatransfer.Clipboard;
  */
 public class Utils {
 
+    public static boolean failed;
+
     /*
      * Diese Methode stellt das End ergebnis auf zwei (nach) Kommastellen um
      * 
@@ -99,5 +101,10 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static boolean getFailed() {
+
+        return failed;
     }
 }

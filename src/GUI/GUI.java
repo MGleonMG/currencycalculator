@@ -62,6 +62,10 @@ public class GUI {
      */
     private static String baseCurResult, targetCurResult;
 
+  /* Diese Variabel wird für das Headline benutzt.
+     */  
+    private static int textWidth;
+
     /*
      * Updatet die dargestellte Sprache auf den GUI Komponenten
      */
@@ -135,7 +139,9 @@ public class GUI {
         frame.setLayout(null);
 
         headlineLabel.setFont(headlineLabel.getFont().deriveFont(30f));
-        headlineLabel.setBounds(335, 25, GUI.FRAME_WIDTH, 50);
+
+        // Durch den Inhalt wird das Label mittig gesetzt
+        headlineLabel.setBounds((FRAME_WIDTH - getTextWidth()) / 2, 25, getTextWidth(), 50);
 
         frame.add(headlineLabel);
     }
@@ -190,7 +196,7 @@ public class GUI {
         /*
          * Erstellt rechts eine Suchleiste
          */
-        searchBarTargetcur.setBounds(530, 215, 290, 20);
+        searchBarTargetcur.setBounds(FRAME_WIDTH - 340, 215, 290, 20);
         searchBarTargetcur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -242,7 +248,7 @@ public class GUI {
         dropdownBaseCur.setBounds(50, 250, 290, 50);
 
         dropdownTargetCur = new JComboBox<>();
-        dropdownTargetCur.setBounds(530, 250, 290, 50);
+        dropdownTargetCur.setBounds(FRAME_WIDTH - 340, 250, 290, 50);
 
         for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
             String isoCode = currency.getKey();
@@ -307,7 +313,7 @@ public class GUI {
      * Es nimmt den Betrag auf und wird in der Umwandlung der Währung verrechnet
      */
     private static void addCalculateButton() {
-        calculateBtn.setBounds(380, 250, 100, 25);
+        calculateBtn.setBounds(400, 250, 100, 25);
         calculateBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
@@ -330,7 +336,7 @@ public class GUI {
      * Es nimmt das Ergebnis und steckt es in den Clipboard
      */
     private static void addCopyOutputButton() {
-        clipboardBtn.setBounds(380, 405, 100, 30);
+        clipboardBtn.setBounds(400, 405, 100, 30);
 
         /*
          * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
@@ -358,9 +364,9 @@ public class GUI {
      * Fügt Komponenten hinzu die für input des users und output verantwortlich sind
      */
     private static void addInputOutput() {
-        outputLabel.setBounds(250, 285, 300, 150);
+        outputLabel.setBounds(300, 285, 300, 150);
         setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
-        inputField.setBounds(385, 290, 90, 30);
+        inputField.setBounds(405, 290, 90, 30);
 
         frame.add(inputField);
         frame.add(outputLabel);
@@ -490,7 +496,7 @@ public class GUI {
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         // Image.SCALE_FAST damit es das GIF anzeigt
         loadingGIF.setIcon(scaledIcon);
-        loadingGIF.setBounds(370, 260, 200, 200);
+        loadingGIF.setBounds(420, 260, 200, 200);
         frame.add(loadingGIF);
         loadingGIF.setVisible(false);
     }
@@ -609,4 +615,15 @@ public class GUI {
         return targetCurResult;
     }
 
+    /*
+     * Diese Methode nimmt die Länge der HeadlineLabel raus
+     * und setzt es in eine Variable. Dies wird verwendet, um den Label
+     * mittig zu halten.
+     */
+    private static int getTextWidth() {
+
+        FontMetrics fontMetrics = headlineLabel.getFontMetrics(headlineLabel.getFont());
+        textWidth = fontMetrics.stringWidth(headlineLabel.getText());
+        return textWidth;
+    }
 }
