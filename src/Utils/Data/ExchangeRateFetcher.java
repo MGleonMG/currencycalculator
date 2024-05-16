@@ -4,6 +4,7 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import GUI.GUI;
 import GUI.Popups.PopupDisplay;
 import Utils.Utils;
 
@@ -84,5 +85,11 @@ public class ExchangeRateFetcher {
         lastStartMillis = 0;
         lastEndMillis = 0;
         Utils.failed = true;
+    }
+
+
+    public static void hasFailed(){
+        GUI.setOutput("");
+        Utils.failed = false;
     }
 }
