@@ -62,8 +62,9 @@ public class GUI {
      */
     private static String baseCurResult, targetCurResult;
 
-  /* Diese Variabel wird für das Headline benutzt.
-     */  
+    /*
+     * Diese Variabel wird für das Headline benutzt.
+     */
     private static int textWidth;
 
     /*
