@@ -66,8 +66,11 @@ public class GUI {
      * Updatet die dargestellte Sprache auf den GUI Komponenten
      */
     // TODO @Leon: move down to bottom of the class
-    public static void updateDisplayedLanguage() {
-        Utils.refreshCurrencyDropdowns();
+    public static void updateDisplayedLanguage(boolean updateDropdowns) {
+        if (updateDropdowns) {
+            System.out.println("should call refreshCurrencyDropdowns() now...");
+            Utils.refreshCurrencyDropdowns();
+        }
 
         searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
         searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
@@ -98,7 +101,7 @@ public class GUI {
         addFooter();
 
         updateGUITheme(AppTheme.getConfigAppTheme());
-        updateDisplayedLanguage();
+        updateDisplayedLanguage(true);
 
         frame.requestFocus();
         frame.setVisible(true);

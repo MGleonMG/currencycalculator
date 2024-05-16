@@ -70,7 +70,13 @@ public class Language {
         }
 
         Locale.setDefault(locale);
-        GUI.updateDisplayedLanguage();
+        try {
+            GUI.updateDisplayedLanguage(true);
+        } catch (NullPointerException npe) {
+            // tu nichts.
+        }
+
+        PopupDisplay.throwInfoPopup("Sprache", "Spracheinstellungen geändert zu " + language.toString().toLowerCase());
     }
 
     // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus

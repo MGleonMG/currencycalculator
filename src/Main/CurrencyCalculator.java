@@ -24,10 +24,12 @@ public class CurrencyCalculator {
         // ----
         // debugging
         Scanner in = new Scanner(System.in);
+        System.out.print("update lang?  ->");
         if (in.nextLine().contains("y")) {
-            Language.setAppLanguage(Languages.GERMAN, false);
-            GUI.updateDisplayedLanguage();
+            System.out.println("updating..");
+            Language.setAppLanguage(Languages.SPANISH, false);
         }
+        System.out.println("\n");
 
         in.reset();
         in.close();
