@@ -15,12 +15,9 @@ public class ExchangeRateFetcher {
     private static double latestRate;
     private static long lastStartMillis, lastEndMillis;
     private static Object getLastFetchTime;
+    private static boolean hasFailed = false;
 
-    /*
-     * Um die Währungen auszurechnen, braucht die Methode die Währungen die der
-     * Enduser umwandeln möchte
-     */
-    // Webscraper um Daten von 'google.com/finance/' zu nutzen
+    // "Webscraper" um Daten von 'google.com/finance/' zu nutzen
     @SuppressWarnings("deprecation")
     public static void fetchExchangeRate(String baseCur, String targetCur) {
         try {
@@ -80,16 +77,15 @@ public class ExchangeRateFetcher {
     /*
      * Diese Methode setzt bei einer Fehlermeldung die Daten zurück
      */
-    private static void clearDataOnError() {
+    public static void clearDataOnError() {
+        hasFailed = true;
         latestRate = 0.0;
         lastStartMillis = 0;
         lastEndMillis = 0;
-        Utils.failed = true;
+        GUI.setOutput("");
     }
 
-
-    public static void hasFailed(){
-        GUI.setOutput("");
-        Utils.failed = false;
+    public static boolean hasFailed() {
+        return hasFailed;
     }
 }

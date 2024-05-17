@@ -7,6 +7,10 @@ import javax.swing.JOptionPane;
  * Info- und Fehler Popups für den Endnutzer darzustellen
  */
 public class PopupDisplay {
+    /*
+     * "Method Overloading" genutzt um die throwErrorPopup Methode
+     * mit und ohne "errorCode" parameter nutzen zu können
+     */
     public static void throwErrorPopup(String popupErrorMessage, String errorCode) {
         JOptionPane.showMessageDialog(null, popupErrorMessage + "\n\n\"" + errorCode + "\"",
                 "Ein Fehler ist aufgetreten", JOptionPane.ERROR_MESSAGE);
