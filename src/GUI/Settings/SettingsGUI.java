@@ -21,8 +21,8 @@ public class SettingsGUI {
     private static JButton backBtn = new JButton("Zurück");
 
     /*
-     * Diese Methode führt andere Methoden aus und fügt dadurch die einzelnen
-     * Objekten hinzu
+     * Diese Methode führt andere Methoden aus und
+     * fügt dadurch die einzelnen Objekte hinzu
      */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
@@ -55,8 +55,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Diese Methode fügt einen Knopf hinzu, womit man Config Einstellungen auf die
-     * Standardeinstellungen zurücksetzen kann
+     * Diese Methode fügt einen Knopf hinzu, womit man Config Einstellungen
+     * auf die Standardeinstellungen zurücksetzen kann
      */
     private static void addConfigDefaultsButton() {
         configResetBtn.setBounds(465, 410, 110, 45);
@@ -72,8 +72,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Diese Methode fügt die "Theme" Knöpfe hinzu, sodass man die einzelnen Themes
-     * ändern kann
+     * Diese Methode fügt die "Theme" Knöpfe hinzu,
+     * sodass man die einzelnen Themes ändern kann
      */
     private static void addThemeButtons() {
         lightBtn.setBounds(10, 500, 105, 30);
@@ -143,6 +143,5 @@ public class SettingsGUI {
         });
 
         settingsFrame.add(backBtn);
-
     }
 }
