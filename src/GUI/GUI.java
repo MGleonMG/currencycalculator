@@ -467,8 +467,8 @@ public class GUI {
             }
         });
     }
-
-    /*
+  
+     /*
      * Setzt den formatierten Output (inklusive Endergebnis)
      * mit richtigen Zeilenumbrüchen
      */
