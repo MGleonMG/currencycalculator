@@ -143,6 +143,22 @@ public class SettingsGUI {
         });
 
         settingsFrame.add(backBtn);
-
     }
+
+    public static JButton getConfigResetBtn() {
+        return configResetBtn;
+    }
+
+    public static JButton getDarkBtn() {
+        return darkBtn;
+    }
+
+    public static JButton getLightBtn() {
+        return lightBtn;
+    }
+
+    public static JButton getBackBtn() {
+        return backBtn;
+    }
+
 }

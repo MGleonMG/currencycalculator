@@ -28,7 +28,7 @@ public class GUI {
 
     // TODO @Leon: adjust this comment here below?
     // static final vars
-    public static final String TITLE = "title";
+    public static String title;
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
@@ -41,12 +41,12 @@ public class GUI {
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton();
     private static JButton clipboardBtn = new JButton();
-    private static JButton saveBtn = new JButton("Speichern");
-    private static JButton loadBtn = new JButton("Laden");
-    private static JLabel presetLabel = new JLabel("Letzte Rechnung");
-    private static JLabel fadeLabel = new JLabel("Gespeichert!");
+    private static JButton saveBtn = new JButton();
+    private static JButton loadBtn = new JButton();
+    private static JLabel presetLabel = new JLabel();
+    private static JLabel fadeLabel = new JLabel();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
-    private static JLabel headlineLabel = new JLabel("Währungsrechner");
+    private static JLabel headlineLabel = new JLabel("blankblankblankblankblank");
     private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
@@ -71,12 +71,11 @@ public class GUI {
      * Updatet die dargestellte Sprache auf den GUI Komponenten
      */
     // TODO @Leon: move down to bottom of the class
-    public static void updateDisplayedLanguage(boolean updateDropdowns) {
-        if (updateDropdowns) {
-            System.out.println("should call refreshCurrencyDropdowns() now...");
-            Utils.refreshCurrencyDropdowns();
-        }
+    public static void updateDisplayedLanguage() {
+        title = Language.getLangStringByKey("title");
+        updateTitle(frame);
 
+        headlineLabel.setText(Language.getLangStringByKey("title"));
         searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
         searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
         calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
@@ -84,6 +83,13 @@ public class GUI {
         saveBtn.setText(Language.getLangStringByKey("saveBtn"));
         loadBtn.setText(Language.getLangStringByKey("loadBtn"));
         fadeLabel.setText(Language.getLangStringByKey("fadeLabel"));
+        Utils.refreshCurrencyDropdowns();
+
+        // update settings Komponenten
+        SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("backBtn"));
+        SettingsGUI.getDarkBtn().setText(Language.getLangStringByKey("darkBtn"));
+        SettingsGUI.getLightBtn().setText(Language.getLangStringByKey("lightBtn"));
+        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("configResetBtn"));
     }
 
     /*
@@ -106,7 +112,7 @@ public class GUI {
         addFooter();
 
         updateGUITheme(AppTheme.getConfigAppTheme());
-        updateDisplayedLanguage(true);
+        updateDisplayedLanguage(/* true */);
 
         frame.requestFocus();
         frame.setVisible(true);
@@ -117,10 +123,14 @@ public class GUI {
         frame.setVisible(true);
     }
 
+    public static void updateTitle(JFrame jframe) {
+        jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion());
+    }
+
     public static void updateTitle(JFrame jframe, String rawTitleAddition) {
         String titleAddition = " - " + rawTitleAddition;
-        jframe.setTitle(
-                TITLE + " " + CurrencyCalculator.getAppVersion() + (rawTitleAddition != "" ? titleAddition : ""));
+        jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion()
+                + (rawTitleAddition != "" ? titleAddition : ""));
     }
 
     public static void setAppIcon(JFrame jframe) {

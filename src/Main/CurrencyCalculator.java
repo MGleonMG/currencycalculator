@@ -17,17 +17,17 @@ public class CurrencyCalculator {
 
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();
-        // TODO @Leon: remove this or refactor to somewhere else?
-        Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false);
+        Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false, true);
         GUI.drawGUI();
 
         // ----
         // debugging
+        // TODO @Leon: remove before merging PR into main
         Scanner in = new Scanner(System.in);
-        System.out.print("update lang?  ->");
+        System.out.print("update lang? -> ");
         if (in.nextLine().contains("y")) {
             System.out.println("updating..");
-            Language.setAppLanguage(Languages.SPANISH, false);
+            Language.setAppLanguage(Languages.SPANISH, false, false);
         }
         System.out.println("\n");
 

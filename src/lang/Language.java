@@ -32,7 +32,7 @@ public class Language {
      * in der config Datei des benutzers nötig ist
      */
     @SuppressWarnings("deprecation")
-    public static void setAppLanguage(Languages language, boolean updateConfig) {
+    public static void setAppLanguage(Languages language, boolean updateConfig, boolean onStartup) {
         fileName = "/resources/languages/lang_" + language.name().toLowerCase() + ".properties";
 
         try (InputStream inputStream = Language.class.getResourceAsStream(fileName)) {
@@ -70,13 +70,16 @@ public class Language {
         }
 
         Locale.setDefault(locale);
-        try {
-            GUI.updateDisplayedLanguage(true);
-        } catch (NullPointerException npe) {
-            // tu nichts.
-        }
 
-        PopupDisplay.throwInfoPopup("Sprache", "Spracheinstellungen geändert zu " + language.toString().toLowerCase());
+        if (!onStartup) {
+            try {
+                GUI.updateDisplayedLanguage(/* true */);
+            } catch (NullPointerException npe) {
+                // tu nichts.
+            }
+            PopupDisplay.throwInfoPopup("Sprache",
+                    "Spracheinstellungen geändert zu " + language.toString().toLowerCase());
+        }
     }
 
     // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus
