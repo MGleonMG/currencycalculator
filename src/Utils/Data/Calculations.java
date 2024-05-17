@@ -42,7 +42,7 @@ public class Calculations {
                 ExchangeRateFetcher.clearDataOnError();
             }
             GUI.displayAsLoading(false);
-            ExchangeRateFetcher.hasFailed = false;
+            ExchangeRateFetcher.setFailed();
         });
 
         thread.start();

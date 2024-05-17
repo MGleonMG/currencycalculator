@@ -15,7 +15,7 @@ public class ExchangeRateFetcher {
     private static double latestRate;
     private static long lastStartMillis, lastEndMillis;
     private static Object getLastFetchTime;
-    public static boolean hasFailed = false;
+    private static boolean hasFailed = false;
 
     // "Webscraper" um Daten von 'google.com/finance/' zu nutzen
     @SuppressWarnings("deprecation")
@@ -87,5 +87,9 @@ public class ExchangeRateFetcher {
 
     public static boolean getFailed() {
         return hasFailed;
+    }
+
+    public static void setFailed() {
+        hasFailed = false;
     }
 }
