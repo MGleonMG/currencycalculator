@@ -48,7 +48,7 @@ public class SettingsGUI {
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, "Einstellungen");
-        settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 20);
+        settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 220);
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
         settingsFrame.setLocationRelativeTo(null);
@@ -67,7 +67,7 @@ public class SettingsGUI {
      * auf die Standardeinstellungen zurücksetzen kann
      */
     private static void addConfigDefaultsButton() {
-        configResetBtn.setBounds(465, 410, 110, 45);
+        configResetBtn.setBounds(465, 210, 110, 45);
         configResetBtn.setBackground(Color.WHITE);
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
@@ -84,7 +84,7 @@ public class SettingsGUI {
      * sodass man die einzelnen Themes ändern kann
      */
     private static void addThemeButtons() {
-        lightBtn.setBounds(10, 500, 105, 30);
+        lightBtn.setBounds(10, 300, 105, 30);
         lightBtn.setBackground(Color.WHITE);
         lightBtn.setForeground(Color.BLACK);
 
@@ -94,7 +94,7 @@ public class SettingsGUI {
 
         settingsFrame.add(lightBtn);
 
-        darkBtn.setBounds(120, 500, 112, 30);
+        darkBtn.setBounds(120, 300, 112, 30);
         darkBtn.setBackground(Color.decode("#5A5A5A"));
         darkBtn.setForeground(Color.WHITE);
         if (AppTheme.getConfigAppTheme() == Theme.DARK_MODE) {
@@ -140,7 +140,7 @@ public class SettingsGUI {
      */
     private static void addBackButton() {
         backBtn = new JButton("Zurück");
-        backBtn.setBounds(475, 500, 100, 30);
+        backBtn.setBounds(475, 300, 100, 30);
         backBtn.setForeground(Color.WHITE);
         backBtn.setBackground(Color.decode("#00CCCC"));
         backBtn.addActionListener(new ActionListener() {
