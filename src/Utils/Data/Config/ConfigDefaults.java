@@ -11,7 +11,6 @@ public class ConfigDefaults {
     public static class Container {
         AppTheme appTheme;
         AppLanguage appLanguage;
-        // TODO @Leon: add default umrechnung wie z.B. 5 euro in USD?
     }
 
     @SuppressWarnings("unused")

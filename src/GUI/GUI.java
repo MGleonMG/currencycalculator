@@ -433,7 +433,7 @@ public class GUI {
     }
 
     /*
-     * TODO Kommentar
+     * Funktion im den Output auf das Label zu setzten
      */
     public static void setOutput(String output) {
         // JLabels akzeptueren kein normales \n als Line break, deshalb benutzen wir

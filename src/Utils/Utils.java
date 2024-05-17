@@ -21,8 +21,6 @@ import java.awt.datatransfer.Clipboard;
  */
 public class Utils {
 
-    public static boolean failed;
-
     /*
      * Diese Methode stellt das End ergebnis auf zwei (nach) Kommastellen um
      * 
@@ -61,7 +59,7 @@ public class Utils {
     }
 
     /*
-     * Diese Methode kopiert das Ergebnis in den Clipboard des Benutzers
+     * Diese Methode kopiert das Ergebnis in das Clipboard des Benutzers
      * siehe src\GUI\GUI.java\addCopyOutputButton()
      */
     public static void copyToClipboard() {
@@ -85,10 +83,5 @@ public class Utils {
             }
         }
         return false;
-    }
-
-    public static boolean getFailed() {
-
-        return failed;
     }
 }
