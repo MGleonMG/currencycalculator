@@ -33,7 +33,7 @@ public class Calculations {
 
             convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
-            if (ExchangeRateFetcher.hasFailed() == false) {
+            if (ExchangeRateFetcher.getFailed() == false) {
                 GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
                         "Das Ergebnis ist " + finalResult + " " + GUI.getTargetCur() + "\n" +
                         "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
@@ -42,6 +42,7 @@ public class Calculations {
                 ExchangeRateFetcher.clearDataOnError();
             }
             GUI.displayAsLoading(false);
+            ExchangeRateFetcher.hasFailed = false;
         });
 
         thread.start();
