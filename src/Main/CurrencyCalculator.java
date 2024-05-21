@@ -10,7 +10,13 @@ import lang.Language;
  */
 public class CurrencyCalculator {
 
-    private static final String VERSION = "1.0_RELEASE";
+    /*
+     * ver. x.y.z
+     * x: große Veränderungen / Überarbeitungen
+     * y: neue Features
+     * z: Bugfixes
+     */
+    private static final String VERSION = "v1.0.0";
 
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();

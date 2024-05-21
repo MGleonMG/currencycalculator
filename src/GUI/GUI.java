@@ -112,7 +112,7 @@ public class GUI {
         addFooter();
 
         setAppTheme(AppTheme.getConfigAppTheme());
-        updateDisplayedLanguage(/* true */);
+        updateDisplayedLanguage();
 
         frame.requestFocus();
         frame.setVisible(true);

@@ -73,12 +73,10 @@ public class Language {
 
         if (!onStartup) {
             try {
-                GUI.updateDisplayedLanguage(/* true */);
+                GUI.updateDisplayedLanguage();
             } catch (NullPointerException npe) {
                 // tu nichts.
             }
-            PopupDisplay.throwInfoPopup(getLangStringByKey("popup_title"),
-                    getLangStringByKey("info_popup") + language.toString().toLowerCase());
         }
     }
 

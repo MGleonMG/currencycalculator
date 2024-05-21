@@ -3,7 +3,10 @@ package GUI.Settings;
 import javax.swing.*;
 
 import GUI.GUI;
+import GUI.Popups.PopupDisplay;
+import Utils.Utils;
 import Utils.Data.Config.ConfigDefaults;
+import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 import lang.Language;
@@ -30,11 +33,11 @@ public class SettingsGUI {
      */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
+        addLangHeader();
+        addDropdownLangSelection();
         addConfigDefaultsButton();
         addThemeButtons();
         addBackButton();
-        addDropdownLangSelection();
-        showLangHeader();
 
         settingsFrame.requestFocus();
         settingsFrame.setVisible(true);
@@ -60,7 +63,7 @@ public class SettingsGUI {
         });
     }
 
-    private static void showLangHeader() {
+    private static void addLangHeader() {
         langHeader.setBounds(20, 40, 150, 30);
         langHeader.setBackground(Color.WHITE);
 
@@ -78,9 +81,35 @@ public class SettingsGUI {
 
         dropdownLangSelection.setBounds(xPosition, yPosition, dropdownWidth, dropdownHeight);
 
-        for (Languages lang : Languages.values()) {
-            dropdownLangSelection.addItem(lang.toString());
+        if (dropdownLangSelection.getItemCount() == 0) {
+            for (Languages lang : Languages.values()) {
+                dropdownLangSelection.addItem(lang.toString());
+            }
         }
+
+        dropdownLangSelection.setSelectedItem(AppLanguage.getConfigAppLanguage());
+
+        dropdownLangSelection.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    Language.setAppLanguage(Languages.valueOf(dropdownLangSelection.getSelectedItem().toString()),
+                            true,
+                            false);
+
+                    // baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die
+                    // Ausgewählte Währung
+                    // baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
+                    // String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der
+                    // Klammer
+                    // for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
+                    // if (Utils.containsDigit(part)) {
+                    // PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
+                    // }
+                    // }
+                }
+            }
+        });
 
         settingsFrame.add(dropdownLangSelection);
     }
