@@ -13,12 +13,10 @@ import GUI.Settings.SettingsGUI;
 import Main.CurrencyCalculator;
 import Utils.Utils;
 import Utils.Data.Calculations;
-import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 import lang.Language;
-import lang.Language.Languages;
 
 /*
  * Diese Klasse erstellt das "Graphical User Interface"
@@ -72,9 +70,11 @@ public class GUI {
      */
     // TODO @Leon: move down to bottom of the class
     public static void updateDisplayedLanguage() {
+        // update Programm Titel
         title = Language.getLangStringByKey("title");
         updateTitle(frame);
 
+        // update alle Hauptkomponenten
         headlineLabel.setText(Language.getLangStringByKey("title"));
         searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
         searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
@@ -111,7 +111,7 @@ public class GUI {
         addFadeLabel();
         addFooter();
 
-        updateGUITheme(AppTheme.getConfigAppTheme());
+        setAppTheme(AppTheme.getConfigAppTheme());
         updateDisplayedLanguage(/* true */);
 
         frame.requestFocus();
@@ -419,7 +419,7 @@ public class GUI {
      * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
      * Darkmode
      */
-    public static void updateGUITheme(Theme theme) {
+    public static void setAppTheme(Theme theme) {
         try {
             if (theme == Theme.DARK_MODE) {
                 UIManager.setLookAndFeel(new FlatDarkLaf());

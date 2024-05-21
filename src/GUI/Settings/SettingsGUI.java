@@ -23,7 +23,8 @@ public class SettingsGUI {
     private static JButton lightBtn = new JButton("Heller Modus");
     private static JButton backBtn = new JButton("Zurück");
     private static JComboBox<String> dropdownLangSelection;
-    private static JLabel langHeader = new JLabel("Sprache auswählen"); //muss auf die current language angepasst werden
+    private static JLabel langHeader = new JLabel("Sprache auswählen"); // muss auf die current language angepasst
+                                                                        // werden
 
     /*
      * Diese Methode führt andere Methoden aus und
@@ -33,7 +34,6 @@ public class SettingsGUI {
         setBasicFrameProps();
         addConfigDefaultsButton();
         addThemeButtons();
-        addDropdownLangSelection(); // Add this line to call the method
         addBackButton();
         addDropdownLangSelection();
         showLangHeader();
@@ -62,18 +62,19 @@ public class SettingsGUI {
         });
     }
 
-    private static void showLangHeader () {
-        langHeader.setBounds(20,40,150,30);
+    private static void showLangHeader() {
+        langHeader.setBounds(20, 40, 150, 30);
         langHeader.setBackground(Color.WHITE);
 
         settingsFrame.add(langHeader);
     }
 
     private static void addDropdownLangSelection() {
-       // String[] languages = {Languages lang : Languages.values()}; //language implementierung fehlt noch
-        //dropdownLangSelection = new JComboBox<>(languages);
+        // String[] languages = {Languages lang : Languages.values()}; //language
+        // implementierung fehlt noch
+        // dropdownLangSelection = new JComboBox<>(languages);
 
-        //position vom Dropdown -> Kann noch dynamisch gemacht werden
+        // position vom Dropdown -> Kann noch dynamisch gemacht werden
         int dropdownWidth = 150;
         int dropdownHeight = 30;
         int frameWidth = settingsFrame.getWidth();
@@ -176,4 +177,21 @@ public class SettingsGUI {
 
         settingsFrame.add(backBtn);
     }
+
+    public static JButton getConfigResetBtn() {
+        return configResetBtn;
+    }
+
+    public static JButton getDarkBtn() {
+        return darkBtn;
+    }
+
+    public static JButton getLightBtn() {
+        return lightBtn;
+    }
+
+    public static JButton getBackBtn() {
+        return backBtn;
+    }
+
 }
