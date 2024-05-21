@@ -352,7 +352,7 @@ public class GUI {
      * das als Button für das Einstellungs Menu agiert
      */
     private static void addSettingsLblBtn() {
-        ImageIcon originalIcon = new ImageIcon(("src/resources/buttons/settings_button.png"));
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/settings_button.png"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 

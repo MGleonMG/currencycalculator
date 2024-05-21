@@ -85,7 +85,11 @@ public class ExchangeRateFetcher {
         GUI.setOutput("");
     }
 
-    public static boolean hasFailed() {
+    public static boolean getFailed() {
         return hasFailed;
+    }
+
+    public static void setFailed() {
+        hasFailed = false;
     }
 }
