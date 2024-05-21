@@ -34,7 +34,7 @@ public class Calculations {
 
             convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
-            if (ExchangeRateFetcher.hasFailed() == false) {
+            if (ExchangeRateFetcher.getFailed() == false) {
                 GUI.setOutput(Language.getLangStringByKey("outputComponent1") + GUI.getAmount() + " " + GUI.getBaseCur()
                         + "\n" +
                         Language.getLangStringByKey("outputComponent2") + finalResult + " " + GUI.getTargetCur() + "\n"
@@ -47,6 +47,7 @@ public class Calculations {
                 ExchangeRateFetcher.clearDataOnError();
             }
             GUI.displayAsLoading(false);
+            ExchangeRateFetcher.setFailed();
         });
 
         thread.start();
