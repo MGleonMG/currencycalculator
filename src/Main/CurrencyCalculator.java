@@ -1,12 +1,9 @@
 package Main;
 
-import java.util.Scanner;
-
 import GUI.GUI;
 import Utils.Data.Config.Config;
 import Utils.Data.Config.Settings.AppLanguage;
 import lang.Language;
-import lang.Language.Languages;
 
 /*
  * Dies ist die HauptKlasse
@@ -19,21 +16,6 @@ public class CurrencyCalculator {
         Config.runFirstTimeSetupCheck();
         Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false, true);
         GUI.drawGUI();
-
-        // ----
-        // debugging
-        // TODO @Leon: remove before merging PR into main
-        Scanner in = new Scanner(System.in);
-        System.out.print("update lang? -> ");
-        if (in.nextLine().contains("y")) {
-            System.out.println("updating..");
-            Language.setAppLanguage(Languages.SPANISH, false, false);
-        }
-        System.out.println("\n");
-
-        in.reset();
-        in.close();
-        // ----
     }
 
     public static String getAppVersion() {
