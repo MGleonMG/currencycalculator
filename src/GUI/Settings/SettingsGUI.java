@@ -96,17 +96,6 @@ public class SettingsGUI {
                     Language.setAppLanguage(Languages.valueOf(dropdownLangSelection.getSelectedItem().toString()),
                             true,
                             false);
-
-                    // baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die
-                    // Ausgewählte Währung
-                    // baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    // String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der
-                    // Klammer
-                    // for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
-                    // if (Utils.containsDigit(part)) {
-                    // PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
-                    // }
-                    // }
                 }
             }
         });
