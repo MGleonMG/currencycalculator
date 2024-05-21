@@ -13,6 +13,7 @@ import com.google.gson.stream.JsonReader;
 
 import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Config;
+import lang.Language;
 import lang.Language.Languages;
 
 public class AppLanguage {
@@ -36,8 +37,8 @@ public class AppLanguage {
                 | NullPointerException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim abrufen deiner Sprachen Einstellungen!\n"
-                            + "Wenn dieser Fehler andauern sollte dann lösche bitte die Datei:\n"
+                    Language.getLangStringByKey("error_lang_set") + "\n"
+                            + Language.getLangStringByKey("error_info") + "\n"
                             + Config.getFilePath(), /* TODO @Leon: remove this? */
                     e.getMessage());
             return null;
@@ -59,7 +60,7 @@ public class AppLanguage {
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim speichern deiner Sprachen Einstellungen!",
+                    Language.getLangStringByKey("error_lang_set"),
                     e.getMessage());
         }
     }

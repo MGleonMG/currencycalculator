@@ -40,7 +40,7 @@ public class Language {
                 properties.load(reader);
             }
         } catch (IOException e) {
-            PopupDisplay.throwErrorPopup("Es ist ein Fehler beim Laden der Spracheinstellungen aufgetreten",
+            PopupDisplay.throwErrorPopup(getLangStringByKey("error_setapplanguage"),
                     e.getMessage());
             System.exit(1);
         }
@@ -66,7 +66,7 @@ public class Language {
 
         if (updateConfig) {
             AppLanguage.setConfigAppLanguage(language);
-            PopupDisplay.throwInfoPopup("App Sprache", "Spracheinstellungen wurden geändert");
+            PopupDisplay.throwInfoPopup(getLangStringByKey("popup_titleapp"), getLangStringByKey("language_changed"));
         }
 
         Locale.setDefault(locale);
@@ -77,8 +77,8 @@ public class Language {
             } catch (NullPointerException npe) {
                 // tu nichts.
             }
-            PopupDisplay.throwInfoPopup("Sprache",
-                    "Spracheinstellungen geändert zu " + language.toString().toLowerCase());
+            PopupDisplay.throwInfoPopup(getLangStringByKey("popup_title"),
+                    getLangStringByKey("info_popup") + language.toString().toLowerCase());
         }
     }
 

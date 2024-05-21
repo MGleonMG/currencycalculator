@@ -33,8 +33,8 @@ public class GUI {
     // Components
     private static JFrame frame = new JFrame();
     private static JTextField inputField = new JTextField();
-    public static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
-            searchBarTargetcur = new JTextField("Nach Währung Filtern");
+    public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
+            searchBarTargetcur = new JTextField(Language.getLangStringByKey("searchBar"));
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton();
@@ -86,10 +86,10 @@ public class GUI {
         Utils.refreshCurrencyDropdowns();
 
         // update settings Komponenten
-        SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("backBtn"));
-        SettingsGUI.getDarkBtn().setText(Language.getLangStringByKey("darkBtn"));
-        SettingsGUI.getLightBtn().setText(Language.getLangStringByKey("lightBtn"));
-        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("configResetBtn"));
+        SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
+        SettingsGUI.getDarkBtn().setText(Language.getLangStringByKey("dark_mode"));
+        SettingsGUI.getLightBtn().setText(Language.getLangStringByKey("light_mode"));
+        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
     }
 
     /*
@@ -170,7 +170,7 @@ public class GUI {
         searchBarBaseCur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBarBaseCur.getText().equals("Nach Währung Filtern")) {
+                if (searchBarBaseCur.getText().equals(Language.getLangStringByKey("searchBar"))) {
                     searchBarBaseCur.setText("");
                 }
             }
@@ -178,7 +178,7 @@ public class GUI {
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchBarBaseCur.getText().isEmpty()) {
-                    searchBarBaseCur.setText("Nach Währung Filtern");
+                    searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
                 }
             }
         });
@@ -211,7 +211,7 @@ public class GUI {
         searchBarTargetcur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBarTargetcur.getText().equals("Nach Währung Filtern")) {
+                if (searchBarTargetcur.getText().equals(Language.getLangStringByKey("searchBar"))) {
                     searchBarTargetcur.setText("");
                 }
             }
@@ -219,7 +219,7 @@ public class GUI {
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchBarTargetcur.getText().isEmpty()) {
-                    searchBarTargetcur.setText("Nach Währung Filtern");
+                    searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
                 }
             }
         });
@@ -283,7 +283,7 @@ public class GUI {
                     String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer
                     for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
                         if (Utils.containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
+                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
                         }
                     }
                 }
@@ -299,7 +299,7 @@ public class GUI {
                     String[] parts = targetCurResult.split("\\)");
                     for (String part : parts) {
                         if (Utils.containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
+                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
                         }
                     }
                 }
@@ -376,7 +376,7 @@ public class GUI {
      */
     private static void addInputOutput() {
         outputLabel.setBounds(300, 285, 300, 150);
-        setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
+        setOutput(Language.getLangStringByKey("outputLabel"));
         inputField.setBounds(405, 290, 90, 30);
 
         frame.add(inputField);
@@ -431,8 +431,8 @@ public class GUI {
             SwingUtilities.updateComponentTreeUI(frame);
 
         } catch (Exception e) {
-            PopupDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
-                    "Das Programm wird möglicherweise etwas anders aussehen als sonst!", e.getMessage());
+            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_theme_get") + "\n" +
+                    Language.getLangStringByKey("error_theme_look"), e.getMessage());
         }
     }
 
@@ -487,13 +487,13 @@ public class GUI {
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
             calculateBtn.setEnabled(false);
-            setOutput("Lädt...");
+            setOutput(Language.getLangStringByKey("loading"));
             loadingGIF.setVisible(true);
-            calculateBtn.setText("Lädt...");
+            calculateBtn.setText(Language.getLangStringByKey("loading"));
         } else {
             calculateBtn.setEnabled(true);
             loadingGIF.setVisible(false);
-            calculateBtn.setText("Umrechnen");
+            calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
         }
     }
 
@@ -523,7 +523,7 @@ public class GUI {
                     public void run() {
                         if (inputValue == null || baseCurResult == null || targetCurResult == null) {
                             PopupDisplay.throwErrorPopup(
-                                    "Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
+                                    Language.getLangStringByKey("error_lastcalc_isnull"));
                         } else {
                             LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
                             runFadeLabel();

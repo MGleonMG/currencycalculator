@@ -5,6 +5,7 @@ import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
+import lang.Language;
 import lang.Language.Languages;
 
 public class ConfigDefaults {
@@ -32,7 +33,7 @@ public class ConfigDefaults {
         LastCalculation.setConfigLastCalc("EUR", "USD", "5.0");
 
         PopupDisplay.throwInfoPopup("Config reset",
-                "Das Program schließt sich nun. Beim erneuten Öffnen sind alle Einstellungen zurückgesetzt.");
+                Language.getLangStringByKey("popup_restore_default"));
         System.exit(0);
     }
 }
