@@ -6,6 +6,9 @@ import GUI.GUI;
 import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.AppTheme.Theme;
+import lang.Language.Languages;
+import resources.languages.*;
+import Utils.Data.Config.Settings.AppLanguage;
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -19,6 +22,8 @@ public class SettingsGUI {
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
     private static JButton backBtn = new JButton("Zurück");
+    private static JComboBox<String> dropdownLangSelection;
+    private static JLabel langHeader = new JLabel("Sprache auswählen"); //muss auf die current language angepasst werden
 
     /*
      * Diese Methode führt andere Methoden aus und
@@ -28,7 +33,10 @@ public class SettingsGUI {
         setBasicFrameProps();
         addConfigDefaultsButton();
         addThemeButtons();
+        addDropdownLangSelection(); // Add this line to call the method
         addBackButton();
+        addDropdownLangSelection();
+        showLangHeader();
 
         settingsFrame.requestFocus();
         settingsFrame.setVisible(true);
@@ -52,6 +60,30 @@ public class SettingsGUI {
                 settingsFrame.dispose();
             }
         });
+    }
+
+    private static void showLangHeader () {
+        langHeader.setBounds(20,40,150,30);
+        langHeader.setBackground(Color.WHITE);
+
+        settingsFrame.add(langHeader);
+    }
+
+    private static void addDropdownLangSelection() {
+       // String[] languages = {Languages lang : Languages.values()}; //language implementierung fehlt noch
+        //dropdownLangSelection = new JComboBox<>(languages);
+
+        //position vom Dropdown -> Kann noch dynamisch gemacht werden
+        int dropdownWidth = 150;
+        int dropdownHeight = 30;
+        int frameWidth = settingsFrame.getWidth();
+        int frameHeight = settingsFrame.getHeight();
+        int xPosition = (frameWidth - dropdownWidth) / 2;
+        int yPosition = (frameHeight - dropdownHeight) / 2;
+
+        dropdownLangSelection.setBounds(xPosition, yPosition, dropdownWidth, dropdownHeight);
+
+        settingsFrame.add(dropdownLangSelection);
     }
 
     /*
@@ -98,7 +130,7 @@ public class SettingsGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    GUI.updateGUITheme(Theme.LIGHT_MODE); // Übertrage das Theme auf die GUI-Klasse
+                    GUI.setAppTheme(Theme.LIGHT_MODE); // Übertrage das Theme auf die GUI-Klasse
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
                     lightBtn.setEnabled(false);
                     darkBtn.setEnabled(true);
@@ -113,7 +145,7 @@ public class SettingsGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    GUI.updateGUITheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
+                    GUI.setAppTheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiert das UI des Frames
                     lightBtn.setEnabled(true);
                     darkBtn.setEnabled(false);
@@ -144,21 +176,4 @@ public class SettingsGUI {
 
         settingsFrame.add(backBtn);
     }
-
-    public static JButton getConfigResetBtn() {
-        return configResetBtn;
-    }
-
-    public static JButton getDarkBtn() {
-        return darkBtn;
-    }
-
-    public static JButton getLightBtn() {
-        return lightBtn;
-    }
-
-    public static JButton getBackBtn() {
-        return backBtn;
-    }
-
 }
