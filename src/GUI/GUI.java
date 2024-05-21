@@ -318,7 +318,7 @@ public class GUI {
          * Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt
          */
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
-        Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        Image scaledImage = originalIcon.getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
         clipboardLblBtn.setIcon(scaledIcon);
