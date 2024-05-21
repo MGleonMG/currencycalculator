@@ -10,7 +10,7 @@ import lang.Language;
  */
 public class CurrencyCalculator {
 
-    private static final String VERSION = "1.0_indev";
+    private static final String VERSION = "1.0_RELEASE";
 
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();

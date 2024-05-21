@@ -5,7 +5,7 @@
 
 </div>
 
-<h1 align="center">Währungsrechner - <img alt="version" src="https://img.shields.io/badge/version-1.0__indev-dark_green"></h1>
+<h1 align="center">Währungsrechner - <img alt="version" src="https://img.shields.io/badge/version-1.0__RELEASE-dark_green"></h1>
 
 <p align="center">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/mgleonmg/currencycalculator?color=56BEB8">
@@ -68,7 +68,8 @@ $ git pull origin main
 ```
 
 ## :arrow_down: Download
-TBD
+JAR Datei noch in Arbeit.\
+Zur Zeit nur durch Code Kompilierung ausführbar.
 
 ## :deciduous_tree: Projektstruktur ##
 ```
