@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import GUI.GUI;
+
 import java.util.Set;
 
 import Utils.Data.Calculations;
@@ -56,6 +58,20 @@ public class Utils {
         }
 
         return currencies.entrySet();
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void refreshCurrencyDropdowns() {
+        GUI.getComboBoxes()[0].removeAllItems();
+        GUI.getComboBoxes()[1].removeAllItems();
+
+        for (Map.Entry<String, String> currency : getAllCurrencies()) {
+            String isoCode = currency.getKey();
+            String currencyName = currency.getValue();
+
+            GUI.getComboBoxes()[0].addItem(currencyName + " (" + isoCode + ")");
+            GUI.getComboBoxes()[1].addItem(currencyName + " (" + isoCode + ")");
+        }
     }
 
     /*

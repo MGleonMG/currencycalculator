@@ -13,6 +13,7 @@ import com.google.gson.stream.JsonReader;
 
 import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Config;
+import lang.Language;
 
 public class LastCalculation {
     String baseCur, targetCur, amount, lastFetchTime;
@@ -41,13 +42,13 @@ public class LastCalculation {
 
         } catch (NullPointerException npe) {
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim Abrufen deiner Einstellungen!",
-                    "Du hast scheinbar noch keine letzte Rechnung abgespeichert");
+                    Language.getLangStringByKey("error_lastcalc_get"),
+                    Language.getLangStringByKey("error_lastcalc_nosaved"));
             return null;
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim Abrufen deiner Einstellungen!",
+                    Language.getLangStringByKey("error_lastcalc_get"),
                     e.getMessage());
             return null;
         }
@@ -73,7 +74,7 @@ public class LastCalculation {
         } catch (JsonIOException | JsonSyntaxException | IOException e) {
 
             PopupDisplay.throwErrorPopup(
-                    "Es gab scheinbar ein Problem beim speichern deiner Einstellungen!",
+                    Language.getLangStringByKey("error_lastcalc_set"),
                     e.getMessage());
         }
     }

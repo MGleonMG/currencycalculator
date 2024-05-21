@@ -4,8 +4,11 @@ import javax.swing.*;
 
 import GUI.GUI;
 import Utils.Data.Config.ConfigDefaults;
+import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.AppTheme.Theme;
+import lang.Language;
+import lang.Language.Languages;
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -15,10 +18,12 @@ import java.awt.event.*;
  */
 public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
-    private static JButton configResetBtn = new JButton("<html>Einstellungen<br>zurücksetzen</html>");
-    private static JButton darkBtn = new JButton("Dunkler Modus");
-    private static JButton lightBtn = new JButton("Heller Modus");
-    private static JButton backBtn = new JButton("Zurück");
+    private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
+    private static JButton darkBtn = new JButton(Language.getLangStringByKey("dark_mode"));
+    private static JButton lightBtn = new JButton(Language.getLangStringByKey("light_mode"));
+    private static JButton backBtn = new JButton(Language.getLangStringByKey("back"));
+    private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
+    private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
 
     /*
      * Diese Methode führt andere Methoden aus und
@@ -26,6 +31,8 @@ public class SettingsGUI {
      */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
+        addLangHeader();
+        addDropdownLangSelection();
         addConfigDefaultsButton();
         addThemeButtons();
         addBackButton();
@@ -39,7 +46,7 @@ public class SettingsGUI {
      * einige props (Properties => Eigenschaften) zuweist
      */
     private static void setBasicFrameProps() {
-        GUI.updateTitle(settingsFrame, "Einstellungen");
+        GUI.updateTitle(settingsFrame, Language.getLangStringByKey("settings"));
         settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 220);
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
@@ -52,6 +59,46 @@ public class SettingsGUI {
                 settingsFrame.dispose();
             }
         });
+    }
+
+    private static void addLangHeader() {
+        langHeader.setBounds(20, 40, 150, 30);
+        langHeader.setBackground(Color.WHITE);
+
+        settingsFrame.add(langHeader);
+    }
+
+    private static void addDropdownLangSelection() {
+        // position vom Dropdown -> Kann noch dynamisch gemacht werden
+        int dropdownWidth = 150;
+        int dropdownHeight = 30;
+        int frameWidth = settingsFrame.getWidth();
+        int frameHeight = settingsFrame.getHeight();
+        int xPosition = (frameWidth - dropdownWidth) / 2;
+        int yPosition = (frameHeight - dropdownHeight) / 2;
+
+        dropdownLangSelection.setBounds(xPosition, yPosition, dropdownWidth, dropdownHeight);
+
+        if (dropdownLangSelection.getItemCount() == 0) {
+            for (Languages lang : Languages.values()) {
+                dropdownLangSelection.addItem(lang.toString());
+            }
+        }
+
+        dropdownLangSelection.setSelectedItem(AppLanguage.getConfigAppLanguage());
+
+        dropdownLangSelection.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    Language.setAppLanguage(Languages.valueOf(dropdownLangSelection.getSelectedItem().toString()),
+                            true,
+                            false);
+                }
+            }
+        });
+
+        settingsFrame.add(dropdownLangSelection);
     }
 
     /*
@@ -130,7 +177,7 @@ public class SettingsGUI {
      * zurückkehrt
      */
     private static void addBackButton() {
-        backBtn = new JButton("Zurück");
+        backBtn = new JButton(Language.getLangStringByKey("back"));
         backBtn.setBounds(475, 300, 100, 30);
         backBtn.setForeground(Color.WHITE);
         backBtn.setBackground(Color.decode("#00CCCC"));
@@ -144,4 +191,21 @@ public class SettingsGUI {
 
         settingsFrame.add(backBtn);
     }
+
+    public static JButton getConfigResetBtn() {
+        return configResetBtn;
+    }
+
+    public static JButton getDarkBtn() {
+        return darkBtn;
+    }
+
+    public static JButton getLightBtn() {
+        return lightBtn;
+    }
+
+    public static JButton getBackBtn() {
+        return backBtn;
+    }
+
 }
