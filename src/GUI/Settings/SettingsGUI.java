@@ -7,8 +7,6 @@ import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 import lang.Language.Languages;
-import resources.languages.*;
-import Utils.Data.Config.Settings.AppLanguage;
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -22,7 +20,7 @@ public class SettingsGUI {
     private static JButton darkBtn = new JButton("Dunkler Modus");
     private static JButton lightBtn = new JButton("Heller Modus");
     private static JButton backBtn = new JButton("Zurück");
-    private static JComboBox<String> dropdownLangSelection;
+    private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
     private static JLabel langHeader = new JLabel("Sprache auswählen"); // muss auf die current language angepasst
                                                                         // werden
 
@@ -70,10 +68,6 @@ public class SettingsGUI {
     }
 
     private static void addDropdownLangSelection() {
-        // String[] languages = {Languages lang : Languages.values()}; //language
-        // implementierung fehlt noch
-        // dropdownLangSelection = new JComboBox<>(languages);
-
         // position vom Dropdown -> Kann noch dynamisch gemacht werden
         int dropdownWidth = 150;
         int dropdownHeight = 30;
@@ -83,6 +77,10 @@ public class SettingsGUI {
         int yPosition = (frameHeight - dropdownHeight) / 2;
 
         dropdownLangSelection.setBounds(xPosition, yPosition, dropdownWidth, dropdownHeight);
+
+        for (Languages lang : Languages.values()) {
+            dropdownLangSelection.addItem(lang.toString());
+        }
 
         settingsFrame.add(dropdownLangSelection);
     }
