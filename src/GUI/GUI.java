@@ -311,7 +311,7 @@ public class GUI {
      * Es nimmt das Ergebnis und steckt es in den Clipboard
      */
     private static void addCopyOutputLblBtn() {
-        clipboardLblBtn.setBounds(400, 405, 100, 30);
+        clipboardLblBtn.setBounds(420, 405, 100, 30);
 
         /*
          * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
@@ -327,7 +327,7 @@ public class GUI {
             public void mouseClicked(MouseEvent e) {
                 if (targetCurResult != null) {
                     Utils.copyToClipboard();
-                    runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 30, clipboardLblBtn.getY() + 30, 70, 25);
+                    runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
                 } else {
                     PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
                 }
