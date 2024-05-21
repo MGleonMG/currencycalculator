@@ -35,7 +35,6 @@ public class GUI {
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton("Umrechnen");
-    private static JButton clipboardBtn = new JButton();
     private static JButton saveBtn = new JButton("Speichern");
     private static JButton loadBtn = new JButton("Laden");
     private static JLabel presetLabel = new JLabel("Letzte Rechnung");
@@ -43,6 +42,7 @@ public class GUI {
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
     private static JLabel headlineLabel = new JLabel("Währungsrechner");
     private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
+    private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
 
@@ -73,7 +73,7 @@ public class GUI {
         addDropdownWithFilters();
         addInputOutput();
         addLoadingCircleGIF();
-        addCopyOutputButton();
+        addCopyOutputLblBtn();
         addPresetLabel();
         addSaveCalculationButton();
         addLoadCalculationButton();
@@ -310,8 +310,8 @@ public class GUI {
      * 
      * Es nimmt das Ergebnis und steckt es in den Clipboard
      */
-    private static void addCopyOutputButton() {
-        clipboardBtn.setBounds(400, 405, 100, 30);
+    private static void addCopyOutputLblBtn() {
+        clipboardLblBtn.setBounds(400, 405, 100, 30);
 
         /*
          * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
@@ -321,18 +321,20 @@ public class GUI {
         Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipboardBtn.setIcon(scaledIcon);
-        clipboardBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        Utils.copyToClipboard();
-                    }
-                });
+        clipboardLblBtn.setIcon(scaledIcon);
+        clipboardLblBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (targetCurResult != null) {
+                    Utils.copyToClipboard();
+                    runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 30, clipboardLblBtn.getY() + 30, 70, 25);
+                } else {
+                    PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
+                }
             }
         });
 
-        frame.add(clipboardBtn);
+        frame.add(clipboardLblBtn);
     }
 
     /*
@@ -487,7 +489,8 @@ public class GUI {
                                     "Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
                         } else {
                             LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
-                            runFadeLabel();
+                            // TODO: Add Lang support below
+                            runCustomFadeLabel("Gespeichert", 200, 450, 100, 25);
                         }
                     }
                 });
@@ -545,7 +548,10 @@ public class GUI {
      * Diese Methode erstellt ein Label, dass dem Benutzer zurückgibt,
      * dass die eingegebenen Daten gespeichert sind.
      */
-    public static void runFadeLabel() {
+    public static void runCustomFadeLabel(String text, int locactionX, int locactionY, int width, int height) {
+        fadeLabel.setText(text);
+        fadeLabel.setBounds(locactionX, locactionY, width, height);
+
         fadeLabel.setVisible(true);
         Timer timer = new Timer(50, new ActionListener() {
             private float opacity = 1.0f; // opacity = transparenz
@@ -557,7 +563,9 @@ public class GUI {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                opacity -= 0.05f;
+                // Die opacity wird mit jedem Durchlauf verringert
+                // ..erreicht sie 0,00, so wird das Label "entfernt"
+                opacity -= 0.02f;
                 if (opacity <= 0.0f) {
                     ((Timer) e.getSource()).stop();
                     fadeLabel.setVisible(false);
