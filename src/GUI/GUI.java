@@ -37,13 +37,13 @@ public class GUI {
             searchBarTargetcur = new JTextField(Language.getLangStringByKey("searchBar"));
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
-    private static JButton calculateBtn = new JButton();
+    private static JButton calculateBtn = new JButton();    
     private static JButton saveBtn = new JButton();
     private static JButton loadBtn = new JButton();
     private static JLabel presetLabel = new JLabel();
     private static JLabel fadeLabel = new JLabel();
-    private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
-    private static JLabel headlineLabel = new JLabel("blankblankblankblankblank");
+    private static JLabel outputLabel = new JLabel(Language.getLangStringByKey("outputLabel"), SwingConstants.CENTER);
+    private static JLabel headlineLabel = new JLabel(Language.getLangStringByKey("title"));
     private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
     private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel settingsLblBtn = new JLabel();
