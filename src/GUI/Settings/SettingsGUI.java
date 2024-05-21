@@ -3,8 +3,6 @@ package GUI.Settings;
 import javax.swing.*;
 
 import GUI.GUI;
-import GUI.Popups.PopupDisplay;
-import Utils.Utils;
 import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
