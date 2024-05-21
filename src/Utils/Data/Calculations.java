@@ -35,13 +35,13 @@ public class Calculations {
             convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             if (ExchangeRateFetcher.getFailed() == false) {
-                GUI.setOutput(Language.getLangStringByKey("outputComponent1") + GUI.getAmount() + " " + GUI.getBaseCur()
+                GUI.setOutput(Language.getLangStringByKey("outputComponent1") + " " + GUI.getAmount() + " " + GUI.getBaseCur()
                         + "\n" +
-                        Language.getLangStringByKey("outputComponent2") + finalResult + " " + GUI.getTargetCur() + "\n"
+                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " " + GUI.getTargetCur() + "\n"
                         +
-                        Language.getLangStringByKey("outputComponent3") + ExchangeRateFetcher.getLatestExchangeRate()
+                        Language.getLangStringByKey("outputComponent3") + " " + ExchangeRateFetcher.getLatestExchangeRate()
                         + "\n" +
-                        Language.getLangStringByKey("outputComponent4") + ExchangeRateFetcher.getLastFetchTime()
+                        Language.getLangStringByKey("outputComponent4") + " " + ExchangeRateFetcher.getLastFetchTime()
                         + "ms");
             } else {
                 ExchangeRateFetcher.clearDataOnError();
