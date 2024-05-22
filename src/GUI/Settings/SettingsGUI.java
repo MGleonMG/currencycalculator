@@ -16,6 +16,7 @@ import java.awt.event.*;
 /*
  * Diese Klasse erstellt eine GUI für die Einstellungen 
  */
+@SuppressWarnings("unused") // TODO @Leon: remove before merging into main
 public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
@@ -25,9 +26,9 @@ public class SettingsGUI {
     private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
     private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
     private static final ImageIcon darkmodeDM = new ImageIcon("resources/buttons/Darkmode_DM.png"),
-              darkmodeLM = new ImageIcon("resources/buttons/Darkmode_LM.png"),
-              lightmodeLM = new ImageIcon("resources/buttons/lightmode_LM.png"),
-              lightmodeDM = new ImageIcon("resources/buttons/lightmode_DM.png");
+            darkmodeLM = new ImageIcon("resources/buttons/Darkmode_LM.png"),
+            lightmodeLM = new ImageIcon("resources/buttons/lightmode_LM.png"),
+            lightmodeDM = new ImageIcon("resources/buttons/lightmode_DM.png");
     private static Theme currentTheme = AppTheme.getConfigAppTheme();
 
     /*
