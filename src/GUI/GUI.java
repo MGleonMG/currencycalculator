@@ -87,7 +87,7 @@ public class GUI {
 
         // update settings Komponenten
         SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
-        SettingsGUI.getDarkBtn().setText(Language.getLangStringByKey("dark_mode"));
+        SettingsGUI.getThemeBtn().setText(Language.getLangStringByKey("dark_mode"));
         SettingsGUI.getLightBtn().setText(Language.getLangStringByKey("light_mode"));
         SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
     }

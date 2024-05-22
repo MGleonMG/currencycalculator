@@ -16,19 +16,17 @@ import java.awt.event.*;
 /*
  * Diese Klasse erstellt eine GUI für die Einstellungen 
  */
-@SuppressWarnings("unused") // TODO @Leon: remove before merging into main
 public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
-    private static JButton darkBtn = new JButton(Language.getLangStringByKey("dark_mode"));
-    private static JButton lightBtn = new JButton(Language.getLangStringByKey("light_mode"));
+    private static JButton themeBtn = new JButton("X"/* <= remove later */);
     private static JButton backBtn = new JButton(Language.getLangStringByKey("back"));
     private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
     private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
-    private static final ImageIcon darkmodeDM = new ImageIcon("resources/buttons/Darkmode_DM.png"),
-            darkmodeLM = new ImageIcon("resources/buttons/Darkmode_LM.png"),
-            lightmodeLM = new ImageIcon("resources/buttons/lightmode_LM.png"),
-            lightmodeDM = new ImageIcon("resources/buttons/lightmode_DM.png");
+    private static final ImageIcon darkmodeDM = new ImageIcon("resources/buttons/themes/button_darkmode_dark.png"),
+            darkmodeLM = new ImageIcon("resources/buttons/themes/button_darkmode_light.png"),
+            lightmodeDM = new ImageIcon("resources/buttons/themes/button_lightmode_dark.png"),
+            lightmodeLM = new ImageIcon("resources/buttons/themes/button_lightmode_light.png");
     private static Theme currentTheme = AppTheme.getConfigAppTheme();
 
     /*
@@ -40,7 +38,7 @@ public class SettingsGUI {
         addLangHeader();
         addDropdownLangSelection();
         addConfigDefaultsButton();
-        addThemeButtons();
+        addThemeSwitchButton();
         addBackButton();
 
         settingsFrame.requestFocus();
@@ -128,55 +126,30 @@ public class SettingsGUI {
      * Diese Methode fügt die "Theme" Knöpfe hinzu,
      * sodass man die einzelnen Themes ändern kann
      */
-    private static void addThemeButtons() {
-        lightBtn.setBounds(10, 300, 105, 30);
-        lightBtn.setBackground(Color.WHITE);
-        lightBtn.setForeground(Color.BLACK);
-
-        if (AppTheme.getConfigAppTheme() == Theme.LIGHT_MODE) {
-            lightBtn.setEnabled(false);
-        }
-
-        settingsFrame.add(lightBtn);
-
-        darkBtn.setBounds(120, 300, 112, 30);
-        darkBtn.setBackground(Color.decode("#5A5A5A"));
-        darkBtn.setForeground(Color.WHITE);
+    private static void addThemeSwitchButton() {
+        themeBtn.setBounds(120, 300, 80, 80);
+        themeBtn.setBackground(Color.decode("#5A5A5A"));
+        // themeBtn.setForeground(Color.WHITE);
         if (AppTheme.getConfigAppTheme() == Theme.DARK_MODE) {
-            darkBtn.setEnabled(false);
+            themeBtn.setEnabled(false);
         }
 
-        settingsFrame.add(darkBtn);
-
-        lightBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    GUI.setAppTheme(Theme.LIGHT_MODE); // Übertrage das Theme auf die GUI-Klasse
-                    SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiere das UI des Frames
-                    lightBtn.setEnabled(false);
-                    darkBtn.setEnabled(true);
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        darkBtn.addActionListener(new ActionListener() {
+        themeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     GUI.setAppTheme(Theme.DARK_MODE); // Übertrage das Theme auf die GUI-Klasse
                     SwingUtilities.updateComponentTreeUI(settingsFrame); // Aktualisiert das UI des Frames
                     lightBtn.setEnabled(true);
-                    darkBtn.setEnabled(false);
+                    themeBtn.setEnabled(false);
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
+
+        settingsFrame.add(themeBtn);
     }
 
     /*
@@ -203,8 +176,8 @@ public class SettingsGUI {
         return configResetBtn;
     }
 
-    public static JButton getDarkBtn() {
-        return darkBtn;
+    public static JButton getThemeBtn() {
+        return themeBtn;
     }
 
     public static JButton getLightBtn() {
