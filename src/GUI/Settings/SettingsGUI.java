@@ -15,8 +15,8 @@ import java.awt.Image;
 import java.awt.event.*;
 
 /*
- * Diese Klasse erstellt eine GUI für die Einstellungen 
- */
+* Diese Klasse erstellt eine GUI für die Einstellungen 
+*/
 public class SettingsGUI {
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
@@ -44,6 +44,11 @@ public class SettingsGUI {
         addBackButton();
 
         settingsFrame.requestFocus();
+        settingsFrame.setVisible(false);
+    }
+
+    // Bringt das Hauptfenster zurück
+    public static void redrawSettingsWindow() {
         settingsFrame.setVisible(true);
     }
 
@@ -62,7 +67,7 @@ public class SettingsGUI {
             @Override
             public void windowClosing(WindowEvent e) {
                 GUI.drawGUI();
-                settingsFrame.dispose();
+                settingsFrame.setVisible(false);
             }
         });
     }
@@ -75,7 +80,7 @@ public class SettingsGUI {
     }
 
     private static void addDropdownLangSelection() {
-        // position vom Dropdown -> Kann noch dynamisch gemacht werden
+        // TODO: cleaner code??
         int dropdownWidth = 150;
         int dropdownHeight = 30;
         int frameWidth = settingsFrame.getWidth();
@@ -166,8 +171,7 @@ public class SettingsGUI {
         backBtn.setBackground(Color.decode("#00CCCC"));
         backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // GUI Klasse bei clicken
-                GUI.redrawMain();
+                GUI.redrawMainWindow(); // GUI Klasse bei clicken
                 settingsFrame.dispose(); // Schließe Menüfenster
             }
         });

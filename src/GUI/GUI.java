@@ -114,10 +114,12 @@ public class GUI {
 
         frame.requestFocus();
         frame.setVisible(true);
+
+        SettingsGUI.drawSettingsGUI();
     }
 
     // Bringt das Hauptfenster zurück
-    public static void redrawMain() {
+    public static void redrawMainWindow() {
         frame.setVisible(true);
     }
 
@@ -398,7 +400,7 @@ public class GUI {
         settingsLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                SettingsGUI.drawSettingsGUI();
+                SettingsGUI.redrawSettingsWindow();
                 frame.setVisible(false);
             }
         });
