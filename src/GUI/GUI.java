@@ -34,7 +34,7 @@ public class GUI {
     private static JFrame frame = new JFrame();
     private static JTextField inputField = new JTextField();
     public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
-            searchBarTargetcur = new JTextField(Language.getLangStringByKey("searchBar"));
+            searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton();
@@ -77,7 +77,7 @@ public class GUI {
         // update alle Hauptkomponenten
         headlineLabel.setText(Language.getLangStringByKey("title"));
         searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
-        searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
+        searchBarTargetCur.setText(Language.getLangStringByKey("searchBar"));
         calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
         presetLabel.setText(Language.getLangStringByKey("presetLabel"));
         saveBtn.setText(Language.getLangStringByKey("saveBtn"));
@@ -207,27 +207,27 @@ public class GUI {
         /*
          * Erstellt rechts eine Suchleiste
          */
-        searchBarTargetcur.setBounds(FRAME_WIDTH - 340, 215, 290, 20);
-        searchBarTargetcur.addFocusListener(new FocusAdapter() {
+        searchBarTargetCur.setBounds(FRAME_WIDTH - 340, 215, 290, 20);
+        searchBarTargetCur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBarTargetcur.getText().equals(Language.getLangStringByKey("searchBar"))) {
-                    searchBarTargetcur.setText("");
+                if (searchBarTargetCur.getText().equals(Language.getLangStringByKey("searchBar"))) {
+                    searchBarTargetCur.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (searchBarTargetcur.getText().isEmpty()) {
-                    searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
+                if (searchBarTargetCur.getText().isEmpty()) {
+                    searchBarTargetCur.setText(Language.getLangStringByKey("searchBar"));
                 }
             }
         });
 
-        searchBarTargetcur.addKeyListener(new KeyAdapter() {
+        searchBarTargetCur.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String searchText = searchBarTargetcur.getText().toLowerCase();
+                String searchText = searchBarTargetCur.getText().toLowerCase();
                 DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownTargetCur.getModel();
                 model.removeAllElements();
 
@@ -313,7 +313,7 @@ public class GUI {
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
 
         frame.add(searchBarBaseCur);
-        frame.add(searchBarTargetcur);
+        frame.add(searchBarTargetCur);
 
         frame.add(dropdownBaseCur);
         frame.add(dropdownTargetCur);
@@ -544,27 +544,26 @@ public class GUI {
      */
     private static void addLoadCalculationButton() {
         loadBtn.setBounds(50, 480, 100, 25);
-        loadBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
+        loadBtn.addActionListener((e) -> {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
 
-                        String[] config = LastCalculation.getConfigLastCalc();
-                        // Es löscht die "" im String
-                        config[0] = config[0].replace("\"", "");
-                        config[1] = config[1].replace("\"", "");
-                        config[2] = config[2].replace("\"", "");
+                    String[] config = LastCalculation.getConfigLastCalc();
+                    // Es löscht die "" im String
+                    config[0] = config[0].replace("\"", "");
+                    config[1] = config[1].replace("\"", "");
+                    config[2] = config[2].replace("\"", "");
 
-                        baseCurResult = (config[0]);
-                        targetCurResult = (config[1]);
-                        inputValue = (config[2]);
+                    baseCurResult = (config[0]);
+                    targetCurResult = (config[1]);
+                    inputValue = (config[2]);
 
-                        inputValueResult = Double.parseDouble(GUI.inputValue);
-                        Calculations.runThreadedCalculation();
+                    inputValueResult = Double.parseDouble(GUI.inputValue);
+                    Calculations.runThreadedCalculation();
 
-                    }
-                });
-            }
+                }
+            });
+
         });
 
         frame.add(loadBtn);
