@@ -17,6 +17,12 @@ import java.awt.event.*;
  * Diese Klasse erstellt eine GUI für die Einstellungen 
  */
 public class SettingsGUI {
+    /*
+     * TODO-Notes for self / @Leon:
+     * - clean up lang packages
+     * - check if all resources will be needed
+     * - adjust Icon vars
+     */
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
     private static JButton themeBtn = new JButton("X"/* <= remove later */);
