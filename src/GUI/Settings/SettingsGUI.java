@@ -13,33 +13,21 @@ import lang.Language.Languages;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.*;
-import java.io.File;
 
 /*
  * Diese Klasse erstellt eine GUI für die Einstellungen 
  */
 public class SettingsGUI {
-    /*
-     * TODO-Notes for self / @Leon:
-     * - clean up lang packages
-     * - check if all resources will be needed
-     * - adjust Icon vars
-     */
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
     private static JButton backBtn = new JButton(Language.getLangStringByKey("back"));
     private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
     private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
     private static JLabel themeLblBtn = new JLabel();
-    // TODO @Leon: better var names
-    private static final ImageIcon /*
-                                    * darkmodeDM = new
-                                    * ImageIcon("resources/buttons/themes/button_darkmode_dark.png"),
-                                    */
-    darkmodeLM = new ImageIcon(
+    private static final ImageIcon darkmodeIcon = new ImageIcon(
             new ImageIcon(SettingsGUI.class.getResource("/resources/buttons/themes/button_darkmode_dark.png"))
                     .getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)),
-            lightmodeDM = new ImageIcon(
+            lightmodeIcon = new ImageIcon(
                     new ImageIcon(SettingsGUI.class.getResource("/resources/buttons/themes/button_lightmode_light.png"))
                             .getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
 
@@ -191,9 +179,9 @@ public class SettingsGUI {
         Theme currenTheme = AppTheme.getConfigAppTheme();
 
         if (currenTheme == Theme.DARK_MODE) {
-            themeLblBtn.setIcon(lightmodeDM);
+            themeLblBtn.setIcon(lightmodeIcon);
         } else if (currenTheme == Theme.LIGHT_MODE) {
-            themeLblBtn.setIcon(darkmodeLM);
+            themeLblBtn.setIcon(darkmodeIcon);
         }
     }
 
