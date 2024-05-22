@@ -10,11 +10,13 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
+import Main.CurrencyCalculator;
 import Utils.Utils;
 import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
+import lang.Language;
 
 /*
  * Diese Klasse erstellt das "Graphical User Interface"
@@ -22,27 +24,28 @@ import Utils.Data.Config.Settings.AppTheme.Theme;
  */
 public class GUI {
 
+    // TODO @Leon: adjust this comment here below?
     // static final vars
-    public static final String TITLE = "Währungsrechner", VERSION = "1.0_indev";
+    public static String title;
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Components
     private static JFrame frame = new JFrame();
     private static JTextField inputField = new JTextField();
-    public static JTextField searchBarBaseCur = new JTextField("Nach Währung Filtern"),
-            searchBarTargetcur = new JTextField("Nach Währung Filtern");
+    public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
+            searchBarTargetcur = new JTextField(Language.getLangStringByKey("searchBar"));
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
-    private static JButton calculateBtn = new JButton("Umrechnen");
-    private static JButton clipboardBtn = new JButton();
-    private static JButton saveBtn = new JButton("Speichern");
-    private static JButton loadBtn = new JButton("Laden");
-    private static JLabel presetLabel = new JLabel("Letzte Rechnung");
-    private static JLabel fadeLabel = new JLabel("Gespeichert!");
+    private static JButton calculateBtn = new JButton();
+    private static JButton saveBtn = new JButton();
+    private static JButton loadBtn = new JButton();
+    private static JLabel presetLabel = new JLabel();
+    private static JLabel fadeLabel = new JLabel();
     private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
-    private static JLabel headlineLabel = new JLabel("Währungsrechner");
-    private static JLabel authorLabel = new JLabel(VERSION + " by Leon, Jonas, Ewin");
+    private static JLabel headlineLabel = new JLabel("blankblankblankblankblank");
+    private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
+    private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
 
@@ -58,9 +61,36 @@ public class GUI {
     private static String baseCurResult, targetCurResult;
 
     /*
-     * Dieser Variabel wird für das Headline benutzt.
+     * Diese Variabel wird für das Headline benutzt.
      */
     private static int textWidth;
+
+    /*
+     * Updatet die dargestellte Sprache auf den GUI Komponenten
+     */
+    // TODO @Leon: move down to bottom of the class
+    public static void updateDisplayedLanguage() {
+        // update Programm Titel
+        title = Language.getLangStringByKey("title");
+        updateTitle(frame);
+
+        // update alle Hauptkomponenten
+        headlineLabel.setText(Language.getLangStringByKey("title"));
+        searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
+        searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
+        calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
+        presetLabel.setText(Language.getLangStringByKey("presetLabel"));
+        saveBtn.setText(Language.getLangStringByKey("saveBtn"));
+        loadBtn.setText(Language.getLangStringByKey("loadBtn"));
+        fadeLabel.setText(Language.getLangStringByKey("fadeLabel"));
+        Utils.refreshCurrencyDropdowns();
+
+        // update settings Komponenten
+        SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
+        SettingsGUI.getDarkBtn().setText(Language.getLangStringByKey("dark_mode"));
+        SettingsGUI.getLightBtn().setText(Language.getLangStringByKey("light_mode"));
+        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
+    }
 
     /*
      * Diese Methode führt andere Methoden aus
@@ -73,7 +103,7 @@ public class GUI {
         addDropdownWithFilters();
         addInputOutput();
         addLoadingCircleGIF();
-        addCopyOutputButton();
+        addCopyOutputLblBtn();
         addPresetLabel();
         addSaveCalculationButton();
         addLoadCalculationButton();
@@ -82,6 +112,7 @@ public class GUI {
         addFooter();
 
         setAppTheme(AppTheme.getConfigAppTheme());
+        updateDisplayedLanguage();
 
         frame.requestFocus();
         frame.setVisible(true);
@@ -92,9 +123,14 @@ public class GUI {
         frame.setVisible(true);
     }
 
+    public static void updateTitle(JFrame jframe) {
+        jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion());
+    }
+
     public static void updateTitle(JFrame jframe, String rawTitleAddition) {
         String titleAddition = " - " + rawTitleAddition;
-        jframe.setTitle(TITLE + " " + VERSION + (rawTitleAddition != "" ? titleAddition : ""));
+        jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion()
+                + (rawTitleAddition != "" ? titleAddition : ""));
     }
 
     public static void setAppIcon(JFrame jframe) {
@@ -134,7 +170,7 @@ public class GUI {
         searchBarBaseCur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBarBaseCur.getText().equals("Nach Währung Filtern")) {
+                if (searchBarBaseCur.getText().equals(Language.getLangStringByKey("searchBar"))) {
                     searchBarBaseCur.setText("");
                 }
             }
@@ -142,7 +178,7 @@ public class GUI {
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchBarBaseCur.getText().isEmpty()) {
-                    searchBarBaseCur.setText("Nach Währung Filtern");
+                    searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
                 }
             }
         });
@@ -175,7 +211,7 @@ public class GUI {
         searchBarTargetcur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBarTargetcur.getText().equals("Nach Währung Filtern")) {
+                if (searchBarTargetcur.getText().equals(Language.getLangStringByKey("searchBar"))) {
                     searchBarTargetcur.setText("");
                 }
             }
@@ -183,7 +219,7 @@ public class GUI {
             @Override
             public void focusLost(FocusEvent e) {
                 if (searchBarTargetcur.getText().isEmpty()) {
-                    searchBarTargetcur.setText("Nach Währung Filtern");
+                    searchBarTargetcur.setText(Language.getLangStringByKey("searchBar"));
                 }
             }
         });
@@ -247,7 +283,7 @@ public class GUI {
                     String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer
                     for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
                         if (Utils.containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
+                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
                         }
                     }
                 }
@@ -263,7 +299,7 @@ public class GUI {
                     String[] parts = targetCurResult.split("\\)");
                     for (String part : parts) {
                         if (Utils.containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup("Die angegebene Währung wird nicht mehr benutzt");
+                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
                         }
                     }
                 }
@@ -310,29 +346,31 @@ public class GUI {
      * 
      * Es nimmt das Ergebnis und steckt es in den Clipboard
      */
-    private static void addCopyOutputButton() {
-        clipboardBtn.setBounds(400, 405, 100, 30);
+    private static void addCopyOutputLblBtn() {
+        clipboardLblBtn.setBounds(420, 405, 100, 30);
 
         /*
          * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
          * Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt
          */
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/icon_copy-button-dark.png"));
-        Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        Image scaledImage = originalIcon.getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipboardBtn.setIcon(scaledIcon);
-        clipboardBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        Utils.copyToClipboard();
-                    }
-                });
+        clipboardLblBtn.setIcon(scaledIcon);
+        clipboardLblBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (targetCurResult != null) {
+                    Utils.copyToClipboard();
+                    runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
+                } else {
+                    PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
+                }
             }
         });
 
-        frame.add(clipboardBtn);
+        frame.add(clipboardLblBtn);
     }
 
     /*
@@ -340,7 +378,7 @@ public class GUI {
      */
     private static void addInputOutput() {
         outputLabel.setBounds(300, 285, 300, 150);
-        setOutput("Bitte wähle Währungen aus und gib einen Betrag ein.");
+        setOutput(Language.getLangStringByKey("outputLabel"));
         inputField.setBounds(405, 290, 90, 30);
 
         frame.add(inputField);
@@ -395,8 +433,8 @@ public class GUI {
             SwingUtilities.updateComponentTreeUI(frame);
 
         } catch (Exception e) {
-            PopupDisplay.throwErrorPopup("Es ist ein Fehler beim setzen des Themes aufgetreten.\n" +
-                    "Das Programm wird möglicherweise etwas anders aussehen als sonst!", e.getMessage());
+            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_theme_get") + "\n" +
+                    Language.getLangStringByKey("error_theme_look"), e.getMessage());
         }
     }
 
@@ -433,11 +471,14 @@ public class GUI {
     }
 
     /*
-     * Funktion im den Output auf das Label zu setzten
+     * Setzt den formatierten Output (inklusive Endergebnis)
+     * mit richtigen Zeilenumbrüchen
      */
     public static void setOutput(String output) {
-        // JLabels akzeptueren kein normales \n als Line break, deshalb benutzen wir
-        // hier HTML formatierung mit dem <br> Tag
+        /*
+         * JLabels akzeptieren kein normales \n als Line break, deshalb benutzen wir
+         * hier HTML formatierung mit dem <br> Tag
+         */
         outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
 
@@ -448,13 +489,13 @@ public class GUI {
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {
             calculateBtn.setEnabled(false);
-            setOutput("Lädt...");
+            setOutput(Language.getLangStringByKey("loading"));
             loadingGIF.setVisible(true);
-            calculateBtn.setText("Lädt...");
+            calculateBtn.setText(Language.getLangStringByKey("loading"));
         } else {
             calculateBtn.setEnabled(true);
             loadingGIF.setVisible(false);
-            calculateBtn.setText("Umrechnen");
+            calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
         }
     }
 
@@ -484,10 +525,11 @@ public class GUI {
                     public void run() {
                         if (inputValue == null || baseCurResult == null || targetCurResult == null) {
                             PopupDisplay.throwErrorPopup(
-                                    "Es wurde noch keine Rechnung durchgeführt die gespeichert werden könnte.");
+                                    Language.getLangStringByKey("error_lastcalc_isnull"));
                         } else {
                             LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
-                            runFadeLabel();
+                            // TODO: Add Lang support below
+                            runCustomFadeLabel("Gespeichert", 200, 450, 100, 25);
                         }
                     }
                 });
@@ -545,7 +587,10 @@ public class GUI {
      * Diese Methode erstellt ein Label, dass dem Benutzer zurückgibt,
      * dass die eingegebenen Daten gespeichert sind.
      */
-    public static void runFadeLabel() {
+    public static void runCustomFadeLabel(String text, int locactionX, int locactionY, int width, int height) {
+        fadeLabel.setText(text);
+        fadeLabel.setBounds(locactionX, locactionY, width, height);
+
         fadeLabel.setVisible(true);
         Timer timer = new Timer(50, new ActionListener() {
             private float opacity = 1.0f; // opacity = transparenz
@@ -557,7 +602,9 @@ public class GUI {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                opacity -= 0.05f;
+                // Die opacity wird mit jedem Durchlauf verringert
+                // ..erreicht sie 0,00, so wird das Label "entfernt"
+                opacity -= 0.02f;
                 if (opacity <= 0.0f) {
                     ((Timer) e.getSource()).stop();
                     fadeLabel.setVisible(false);
@@ -565,6 +612,14 @@ public class GUI {
             }
         });
         timer.start();
+    }
+
+    // TODO: @Leon place updateDisplayedLanguage() here
+
+    @SuppressWarnings("rawtypes")
+    public static JComboBox[] getComboBoxes() {
+        JComboBox[] comboBoxes = { dropdownBaseCur, dropdownTargetCur };
+        return comboBoxes;
     }
 
     public static double getAmount() {

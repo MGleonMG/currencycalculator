@@ -2,6 +2,7 @@ package Utils.Data;
 
 import GUI.GUI;
 import Utils.Utils;
+import lang.Language;
 
 /*
  * Diese Klasse ist für Rechnung zuständig 
@@ -34,10 +35,14 @@ public class Calculations {
             convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             if (ExchangeRateFetcher.getFailed() == false) {
-                GUI.setOutput("Eingetippt: " + GUI.getAmount() + " " + GUI.getBaseCur() + "\n" +
-                        "Das Ergebnis ist " + finalResult + " " + GUI.getTargetCur() + "\n" +
-                        "Wechselkurs: " + ExchangeRateFetcher.getLatestExchangeRate() + "\n" +
-                        "Wechselkurs herausgefunden in " + ExchangeRateFetcher.getLastFetchTime() + "ms");
+                GUI.setOutput(Language.getLangStringByKey("outputComponent1") + " " + GUI.getAmount() + " " + GUI.getBaseCur()
+                        + "\n" +
+                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " " + GUI.getTargetCur() + "\n"
+                        +
+                        Language.getLangStringByKey("outputComponent3") + " " + ExchangeRateFetcher.getLatestExchangeRate()
+                        + "\n" +
+                        Language.getLangStringByKey("outputComponent4") + " " + ExchangeRateFetcher.getLastFetchTime()
+                        + "ms");
             } else {
                 ExchangeRateFetcher.clearDataOnError();
             }

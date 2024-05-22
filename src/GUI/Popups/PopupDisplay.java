@@ -2,6 +2,8 @@ package GUI.Popups;
 
 import javax.swing.JOptionPane;
 
+import lang.Language;
+
 /*
  * Diese Klasse stellt zwei Funktionen bereit um 
  * Info- und Fehler Popups für den Endnutzer darzustellen
@@ -13,12 +15,12 @@ public class PopupDisplay {
      */
     public static void throwErrorPopup(String popupErrorMessage, String errorCode) {
         JOptionPane.showMessageDialog(null, popupErrorMessage + "\n\n\"" + errorCode + "\"",
-                "Ein Fehler ist aufgetreten", JOptionPane.ERROR_MESSAGE);
+                Language.getLangStringByKey("error_standard"), JOptionPane.ERROR_MESSAGE);
     }
 
     public static void throwErrorPopup(String popupErrorMessage) {
         JOptionPane.showMessageDialog(null, popupErrorMessage,
-                "Ein Fehler ist aufgetreten", JOptionPane.ERROR_MESSAGE);
+                Language.getLangStringByKey("error_standard"), JOptionPane.ERROR_MESSAGE);
     }
 
     public static void throwInfoPopup(String popupTitle, String popupMessage) {

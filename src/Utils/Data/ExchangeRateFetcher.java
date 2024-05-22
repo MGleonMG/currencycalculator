@@ -7,6 +7,7 @@ import java.util.Scanner;
 import GUI.GUI;
 import GUI.Popups.PopupDisplay;
 import Utils.Utils;
+import lang.Language;
 
 /*
  * Diese Klasse ruft die Wechselkurse von Google Finances ab
@@ -45,18 +46,19 @@ public class ExchangeRateFetcher {
              * für die Popup Message eine ausreichende Bezeichnung bieten.
              */
         } catch (UnknownHostException uhExc) {
-            PopupDisplay.throwErrorPopup("Es konnte keine Verbindung zum Server hergestellt werden",
+            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_exchangeratefetcher_uhe"),
                     uhExc.getMessage());
             clearDataOnError();
 
         } catch (StringIndexOutOfBoundsException oobExc) {
             PopupDisplay.throwErrorPopup(
-                    "Einer der Währungen scheint nicht zu existieren oder es ist ein Fehler beim fetchen der Daten aufgetreten",
-                    "Ein Wechselkurs für diese Währung konnte nicht gefunden werden");
+                    Language.getLangStringByKey("error_exchangeratefetcher_oobexc"),
+                    Language.getLangStringByKey("error_exchangeratefetcher_oobexc_code"));
             clearDataOnError();
 
         } catch (Exception exc) {
-            PopupDisplay.throwErrorPopup("Ein unbekannter Fehler ist aufgetreten", exc.getMessage());
+            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_exchangeratefetcher_unknown"),
+                    exc.getMessage());
             clearDataOnError();
         }
     }

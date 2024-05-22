@@ -7,6 +7,7 @@ import java.nio.file.FileSystems;
 import com.google.gson.Gson;
 
 import GUI.Popups.PopupDisplay;
+import lang.Language;
 
 /*
  * Diese Klasse stellt einfache Config Funktionen und Variabeln zur Verfügung
@@ -55,7 +56,7 @@ public class Config {
             } catch (Exception e) {
                 e.printStackTrace();
                 PopupDisplay.throwErrorPopup(
-                        "Es gab ein Problem beim einrichten der Config Dateien! Program wird beendet.",
+                        Language.getLangStringByKey("error_config_fatal"),
                         e.getMessage());
                 System.exit(1);
             }
