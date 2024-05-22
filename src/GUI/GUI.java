@@ -87,8 +87,6 @@ public class GUI {
 
         // update settings Komponenten
         SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
-        SettingsGUI.getThemeBtn().setText(Language.getLangStringByKey("dark_mode"));
-        SettingsGUI.getLightBtn().setText(Language.getLangStringByKey("light_mode"));
         SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
     }
 
@@ -431,6 +429,7 @@ public class GUI {
                 AppTheme.setConfigAppTheme(Theme.LIGHT_MODE);
             }
             SwingUtilities.updateComponentTreeUI(frame);
+            SwingUtilities.updateComponentTreeUI(SettingsGUI.getSettingsFrame());
 
         } catch (Exception e) {
             PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_theme_get") + "\n" +
