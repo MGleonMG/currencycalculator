@@ -47,8 +47,8 @@ public class SettingsGUI {
         settingsFrame.setVisible(false);
     }
 
-    // Bringt das Hauptfenster zurück
-    public static void redrawSettingsWindow() {
+    // Bringt das Settings Fenster zurück
+    public static void openSettingsWindow() {
         settingsFrame.setVisible(true);
     }
 
@@ -171,7 +171,7 @@ public class SettingsGUI {
         backBtn.setBackground(Color.decode("#00CCCC"));
         backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                GUI.redrawMainWindow(); // GUI Klasse bei clicken
+                GUI.openMainWindow(); // GUI Klasse bei clicken
                 settingsFrame.dispose(); // Schließe Menüfenster
             }
         });
