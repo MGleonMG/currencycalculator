@@ -35,7 +35,7 @@ public class ExchangeRateFetcher {
             htmlOutput = htmlOutput.substring(15, htmlOutput.indexOf("<"));
 
             lastEndMillis = System.currentTimeMillis();
-            
+
             latestRate = Utils.adjustDecimal(Double.parseDouble(htmlOutput), 4);
 
             webScanner.close();
@@ -63,6 +63,7 @@ public class ExchangeRateFetcher {
         }
     }
 
+    // Berechnet die letzte fetch time von google finances und gibt diese zurück
     public static long getLastFetchTime() {
         return lastEndMillis - lastStartMillis;
     }
@@ -72,12 +73,14 @@ public class ExchangeRateFetcher {
         return fetchTimeAsString;
     }
 
+    // Gibt den zu letzt gespeicherten Wechselkurs zurück
     public static double getLatestExchangeRate() {
         return latestRate;
     }
 
     /*
-     * Diese Methode setzt bei einer Fehlermeldung die Daten zurück
+     * Diese Methode setzt bei einer Fehlermeldung die
+     * Daten zurück damit keine Nullen ausgegeben werden
      */
     public static void clearDataOnError() {
         hasFailed = true;

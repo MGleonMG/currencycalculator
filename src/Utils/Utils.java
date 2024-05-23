@@ -18,16 +18,14 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 
 /*
- * In dieser Klasse sind alle Tools (Werkzeuge) verfügbar
- * Diese werden in anderen Klassen verwendet
+ * In dieser Klasse befinden sich Hilfsfunktionen
  */
 public class Utils {
 
     /*
-     * Diese Methode stellt das End ergebnis auf zwei (nach) Kommastellen um
-     * 
-     * bsp: 12.04405
-     * -> 12.04
+     * Diese Methode stellt das Endergebnis auf
+     * eine beliebige Anzahl an (nach) Kommastellen um
+     * Bsp: 12.04405 wird 12.04
      */
     public static double adjustDecimal(double x, int decimalPlaces) {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
