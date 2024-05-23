@@ -3,6 +3,7 @@ package GUI.Settings;
 import javax.swing.*;
 
 import GUI.GUI;
+import Main.CurrencyCalculator;
 import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
@@ -184,7 +185,7 @@ public class SettingsGUI {
         backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // GUI Klasse bei clicken
-                GUI.redrawMain();
+                CurrencyCalculator.main(null);
                 settingsFrame.dispose(); // Schließe Menüfenster
             }
         });
