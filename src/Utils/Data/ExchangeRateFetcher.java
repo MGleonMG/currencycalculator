@@ -35,7 +35,7 @@ public class ExchangeRateFetcher {
             htmlOutput = htmlOutput.substring(15, htmlOutput.indexOf("<"));
 
             lastEndMillis = System.currentTimeMillis();
-
+            
             latestRate = Utils.adjustDecimal(Double.parseDouble(htmlOutput), 4);
 
             webScanner.close();

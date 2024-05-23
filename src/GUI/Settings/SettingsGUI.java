@@ -18,12 +18,15 @@ import java.awt.event.*;
 * Diese Klasse erstellt eine GUI für die Einstellungen 
 */
 public class SettingsGUI {
+    // Komponenten
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
     private static JButton backBtn = new JButton(Language.getLangStringByKey("back"));
-    private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
     private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
     private static JLabel themeLblBtn = new JLabel();
+    private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
+
+    // Icons
     private static final ImageIcon darkmodeIcon = new ImageIcon(
             new ImageIcon(SettingsGUI.class.getResource("/resources/buttons/themes/button_darkmode_dark.png"))
                     .getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH)),
@@ -54,7 +57,7 @@ public class SettingsGUI {
 
     /*
      * Erstellt das Einstellungs Fenster indem es
-     * einige props (Properties => Eigenschaften) zuweist
+     * einige props (Properties = Eigenschaften) zuweist
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, Language.getLangStringByKey("settings"));
@@ -72,6 +75,9 @@ public class SettingsGUI {
         });
     }
 
+    /*
+     * Fügt eine Überschrift für das Dropdown der Sprachauswahl hinzu
+     */
     private static void addLangHeader() {
         langHeader.setBounds(20, 40, 150, 30);
         langHeader.setBackground(Color.WHITE);
@@ -79,16 +85,11 @@ public class SettingsGUI {
         settingsFrame.add(langHeader);
     }
 
+    /*
+     * Fügt das Dropdown für die Sprachauswahl hinzu
+     */
     private static void addDropdownLangSelection() {
-        // TODO: cleaner code??
-        int dropdownWidth = 150;
-        int dropdownHeight = 30;
-        int frameWidth = settingsFrame.getWidth();
-        int frameHeight = settingsFrame.getHeight();
-        int xPosition = (frameWidth - dropdownWidth) / 2;
-        int yPosition = (frameHeight - dropdownHeight) / 2;
-
-        dropdownLangSelection.setBounds(xPosition, yPosition, dropdownWidth, dropdownHeight);
+        dropdownLangSelection.setBounds(225, 175, 150, 30);
 
         if (dropdownLangSelection.getItemCount() == 0) {
             for (Languages lang : Languages.values()) {

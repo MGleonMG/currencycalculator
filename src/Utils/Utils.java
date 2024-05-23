@@ -60,6 +60,11 @@ public class Utils {
         return currencies.entrySet();
     }
 
+    /*
+     * Diese Methode leert die Dropdowns und befüllt sie wieder mit allen Währungen
+     * damit bei einer Sprachänderung diese auch in der korrekten Sprache angegeben
+     * sind
+     */
     @SuppressWarnings("unchecked")
     public static void refreshCurrencyDropdowns() {
         GUI.getComboBoxes()[0].removeAllItems();
@@ -79,11 +84,11 @@ public class Utils {
      * siehe src\GUI\GUI.java\addCopyOutputButton()
      */
     public static void copyToClipboard() {
-        double umrechnung = Calculations.finalResult;
-        if (umrechnung != 0.0) {
-            String myString = String.valueOf(umrechnung);
+        if (Calculations.finalResult != 0.0) {
+            String myString = String.valueOf(Calculations.finalResult);
             StringSelection stringSelection = new StringSelection(myString);
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
             clipboard.setContents(stringSelection, null);
         }
     }
