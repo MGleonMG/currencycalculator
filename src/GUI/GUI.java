@@ -8,6 +8,7 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import GUI.Animations.ClickAnimation;
 import GUI.Popups.PopupDisplay;
 import GUI.Settings.SettingsGUI;
 import Main.CurrencyCalculator;
@@ -361,6 +362,8 @@ public class GUI {
         clipboardLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                ClickAnimation.runCustomClickAnimation(clipboardLblBtn);
+
                 if (targetCurResult != null) {
                     Utils.copyToClipboard();
                     runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
@@ -548,7 +551,6 @@ public class GUI {
         loadBtn.addActionListener((e) -> {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-
                     String[] config = LastCalculation.getConfigLastCalc();
                     // Es löscht die "" im String
                     config[0] = config[0].replace("\"", "");
