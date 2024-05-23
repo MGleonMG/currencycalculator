@@ -3,7 +3,6 @@ package GUI.Settings;
 import javax.swing.*;
 
 import GUI.GUI;
-import Main.CurrencyCalculator;
 import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
@@ -25,6 +24,8 @@ public class SettingsGUI {
     private static JButton backBtn = new JButton(Language.getLangStringByKey("back"));
     private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
     private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
+
+    private static boolean restartRequired = false;
 
     /*
      * Diese Methode führt andere Methoden aus und
@@ -56,8 +57,14 @@ public class SettingsGUI {
         settingsFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                GUI.drawGUI();
-                settingsFrame.dispose();
+                if (restart() == false) {
+                    GUI.drawGUI();
+                    settingsFrame.dispose();
+                } else {
+                    /*
+                     * TODO
+                     */
+                }
             }
         });
     }
@@ -95,6 +102,7 @@ public class SettingsGUI {
                     Language.setAppLanguage(Languages.valueOf(dropdownLangSelection.getSelectedItem().toString()),
                             true,
                             false);
+                            restartRequired = true;
                 }
             }
         });
@@ -113,6 +121,7 @@ public class SettingsGUI {
         configResetBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ConfigDefaults.restoreAllDefaults();
+                restartRequired = true;
             }
         });
 
@@ -184,12 +193,17 @@ public class SettingsGUI {
         backBtn.setBackground(Color.decode("#00CCCC"));
         backBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // GUI Klasse bei clicken
-                CurrencyCalculator.main(null);
-                settingsFrame.dispose(); // Schließe Menüfenster
+                if (restart() == false) {
+                    // GUI Klasse bei clicken
+                    GUI.drawGUI();
+                    settingsFrame.dispose(); // Schließe Menüfenster
+                } else {
+                    /*
+                     * TODO
+                     */
+                }
             }
         });
-
         settingsFrame.add(backBtn);
     }
 
@@ -207,6 +221,10 @@ public class SettingsGUI {
 
     public static JButton getBackBtn() {
         return backBtn;
+    }
+
+    private static boolean restart() {
+        return restartRequired;
     }
 
 }
