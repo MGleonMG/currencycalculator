@@ -141,11 +141,11 @@ public class SettingsGUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Theme currenTheme = AppTheme.getConfigAppTheme();
+                    Theme currentTheme = AppTheme.getConfigAppTheme();
 
-                    if (currenTheme == Theme.DARK_MODE) {
+                    if (currentTheme == Theme.DARK_MODE) {
                         GUI.setAppTheme(Theme.LIGHT_MODE);
-                    } else if (currenTheme == Theme.LIGHT_MODE) {
+                    } else if (currentTheme == Theme.LIGHT_MODE) {
                         GUI.setAppTheme(Theme.DARK_MODE);
                     }
 
@@ -180,11 +180,11 @@ public class SettingsGUI {
     }
 
     private static void setThemeIcon() {
-        Theme currenTheme = AppTheme.getConfigAppTheme();
+        Theme currentTheme = AppTheme.getConfigAppTheme();
 
-        if (currenTheme == Theme.DARK_MODE) {
+        if (currentTheme == Theme.DARK_MODE) {
             themeLblBtn.setIcon(lightmodeIcon);
-        } else if (currenTheme == Theme.LIGHT_MODE) {
+        } else if (currentTheme == Theme.LIGHT_MODE) {
             themeLblBtn.setIcon(darkmodeIcon);
         }
     }
