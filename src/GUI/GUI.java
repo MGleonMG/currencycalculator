@@ -90,7 +90,6 @@ public class GUI {
         testLbl.setBackground(new Color(211, 211, 211, 150));
         testLbl.setForeground(Color.WHITE); // Text color
         testLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        testLbl.setFont(new Font("Arial", Font.BOLD, 20));
         testLbl.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         // testLbl.setPreferredSize(new Dimension(300, 100));
         testLbl.setBorder(new Border() {
