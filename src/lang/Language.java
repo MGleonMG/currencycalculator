@@ -44,6 +44,8 @@ public class Language {
                     e.getMessage());
             System.exit(1);
         }
+
+        // TODO for @Leon end of project: is this needed?
         langBundle = properties;
 
         switch (language) {
