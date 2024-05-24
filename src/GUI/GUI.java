@@ -82,44 +82,36 @@ public class GUI {
         setAppTheme(AppTheme.getConfigAppTheme());
         updateDisplayedLanguage();
 
-        // ======================
-        // testing stuff
-        JLabel testLbl = new JLabel();
-        testLbl.setBounds(20, 20, 170, 60);
-        testLbl.setOpaque(true);
-        // testLbl.setBackground(new Color(128, 128, 128, 150));
-        testLbl.setForeground(Color.WHITE); // Text color
-        testLbl.setHorizontalAlignment(SwingConstants.CENTER);
-
-        testLbl.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(10, 10, 10, 10), // Outer empty border
-                new Border() {
-                    int radius = 20;
-
-                    public Insets getBorderInsets(Component c) {
-                        return new Insets(this.radius + 1, this.radius + 1, this.radius + 1, this.radius + 1);
-                    }
-
-                    public boolean isBorderOpaque() {
-                        return false;
-                    }
-
-                    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-                        ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                                RenderingHints.VALUE_ANTIALIAS_ON);
-                        g.setColor(new Color(128, 128, 128, 150));
-                        g.drawRoundRect(x, y, width - 10, height - 10, radius, radius);
-                    }
-                }));
-
-        frame.add(testLbl);
-        // ======================
+        // Testing stuff:
+        addSettingsSlider();
 
         frame.requestFocus();
         frame.setVisible(true);
 
         SettingsGUI.drawSettingsGUI();
 
+    }
+
+    private static void addSettingsSlider() {
+        JLabel outerLabel = new JLabel() {
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(new Color(125, 125, 125, 125));
+                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 40, 40);
+                g2d.setColor(Color.BLACK);
+                g2d.drawString(getText(), 10, 30);
+            }
+        };
+
+        outerLabel.setBounds(FRAME_WIDTH - 425, settingsLblBtn.getY() - 2, 400, 55);
+        // X: settingsLblBtn.getX() - 2 -> FRAME_WIDTH - 425 | width: 60 -> 400
+
+        outerLabel.setOpaque(true);
+
+        frame.add(outerLabel);
     }
 
     // Bringt das Hauptfenster zurück
