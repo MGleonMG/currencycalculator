@@ -19,7 +19,7 @@ import java.awt.event.*;
 */
 public class SettingsGUI {
     // Komponenten
-    private static final int FRAME_WIDTH = 400, FRAME_HEIGHT = 280; // 600, 280
+    private static final int FRAME_WIDTH = 400, FRAME_HEIGHT = 280;
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
     private static JButton backBtn = new JButton(Language.getLangStringByKey("back"));

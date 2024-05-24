@@ -1,6 +1,8 @@
 package GUI;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Map;
@@ -80,10 +82,43 @@ public class GUI {
         setAppTheme(AppTheme.getConfigAppTheme());
         updateDisplayedLanguage();
 
+        // ======================
+        // testing stuff
+        JLabel testLbl = new JLabel();
+        testLbl.setBounds(20, 20, 170, 60);
+        testLbl.setOpaque(true);
+        testLbl.setBackground(new Color(211, 211, 211, 150));
+        testLbl.setForeground(Color.WHITE); // Text color
+        testLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        testLbl.setFont(new Font("Arial", Font.BOLD, 20));
+        testLbl.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        // testLbl.setPreferredSize(new Dimension(300, 100));
+        testLbl.setBorder(new Border() {
+            int radius = 20;
+
+            public Insets getBorderInsets(Component c) {
+                return new Insets(this.radius + 1, this.radius + 1, this.radius + 1, this.radius + 1);
+            }
+
+            public boolean isBorderOpaque() {
+                return false;
+            }
+
+            public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+                ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g.setColor(new Color(211, 211, 211, 150));
+                g.drawRoundRect(x, y, width - 10, height - 10, radius, radius);
+            }
+        }); // Rounded edges
+
+        frame.add(testLbl);
+        // ======================
+
         frame.requestFocus();
         frame.setVisible(true);
 
         SettingsGUI.drawSettingsGUI();
+
     }
 
     // Bringt das Hauptfenster zurück
