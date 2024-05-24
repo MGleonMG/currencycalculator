@@ -114,7 +114,7 @@ public class SettingsGUI {
                     Language.setAppLanguage(Languages.valueOf(dropdownLangSelection.getSelectedItem().toString()),
                             true,
                             false);
-                            restartRequired = true;
+                    restartRequired = true;
                 }
             }
         });

@@ -36,7 +36,7 @@ public class GUI {
             searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
-    private static JButton calculateBtn = new JButton();    
+    private static JButton calculateBtn = new JButton();
     private static JButton saveBtn = new JButton();
     private static JButton loadBtn = new JButton();
     private static JLabel presetLabel = new JLabel();
