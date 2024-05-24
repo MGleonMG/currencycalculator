@@ -22,6 +22,7 @@ public class LastCalculation {
             KEY_LASTTARGETCUR = "lastTargetCurrency",
             KEY_LASTAMOUNT = "lastAmount";
 
+    // Konstruktor für das "LastCalculation" Objekt
     public LastCalculation(String baseCur, String targetCur, String amount) {
         this.baseCur = baseCur;
         this.targetCur = targetCur;
