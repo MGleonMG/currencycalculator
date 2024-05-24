@@ -20,6 +20,7 @@ public class AppTheme {
     // JSON keywords um die korrekten Einstellungen auszulesen
     private static final String KEY_APPTHEME = "appTheme";
 
+    // Konstruktor für das AppTheme Objekt
     public AppTheme(Theme appTheme) {
         this.appTheme = appTheme;
     }

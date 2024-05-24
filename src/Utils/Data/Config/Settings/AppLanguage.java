@@ -21,6 +21,7 @@ public class AppLanguage {
     // JSON keywords um die korrekten Einstellungen auszulesen
     private static final String KEY_APPLANG = "appLanguage";
 
+    // Konstruktor für das AppLanguage Objekt
     public AppLanguage(Languages appLanguage) {
         this.appLanguage = appLanguage;
     }

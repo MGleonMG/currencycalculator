@@ -24,13 +24,12 @@ import lang.Language;
  */
 public class GUI {
 
-    // TODO @Leon: adjust this comment here below?
-    // static final vars
+    // Grund Infos das das Haupt JFrame
     public static String title;
     public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
-    // Components
+    // Komponenten
     private static JFrame frame = new JFrame();
     private static JTextField inputField = new JTextField();
     public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
@@ -49,48 +48,15 @@ public class GUI {
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
 
-    /*
-     * Diese Variablen speichern den Betrag des Nutzers
-     */
+    // Diese Variablen speichern den Betrag des Nutzers
     private static String inputValue;
     private static double inputValueResult;
 
-    /*
-     * Diese Variablen speichern die ISO-codes von den Währungen
-     */
+    // Diese Variablen speichern die ISO-codes von den Währungen
     private static String baseCurResult, targetCurResult;
 
-    /*
-     * Diese Variabel wird für das Headline benutzt.
-     */
+    // Diese Variabel wird für das Headline benutzt.
     private static int textWidth;
-
-    /*
-     * Updatet die dargestellte Sprache auf den GUI Komponenten
-     */
-    // TODO @Leon: move down to bottom of the class
-    public static void updateDisplayedLanguage() {
-        // update Programm Titel
-        title = Language.getLangStringByKey("title");
-        updateTitle(frame);
-
-        // update alle Hauptkomponenten
-        headlineLabel.setText(Language.getLangStringByKey("title"));
-        searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
-        searchBarTargetCur.setText(Language.getLangStringByKey("searchBar"));
-        calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
-        presetLabel.setText(Language.getLangStringByKey("presetLabel"));
-        saveBtn.setText(Language.getLangStringByKey("saveBtn"));
-        loadBtn.setText(Language.getLangStringByKey("loadBtn"));
-        fadeLabel.setText(Language.getLangStringByKey("fadeLabel"));
-        Utils.refreshCurrencyDropdowns();
-
-        // update settings Komponenten
-        SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
-        SettingsGUI.getDarkBtn().setText(Language.getLangStringByKey("dark_mode"));
-        SettingsGUI.getLightBtn().setText(Language.getLangStringByKey("light_mode"));
-        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
-    }
 
     /*
      * Diese Methode führt andere Methoden aus
@@ -116,10 +82,12 @@ public class GUI {
 
         frame.requestFocus();
         frame.setVisible(true);
+
+        SettingsGUI.drawSettingsGUI();
     }
 
     // Bringt das Hauptfenster zurück
-    public static void redrawMain() {
+    public static void openMainWindow() {
         frame.setVisible(true);
     }
 
@@ -400,7 +368,7 @@ public class GUI {
         settingsLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                SettingsGUI.drawSettingsGUI();
+                SettingsGUI.openSettingsWindow();
                 frame.setVisible(false);
             }
         });
@@ -431,6 +399,7 @@ public class GUI {
                 AppTheme.setConfigAppTheme(Theme.LIGHT_MODE);
             }
             SwingUtilities.updateComponentTreeUI(frame);
+            SwingUtilities.updateComponentTreeUI(SettingsGUI.getSettingsFrame());
 
         } catch (Exception e) {
             PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_theme_get") + "\n" +
@@ -613,7 +582,29 @@ public class GUI {
         timer.start();
     }
 
-    // TODO: @Leon place updateDisplayedLanguage() here
+    /*
+     * Updatet die dargestellte Sprache auf den GUI Komponenten
+     */
+    public static void updateDisplayedLanguage() {
+        // update Programm Titel
+        title = Language.getLangStringByKey("title");
+        updateTitle(frame);
+
+        // update alle Hauptkomponenten
+        headlineLabel.setText(Language.getLangStringByKey("title"));
+        searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
+        searchBarTargetCur.setText(Language.getLangStringByKey("searchBar"));
+        calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
+        presetLabel.setText(Language.getLangStringByKey("presetLabel"));
+        saveBtn.setText(Language.getLangStringByKey("saveBtn"));
+        loadBtn.setText(Language.getLangStringByKey("loadBtn"));
+        fadeLabel.setText(Language.getLangStringByKey("fadeLabel"));
+        Utils.refreshCurrencyDropdowns();
+
+        // update settings Komponenten
+        SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
+        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
+    }
 
     @SuppressWarnings("rawtypes")
     public static JComboBox[] getComboBoxes() {

@@ -9,10 +9,6 @@ import lang.Language;
 import lang.Language.Languages;
 
 public class ConfigDefaults {
-    public static class Container {
-        AppTheme appTheme;
-        AppLanguage appLanguage;
-    }
 
     @SuppressWarnings("unused")
     private Theme appTheme;
