@@ -19,12 +19,15 @@ import java.awt.event.*;
 */
 public class SettingsGUI {
     // Komponenten
+    private static final int FRAME_WIDTH = 400, FRAME_HEIGHT = 280; // 600, 280
     private static JFrame settingsFrame = new JFrame();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
     private static JButton backBtn = new JButton(Language.getLangStringByKey("back"));
     private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
     private static JLabel themeLblBtn = new JLabel();
     private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
+
+    private static String testStr = "testwort";
 
     // Icons
     private static final ImageIcon darkmodeIcon = new ImageIcon(
@@ -48,6 +51,8 @@ public class SettingsGUI {
 
         settingsFrame.requestFocus();
         settingsFrame.setVisible(false);
+
+        System.out.println(testStr.toLowerCase());
     }
 
     // Bringt das Settings Fenster zurück
@@ -61,7 +66,7 @@ public class SettingsGUI {
      */
     private static void setBasicFrameProps() {
         GUI.updateTitle(settingsFrame, Language.getLangStringByKey("settings"));
-        settingsFrame.setSize(GUI.FRAME_WIDTH - 300, GUI.FRAME_HEIGHT - 220);
+        settingsFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         settingsFrame.setLayout(null);
         settingsFrame.setResizable(false);
         settingsFrame.setLocationRelativeTo(null);
@@ -79,7 +84,7 @@ public class SettingsGUI {
      * Fügt eine Überschrift für das Dropdown der Sprachauswahl hinzu
      */
     private static void addLangHeader() {
-        langHeader.setBounds(20, 40, 150, 30);
+        langHeader.setBounds(5, 5, 150, 30);
         langHeader.setBackground(Color.WHITE);
 
         settingsFrame.add(langHeader);
@@ -89,11 +94,16 @@ public class SettingsGUI {
      * Fügt das Dropdown für die Sprachauswahl hinzu
      */
     private static void addDropdownLangSelection() {
-        dropdownLangSelection.setBounds(225, 175, 150, 30);
+        int compWidth = 150, compHeight = 30;
+
+        dropdownLangSelection.setBounds(5, langHeader.getHeight() + 2, compWidth, compHeight);
 
         if (dropdownLangSelection.getItemCount() == 0) {
-            for (Languages lang : Languages.values()) {
-                dropdownLangSelection.addItem(lang.toString());
+            for (Languages language : Languages.values()) {
+                String formattedLanguage = language.toString().toLowerCase().substring(0, 1).toUpperCase()
+                        + language.toString().toLowerCase().substring(1);
+
+                dropdownLangSelection.addItem(formattedLanguage);
             }
         }
 
@@ -103,7 +113,8 @@ public class SettingsGUI {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    Language.setAppLanguage(Languages.valueOf(dropdownLangSelection.getSelectedItem().toString()),
+                    Language.setAppLanguage(
+                            Languages.valueOf(dropdownLangSelection.getSelectedItem().toString().toUpperCase()),
                             true,
                             false);
                 }
@@ -118,7 +129,11 @@ public class SettingsGUI {
      * auf die Standardeinstellungen zurücksetzen kann
      */
     private static void addConfigDefaultsButton() {
-        configResetBtn.setBounds(465, 210, 110, 45);
+        int compWidth = 110, compHeight = 45;
+
+        configResetBtn.setBounds(FRAME_WIDTH - compWidth - 20,
+                FRAME_HEIGHT - compHeight - 100,
+                compWidth, compHeight);
         configResetBtn.setBackground(Color.WHITE);
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
