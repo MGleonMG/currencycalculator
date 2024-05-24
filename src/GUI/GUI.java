@@ -407,11 +407,7 @@ public class GUI {
         settingsLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (outerLabel.isVisible()) {
-                    outerLabel.setVisible(false);
-                }else{
-                    outerLabel.setVisible(true);
-                }
+                outerLabel.setVisible(!outerLabel.isVisible());
                 // SettingsGUI.openSettingsWindow();
                 // frame.setVisible(false);
             }
