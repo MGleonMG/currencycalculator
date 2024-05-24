@@ -27,8 +27,6 @@ public class SettingsGUI {
     private static JLabel themeLblBtn = new JLabel();
     private static JComboBox<String> dropdownLangSelection = new JComboBox<String>();
 
-    private static String testStr = "testwort";
-
     // Icons
     private static final ImageIcon darkmodeIcon = new ImageIcon(
             new ImageIcon(SettingsGUI.class.getResource("/resources/buttons/themes/button_darkmode_dark.png"))
@@ -51,8 +49,6 @@ public class SettingsGUI {
 
         settingsFrame.requestFocus();
         settingsFrame.setVisible(false);
-
-        System.out.println(testStr.toLowerCase());
     }
 
     // Bringt das Settings Fenster zurück
