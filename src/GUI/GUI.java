@@ -49,6 +49,7 @@ public class GUI {
     private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
+    private static JLabel outerLabel;
 
     // Diese Variablen speichern den Betrag des Nutzers
     private static String inputValue;
@@ -93,7 +94,7 @@ public class GUI {
     }
 
     private static void addSettingsSlider() {
-        JLabel outerLabel = new JLabel() {
+        outerLabel = new JLabel() {
 
             @Override
             protected void paintComponent(Graphics g) {
@@ -107,11 +108,21 @@ public class GUI {
         };
 
         outerLabel.setBounds(FRAME_WIDTH - 425, settingsLblBtn.getY() - 2, 400, 55);
-        // X: settingsLblBtn.getX() - 2 -> FRAME_WIDTH - 425 | width: 60 -> 400
+        // X: settingsLblBtn.getX() - 2 -> FRAME_WIDTH - 425
+        // width: 60 -> 400
 
         outerLabel.setOpaque(true);
 
         frame.add(outerLabel);
+    }
+
+    private static void extendSettingsSlider() {
+        outerLabel.setVisible(true);
+        // outerLabel.setBounds(FRAME_WIDTH - 425, settingsLblBtn.getY() - 2, 400, 55);
+    }
+
+    private static void minimizeSettingsSlider() {
+        outerLabel.setVisible(false);
     }
 
     // Bringt das Hauptfenster zurück
@@ -396,8 +407,13 @@ public class GUI {
         settingsLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                SettingsGUI.openSettingsWindow();
-                frame.setVisible(false);
+                if (outerLabel.isVisible()) {
+                    outerLabel.setVisible(false);
+                }else{
+                    outerLabel.setVisible(true);
+                }
+                // SettingsGUI.openSettingsWindow();
+                // frame.setVisible(false);
             }
         });
 

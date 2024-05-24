@@ -70,7 +70,7 @@ public class SettingsGUI {
         settingsFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                GUI.drawGUI();
+                GUI.openMainWindow();
                 settingsFrame.setVisible(false);
             }
         });
