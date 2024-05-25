@@ -49,7 +49,7 @@ public class GUI {
     private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
-    private static JLabel outerLabel;
+    private static JLabel settingsSliderLbl;
 
     // Diese Variablen speichern den Betrag des Nutzers
     private static String inputValue;
@@ -94,8 +94,7 @@ public class GUI {
     }
 
     private static void addSettingsSlider() {
-        outerLabel = new JLabel() {
-
+        settingsSliderLbl = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g;
@@ -107,22 +106,26 @@ public class GUI {
             }
         };
 
-        outerLabel.setBounds(FRAME_WIDTH - 425, settingsLblBtn.getY() - 2, 400, 55);
+        settingsSliderLbl.setBounds(FRAME_WIDTH - 425, settingsLblBtn.getY() - 2, 400, 55);
         // X: settingsLblBtn.getX() - 2 -> FRAME_WIDTH - 425
         // width: 60 -> 400
 
-        outerLabel.setOpaque(true);
+        settingsSliderLbl.setOpaque(true);
+        settingsSliderLbl.setVisible(false);
 
-        frame.add(outerLabel);
+        frame.add(settingsSliderLbl);
     }
 
     private static void extendSettingsSlider() {
-        outerLabel.setVisible(true);
-        // outerLabel.setBounds(FRAME_WIDTH - 425, settingsLblBtn.getY() - 2, 400, 55);
+        settingsSliderLbl.setVisible(true);
+
+        // TODO: add settings components somehow
     }
 
     private static void minimizeSettingsSlider() {
-        outerLabel.setVisible(false);
+        settingsSliderLbl.setVisible(false);
+
+        // TODO: cleanly remove / hide them again without breaking shit lol
     }
 
     // Bringt das Hauptfenster zurück
@@ -407,7 +410,15 @@ public class GUI {
         settingsLblBtn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                outerLabel.setVisible(!outerLabel.isVisible());
+                // outerLabel.setVisible(!outerLabel.isVisible());
+
+                if (settingsSliderLbl.isVisible()) {
+                    minimizeSettingsSlider();
+                } else {
+                    extendSettingsSlider();
+                }
+
+                // old code:
                 // SettingsGUI.openSettingsWindow();
                 // frame.setVisible(false);
             }
