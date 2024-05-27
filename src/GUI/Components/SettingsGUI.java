@@ -26,8 +26,6 @@ public class SettingsGUI {
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel settingsSliderLbl;
     private static JLabel themeLblBtn = new JLabel();
-    // TODO: remove?
-    //private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
     private static JComboBox<String> languageDropdown = new JComboBox<String>();
 
@@ -73,15 +71,11 @@ public class SettingsGUI {
      * Fügt das Dropdown für die Sprachauswahl hinzu
      */
     private static void addLanguageDropdown() {
-        int compWidth = 150, compHeight = 30;
+        for (Languages language : Languages.values()) {
+            String formattedLanguage = language.toString().toLowerCase().substring(0, 1).toUpperCase()
+                    + language.toString().toLowerCase().substring(1);
 
-        if (languageDropdown.getItemCount() == 0) {
-            for (Languages language : Languages.values()) {
-                String formattedLanguage = language.toString().toLowerCase().substring(0, 1).toUpperCase()
-                        + language.toString().toLowerCase().substring(1);
-
-                languageDropdown.addItem(formattedLanguage);
-            }
+            languageDropdown.addItem(formattedLanguage);
         }
 
         languageDropdown.setSelectedItem(AppLanguage.getConfigAppLanguage());
@@ -157,20 +151,6 @@ public class SettingsGUI {
         }
     }
 
-    public static JButton getConfigResetBtn() {
-        return configResetBtn;
-    }
-
-    // public static JLabel getThemeSwitchBtn() {
-    // return themeLblBtn;
-    // }
-
-    // public static JComboBox<String> getLanguageDropdown() {
-    // return languageDropdown;
-    // }
-
-    // =======================================================================================
-
     /*
      * Erstellt ein klickbares Label mit Icon
      * das als Button für das Einstellungs Menu agiert
@@ -209,9 +189,6 @@ public class SettingsGUI {
             }
         };
 
-        // X: settingsLblBtn.getX() - 2 -> FRAME_WIDTH - 425
-        // width: 60 -> 400
-
         settingsSliderLbl.setOpaque(true);
 
         GUI.getAppWindow().add(settingsSliderLbl);
@@ -226,14 +203,6 @@ public class SettingsGUI {
 
         GUI.getAppWindow().revalidate();
         GUI.getAppWindow().repaint();
-
-        // TODO: remove.
-        // SettingsGUI.getThemeSwitchBtn().setLocation(FRAME_WIDTH - 410,
-        // settingsLblBtn.getY() + 11);
-        // SettingsGUI.getConfigResetBtn().setBounds(FRAME_WIDTH - 370,
-        // settingsLblBtn.getY() + 6, 100, 38);
-        // SettingsGUI.getLanguageDropdown().setBounds(FRAME_WIDTH - 260,
-        // settingsLblBtn.getY() + 12, 120, 28);
     }
 
     private static void minimizeSettingsSlider() {
@@ -245,5 +214,9 @@ public class SettingsGUI {
 
         GUI.getAppWindow().revalidate();
         GUI.getAppWindow().repaint();
+    }
+
+    public static JButton getConfigResetBtn() {
+        return configResetBtn;
     }
 }
