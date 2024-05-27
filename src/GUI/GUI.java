@@ -95,16 +95,8 @@ public class GUI {
         setAppTheme(AppTheme.getConfigAppTheme());
         updateDisplayedLanguage();
 
-        // Testing stuff:
-        // SettingsGUI.addThemeSwitchButton(frame);
-        // SettingsGUI.addConfigDefaultsButton(frame);
-        // SettingsGUI.addLanguageDropdown(frame);
-        // addSettingsSlider();
-
         frame.requestFocus();
         frame.setVisible(true);
-
-        // SettingsGUI.drawSettingsGUI();
 
     }
 
