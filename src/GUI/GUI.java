@@ -1,7 +1,6 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -10,8 +9,8 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import GUI.Components.SettingsGUI;
 import GUI.Popups.PopupDisplay;
-import GUI.Settings.SettingsGUI;
 import Main.CurrencyCalculator;
 import Utils.Utils;
 import Utils.Data.Calculations;
@@ -28,7 +27,7 @@ public class GUI {
 
     // Grund Infos das das Haupt JFrame
     public static String title;
-    public static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
+    private static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Komponenten
@@ -47,9 +46,7 @@ public class GUI {
     private static JLabel headlineLabel = new JLabel("blankblankblankblankblank");
     private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
     private static JLabel clipboardLblBtn = new JLabel();
-    private static JLabel settingsLblBtn = new JLabel();
     private static JLabel loadingGIF = new JLabel();
-    private static JLabel settingsSliderLbl;
 
     // Diese Variablen speichern den Betrag des Nutzers
     private static String inputValue;
@@ -61,6 +58,18 @@ public class GUI {
     // Diese Variabel wird für das Headline benutzt.
     private static int textWidth;
 
+    public static JFrame getAppWindow() {
+        return frame;
+    }
+
+    public static int getWindowWidth() {
+        return FRAME_WIDTH;
+    }
+
+    public static int getWindowHeight() {
+        return FRAME_HEIGHT;
+    }
+
     /*
      * Diese Methode führt andere Methoden aus
      * und fügt dadurch die einzelnen Komponenten hinzu
@@ -68,7 +77,10 @@ public class GUI {
     public static void drawGUI() {
         setBasicFrameProps();
 
-        
+        SettingsGUI.addAllComponents();
+        // x.addAllComponents();
+        // y.addAllComponents();
+
         addCalculateButton();
         addDropdownWithFilters();
         addInputOutput();
@@ -77,16 +89,17 @@ public class GUI {
         addPresetLabel();
         addSaveCalculationButton();
         addLoadCalculationButton();
-        addSettingsLblBtn();
         addFadeLabel();
         addFooter();
-        
+
         setAppTheme(AppTheme.getConfigAppTheme());
         updateDisplayedLanguage();
-        
+
         // Testing stuff:
-        addSettingsSlider();
         SettingsGUI.addThemeSwitchButton(frame);
+        SettingsGUI.addConfigDefaultsButton(frame);
+        SettingsGUI.addLanguageDropdown(frame);
+        addSettingsSlider();
 
         frame.requestFocus();
         frame.setVisible(true);
@@ -120,23 +133,31 @@ public class GUI {
 
     private static void extendSettingsSlider() {
         settingsSliderLbl.setVisible(true);
-        
-        SettingsGUI.getThemeSwitchBtn().setLocation(FRAME_WIDTH - 420, settingsLblBtn.getY() + 11);
+
+        // TODO: remove all locations from this function and refactor thgem properly
+
+        SettingsGUI.getThemeSwitchBtn().setLocation(FRAME_WIDTH - 410, settingsLblBtn.getY() + 11);
         SettingsGUI.getThemeSwitchBtn().setVisible(true);
-        frame.revalidate();
-        frame.repaint();
-        //frame.setComponentZOrder(SettingsGUI.getThemeSwitchBtn(), 0);
-        // TODO: add settings components somehow
-    }
-    
-    private static void minimizeSettingsSlider() {
-        settingsSliderLbl.setVisible(false);
-        
-        SettingsGUI.getThemeSwitchBtn().setVisible(false);
+
+        SettingsGUI.getConfigResetBtn().setBounds(FRAME_WIDTH - 370, settingsLblBtn.getY() + 6, 100, 38);
+        SettingsGUI.getConfigResetBtn().setVisible(true);
+
+        SettingsGUI.getLanguageDropdown().setBounds(FRAME_WIDTH - 260, settingsLblBtn.getY() + 12, 120, 28);
+        SettingsGUI.getLanguageDropdown().setVisible(true);
 
         frame.revalidate();
         frame.repaint();
-        // TODO: cleanly remove / hide them again without breaking shit lol
+    }
+
+    private static void minimizeSettingsSlider() {
+        settingsSliderLbl.setVisible(false);
+
+        SettingsGUI.getThemeSwitchBtn().setVisible(false);
+        SettingsGUI.getConfigResetBtn().setVisible(false);
+        SettingsGUI.getLanguageDropdown().setVisible(false);
+
+        frame.revalidate();
+        frame.repaint();
     }
 
     // Bringt das Hauptfenster zurück
@@ -406,38 +427,6 @@ public class GUI {
         frame.add(outputLabel);
     }
 
-    /*
-     * Erstellt ein klickbares Label mit Icon
-     * das als Button für das Einstellungs Menu agiert
-     */
-    private static void addSettingsLblBtn() {
-        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_settings.png"));
-        Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-
-        settingsLblBtn.setBounds(GUI.FRAME_WIDTH - 80, GUI.FRAME_HEIGHT - 95, 50, 50);
-        settingsLblBtn.setIcon(scaledIcon);
-
-        settingsLblBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                // outerLabel.setVisible(!outerLabel.isVisible());
-
-                if (settingsSliderLbl.isVisible()) {
-                    minimizeSettingsSlider();
-                } else {
-                    extendSettingsSlider();
-                }
-
-                // old code:
-                // SettingsGUI.openSettingsWindow();
-                // frame.setVisible(false);
-            }
-        });
-
-        frame.add(settingsLblBtn);
-    }
-
     private static void addFooter() {
         authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
         authorLabel.setForeground(Color.GRAY);
@@ -684,6 +673,10 @@ public class GUI {
 
     public static String getTargetCur() {
         return targetCurResult;
+    }
+
+    public static JLabel getSettingsBtn() {
+        return settingsLblBtn;
     }
 
     /*
