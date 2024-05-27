@@ -23,7 +23,7 @@ import java.awt.event.*;
 public class SettingsGUI {
     // Komponenten
     // private static final int FRAME_WIDTH = 400, FRAME_HEIGHT = 280;
-    private static JLabel settingsLblBtn = new JLabel();
+    private static JLabel settingsLbl = new JLabel();
     private static JLabel settingsSliderLbl;
     private static JLabel themeLblBtn = new JLabel();
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
@@ -58,13 +58,13 @@ public class SettingsGUI {
     }
 
     private static void setComponentBounds() {
-        settingsLblBtn.setBounds(GUI.getWindowWidth() - 80, GUI.getWindowHeight() - 95, 50, 50);
-        languageDropdown.setBounds(GUI.getWindowWidth() - 260, settingsLblBtn.getY() + 12,
+        settingsLbl.setBounds(GUI.getWindowWidth() - 80, GUI.getWindowHeight() - 95, 50, 50);
+        languageDropdown.setBounds(GUI.getWindowWidth() - 260, settingsLbl.getY() + 12,
                 150, 30);
-        configResetBtn.setBounds(GUI.getWindowWidth() - 370, settingsLblBtn.getY() + 6,
+        configResetBtn.setBounds(GUI.getWindowWidth() - 370, settingsLbl.getY() + 6,
                 100, 38);
-        themeLblBtn.setBounds(GUI.getWindowWidth() - 410, settingsLblBtn.getY() + 12, 25, 25);
-        settingsSliderLbl.setBounds(GUI.getWindowWidth() - 425, settingsLblBtn.getY() - 2, 400, 55);
+        themeLblBtn.setBounds(GUI.getWindowWidth() - 410, settingsLbl.getY() + 12, 25, 25);
+        settingsSliderLbl.setBounds(GUI.getWindowWidth() - 425, settingsLbl.getY() - 2, 400, 55);
     }
 
     /*
@@ -160,9 +160,9 @@ public class SettingsGUI {
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        settingsLblBtn.setIcon(scaledIcon);
+        settingsLbl.setIcon(scaledIcon);
 
-        settingsLblBtn.addMouseListener(new MouseAdapter() {
+        settingsLbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (settingsSliderLbl.isVisible()) {
@@ -173,7 +173,7 @@ public class SettingsGUI {
             }
         });
 
-        GUI.getAppWindow().add(settingsLblBtn);
+        GUI.getAppWindow().add(settingsLbl);
     }
 
     private static void addSettingsSlider() {

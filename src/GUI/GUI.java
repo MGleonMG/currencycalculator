@@ -31,7 +31,7 @@ public class GUI {
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Komponenten
-    private static JFrame frame = new JFrame();
+    public static JFrame frame = new JFrame();
     private static JTextField inputField = new JTextField();
     public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
             searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
