@@ -41,11 +41,11 @@ public class SettingsGUI {
      */
     public static void drawSettingsGUI() {
         setBasicFrameProps();
-        addLangHeader();
-        addDropdownLangSelection();
-        addConfigDefaultsButton();
-        addThemeSwitchButton();
-        addBackButton();
+        // addLangHeader();
+        // addDropdownLangSelection();
+        // addConfigDefaultsButton();
+        // addThemeSwitchButton();
+        // addBackButton();
 
         settingsFrame.requestFocus();
         settingsFrame.setVisible(false);
@@ -79,17 +79,17 @@ public class SettingsGUI {
     /*
      * Fügt eine Überschrift für das Dropdown der Sprachauswahl hinzu
      */
-    private static void addLangHeader() {
+    private static void addLangHeader(JFrame jframe) {
         langHeader.setBounds(5, 5, 150, 30);
         langHeader.setBackground(Color.WHITE);
 
-        settingsFrame.add(langHeader);
+        jframe.add(langHeader);
     }
 
     /*
      * Fügt das Dropdown für die Sprachauswahl hinzu
      */
-    private static void addDropdownLangSelection() {
+    private static void addDropdownLangSelection(JFrame jframe) {
         int compWidth = 150, compHeight = 30;
 
         dropdownLangSelection.setBounds(5, langHeader.getHeight() + 2, compWidth, compHeight);
@@ -117,14 +117,14 @@ public class SettingsGUI {
             }
         });
 
-        settingsFrame.add(dropdownLangSelection);
+        jframe.add(dropdownLangSelection);
     }
 
     /*
      * Diese Methode fügt einen Knopf hinzu, womit man Config Einstellungen
      * auf die Standardeinstellungen zurücksetzen kann
      */
-    private static void addConfigDefaultsButton() {
+    private static void addConfigDefaultsButton(JFrame jframe) {
         int compWidth = 110, compHeight = 45;
 
         configResetBtn.setBounds(FRAME_WIDTH - compWidth - 20,
@@ -138,14 +138,14 @@ public class SettingsGUI {
             }
         });
 
-        settingsFrame.add(configResetBtn);
+        jframe.add(configResetBtn);
     }
 
     /*
      * Diese Methode fügt die "Theme" Knöpfe hinzu,
      * sodass man die einzelnen Themes ändern kann
      */
-    private static void addThemeSwitchButton() {
+    public static void addThemeSwitchButton(JFrame jframe) {
         themeLblBtn.setBounds(20, 300, 25, 25);
         setThemeIcon();
 
@@ -169,14 +169,15 @@ public class SettingsGUI {
             }
         });
 
-        settingsFrame.add(themeLblBtn);
+        themeLblBtn.setVisible(false);
+        jframe.add(themeLblBtn);
     }
 
     /*
      * Diese Methode fügt einen Knopf hinzu, womit man in das Hauptfenster
      * zurückkehrt
      */
-    private static void addBackButton() {
+    private static void addBackButton(JFrame jframe) {
         backBtn = new JButton(Language.getLangStringByKey("back"));
         backBtn.setBounds(475, 300, 100, 30);
         backBtn.setForeground(Color.WHITE);
@@ -188,7 +189,7 @@ public class SettingsGUI {
             }
         });
 
-        settingsFrame.add(backBtn);
+        jframe.add(backBtn);
     }
 
     private static void setThemeIcon() {
@@ -207,6 +208,10 @@ public class SettingsGUI {
 
     public static JButton getConfigResetBtn() {
         return configResetBtn;
+    }
+
+    public static JLabel getThemeSwitchBtn() {
+        return themeLblBtn;
     }
 
     public static JButton getBackBtn() {

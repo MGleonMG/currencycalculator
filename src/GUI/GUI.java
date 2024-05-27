@@ -68,6 +68,7 @@ public class GUI {
     public static void drawGUI() {
         setBasicFrameProps();
 
+        
         addCalculateButton();
         addDropdownWithFilters();
         addInputOutput();
@@ -79,12 +80,13 @@ public class GUI {
         addSettingsLblBtn();
         addFadeLabel();
         addFooter();
-
+        
         setAppTheme(AppTheme.getConfigAppTheme());
         updateDisplayedLanguage();
-
+        
         // Testing stuff:
         addSettingsSlider();
+        SettingsGUI.addThemeSwitchButton(frame);
 
         frame.requestFocus();
         frame.setVisible(true);
@@ -118,13 +120,22 @@ public class GUI {
 
     private static void extendSettingsSlider() {
         settingsSliderLbl.setVisible(true);
-
+        
+        SettingsGUI.getThemeSwitchBtn().setLocation(FRAME_WIDTH - 420, settingsLblBtn.getY() + 11);
+        SettingsGUI.getThemeSwitchBtn().setVisible(true);
+        frame.revalidate();
+        frame.repaint();
+        //frame.setComponentZOrder(SettingsGUI.getThemeSwitchBtn(), 0);
         // TODO: add settings components somehow
     }
-
+    
     private static void minimizeSettingsSlider() {
         settingsSliderLbl.setVisible(false);
+        
+        SettingsGUI.getThemeSwitchBtn().setVisible(false);
 
+        frame.revalidate();
+        frame.repaint();
         // TODO: cleanly remove / hide them again without breaking shit lol
     }
 
