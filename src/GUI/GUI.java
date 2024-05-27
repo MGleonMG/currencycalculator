@@ -96,68 +96,16 @@ public class GUI {
         updateDisplayedLanguage();
 
         // Testing stuff:
-        SettingsGUI.addThemeSwitchButton(frame);
-        SettingsGUI.addConfigDefaultsButton(frame);
-        SettingsGUI.addLanguageDropdown(frame);
-        addSettingsSlider();
+        // SettingsGUI.addThemeSwitchButton(frame);
+        // SettingsGUI.addConfigDefaultsButton(frame);
+        // SettingsGUI.addLanguageDropdown(frame);
+        // addSettingsSlider();
 
         frame.requestFocus();
         frame.setVisible(true);
 
-        SettingsGUI.drawSettingsGUI();
+        // SettingsGUI.drawSettingsGUI();
 
-    }
-
-    private static void addSettingsSlider() {
-        settingsSliderLbl = new JLabel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2d.setColor(new Color(125, 125, 125, 125));
-                g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 40, 40);
-                g2d.setColor(Color.BLACK);
-                g2d.drawString(getText(), 10, 30);
-            }
-        };
-
-        settingsSliderLbl.setBounds(FRAME_WIDTH - 425, settingsLblBtn.getY() - 2, 400, 55);
-        // X: settingsLblBtn.getX() - 2 -> FRAME_WIDTH - 425
-        // width: 60 -> 400
-
-        settingsSliderLbl.setOpaque(true);
-        settingsSliderLbl.setVisible(false);
-
-        frame.add(settingsSliderLbl);
-    }
-
-    private static void extendSettingsSlider() {
-        settingsSliderLbl.setVisible(true);
-
-        // TODO: remove all locations from this function and refactor thgem properly
-
-        SettingsGUI.getThemeSwitchBtn().setLocation(FRAME_WIDTH - 410, settingsLblBtn.getY() + 11);
-        SettingsGUI.getThemeSwitchBtn().setVisible(true);
-
-        SettingsGUI.getConfigResetBtn().setBounds(FRAME_WIDTH - 370, settingsLblBtn.getY() + 6, 100, 38);
-        SettingsGUI.getConfigResetBtn().setVisible(true);
-
-        SettingsGUI.getLanguageDropdown().setBounds(FRAME_WIDTH - 260, settingsLblBtn.getY() + 12, 120, 28);
-        SettingsGUI.getLanguageDropdown().setVisible(true);
-
-        frame.revalidate();
-        frame.repaint();
-    }
-
-    private static void minimizeSettingsSlider() {
-        settingsSliderLbl.setVisible(false);
-
-        SettingsGUI.getThemeSwitchBtn().setVisible(false);
-        SettingsGUI.getConfigResetBtn().setVisible(false);
-        SettingsGUI.getLanguageDropdown().setVisible(false);
-
-        frame.revalidate();
-        frame.repaint();
     }
 
     // Bringt das Hauptfenster zurück
@@ -450,7 +398,6 @@ public class GUI {
                 AppTheme.setConfigAppTheme(Theme.LIGHT_MODE);
             }
             SwingUtilities.updateComponentTreeUI(frame);
-            SwingUtilities.updateComponentTreeUI(SettingsGUI.getSettingsFrame());
 
         } catch (Exception e) {
             PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_theme_get") + "\n" +
@@ -653,7 +600,7 @@ public class GUI {
         Utils.refreshCurrencyDropdowns();
 
         // update settings Komponenten
-        SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
+        // SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
         SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
     }
 
@@ -673,10 +620,6 @@ public class GUI {
 
     public static String getTargetCur() {
         return targetCurResult;
-    }
-
-    public static JLabel getSettingsBtn() {
-        return settingsLblBtn;
     }
 
     /*

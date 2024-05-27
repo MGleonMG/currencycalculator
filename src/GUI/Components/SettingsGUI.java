@@ -26,7 +26,8 @@ public class SettingsGUI {
     private static JLabel settingsLblBtn = new JLabel();
     private static JLabel settingsSliderLbl;
     private static JLabel themeLblBtn = new JLabel();
-    private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
+    // TODO: remove?
+    //private static JLabel langHeader = new JLabel(Language.getLangStringByKey("select_language"));
     private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
     private static JComboBox<String> languageDropdown = new JComboBox<String>();
 
@@ -43,23 +44,29 @@ public class SettingsGUI {
      * fügt dadurch die einzelnen Objekte hinzu
      */
     public static void addAllComponents() {
-        addSettingsLblBtn();
-        addSettingsSlider();
-
+        // Komponenten
         addThemeSwitchButton();
         addConfigDefaultsButton();
         addLanguageDropdown();
+
+        addSettingsLblBtn();
+        addSettingsSlider();
+
+        // Komponenten skalieren und platzieren
+        setComponentBounds();
+
+        // Slider für die Einstellungen soll am Anfang geschlossen sein
+        minimizeSettingsSlider();
     }
 
-    /*
-     * Fügt eine Überschrift für das Dropdown der Sprachauswahl hinzu
-     */
-    // TODO: still needed???
-    private static void addLangHeader() {
-        langHeader.setBounds(5, 5, 150, 30);
-        langHeader.setBackground(Color.WHITE);
-
-        GUI.getAppWindow().add(langHeader);
+    private static void setComponentBounds() {
+        settingsLblBtn.setBounds(GUI.getWindowWidth() - 80, GUI.getWindowHeight() - 95, 50, 50);
+        languageDropdown.setBounds(GUI.getWindowWidth() - 260, settingsLblBtn.getY() + 12,
+                150, 30);
+        configResetBtn.setBounds(GUI.getWindowWidth() - 370, settingsLblBtn.getY() + 6,
+                100, 38);
+        themeLblBtn.setBounds(GUI.getWindowWidth() - 410, settingsLblBtn.getY() + 12, 25, 25);
+        settingsSliderLbl.setBounds(GUI.getWindowWidth() - 425, settingsLblBtn.getY() - 2, 400, 55);
     }
 
     /*
@@ -67,8 +74,6 @@ public class SettingsGUI {
      */
     private static void addLanguageDropdown() {
         int compWidth = 150, compHeight = 30;
-
-        languageDropdown.setBounds(5, langHeader.getHeight() + 2, compWidth, compHeight);
 
         if (languageDropdown.getItemCount() == 0) {
             for (Languages language : Languages.values()) {
@@ -101,11 +106,6 @@ public class SettingsGUI {
      * auf die Standardeinstellungen zurücksetzen kann
      */
     private static void addConfigDefaultsButton() {
-        int compWidth = 110, compHeight = 45; // TODO: Do this for all components or remove completely?
-
-        configResetBtn.setBounds(GUI.getWindowWidth() - compWidth - 20,
-                GUI.getWindowHeight() - compHeight - 100,
-                compWidth, compHeight);
         configResetBtn.setBackground(Color.WHITE);
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
@@ -122,7 +122,6 @@ public class SettingsGUI {
      * sodass man die einzelnen Themes ändern kann
      */
     private static void addThemeSwitchButton() {
-        themeLblBtn.setBounds(GUI.getWindowWidth() - 410, GUI.getSettingsBtn().getY() + 11, 25, 25);
         setThemeIcon();
 
         themeLblBtn.addMouseListener(new MouseAdapter() {
@@ -145,7 +144,6 @@ public class SettingsGUI {
             }
         });
 
-        themeLblBtn.setVisible(false);
         GUI.getAppWindow().add(themeLblBtn);
     }
 
@@ -159,9 +157,9 @@ public class SettingsGUI {
         }
     }
 
-    // public static JButton getConfigResetBtn() {
-    // return configResetBtn;
-    // }
+    public static JButton getConfigResetBtn() {
+        return configResetBtn;
+    }
 
     // public static JLabel getThemeSwitchBtn() {
     // return themeLblBtn;
@@ -182,7 +180,6 @@ public class SettingsGUI {
         Image scaledImage = originalIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        settingsLblBtn.setBounds(GUI.getWindowWidth() - 80, GUI.getWindowHeight() - 95, 50, 50);
         settingsLblBtn.setIcon(scaledIcon);
 
         settingsLblBtn.addMouseListener(new MouseAdapter() {
@@ -212,12 +209,10 @@ public class SettingsGUI {
             }
         };
 
-        settingsSliderLbl.setBounds(GUI.getWindowWidth() - 425, settingsLblBtn.getY() - 2, 400, 55);
         // X: settingsLblBtn.getX() - 2 -> FRAME_WIDTH - 425
         // width: 60 -> 400
 
         settingsSliderLbl.setOpaque(true);
-        settingsSliderLbl.setVisible(false);
 
         GUI.getAppWindow().add(settingsSliderLbl);
     }
