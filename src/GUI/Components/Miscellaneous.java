@@ -78,6 +78,7 @@ public class Miscellaneous {
                     Utils.copyToClipboard();
                     runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
                 } else {
+                    // TODO: Add language support here
                     PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
                 }
             }
