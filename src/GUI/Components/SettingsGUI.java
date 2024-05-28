@@ -74,13 +74,10 @@ public class SettingsGUI {
      */
     private static void addLanguageDropdown() {
         for (Languages language : Languages.values()) {
-            String formattedLanguage = language.toString().toLowerCase().substring(0, 1).toUpperCase()
-                    + language.toString().toLowerCase().substring(1);
-
-            languageDropdown.addItem(formattedLanguage);
+            languageDropdown.addItem(formattedLanguageToString(language));
         }
 
-        languageDropdown.setSelectedItem(AppLanguage.getConfigAppLanguage());
+        languageDropdown.setSelectedItem(formattedLanguageToString(AppLanguage.getConfigAppLanguage()));
 
         languageDropdown.addItemListener(new ItemListener() {
             @Override
@@ -97,6 +94,11 @@ public class SettingsGUI {
         GUI.getAppWindow().add(languageDropdown);
     }
 
+    private static String formattedLanguageToString(Languages language) {
+        return language.toString().toLowerCase().substring(0, 1).toUpperCase()
+                + language.toString().toLowerCase().substring(1);
+    }
+
     /*
      * Diese Methode fügt einen Knopf hinzu, womit man Config Einstellungen
      * auf die Standardeinstellungen zurücksetzen kann
@@ -106,7 +108,7 @@ public class SettingsGUI {
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //ConfigDefaults.restoreAllDefaults();
+                // ConfigDefaults.restoreAllDefaults();
                 confirmWindow();
             }
         });
@@ -237,18 +239,18 @@ public class SettingsGUI {
         headline.setText(Language.getLangStringByKey("test1"));
         info.setText(Language.getLangStringByKey("test2"));
 
-
         headline.setBounds((width - getTextWidth()) / 2, 300, getTextWidth(), 50);
 
     }
 
-    /* 
-    private static int getTextWidth() {
-        FontMetrics fontMetrics = headlineLabel.getFontMetrics(headlineLabel.getFont());
-        textWidth = fontMetrics.stringWidth(headlineLabel.getText());
-        return textWidth;
-    }
-    */
+    /*
+     * private static int getTextWidth() {
+     * FontMetrics fontMetrics =
+     * headlineLabel.getFontMetrics(headlineLabel.getFont());
+     * textWidth = fontMetrics.stringWidth(headlineLabel.getText());
+     * return textWidth;
+     * }
+     */
 
     public static JButton getConfigResetBtn() {
         return configResetBtn;
