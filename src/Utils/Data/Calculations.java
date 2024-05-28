@@ -1,6 +1,5 @@
 package Utils.Data;
 
-import GUI.GUI;
 import GUI.Components.InputOutput;
 import Utils.Utils;
 import lang.Language;
