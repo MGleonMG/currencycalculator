@@ -9,6 +9,7 @@ import java.util.Map;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import GUI.Components.InputOutput;
 import GUI.Components.SettingsGUI;
 import GUI.Popups.PopupDisplay;
 import Main.CurrencyCalculator;
@@ -35,8 +36,8 @@ public class GUI {
     private static JTextField inputField = new JTextField();
     public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
             searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
-    private static JComboBox<String> dropdownBaseCur;
-    private static JComboBox<String> dropdownTargetCur;
+    public static JComboBox<String> dropdownBaseCur;
+    public static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton();
     private static JButton saveBtn = new JButton();
     private static JButton loadBtn = new JButton();
@@ -78,13 +79,13 @@ public class GUI {
         setBasicFrameProps();
 
         SettingsGUI.addAllComponents();
-        // x.addAllComponents();
+        InputOutput.addAllComponents();
         // y.addAllComponents();
 
-        addCalculateButton();
-        addDropdownWithFilters();
-        addInputOutput();
-        addLoadingCircleGIF();
+        // addCalculateButton();
+        // addDropdownWithFilters();
+        // addInputOutput();
+        // addLoadingCircleGIF();
         addCopyOutputLblBtn();
         addPresetLabel();
         addSaveCalculationButton();
@@ -93,11 +94,10 @@ public class GUI {
         addFooter();
 
         setAppTheme(AppTheme.getConfigAppTheme());
-        updateDisplayedLanguage();
+        updateDisplayedLanguage(true);
 
         frame.requestFocus();
         frame.setVisible(true);
-
     }
 
     // Bringt das Hauptfenster zurück
@@ -575,7 +575,7 @@ public class GUI {
     /*
      * Updatet die dargestellte Sprache auf den GUI Komponenten
      */
-    public static void updateDisplayedLanguage() {
+    public static void updateDisplayedLanguage(boolean calledOnStartup) {
         // update Programm Titel
         title = Language.getLangStringByKey("title");
         updateTitle(frame);
@@ -589,17 +589,13 @@ public class GUI {
         saveBtn.setText(Language.getLangStringByKey("saveBtn"));
         loadBtn.setText(Language.getLangStringByKey("loadBtn"));
         fadeLabel.setText(Language.getLangStringByKey("fadeLabel"));
-        Utils.refreshCurrencyDropdowns();
 
-        // update settings Komponenten
-        // SettingsGUI.getBackBtn().setText(Language.getLangStringByKey("back"));
+        if (!calledOnStartup) {
+            System.out.println("\nhere!\n");
+            Utils.refreshCurrencyDropdowns();
+        }
+
         SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
-    }
-
-    @SuppressWarnings("rawtypes")
-    public static JComboBox[] getComboBoxes() {
-        JComboBox[] comboBoxes = { dropdownBaseCur, dropdownTargetCur };
-        return comboBoxes;
     }
 
     public static double getAmount() {

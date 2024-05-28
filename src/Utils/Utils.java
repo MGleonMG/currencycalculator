@@ -6,11 +6,9 @@ import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import GUI.GUI;
-
 import java.util.Set;
 
+import GUI.Components.InputOutput;
 import Utils.Data.Calculations;
 
 import java.awt.datatransfer.StringSelection;
@@ -65,15 +63,15 @@ public class Utils {
      */
     @SuppressWarnings("unchecked")
     public static void refreshCurrencyDropdowns() {
-        GUI.getComboBoxes()[0].removeAllItems();
-        GUI.getComboBoxes()[1].removeAllItems();
+        InputOutput.getComboBoxes()[0].removeAllItems();
+        InputOutput.getComboBoxes()[1].removeAllItems();
 
         for (Map.Entry<String, String> currency : getAllCurrencies()) {
             String isoCode = currency.getKey();
             String currencyName = currency.getValue();
 
-            GUI.getComboBoxes()[0].addItem(currencyName + " (" + isoCode + ")");
-            GUI.getComboBoxes()[1].addItem(currencyName + " (" + isoCode + ")");
+            InputOutput.getComboBoxes()[0].addItem(currencyName + " (" + isoCode + ")");
+            InputOutput.getComboBoxes()[1].addItem(currencyName + " (" + isoCode + ")");
         }
     }
 

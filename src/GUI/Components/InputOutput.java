@@ -32,7 +32,6 @@ public class InputOutput {
     private static String baseCurResult, targetCurResult;
 
     public static void addAllComponents() {
-
         addCalculateButton();
         addDropdownWithFilters();
         addInputOutput();
@@ -232,7 +231,7 @@ public class InputOutput {
      * Diese Methode erstellt die Möglichkeit im Dropdown Menü mit Pfeiltasten zu
      * navigieren
      */
-    public static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
+    private static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
         InputMap inputMap = comboBox.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         ActionMap actionMap = comboBox.getActionMap();
 
@@ -323,5 +322,11 @@ public class InputOutput {
 
     public static String getTargetCur() {
         return targetCurResult;
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static JComboBox[] getComboBoxes() {
+        JComboBox[] comboBoxes = { dropdownBaseCur, dropdownTargetCur };
+        return comboBoxes;
     }
 }
