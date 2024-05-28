@@ -21,7 +21,7 @@ public class InputOutput {
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton();
-    private static JLabel outputLbl = new JLabel("", SwingConstants.CENTER);
+    private static JLabel outputLbl = new JLabel(Language.getLangStringByKey("outputLabel"), SwingConstants.CENTER);
     private static JLabel loadingGIFLbl = new JLabel();
 
     // Diese Variablen speichern den Betrag des Nutzers
@@ -133,11 +133,11 @@ public class InputOutput {
         addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
 
-        GUI.frame.add(searchBarBaseCur);
-        GUI.frame.add(searchBarTargetCur);
+        GUI.getAppWindow().add(searchBarBaseCur);
+        GUI.getAppWindow().add(searchBarTargetCur);
 
-        GUI.frame.add(dropdownBaseCur);
-        GUI.frame.add(dropdownTargetCur);
+        GUI.getAppWindow().add(dropdownBaseCur);
+        GUI.getAppWindow().add(dropdownTargetCur);
     }
 
     /*
@@ -265,8 +265,8 @@ public class InputOutput {
     private static void addInputOutput() {
         setOutput(Language.getLangStringByKey("outputLabel"));
 
-        GUI.frame.add(inputField);
-        GUI.frame.add(outputLbl);
+        GUI.getAppWindow().add(inputField);
+        GUI.getAppWindow().add(outputLbl);
     }
 
     /*
@@ -279,7 +279,7 @@ public class InputOutput {
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         // Image.SCALE_FAST damit es das GIF anzeigt
         loadingGIFLbl.setIcon(scaledIcon);
-        GUI.frame.add(loadingGIFLbl);
+        GUI.getAppWindow().add(loadingGIFLbl);
         loadingGIFLbl.setVisible(false);
     }
 
@@ -292,7 +292,7 @@ public class InputOutput {
          * JLabels akzeptieren kein normales \n als Line break, deshalb benutzen wir
          * hier HTML formatierung mit dem <br> Tag
          */
-        GUI.outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
+        outputLbl.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
 
     /*
@@ -352,5 +352,25 @@ public class InputOutput {
 
     public static String getTargetCur() {
         return targetCurResult;
+    }
+
+    public static String getInputVal() {
+        return inputValue;
+    }
+
+    public static void setBaseCur(String baseCur) {
+        baseCurResult = baseCur;
+    }
+
+    public static void setTargetCur(String targetCur) {
+        targetCurResult = targetCur;
+    }
+
+    public static void setInputVal(String inputVal) {
+        inputValue = inputVal;
+    }
+
+    public static void setInputValRes() {
+        inputValueResult = Double.parseDouble(inputValue);
     }
 }

@@ -33,13 +33,13 @@ public class Calculations {
         Thread thread = new Thread(() -> {
             InputOutput.displayAsLoading(true);
 
-            convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
+            convertCurrencies(InputOutput.getBaseCur(), InputOutput.getTargetCur(), InputOutput.getAmount());
 
             if (ExchangeRateFetcher.getFailed() == false) {
-                InputOutput.setOutput(Language.getLangStringByKey("outputComponent1") + " " + GUI.getAmount() + " "
-                        + GUI.getBaseCur()
+                InputOutput.setOutput(Language.getLangStringByKey("outputComponent1") + " " + InputOutput.getAmount() + " "
+                        + InputOutput.getBaseCur()
                         + "\n" +
-                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " " + GUI.getTargetCur()
+                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " " + InputOutput.getTargetCur()
                         + "\n"
                         +
                         Language.getLangStringByKey("outputComponent3") + " "

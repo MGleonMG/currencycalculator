@@ -3,19 +3,17 @@ package GUI;
 import javax.swing.*;
 
 import java.awt.*;
-import java.awt.event.*;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
 import GUI.Components.InputOutput;
+import GUI.Components.Miscellaneous;
 import GUI.Components.SettingsGUI;
 import GUI.Popups.PopupDisplay;
 import Main.CurrencyCalculator;
 import Utils.Utils;
-import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.AppTheme;
-import Utils.Data.Config.Settings.LastCalculation;
 import Utils.Data.Config.Settings.AppTheme.Theme;
 import lang.Language;
 
@@ -32,21 +30,7 @@ public class GUI {
 
     // Komponenten
     public static JFrame frame = new JFrame(); // stays
-    private static JButton saveBtn = new JButton(); // misc class
-    private static JButton loadBtn = new JButton(); // misc class
-    private static JLabel presetLabel = new JLabel(); // misc class
-    private static JLabel fadeLabel = new JLabel(); // misc class
-    public static JLabel outputLabel = new JLabel("", SwingConstants.CENTER); // IO class
-    private static JLabel headlineLabel = new JLabel("blankblankblankblankblank"); // stays
-    private static JLabel authorLabel = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin"); // misc class
-    private static JLabel clipboardLblBtn = new JLabel(); // misc class
-
-    // Diese Variablen speichern den Betrag des Nutzers
-    private static String inputValue;
-    private static double inputValueResult;
-
-    // Diese Variablen speichern die ISO-codes von den Währungen
-    private static String baseCurResult, targetCurResult;
+    private static JLabel headlineLabel = new JLabel(Language.getLangStringByKey("title")); // stays
 
     // Diese Variabel wird für das Headline benutzt.
     private static int textWidth;
@@ -72,26 +56,18 @@ public class GUI {
 
         SettingsGUI.addAllComponents();
         InputOutput.addAllComponents();
-        // TODO @Ewin yallah deine Misc add all comp function hier dann bist du chillend auf funktion fickend ok_hand_emoticon
-        // .addAllComponents();
-
-        addCopyOutputLblBtn();
-        addPresetLabel();
-        addSaveCalculationButton();
-        addLoadLastCalculationButton();
-        addFadeLabel();
-        addFooter();
+        Miscellaneous.addAllComponents();
 
         setAppTheme(AppTheme.getConfigAppTheme());
         updateDisplayedLanguage(true);
 
-        frame.requestFocus();
-        frame.setVisible(true);
+        getAppWindow().requestFocus();
+        getAppWindow().setVisible(true);
     }
 
     // Bringt das Hauptfenster zurück
     public static void openMainWindow() {
-        frame.setVisible(true);
+        getAppWindow().setVisible(true);
     }
 
     public static void updateTitle(JFrame jframe) {
@@ -129,45 +105,6 @@ public class GUI {
     }
 
     /*
-     * Erstellt einen "Kopier" Knopf
-     * 
-     * Es nimmt das Ergebnis und steckt es in den Clipboard
-     */
-    private static void addCopyOutputLblBtn() {
-        clipboardLblBtn.setBounds(420, 405, 100, 30);
-
-        /*
-         * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
-         * Scale_Smooth hinterlässt dem Bild einen AA (Anti Aliasing) Effekt
-         */
-        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_copy.png"));
-        Image scaledImage = originalIcon.getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(scaledImage);
-
-        clipboardLblBtn.setIcon(scaledIcon);
-        clipboardLblBtn.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (targetCurResult != null) {
-                    Utils.copyToClipboard();
-                    runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
-                } else {
-                    PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
-                }
-            }
-        });
-
-        frame.add(clipboardLblBtn);
-    }
-
-    private static void addFooter() {
-        authorLabel.setBounds(15, FRAME_HEIGHT - 60, 200, 20);
-        authorLabel.setForeground(Color.GRAY);
-
-        frame.add(authorLabel);
-    }
-
-    /*
      * Diese Methode setzt den Theme fest
      * 
      * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
@@ -191,105 +128,6 @@ public class GUI {
     }
 
     /*
-     * Diese Methode erstellt einen Knopf, um die Daten zu speichern
-     */
-    private static void addSaveCalculationButton() {
-        saveBtn.setBounds(50, 450, 100, 25);
-        saveBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        if (inputValue == null || baseCurResult == null || targetCurResult == null) {
-                            PopupDisplay.throwErrorPopup(
-                                    Language.getLangStringByKey("error_lastcalc_isnull"));
-                        } else {
-                            LastCalculation.setConfigLastCalc(baseCurResult, targetCurResult, inputValue);
-                            // TODO: Add Lang support below
-                            runCustomFadeLabel("Gespeichert", 200, 450, 100, 25);
-                        }
-                    }
-                });
-            }
-        });
-
-        frame.add(saveBtn);
-    }
-
-    /*
-     * Diese Methode erstellt einen Knopf, um gespeicherte Daten zu laden
-     */
-    private static void addLoadLastCalculationButton() {
-        loadBtn.setBounds(50, 480, 100, 25);
-        loadBtn.addActionListener((e) -> {
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-
-                    String[] config = LastCalculation.getConfigLastCalc();
-                    // Es löscht die "" im String
-                    config[0] = config[0].replace("\"", "");
-                    config[1] = config[1].replace("\"", "");
-                    config[2] = config[2].replace("\"", "");
-
-                    baseCurResult = (config[0]);
-                    targetCurResult = (config[1]);
-                    inputValue = (config[2]);
-
-                    inputValueResult = Double.parseDouble(GUI.inputValue);
-                    Calculations.runThreadedCalculation();
-
-                }
-            });
-
-        });
-
-        frame.add(loadBtn);
-    }
-
-    private static void addPresetLabel() {
-        presetLabel.setBounds(50, 420, 100, 25);
-
-        frame.add(presetLabel);
-    }
-
-    private static void addFadeLabel() {
-        fadeLabel.setBounds(200, 450, 100, 25);
-        fadeLabel.setVisible(false);
-
-        frame.add(fadeLabel);
-    }
-
-    /*
-     * Diese Methode erstellt ein Label, dass dem Benutzer zurückgibt,
-     * dass die eingegebenen Daten gespeichert sind.
-     */
-    public static void runCustomFadeLabel(String text, int locactionX, int locactionY, int width, int height) {
-        fadeLabel.setText(text);
-        fadeLabel.setBounds(locactionX, locactionY, width, height);
-
-        fadeLabel.setVisible(true);
-        Timer timer = new Timer(50, new ActionListener() {
-            private float opacity = 1.0f; // opacity = transparenz
-
-            /*
-             * Nachdem der User die Daten abgespeichert hat,
-             * erscheint das Label für ein paar Sekunden
-             * und verschwindet wieder.
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Die opacity wird mit jedem Durchlauf verringert
-                // ..erreicht sie 0,00, so wird das Label "entfernt"
-                opacity -= 0.02f;
-                if (opacity <= 0.0f) {
-                    ((Timer) e.getSource()).stop();
-                    fadeLabel.setVisible(false);
-                }
-            }
-        });
-        timer.start();
-    }
-
-    /*
      * Updatet die dargestellte Sprache auf den GUI Komponenten
      */
     public static void updateDisplayedLanguage(boolean calledOnStartup) {
@@ -302,10 +140,10 @@ public class GUI {
         InputOutput.getSearchBarBaseCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getSearchBarTargetCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getCalculateButton().setText(Language.getLangStringByKey("calculateBtn"));
-        presetLabel.setText(Language.getLangStringByKey("presetLabel"));
-        saveBtn.setText(Language.getLangStringByKey("saveBtn"));
-        loadBtn.setText(Language.getLangStringByKey("loadBtn"));
-        fadeLabel.setText(Language.getLangStringByKey("fadeLabel"));
+        Miscellaneous.getPresetLbl().setText(Language.getLangStringByKey("presetLabel"));
+        Miscellaneous.getSaveBtn().setText(Language.getLangStringByKey("saveBtn"));
+        Miscellaneous.getLoadBtn().setText(Language.getLangStringByKey("loadBtn"));
+        Miscellaneous.getFadeLbl().setText(Language.getLangStringByKey("fadeLabel"));
 
         if (!calledOnStartup) {
             System.out.println("\nhere!\n");
@@ -313,18 +151,6 @@ public class GUI {
         }
 
         SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
-    }
-
-    public static double getAmount() {
-        return inputValueResult;
-    }
-
-    public static String getBaseCur() {
-        return baseCurResult;
-    }
-
-    public static String getTargetCur() {
-        return targetCurResult;
     }
 
     /*
