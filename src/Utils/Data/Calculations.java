@@ -1,6 +1,7 @@
 package Utils.Data;
 
 import GUI.GUI;
+import GUI.Components.InputOutput;
 import Utils.Utils;
 import lang.Language;
 
@@ -30,23 +31,27 @@ public class Calculations {
         // lambda funktion in der runCalcThread() funktion um asynchrones ausführen zu
         // ermöglichen (=> GUI kann sich dadurch updaten)
         Thread thread = new Thread(() -> {
-            GUI.displayAsLoading(true);
+            InputOutput.displayAsLoading(true);
 
             convertCurrencies(GUI.getBaseCur(), GUI.getTargetCur(), GUI.getAmount());
 
             if (ExchangeRateFetcher.getFailed() == false) {
-                GUI.setOutput(Language.getLangStringByKey("outputComponent1") + " " + GUI.getAmount() + " " + GUI.getBaseCur()
+                InputOutput.setOutput(Language.getLangStringByKey("outputComponent1") + " " + GUI.getAmount() + " "
+                        + GUI.getBaseCur()
                         + "\n" +
-                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " " + GUI.getTargetCur() + "\n"
+                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " " + GUI.getTargetCur()
+                        + "\n"
                         +
-                        Language.getLangStringByKey("outputComponent3") + " " + ExchangeRateFetcher.getLatestExchangeRate()
+                        Language.getLangStringByKey("outputComponent3") + " "
+                        + ExchangeRateFetcher.getLatestExchangeRate()
                         + "\n" +
                         Language.getLangStringByKey("outputComponent4") + " " + ExchangeRateFetcher.getLastFetchTime()
                         + "ms");
             } else {
                 ExchangeRateFetcher.clearDataOnError();
             }
-            GUI.displayAsLoading(false);
+
+            InputOutput.displayAsLoading(false);
             ExchangeRateFetcher.setFailed();
         });
 

@@ -21,8 +21,8 @@ public class InputOutput {
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;
     private static JButton calculateBtn = new JButton();
-    private static JLabel outputLabel = new JLabel("", SwingConstants.CENTER);
-    private static JLabel loadingGIF = new JLabel();
+    private static JLabel outputLbl = new JLabel("", SwingConstants.CENTER);
+    private static JLabel loadingGIFLbl = new JLabel();
 
     // Diese Variablen speichern den Betrag des Nutzers
     private static String inputValue;
@@ -48,10 +48,10 @@ public class InputOutput {
         searchBarBaseCur.setBounds(50, 215, 290, 20);
         searchBarTargetCur.setBounds(GUI.getWindowWidth() - 340, 215, 290, 20);
 
-        outputLabel.setBounds(300, 285, 300, 150);
+        outputLbl.setBounds(300, 285, 300, 150);
         inputField.setBounds(405, 290, 90, 30);
 
-        loadingGIF.setBounds(420, 260, 200, 200);
+        loadingGIFLbl.setBounds(420, 260, 200, 200);
     }
 
     /*
@@ -266,7 +266,7 @@ public class InputOutput {
         setOutput(Language.getLangStringByKey("outputLabel"));
 
         GUI.frame.add(inputField);
-        GUI.frame.add(outputLabel);
+        GUI.frame.add(outputLbl);
     }
 
     /*
@@ -278,9 +278,9 @@ public class InputOutput {
         Image scaledImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_FAST);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         // Image.SCALE_FAST damit es das GIF anzeigt
-        loadingGIF.setIcon(scaledIcon);
-        GUI.frame.add(loadingGIF);
-        loadingGIF.setVisible(false);
+        loadingGIFLbl.setIcon(scaledIcon);
+        GUI.frame.add(loadingGIFLbl);
+        loadingGIFLbl.setVisible(false);
     }
 
     /*
@@ -292,7 +292,7 @@ public class InputOutput {
          * JLabels akzeptieren kein normales \n als Line break, deshalb benutzen wir
          * hier HTML formatierung mit dem <br> Tag
          */
-        outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
+        GUI.outputLabel.setText("<html>" + output.replaceAll("\n", "<br>") + "</html>");
     }
 
     /*
@@ -303,13 +303,43 @@ public class InputOutput {
         if (isLoading) {
             calculateBtn.setEnabled(false);
             setOutput(Language.getLangStringByKey("loading"));
-            loadingGIF.setVisible(true);
+            loadingGIFLbl.setVisible(true);
             calculateBtn.setText(Language.getLangStringByKey("loading"));
         } else {
             calculateBtn.setEnabled(true);
-            loadingGIF.setVisible(false);
+            loadingGIFLbl.setVisible(false);
             calculateBtn.setText(Language.getLangStringByKey("calculateBtn"));
         }
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static JComboBox[] getComboBoxes() {
+        JComboBox[] comboBoxes = { dropdownBaseCur, dropdownTargetCur };
+        return comboBoxes;
+    }
+
+    public static JTextField getInputField() {
+        return inputField;
+    }
+
+    public static JTextField getSearchBarBaseCur() {
+        return searchBarBaseCur;
+    }
+
+    public static JTextField getSearchBarTargetCur() {
+        return searchBarTargetCur;
+    }
+
+    public static JButton getCalculateButton() {
+        return calculateBtn;
+    }
+
+    public static JLabel getOutputLbl() {
+        return outputLbl;
+    }
+
+    public static JLabel getLoadingLabel() {
+        return loadingGIFLbl;
     }
 
     public static double getAmount() {
@@ -322,11 +352,5 @@ public class InputOutput {
 
     public static String getTargetCur() {
         return targetCurResult;
-    }
-
-    @SuppressWarnings("rawtypes")
-    public static JComboBox[] getComboBoxes() {
-        JComboBox[] comboBoxes = { dropdownBaseCur, dropdownTargetCur };
-        return comboBoxes;
     }
 }
