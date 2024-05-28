@@ -28,9 +28,9 @@ public class PopupDisplay {
     }
 
     public static void throwUserConfirmPopup(String popupTitle, String popupMessage, Runnable runnableConfirmAction) {
-        int reply = JOptionPane.showConfirmDialog(null, popupMessage, popupTitle, JOptionPane.YES_NO_OPTION);
+        int userChoice = JOptionPane.showConfirmDialog(null, popupMessage, popupTitle, JOptionPane.YES_NO_OPTION);
 
-        if (reply == JOptionPane.YES_OPTION) {
+        if (userChoice == JOptionPane.YES_OPTION) {
             runnableConfirmAction.run();
         }
     }
