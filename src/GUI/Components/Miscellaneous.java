@@ -6,14 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
-
-import org.w3c.dom.events.MouseEvent;
 
 import GUI.GUI;
 import GUI.Popups.PopupDisplay;
@@ -73,8 +72,7 @@ public class Miscellaneous {
 
         clipboardLbl.setIcon(scaledIcon);
         clipboardLbl.addMouseListener((MouseListener) new MouseAdapter() {
-            //@Override
-            @SuppressWarnings("unused")
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (InputOutput.getTargetCur() != null) {
                     Utils.copyToClipboard();
