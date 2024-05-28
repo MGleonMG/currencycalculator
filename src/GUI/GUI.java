@@ -89,11 +89,6 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    // Bringt das Hauptfenster zurück
-    public static void openMainWindow() {
-        frame.setVisible(true);
-    }
-
     public static void updateTitle(JFrame jframe) {
         jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion());
     }
