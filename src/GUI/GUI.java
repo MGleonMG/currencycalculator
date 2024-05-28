@@ -146,7 +146,6 @@ public class GUI {
         Miscellaneous.getFadeLbl().setText(Language.getLangStringByKey("fadeLabel"));
 
         if (!calledOnStartup) {
-            System.out.println("\nhere!\n");
             Utils.refreshCurrencyDropdowns();
         }
 
