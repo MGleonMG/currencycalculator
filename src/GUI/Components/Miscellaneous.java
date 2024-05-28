@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,12 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
-import org.w3c.dom.events.MouseEvent;
-
 import GUI.GUI;
 import GUI.Popups.PopupDisplay;
 import Main.CurrencyCalculator;
-import Utils.Utils;
 import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.LastCalculation;
 import lang.Language;
@@ -73,15 +71,9 @@ public class Miscellaneous {
 
         clipboardLbl.setIcon(scaledIcon);
         clipboardLbl.addMouseListener((MouseListener) new MouseAdapter() {
-            //@Override
-            @SuppressWarnings("unused")
+            @Override
             public void mouseClicked(MouseEvent e) {
-                if (InputOutput.getTargetCur() != null) {
-                    Utils.copyToClipboard();
-                    runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
-                } else {
-                    PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
-                }
+                // Your mouseClicked code here
             }
         });
 
