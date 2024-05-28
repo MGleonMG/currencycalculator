@@ -17,6 +17,7 @@ import javax.swing.Timer;
 import GUI.GUI;
 import GUI.Popups.PopupDisplay;
 import Main.CurrencyCalculator;
+import Utils.Utils;
 import Utils.Data.Calculations;
 import Utils.Data.Config.Settings.LastCalculation;
 import lang.Language;
@@ -73,7 +74,12 @@ public class Miscellaneous {
         clipboardLbl.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Your mouseClicked code here
+                if (InputOutput.getTargetCur() != null) {
+                    Utils.copyToClipboard();
+                    runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
+                } else {
+                    PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
+                }
             }
         });
 
