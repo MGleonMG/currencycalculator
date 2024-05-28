@@ -3,6 +3,7 @@ package GUI.Components;
 import javax.swing.*;
 
 import GUI.GUI;
+import Utils.RestartHelper;
 import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
@@ -16,6 +17,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.*;
+import java.io.IOException;
 
 /*
 * Diese Klasse erstellt eine GUI für die Einstellungen 
@@ -104,7 +106,8 @@ public class SettingsGUI {
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ConfigDefaults.restoreAllDefaults();
+                //ConfigDefaults.restoreAllDefaults();
+                confirmWindow();
             }
         });
 
@@ -215,6 +218,37 @@ public class SettingsGUI {
         GUI.getAppWindow().revalidate();
         GUI.getAppWindow().repaint();
     }
+
+    public static void confirmWindow() {
+        JFrame frame = new JFrame();
+        JLabel headline = new JLabel();
+        JLabel info = new JLabel();
+
+        int width = 500;
+        int height = 400;
+
+        frame.setSize(width, height);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLayout(null);
+        frame.setVisible(true);
+
+        headline.setText(Language.getLangStringByKey("test1"));
+        info.setText(Language.getLangStringByKey("test2"));
+
+
+        headline.setBounds((width - getTextWidth()) / 2, 300, getTextWidth(), 50);
+
+    }
+
+    /* 
+    private static int getTextWidth() {
+        FontMetrics fontMetrics = headlineLabel.getFontMetrics(headlineLabel.getFont());
+        textWidth = fontMetrics.stringWidth(headlineLabel.getText());
+        return textWidth;
+    }
+    */
 
     public static JButton getConfigResetBtn() {
         return configResetBtn;
