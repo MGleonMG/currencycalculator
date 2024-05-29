@@ -9,6 +9,7 @@ import java.util.Properties;
 
 import GUI.GUI;
 import GUI.Popups.PopupDisplay;
+import Utils.RestartHelper;
 import Utils.Data.Config.Settings.AppLanguage;
 
 public class Language {
@@ -38,6 +39,7 @@ public class Language {
         try (InputStream inputStream = Language.class.getResourceAsStream(fileName)) {
             try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
                 properties.load(reader);
+
             }
         } catch (IOException e) {
             PopupDisplay.throwErrorPopup(getLangStringByKey("error_setapplanguage"),

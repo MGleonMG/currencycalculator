@@ -3,6 +3,7 @@ package GUI.Components;
 import javax.swing.*;
 
 import GUI.GUI;
+import GUI.Popups.PopupDisplay;
 import Utils.RestartHelper;
 import Utils.Data.Config.ConfigDefaults;
 import Utils.Data.Config.Settings.AppLanguage;
@@ -74,10 +75,13 @@ public class SettingsGUI {
      */
     private static void addLanguageDropdown() {
         for (Languages language : Languages.values()) {
-            languageDropdown.addItem(formattedLanguageToString(language));
+            String formattedLanguage = language.toString().toLowerCase().substring(0, 1).toUpperCase()
+                    + language.toString().toLowerCase().substring(1);
+
+            languageDropdown.addItem(formattedLanguage);
         }
 
-        languageDropdown.setSelectedItem(formattedLanguageToString(AppLanguage.getConfigAppLanguage()));
+        languageDropdown.setSelectedItem(AppLanguage.getConfigAppLanguage());
 
         languageDropdown.addItemListener(new ItemListener() {
             @Override
@@ -87,16 +91,20 @@ public class SettingsGUI {
                             Languages.valueOf(languageDropdown.getSelectedItem().toString().toUpperCase()),
                             true,
                             false);
+
+                    PopupDisplay.throwUserConfirmPopup(Language.getLangStringByKey("restart"),
+                            Language.getLangStringByKey("recommended"), () -> {
+                                try {
+                                    RestartHelper.restartApplication();
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                }
+                            });
                 }
             }
         });
 
         GUI.getAppWindow().add(languageDropdown);
-    }
-
-    private static String formattedLanguageToString(Languages language) {
-        return language.toString().toLowerCase().substring(0, 1).toUpperCase()
-                + language.toString().toLowerCase().substring(1);
     }
 
     /*
@@ -108,8 +116,11 @@ public class SettingsGUI {
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // ConfigDefaults.restoreAllDefaults();
-                confirmWindow();
+                PopupDisplay.throwUserConfirmPopup(Language.getLangStringByKey("confirm"),
+                        Language.getLangStringByKey("confirmText"), () -> {
+                            ConfigDefaults.restoreAllDefaults();
+                        });
+
             }
         });
 
@@ -239,7 +250,7 @@ public class SettingsGUI {
         headline.setText(Language.getLangStringByKey("test1"));
         info.setText(Language.getLangStringByKey("test2"));
 
-        headline.setBounds((width - getTextWidth()) / 2, 300, getTextWidth(), 50);
+        // headline.setBounds((width - getTextWidth()) / 2, 300, getTextWidth(), 50);
 
     }
 

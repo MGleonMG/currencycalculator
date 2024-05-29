@@ -1,6 +1,9 @@
 package Utils.Data.Config;
 
+import java.io.IOException;
+
 import GUI.Popups.PopupDisplay;
+import Utils.RestartHelper;
 import Utils.Data.Config.Settings.AppLanguage;
 import Utils.Data.Config.Settings.AppTheme;
 import Utils.Data.Config.Settings.LastCalculation;
@@ -28,8 +31,12 @@ public class ConfigDefaults {
         AppTheme.setConfigAppTheme(Theme.DARK_MODE);
         LastCalculation.setConfigLastCalc("EUR", "USD", "5.0");
 
-        PopupDisplay.throwInfoPopup("Config reset",
+        PopupDisplay.throwInfoPopup(Language.getLangStringByKey("popup_restore_default_header"),
                 Language.getLangStringByKey("popup_restore_default"));
-        System.exit(0);
+        try {
+            RestartHelper.restartApplication();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 }

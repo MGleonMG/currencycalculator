@@ -1,7 +1,6 @@
 package Main;
 
 import GUI.GUI;
-import GUI.Popups.PopupDisplay;
 import Utils.Data.Config.Config;
 import Utils.Data.Config.Settings.AppLanguage;
 import lang.Language;
@@ -23,11 +22,6 @@ public class CurrencyCalculator {
         Config.runFirstTimeSetupCheck();
         Language.setAppLanguage(AppLanguage.getConfigAppLanguage(), false, true);
         GUI.drawGUI();
-
-        // TODO: remove later. This is just an example
-        PopupDisplay.throwUserConfirmPopup("Shutdown", "Programm beenden?", () -> {
-            System.exit(0);
-        });
     }
 
     public static String getAppVersion() {
