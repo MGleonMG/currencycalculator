@@ -38,6 +38,7 @@ public class Language {
         try (InputStream inputStream = Language.class.getResourceAsStream(fileName)) {
             try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
                 properties.load(reader);
+
             }
         } catch (IOException e) {
             PopupDisplay.throwErrorPopup(getLangStringByKey("error_setapplanguage"),
@@ -72,14 +73,7 @@ public class Language {
         }
 
         Locale.setDefault(locale);
-
-        if (!onStartup) {
-            try {
-                GUI.updateDisplayedLanguage();
-            } catch (NullPointerException npe) {
-                // tu nichts.
-            }
-        }
+        GUI.updateDisplayedLanguage(onStartup);
     }
 
     // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus

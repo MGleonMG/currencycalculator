@@ -26,4 +26,12 @@ public class PopupDisplay {
     public static void throwInfoPopup(String popupTitle, String popupMessage) {
         JOptionPane.showMessageDialog(null, popupMessage, popupTitle, JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public static void throwUserConfirmPopup(String popupTitle, String popupMessage, Runnable runnableConfirmAction) {
+        int userChoice = JOptionPane.showConfirmDialog(null, popupMessage, popupTitle, JOptionPane.YES_NO_OPTION);
+
+        if (userChoice == JOptionPane.YES_OPTION) {
+            runnableConfirmAction.run();
+        }
+    }
 }

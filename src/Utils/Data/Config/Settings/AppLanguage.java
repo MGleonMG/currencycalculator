@@ -40,7 +40,7 @@ public class AppLanguage {
             PopupDisplay.throwErrorPopup(
                     Language.getLangStringByKey("error_lang_set") + "\n"
                             + Language.getLangStringByKey("error_info") + "\n"
-                            + Config.getFilePath(), /* TODO @Leon: remove this? */
+                            + Config.getFilePath(),
                     e.getMessage());
             return null;
         }
