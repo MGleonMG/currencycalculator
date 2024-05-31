@@ -11,7 +11,7 @@ public class RestartHelper {
         String classPath = System.getProperty("java.class.path");
         String className = CurrencyCalculator.class.getName();
 
-        String[] command = { javaBin, "-cp", classPath, className};
+        String[] command = { javaBin, "-cp", classPath, className };
 
         ProcessBuilder builder = new ProcessBuilder(command);
         builder.start();

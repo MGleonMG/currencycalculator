@@ -81,7 +81,6 @@ public class Miscellaneous {
                     Utils.copyToClipboard();
                     runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
                 } else {
-                    // TODO: Add language support here
                     PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_copy"));
                 }
             }
@@ -122,7 +121,7 @@ public class Miscellaneous {
     }
 
     private static void addFooter() {
-        authorLbl.setText(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
+        authorLbl.setText(CurrencyCalculator.getAppVersion() + "  by Leon, Jonas, Ewin");
         authorLbl.setForeground(Color.GRAY);
 
         GUI.getAppWindow().add(authorLbl);

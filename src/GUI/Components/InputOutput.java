@@ -16,11 +16,11 @@ import java.awt.event.*;
 public class InputOutput {
 
     /*
-     * TODO: Parametern in Methoden einsetzen?
+     * TODO: Parametern in Methoden Deinsetzen?
      */
 
     private static JTextField inputField = new JTextField();
-    public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
+    private static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
             searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
     private static JComboBox<String> dropdownBaseCur;
     private static JComboBox<String> dropdownTargetCur;

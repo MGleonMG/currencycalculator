@@ -23,14 +23,14 @@ import lang.Language;
  */
 public class GUI {
 
-    // Grund Infos das das Haupt JFrame
-    public static String title;
+    // Grundinfos das das JFrame
+    private static String title;
     private static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Komponenten
-    public static JFrame frame = new JFrame(); // stays
-    private static JLabel headlineLabel = new JLabel(Language.getLangStringByKey("title")); // stays
+    public static JFrame frame = new JFrame();
+    private static JLabel headlineLabel = new JLabel(Language.getLangStringByKey("title"));
 
     // Diese Variabel wird für das Headline benutzt.
     private static int textWidth;
@@ -62,11 +62,6 @@ public class GUI {
         updateDisplayedLanguage(true);
 
         getAppWindow().requestFocus();
-        getAppWindow().setVisible(true);
-    }
-
-    // Bringt das Hauptfenster zurück
-    public static void openMainWindow() {
         getAppWindow().setVisible(true);
     }
 
@@ -153,7 +148,6 @@ public class GUI {
      * mittig zu halten.
      */
     private static int getTextWidth() {
-
         FontMetrics fontMetrics = headlineLabel.getFontMetrics(headlineLabel.getFont());
         textWidth = fontMetrics.stringWidth(headlineLabel.getText());
         return textWidth;
