@@ -163,7 +163,7 @@ public class SettingsGUI {
     }
 
     /*
-     * Setzt den Theme fest
+     * Diese Methode gibt dem Theme Label ein Icon
      */
     private static void setThemeIcon() {
         Theme currentTheme = AppTheme.getConfigAppTheme();

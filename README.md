@@ -74,52 +74,54 @@ Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
 ## :deciduous_tree: Projektstruktur ##
 ```
 [currencycalculator]
-├─ .gitignore                        // Verzeichnis für Git-ignorierte Dateien und Ordner
-├─ README.md                         // Readme-Datei mit Projektinformationen
-└─ src
-   ├─ GUI                            // Paket für die grafische Benutzeroberfläche
-   │    ├─ GUI.java                  // Hauptklasse für die GUI
-   │    ├─ Popups                    // Paket für Popup-Fenster
-   │    │    └─ PopupDisplay.java    // Klasse für die Anzeige von Popup-Fenstern
-   │    └─ Components                // Paket für die GUI-Komponenten
-   │         ├─ SettingsGUI.java     // Klasse für die Einstellungen
-   │         ├─ Miscellaneous.java   // Klasse für diverse Inhalte
-   │         └─ InputOutput.java     // Klasse für den Input-Output
-   ├─ lang                           // Paket für Sprachunterstützung
-   │    └─ Language.java             // Klasse für Spracheinstellungen
-   ├─ lib                            // Bibliotheksordner für externe JAR-Dateien
-   │    ├─ flatlaf-3.4.1.jar         // Bibliothek für Look and Feel
-   │    └─ gson-2.10.1.jar           // Bibliothek für JSON-Verarbeitung
-   ├─ Main                           // Paket für die Hauptklasse
-   │    └─ CurrencyCalculator.java   // Hauptklasse für dieses Projekt
-   ├─ resources                      // Ressourcenverzeichnis für Icons, Sprachpakete, etc.
-   │    ├─ app_icon                  // Verzeichnis für das Anwendungsicon
-   │    │    └─ app_icon.png         // Anwendungsicon-Datei
-   │    ├─ buttons                   // Verzeichnis für Schaltflächenbilder
-   │    │    ├─ button_loading.gif   // Ladeanimation für Schaltflächen
-   │    │    ├─ icon_copy-button-dark.png   // Schaltflächenbild zum Kopieren (dunkel)
-   │    │    ├─ icon_copy-button-light.png  // Schaltflächenbild zum Kopieren (hell)
-   │    │    └─ settings_button.png         // Schaltflächenbild für Einstellungen
-   │    │
-   │    └─ languages
-   │         ├─ lang_danish.properties  // Sprachpaket: Dänsich
-   │         ├─ lang_english.properties // Sprachpaket: Englisch
-   │         ├─ lang_german.properties  // Sprachpaket: Deutsch
-   │         └─ lang_spanish.properties // Sprachpaket: Spanisch
-   │ 
-   └─ Utils                          // Paket für Hilfsklassen
-         ├─ Data                     // Paket für Datenverarbeitung
-         │    ├─ Calculations.java   // Klasse für Berechnungen
-         │    ├─ Config              // Paket für die Config
-         │    │    ├─ Config.java    // Klasse für Grundfunktionen der Config
-         │    │    ├─ ConfigDefaults.java         // Klasse für Standardkonfiguration
-         │    │    └─ Settings                    // Paket für die einzelnen Einstellungen in der Config Datei
-         │    │         ├─ AppLanguage.java       // Klasse fürs Lesen und Schreiben der Spracheinstellungen
-         │    │         ├─ AppTheme.java          // Klasse fürs Lesen und Schreiben des AppThemes
-         │    │         └─ LastCalculation.java   // Klasse fürs Lesen und Schreiben der letzen Umrechnung
-         │    └─ ExchangeRateFetcher.java         // Klasse für den Abruf von Wechselkursen
-         ├─ Utils.java                            // Hilfsklasse mit allgemeinen Hilfsmethoden
-         └─ RestartHelper.java                    // Klasse für den Neustart
+├─ .gitignore                                 // Verzeichnis für Git-ignorierte Dateien und Ordner
+├─ README.md                                  // Readme-Datei mit Projektinformationen
+└─ src                        
+   ├─ GUI                                     // Paket für die grafische Benutzeroberfläche
+   │  ├─ Components                           // Paket für die GUI-Komponenten
+   │  │  ├─ InputOutput.java                  // Klasse für den Input-Output
+   │  │  ├─ Miscellaneous.java                // Klasse für diverse Inhalte
+   │  │  └─ SettingsGUI.java                  // Klasse für die Einstellungen
+   │  ├─ GUI.java                             // Hauptklasse für die GUI
+   │  └─ Popups                               // Paket für Popup-Fenster
+   │     └─ PopupDisplay.java                 // Klasse für die Anzeige von Popup-Fenstern
+   ├─ lang                                    // Paket für Sprachunterstützung
+   │  └─ Language.java                        // Klasse für Spracheinstellungen
+   ├─ lib                                     // Bibliotheksordner für externe JAR-Dateien
+   │  ├─ flatlaf-3.4.1.jar                    // Bibliothek für Look and Feel
+   │  └─ gson-2.10.1.jar                      // Bibliothek für JSON-Verarbeitung
+   ├─ Main                                    // Paket für die Hauptklasse
+   │  └─ CurrencyCalculator.java              // Hauptklasse für dieses Projekt
+   ├─ resources                               // Ressourcenverzeichnis für Icons, Sprachpakete, etc.
+   │  ├─ app_icon                             // Verzeichnis für das Anwendungsicon
+   │  │  └─ app_icon.png                      // Anwendungsicon-Datei
+   │  ├─ buttons                              // Verzeichnis für Schaltflächenbilder
+   │  │  ├─ button_copy.png                   // Schaltflächenbild zum Kopieren
+   │  │  ├─ button_loading.gif                // Ladeanimation für Schaltflächen
+   │  │  ├─ button_settings.png               // Schaltflächenbild für Einstellungen
+   │  │  └─ themes                            // Paket für Theme Knöpfe
+   │  │     ├─ button_darkmode_dark.png       // Schaltflächenbild Mond als Darkmode
+   │  │     ├─ button_darkmode_light.png      // Schaltflächenbild Sonne als Darkmode
+   │  │     ├─ button_lightmode_dark.png      // Schaltflächenbild Mond als Lightmode
+   │  │     └─ button_lightmode_light.png     // Schaltflächenbild Sonne als Lightmode
+   │  └─ languages                            // Paket für alle Sprachen
+   │     ├─ lang_danish.properties            // Sprachpaket: Dänsich
+   │     ├─ lang_english.properties           // Sprachpaket: Englisch
+   │     ├─ lang_german.properties            // Sprachpaket: Deutsch
+   │     └─ lang_spanish.properties           // Sprachpaket: Spanisch
+   └─ Utils                                   // Paket für Hilfsklassen
+      ├─ Data                                 // Paket für Datenverarbeitung
+      │  ├─ Calculations.java                 // Klasse für Berechnungen
+      │  ├─ Config                            // Paket für die Config
+      │  │  ├─ Config.java                    // Klasse für Grundfunktionen der Config
+      │  │  ├─ ConfigDefaults.java            // Klasse für Standardkonfiguration
+      │  │  └─ Settings                       // Paket für die einzelnen Einstellungen in der Config Datei
+      │  │     ├─ AppLanguage.java            // Klasse fürs Lesen und Schreiben der Spracheinstellungen
+      │  │     ├─ AppTheme.java               // Klasse fürs Lesen und Schreiben des AppThemes
+      │  │     └─ LastCalculation.java        // Klasse fürs Lesen und Schreiben der letzen Umrechnung
+      │  └─ ExchangeRateFetcher.java          // Klasse für den Abruf von Wechselkursen
+      ├─ RestartHelper.java                   // Klasse für den Neustart
+      └─ Utils.java                           // Hilfsklasse mit allgemeinen Hilfsmethoden
 
 ```
 

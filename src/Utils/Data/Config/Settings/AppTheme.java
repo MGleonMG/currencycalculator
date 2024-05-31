@@ -53,7 +53,7 @@ public class AppTheme {
     }
 
     /*
-     * Diese Methode setzt den Theme in den Konfigurationen fest
+     * Diese Methode setzt das Theme in den Benutzereinstellungen fest
      */
     public static void setConfigAppTheme(Theme newTheme) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {

@@ -31,8 +31,8 @@ public class Config {
     }
 
     /*
-     * Überprüft ob der Konfiguration Ordner mit der Datei schon existieren
-     * und versucht diese zu erstellen, falls diese nicht existieren.
+     * Überprüft ob der Konfigurations Ordner mit der Datei schon existieren
+     * und versucht gegebenenfalls diese zu erstellen.
      * 
      * Das Programm endet mit dem vorherigem Popup, falls ein Fehler auftreten sollte.
      */

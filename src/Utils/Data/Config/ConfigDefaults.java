@@ -27,7 +27,7 @@ public class ConfigDefaults {
     }
 
     /*
-     * Setzt die Konfigurationen zurück
+     * Setzt die Benutzereinstellungen zurück
      */
     public static void restoreAllDefaults() {
         AppLanguage.setConfigAppLanguage(Languages.GERMAN);

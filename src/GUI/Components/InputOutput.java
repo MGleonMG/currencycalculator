@@ -78,7 +78,7 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode hinterlässt einen Dropdown mit Währungen.
+     * Diese Methode fügt ein Dropdown mit Währungen hinzu.
      */
     private static void addDropdownWithFilters() {
         addSearchBars();
@@ -275,7 +275,7 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode fügt einen GIF hinzu
+     * Diese Methode fügt ein GIF hinzu, welches eine Ladeanimation anzeigt symbolisiert
      */
     private static void addLoadingCircleGIF() {
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));

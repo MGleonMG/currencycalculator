@@ -19,7 +19,7 @@ public class PopupDisplay {
     }
 
     /*
-     * Gibt dem Nutzer einen Error Popup
+     * Gibt dem Nutzer ein Error Popup
      */
     public static void throwErrorPopup(String popupErrorMessage) {
         JOptionPane.showMessageDialog(null, popupErrorMessage,
@@ -27,7 +27,7 @@ public class PopupDisplay {
     }
 
     /*
-     * Gibt dem Nutzer einen Info Popup
+     * Gibt dem Nutzer ein Info Popup
      */
     public static void throwInfoPopup(String popupTitle, String popupMessage) {
         JOptionPane.showMessageDialog(null, popupMessage, popupTitle, JOptionPane.INFORMATION_MESSAGE);

@@ -48,7 +48,7 @@ public class AppLanguage {
     }
 
     /*
-     * Diese Methode setzt die Sprache in den Konfigurationen fest
+     * Diese Methode setzt die Sprache in den Benutzereinstellungen fest
      */
     public static void setConfigAppLanguage(Languages newLanguage) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {

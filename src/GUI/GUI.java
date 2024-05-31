@@ -47,7 +47,8 @@ public class GUI {
     }
 
     /*
-     * Diese Methode fügt andere GUI Komponenten hinzu
+     * Diese Methode fügt andere GUI Komponenten hinzu und baut so die
+     * Benutzeroberfläche auf
      */
     public static void drawGUI() {
         setBasicFrameProps();
@@ -81,7 +82,7 @@ public class GUI {
     }
 
     /*
-     * Erstellt das Hauptfenster für die GUI
+     * Erstellt das Hauptfenster für den GUI
      */
     private static void setBasicFrameProps() {
         updateTitle(frame, "");

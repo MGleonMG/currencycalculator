@@ -74,7 +74,7 @@ public class ExchangeRateFetcher {
 
     /*
      * Diese Methode setzt bei einer Fehlermeldung die
-     * Daten zurück damit keine "Null" ausgegeben werden
+     * Daten zurück damit keine 0 ausgegeben werden
      */
     public static void clearDataOnError() {
         hasFailed = true;
