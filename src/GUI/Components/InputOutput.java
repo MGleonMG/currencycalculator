@@ -17,8 +17,8 @@ public class InputOutput {
     private static JTextField inputField = new JTextField();
     private static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
             searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
-    private static JComboBox<String> dropdownBaseCur;
-    private static JComboBox<String> dropdownTargetCur;
+    private static JComboBox<String> dropdownBaseCur = new JComboBox<>();
+    private static JComboBox<String> dropdownTargetCur = new JComboBox<>();
     private static JButton calculateBtn = new JButton();
     private static JLabel outputLbl = new JLabel(Language.getLangStringByKey("outputLabel"), SwingConstants.CENTER);
     private static JLabel loadingGIFLbl = new JLabel();
@@ -65,10 +65,16 @@ public class InputOutput {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        inputValue = inputField.getText();
-                        inputValueResult = Double.parseDouble(InputOutput.inputValue);
+                        try {
+                            inputValue = inputField.getText();
+                            inputValueResult = Double.parseDouble(InputOutput.inputValue);
 
-                        Calculations.runThreadedCalculation();
+                            Calculations.runThreadedCalculation();
+
+                        } catch (NumberFormatException nfe) {
+
+                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("invalid_input"));
+                        }
                     }
                 });
             }
@@ -82,10 +88,6 @@ public class InputOutput {
      */
     private static void addDropdownWithFilters() {
         addSearchBars();
-
-        dropdownBaseCur = new JComboBox<>();
-
-        dropdownTargetCur = new JComboBox<>();
 
         for (Map.Entry<String, String> currency : Utils.getAllCurrencies()) {
             String isoCode = currency.getKey();
@@ -104,14 +106,8 @@ public class InputOutput {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die Ausgewählte Währung
+                    baseCurResult = (String) dropdownBaseCur.getSelectedItem(); // Erfasst die ausgewählte Währung
                     baseCurResult = baseCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = baseCurResult.split("\\)"); // Speichert den Inhalt der Klammer
-                    for (String part : parts) { // Überprüft, ob es in der Klammer zahlen gibt.
-                        if (Utils.containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
-                        }
-                    }
                 }
             }
         });
@@ -122,12 +118,6 @@ public class InputOutput {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     targetCurResult = (String) dropdownTargetCur.getSelectedItem();
                     targetCurResult = targetCurResult.split("\\(")[1].replace(")", "").trim();
-                    String[] parts = targetCurResult.split("\\)");
-                    for (String part : parts) {
-                        if (Utils.containsDigit(part)) {
-                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_currency_unused"));
-                        }
-                    }
                 }
             }
         });

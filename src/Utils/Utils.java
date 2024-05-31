@@ -10,6 +10,7 @@ import java.util.Set;
 
 import GUI.Components.InputOutput;
 import Utils.Data.Calculations;
+import Utils.Data.Filter;
 
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
@@ -50,7 +51,10 @@ public class Utils {
         for (Currency currency : Currency.getAvailableCurrencies()) {
             String currencyCode = currency.getCurrencyCode();
             String displayName = currency.getDisplayName();
-            currencies.put(currencyCode, displayName);
+
+            if (!Filter.getCurrencyFilter().contains(currencyCode)) {
+                currencies.put(currencyCode, displayName);
+            }
         }
 
         return currencies.entrySet();
