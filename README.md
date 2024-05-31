@@ -5,7 +5,7 @@
 
 </div>
 
-<h1 align="center">Währungsrechner - <img alt="version" src="https://img.shields.io/badge/version-1.1.0-dark_green"></h1>
+<h1 align="center">Währungsrechner - <img alt="version" src="https://img.shields.io/badge/version-1.0.0-dark_green"></h1>
 
 <p align="center">
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/mgleonmg/currencycalculator?color=56BEB8">
