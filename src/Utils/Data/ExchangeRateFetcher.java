@@ -15,7 +15,6 @@ import lang.Language;
 public class ExchangeRateFetcher {
     private static double latestRate;
     private static long lastStartMillis, lastEndMillis;
-    private static Object getLastFetchTime;
     private static boolean hasFailed = false;
 
     // "Webscraper" um Daten von 'google.com/finance/' zu nutzen
@@ -41,7 +40,7 @@ public class ExchangeRateFetcher {
             webScanner.close();
 
             /*
-             * Die Catch Methoden geben dem Endnutzer die jeweilige Fehlermeldung zurück.
+             * Die Catch Methoden geben dem Nutzer die jeweilige Fehlermeldung zurück.
              * Auf genauere Beschreibung wird verzichtet da die Strings
              * für die Popup Message eine ausreichende Bezeichnung bieten.
              */
@@ -68,11 +67,6 @@ public class ExchangeRateFetcher {
         return lastEndMillis - lastStartMillis;
     }
 
-    public static String getLastFetchTimeAsString() {
-        String fetchTimeAsString = String.valueOf(getLastFetchTime);
-        return fetchTimeAsString;
-    }
-
     // Gibt den zu letzt gespeicherten Wechselkurs zurück
     public static double getLatestExchangeRate() {
         return latestRate;
@@ -80,7 +74,7 @@ public class ExchangeRateFetcher {
 
     /*
      * Diese Methode setzt bei einer Fehlermeldung die
-     * Daten zurück damit keine Nullen ausgegeben werden
+     * Daten zurück damit keine "Null" ausgegeben werden
      */
     public static void clearDataOnError() {
         hasFailed = true;

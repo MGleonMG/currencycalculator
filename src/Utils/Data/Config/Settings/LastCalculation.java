@@ -57,7 +57,7 @@ public class LastCalculation {
     }
 
     /*
-     * Diese Methode speichert die Werte, die der Benutzer eingegeben hat
+     * Diese Methode speichert die Werte, die der Nutzer eingegeben hat
      */
     public static void setConfigLastCalc(String baseCurResult, String targetCurResult, String inputValue) {
         try (JsonReader jsonReader = new JsonReader(new FileReader(Config.getFilePath()))) {

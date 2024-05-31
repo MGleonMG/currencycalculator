@@ -19,11 +19,11 @@ import lang.Language;
 
 /*
  * Diese Klasse erstellt das "Graphical User Interface"
- * Dadurch muss der Enduser nicht auf dem Terminal arbeiten
+ * Dadurch muss der Nutzer nicht auf dem Terminal arbeiten
  */
 public class GUI {
 
-    // Grundinfos das das JFrame
+    // Grundinformationen für das JFrame, wie die Größe und das Icon
     private static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
@@ -31,7 +31,7 @@ public class GUI {
     public static JFrame frame = new JFrame();
     private static JLabel headlineLabel = new JLabel(Language.getLangStringByKey("title"));
 
-    // Diese Variabel wird für das Headline benutzt.
+    // Diese Variable wird für das Headline benutzt.
     private static int textWidth;
 
     public static JFrame getAppWindow() {
@@ -47,8 +47,7 @@ public class GUI {
     }
 
     /*
-     * Diese Methode führt andere Methoden aus
-     * und fügt dadurch andere Komponenten hinzu
+     * Diese Methode fügt andere GUI Komponenten hinzu
      */
     public static void drawGUI() {
         setBasicFrameProps();
@@ -64,6 +63,9 @@ public class GUI {
         getAppWindow().setVisible(true);
     }
 
+    /*
+     * Legt den Fenstertitel fest
+     */
     public static void updateTitle(JFrame jframe) {
         jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion());
     }
@@ -92,7 +94,7 @@ public class GUI {
 
         headlineLabel.setFont(headlineLabel.getFont().deriveFont(30f));
 
-        // Durch den Inhalt wird das Label mittig gesetzt
+        // Durch die Länge der Headline wird das Label mittig gesetzt
         headlineLabel.setBounds((FRAME_WIDTH - getTextWidth()) / 2, 25, getTextWidth(), 50);
 
         frame.add(headlineLabel);
@@ -117,7 +119,7 @@ public class GUI {
     }
 
     /*
-     * Aktualisiert die dargestellte Sprache auf den GUI Komponenten
+     * Aktualisiert die dargestellte Sprache auf die GUI Komponenten
      */
     public static void updateDisplayedLanguage(boolean calledOnStartup) {
         // Aktualisiert den Programm Titel
@@ -144,7 +146,7 @@ public class GUI {
     }
 
     /*
-     * Diese Methode nimmt die Länge der HeadlineLabel
+     * Diese Methode nimmt die Länge der Headline
      * und setzt es in eine Variable. Dies wird verwendet, um den Label
      * mittig zu halten.
      */

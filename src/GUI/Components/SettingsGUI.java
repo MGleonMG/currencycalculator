@@ -21,8 +21,8 @@ import java.awt.event.*;
 import java.io.IOException;
 
 /*
-* Diese Klasse erstellt eine GUI für die Einstellungen 
-*/
+ * Diese Klasse erstellt eine GUI für die Einstellungen 
+ */
 public class SettingsGUI {
     // Komponenten
     private static JLabel settingsLbl = new JLabel();
@@ -162,6 +162,9 @@ public class SettingsGUI {
         GUI.getAppWindow().add(themeLblBtn);
     }
 
+    /*
+     * Setzt den Theme fest
+     */
     private static void setThemeIcon() {
         Theme currentTheme = AppTheme.getConfigAppTheme();
 
