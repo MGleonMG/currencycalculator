@@ -57,7 +57,7 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode erstellt einen "Rechner" Knopf
+     * Diese Methode erstellt einen Knopf zum rechnen.
      * Es nimmt den Betrag auf und wird in der Umwandlung der Währung verrechnet
      */
     private static void addCalculateButton() {
@@ -77,6 +77,9 @@ public class InputOutput {
         GUI.frame.add(calculateBtn);
     }
 
+    /*
+     * Diese Methode hinterlässt einen Dropdown mit Währungen.
+     */
     private static void addDropdownWithFilters() {
         addSearchBars();
 
@@ -230,7 +233,7 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode erstellt die Möglichkeit im Dropdown Menü mit Pfeiltasten zu
+     * Diese Methode erstellt die Möglichkeit im Dropdown mit Pfeiltasten zu
      * navigieren
      */
     private static void addArrowKeyNavigationToComboBox(JComboBox<String> comboBox) {
@@ -272,8 +275,7 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode fügt einen GIF hinzu,
-     * sobald der Nutzer auf "umrechnen" drückt
+     * Diese Methode fügt einen GIF hinzu
      */
     private static void addLoadingCircleGIF() {
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));
