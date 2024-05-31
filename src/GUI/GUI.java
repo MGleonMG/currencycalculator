@@ -24,7 +24,6 @@ import lang.Language;
 public class GUI {
 
     // Grundinfos das das JFrame
-    private static String title; // TODO: unused???
     private static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
@@ -122,7 +121,6 @@ public class GUI {
      */
     public static void updateDisplayedLanguage(boolean calledOnStartup) {
         // Aktualisiert den Programm Titel
-        title = Language.getLangStringByKey("title");
         updateTitle(frame);
 
         // Aktualisiert alle Hauptkomponenten
@@ -130,16 +128,19 @@ public class GUI {
         InputOutput.getSearchBarBaseCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getSearchBarTargetCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getCalculateButton().setText(Language.getLangStringByKey("calculateBtn"));
+        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
         Miscellaneous.getPresetLbl().setText(Language.getLangStringByKey("presetLabel"));
         Miscellaneous.getSaveBtn().setText(Language.getLangStringByKey("saveBtn"));
         Miscellaneous.getLoadBtn().setText(Language.getLangStringByKey("loadBtn"));
         Miscellaneous.getFadeLbl().setText(Language.getLangStringByKey("fadeLabel"));
 
+        /*
+         * Aktualisiert die Dropdowns mit den Währungen falls die Funktion
+         * nicht bei Programmstart aufgerufen wurde
+         */
         if (!calledOnStartup) {
             Utils.refreshCurrencyDropdowns();
         }
-
-        SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
     }
 
     /*
