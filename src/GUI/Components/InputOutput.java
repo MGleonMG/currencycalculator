@@ -14,11 +14,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class InputOutput {
-
-    /*
-     * TODO: Parametern in Methoden Deinsetzen?
-     */
-
     private static JTextField inputField = new JTextField();
     private static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
             searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
