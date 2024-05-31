@@ -24,7 +24,7 @@ import lang.Language;
 public class GUI {
 
     // Grundinfos das das JFrame
-    private static String title;
+    private static String title; // TODO: unused???
     private static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
     private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
