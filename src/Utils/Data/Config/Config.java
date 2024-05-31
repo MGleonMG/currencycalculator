@@ -31,10 +31,10 @@ public class Config {
     }
 
     /*
-     * Überprüft ob Config Ordner und Datei schon existieren
-     * und versucht diese zu erstellen falls nicht.
+     * Überprüft ob der Konfigurations Ordner mit der Datei schon existieren
+     * und versucht gegebenenfalls diese zu erstellen.
      * 
-     * Programm Ende mit vorherigem Popup falls ein Fehler auftritt
+     * Das Programm endet mit dem vorherigem Popup, falls ein Fehler auftreten sollte.
      */
     public static void runFirstTimeSetupCheck() {
         File settingsFile = new File(getFilePath());

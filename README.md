@@ -26,7 +26,7 @@
 
 ## :dart: Einführung ##
 
-In diesem Projekt geht es darum, Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
+In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel des Programmes ist, das Umwandeln verschiedener Währungen für den Nutzer so einfach wie möglich zu gestalten. Dazu wählt man die Ausgangswährung und die Zielwährung aus und gibt den Betrag ein, welcher umgerechnet werden soll.
 
 ## :sparkles: Features ##
 
@@ -50,7 +50,7 @@ Git lässt sich mit Hilfe des unten genannten commands auch über Windows Powers
 winget install --id Git.Git -e --source winget
 ```
 
-Wir empfehlen "Visual Studio Code" als Umgebungsentwicklung. Nachdem das erledigt ist, erstellst du dir einen Ordner (am besten auf dem Desktop). In Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Die unten stehenden Git Commands kannst du nutzen, um die aktuellste Version des Codes zu erhalten und daran zu arbeiten.
+Wir empfehlen "Visual Studio Code" als Umgebungsentwicklung. Nachdem das erledigt ist, sollte man sich einen Ordner erstellen lassen (am besten auf dem Desktop). In Visual Studio Code muss man den neu erstellten Ordner öffnen. Die unten stehenden Git Commands sind für die Nutzung des Programmes wichtig.
 
 ## :checkered_flag: Nützliche Git Commands ##
 ```bash
@@ -68,55 +68,61 @@ $ git pull origin main
 ```
 
 ## :arrow_down: Download
-JAR Datei noch in Arbeit.\
-Zur Zeit nur durch Code Kompilierung ausführbar.
+
+Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
 
 ## :deciduous_tree: Projektstruktur ##
 ```
 [currencycalculator]
-├─ .gitignore                        // Verzeichnis für Git-ignorierte Dateien und Ordner
-├─ README.md                         // Readme-Datei mit Projektinformationen
-└─ src
-   ├─ GUI                            // Paket für die grafische Benutzeroberfläche
-   │    ├─ GUI.java                  // Hauptklasse für die GUI
-   │    ├─ Popups                    // Paket für Popup-Fenster
-   │    │    └─ PopupDisplay.java    // Klasse für die Anzeige von Popup-Fenstern
-   │    └─ Settings                  // Paket für das Einstellungs-GUI
-   │         └─ SettingsGUI.java     // Klasse für das Einstellungs-GUI
-   ├─ lang                           // Paket für Sprachunterstützung
-   │    └─ Language.java             // Klasse für Spracheinstellungen
-   ├─ lib                            // Bibliotheksordner für externe JAR-Dateien
-   │    ├─ flatlaf-3.4.1.jar         // Bibliothek für Look and Feel
-   │    └─ gson-2.10.1.jar           // Bibliothek für JSON-Verarbeitung
-   ├─ Main                           // Paket für die Hauptklasse
-   │    └─ CurrencyCalculator.java   // Hauptklasse für dieses Projekt
-   ├─ resources                      // Ressourcenverzeichnis für Icons, Sprachpakete, etc.
-   │    ├─ app_icon                  // Verzeichnis für das Anwendungsicon
-   │    │    └─ app_icon.png         // Anwendungsicon-Datei
-   │    ├─ buttons                   // Verzeichnis für Schaltflächenbilder
-   │    │    ├─ button_loading.gif   // Ladeanimation für Schaltflächen
-   │    │    ├─ icon_copy-button-dark.png   // Schaltflächenbild zum Kopieren (dunkel)
-   │    │    ├─ icon_copy-button-light.png  // Schaltflächenbild zum Kopieren (hell)
-   │    │    └─ settings_button.png         // Schaltflächenbild für Einstellungen
-   │    │
-   │    └─ languages
-   │         ├─ lang_danish.properties  // Sprachpaket: Dänsich
-   │         ├─ lang_english.properties // Sprachpaket: Englisch
-   │         ├─ lang_german.properties  // Sprachpaket: Deutsch
-   │         └─ lang_spanish.properties // Sprachpaket: Spanisch
-   │ 
-   └─ Utils                          // Paket für Hilfsklassen
-         ├─ Data                     // Paket für Datenverarbeitung
-         │    ├─ Calculations.java   // Klasse für Berechnungen
-         │    ├─ Config              // Paket für die Config
-         │    │    ├─ Config.java    // Klasse für Grundfunktionen der Config
-         │    │    ├─ ConfigDefaults.java         // Klasse für Standardkonfiguration
-         │    │    └─ Settings                    // Paket für die einzelnen Einstellungen in der Config Datei
-         │    │         ├─ AppLanguage.java       // Klasse fürs Lesen und Schreiben der Spracheinstellungen
-         │    │         ├─ AppTheme.java          // Klasse fürs Lesen und Schreiben des AppThemes
-         │    │         └─ LastCalculation.java   // Klasse fürs Lesen und Schreiben der letzen Umrechnung
-         │    └─ ExchangeRateFetcher.java         // Klasse für den Abruf von Wechselkursen
-         └─ Utils.java                            // Hilfsklasse mit allgemeinen Hilfsmethoden
+├─ .gitignore                                 // Verzeichnis für Git-ignorierte Dateien und Ordner
+├─ README.md                                  // Readme-Datei mit Projektinformationen
+└─ src                        
+   ├─ GUI                                     // Paket für die grafische Benutzeroberfläche
+   │  ├─ Components                           // Paket für die GUI-Komponenten
+   │  │  ├─ InputOutput.java                  // Klasse für den Input-Output
+   │  │  ├─ Miscellaneous.java                // Klasse für diverse Inhalte
+   │  │  └─ SettingsGUI.java                  // Klasse für die Einstellungen
+   │  ├─ GUI.java                             // Hauptklasse für die GUI
+   │  └─ Popups                               // Paket für Popup-Fenster
+   │     └─ PopupDisplay.java                 // Klasse für die Anzeige von Popup-Fenstern
+   ├─ lang                                    // Paket für Sprachunterstützung
+   │  └─ Language.java                        // Klasse für Spracheinstellungen
+   ├─ lib                                     // Bibliotheksordner für externe JAR-Dateien
+   │  ├─ flatlaf-3.4.1.jar                    // Bibliothek für Look and Feel
+   │  └─ gson-2.10.1.jar                      // Bibliothek für JSON-Verarbeitung
+   ├─ Main                                    // Paket für die Hauptklasse
+   │  └─ CurrencyCalculator.java              // Hauptklasse für dieses Projekt
+   ├─ resources                               // Ressourcenverzeichnis für Icons, Sprachpakete, etc.
+   │  ├─ app_icon                             // Verzeichnis für das Anwendungsicon
+   │  │  └─ app_icon.png                      // Anwendungsicon-Datei
+   │  ├─ buttons                              // Verzeichnis für Schaltflächenbilder
+   │  │  ├─ button_copy.png                   // Schaltflächenbild zum Kopieren
+   │  │  ├─ button_loading.gif                // Ladeanimation für Schaltflächen
+   │  │  ├─ button_settings.png               // Schaltflächenbild für Einstellungen
+   │  │  └─ themes                            // Paket für Theme Knöpfe
+   │  │     ├─ button_darkmode_dark.png       // Schaltflächenbild Mond als Darkmode
+   │  │     ├─ button_darkmode_light.png      // Schaltflächenbild Sonne als Darkmode
+   │  │     ├─ button_lightmode_dark.png      // Schaltflächenbild Mond als Lightmode
+   │  │     └─ button_lightmode_light.png     // Schaltflächenbild Sonne als Lightmode
+   │  └─ languages                            // Paket für alle Sprachen
+   │     ├─ lang_danish.properties            // Sprachpaket: Dänsich
+   │     ├─ lang_english.properties           // Sprachpaket: Englisch
+   │     ├─ lang_german.properties            // Sprachpaket: Deutsch
+   │     └─ lang_spanish.properties           // Sprachpaket: Spanisch
+   └─ Utils                                   // Paket für Hilfsklassen
+      ├─ Data                                 // Paket für Datenverarbeitung
+      │  ├─ Calculations.java                 // Klasse für Berechnungen
+      │  ├─ Config                            // Paket für die Config
+      │  │  ├─ Config.java                    // Klasse für Grundfunktionen der Config
+      │  │  ├─ ConfigDefaults.java            // Klasse für Standardkonfiguration
+      │  │  └─ Settings                       // Paket für die einzelnen Einstellungen in der Config Datei
+      │  │     ├─ AppLanguage.java            // Klasse fürs Lesen und Schreiben der Spracheinstellungen
+      │  │     ├─ AppTheme.java               // Klasse fürs Lesen und Schreiben des AppThemes
+      │  │     └─ LastCalculation.java        // Klasse fürs Lesen und Schreiben der letzen Umrechnung
+      │  └─ ExchangeRateFetcher.java          // Klasse für den Abruf von Wechselkursen
+      ├─ RestartHelper.java                   // Klasse für den Neustart
+      └─ Utils.java                           // Hilfsklasse mit allgemeinen Hilfsmethoden
+
 ```
 
 ## :trollface: Autoren

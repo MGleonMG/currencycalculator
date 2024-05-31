@@ -10,7 +10,8 @@ import lang.Language;
 public class Calculations {
     public static double finalResult;
 
-    // Diese Methode rechnet die Währungen aus und gibt das Endergebnis zurück
+    // Diese Methode rechnet den Betrag mit dem Wechselkurs aus und gibt das
+    // Endergebnis zurück
     private static double convertCurrencies(String baseCur, String targetCur, double amount) {
         ExchangeRateFetcher.fetchExchangeRate(baseCur, targetCur);
 
@@ -35,10 +36,12 @@ public class Calculations {
             convertCurrencies(InputOutput.getBaseCur(), InputOutput.getTargetCur(), InputOutput.getAmount());
 
             if (ExchangeRateFetcher.getFailed() == false) {
-                InputOutput.setOutput(Language.getLangStringByKey("outputComponent1") + " " + InputOutput.getAmount() + " "
+                InputOutput.setOutput(Language.getLangStringByKey("outputComponent1") + " " + InputOutput.getAmount()
+                        + " "
                         + InputOutput.getBaseCur()
                         + "\n" +
-                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " " + InputOutput.getTargetCur()
+                        Language.getLangStringByKey("outputComponent2") + " " + finalResult + " "
+                        + InputOutput.getTargetCur()
                         + "\n"
                         +
                         Language.getLangStringByKey("outputComponent3") + " "

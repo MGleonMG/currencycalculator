@@ -6,7 +6,7 @@ import Utils.Data.Config.Settings.AppLanguage;
 import lang.Language;
 
 /*
- * Dies ist die HauptKlasse
+ * Die Hauptklasse des Währungsrechners
  */
 public class CurrencyCalculator {
 
