@@ -69,7 +69,7 @@ $ git pull origin main
 
 ## :arrow_down: Download
 
-Siehe [Downloads](https://github.com/MGleonMG/currencycalculator/releases)
+Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
 
 ## :deciduous_tree: Projektstruktur ##
 ```
