@@ -16,7 +16,7 @@ public class CurrencyCalculator {
      * y: neue Features
      * z: Bugfixes
      */
-    private static final String VERSION = "v1.1.0";
+    private static final String VERSION = "v1.0.0";
 
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();
