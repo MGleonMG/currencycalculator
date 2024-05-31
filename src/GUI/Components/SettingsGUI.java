@@ -76,13 +76,10 @@ public class SettingsGUI {
      */
     private static void addLanguageDropdown() {
         for (Languages language : Languages.values()) {
-            String formattedLanguage = language.toString().toLowerCase().substring(0, 1).toUpperCase()
-                    + language.toString().toLowerCase().substring(1);
-
-            languageDropdown.addItem(formattedLanguage);
+            languageDropdown.addItem(formattedLanguageToString(language));
         }
 
-        languageDropdown.setSelectedItem(AppLanguage.getConfigAppLanguage());
+        languageDropdown.setSelectedItem(formattedLanguageToString(AppLanguage.getConfigAppLanguage()));
 
         languageDropdown.addItemListener(new ItemListener() {
             @Override
@@ -106,6 +103,11 @@ public class SettingsGUI {
         });
 
         GUI.getAppWindow().add(languageDropdown);
+    }
+
+    private static String formattedLanguageToString(Languages language) {
+        return language.toString().toLowerCase().substring(0, 1).toUpperCase()
+                + language.toString().toLowerCase().substring(1);
     }
 
     /*
