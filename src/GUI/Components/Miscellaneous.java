@@ -36,7 +36,7 @@ public class Miscellaneous {
         addPresetLbl();
         addSaveCalculationButton();
         addLoadLastCalculationButton();
-        addFadeLbl();
+        addCustomFadeLbl();
         addFooter();
 
         setComponentBounds();
@@ -158,15 +158,15 @@ public class Miscellaneous {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
 
-                    String[] config = LastCalculation.getConfigLastCalc();
+                    String[] lastCalcEntries = LastCalculation.getConfigLastCalc();
                     // Es löscht die "" im String
-                    config[0] = config[0].replace("\"", "");
-                    config[1] = config[1].replace("\"", "");
-                    config[2] = config[2].replace("\"", "");
+                    lastCalcEntries[0] = lastCalcEntries[0].replace("\"", "");
+                    lastCalcEntries[1] = lastCalcEntries[1].replace("\"", "");
+                    lastCalcEntries[2] = lastCalcEntries[2].replace("\"", "");
                     // Setzt die gespeicherten Daten in die Variable ein
-                    InputOutput.setBaseCur(config[0]);
-                    InputOutput.setTargetCur(config[1]);
-                    InputOutput.setInputVal(config[2]);
+                    InputOutput.setBaseCur(lastCalcEntries[0]);
+                    InputOutput.setTargetCur(lastCalcEntries[1]);
+                    InputOutput.setInputVal(lastCalcEntries[2]);
 
                     InputOutput.setInputValRes();
                     Calculations.runThreadedCalculation();
@@ -180,7 +180,7 @@ public class Miscellaneous {
         GUI.getAppWindow().add(presetLbl);
     }
 
-    private static void addFadeLbl() {
+    private static void addCustomFadeLbl() {
         fadeLbl.setVisible(false);
 
         GUI.getAppWindow().add(fadeLbl);

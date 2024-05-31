@@ -19,7 +19,7 @@ import lang.Language;
 
 /*
  * Diese Klasse erstellt das "Graphical User Interface"
- * Dadurch muss der Nutzer nicht auf dem Terminal arbeiten
+ * Dadurch muss der Nutzer nicht auf dem Terminal / der Console arbeiten
  */
 public class GUI {
 
@@ -71,22 +71,12 @@ public class GUI {
         jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion());
     }
 
-    public static void updateTitle(JFrame jframe, String rawTitleAddition) {
-        String titleAddition = " - " + rawTitleAddition;
-        jframe.setTitle(Language.getLangStringByKey("title") + " " + CurrencyCalculator.getAppVersion()
-                + (rawTitleAddition != "" ? titleAddition : ""));
-    }
-
-    public static void setAppIcon(JFrame jframe) {
-        jframe.setIconImage(icon.getImage());
-    }
-
     /*
      * Erstellt das Hauptfenster für den GUI
      */
     private static void setBasicFrameProps() {
-        updateTitle(frame, "");
-        setAppIcon(frame);
+        updateTitle(frame);
+        frame.setIconImage(icon.getImage());
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -120,7 +110,7 @@ public class GUI {
     }
 
     /*
-     * Aktualisiert die dargestellte Sprache auf die GUI Komponenten
+     * Aktualisiert die dargestellte Sprache auf den GUI Komponenten
      */
     public static void updateDisplayedLanguage(boolean calledOnStartup) {
         // Aktualisiert den Programm Titel
@@ -148,7 +138,7 @@ public class GUI {
 
     /*
      * Diese Methode nimmt die Länge der Headline
-     * und setzt es in eine Variable. Dies wird verwendet, um den Label
+     * und setzt es in eine Variable. Dies wird verwendet, um das Label
      * mittig zu halten.
      */
     private static int getTextWidth() {
