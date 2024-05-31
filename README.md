@@ -26,7 +26,7 @@
 
 ## :dart: Einführung ##
 
-In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
+In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel des Programmes ist, das Umwandeln verschiedener Währungen für den Nutzer so einfach wie möglich zu gestalten. Dazu wählt man die Ausgangswährung und die Zielwährung aus und gibt den Betrag ein, welcher umgerechnet werden soll.
 
 ## :sparkles: Features ##
 
