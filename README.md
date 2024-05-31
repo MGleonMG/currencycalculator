@@ -50,7 +50,7 @@ Git lässt sich mit Hilfe des unten genannten commands auch über Windows Powers
 winget install --id Git.Git -e --source winget
 ```
 
-Wir empfehlen "Visual Studio Code" als Umgebungsentwicklung. Nachdem das erledigt ist, sollte man sich einen Ordner erstellen lassen (am besten auf dem Desktop). Im Visual Studio Code muss man den neu erstellten Ordner öffnen. Die unten stehenden Git Commands sind für die Nutzung des Programmes wichtig.
+Wir empfehlen "Visual Studio Code" als Umgebungsentwicklung. Nachdem das erledigt ist, sollte man sich einen Ordner erstellen lassen (am besten auf dem Desktop). In Visual Studio Code muss man den neu erstellten Ordner öffnen. Die unten stehenden Git Commands sind für die Nutzung des Programmes wichtig.
 
 ## :checkered_flag: Nützliche Git Commands ##
 ```bash
@@ -69,7 +69,7 @@ $ git pull origin main
 
 ## :arrow_down: Download
 
-See [releases](https://github.com/MGleonMG/currencycalculator/releases)
+Siehe [Downloads](https://github.com/MGleonMG/currencycalculator/releases)
 
 ## :deciduous_tree: Projektstruktur ##
 ```
