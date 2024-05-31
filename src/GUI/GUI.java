@@ -49,7 +49,7 @@ public class GUI {
 
     /*
      * Diese Methode führt andere Methoden aus
-     * und fügt dadurch die einzelnen Komponenten hinzu
+     * und fügt dadurch andere Komponenten hinzu
      */
     public static void drawGUI() {
         setBasicFrameProps();
@@ -104,12 +104,7 @@ public class GUI {
         frame.add(headlineLabel);
     }
 
-    /*
-     * Diese Methode setzt den Theme fest
-     * 
-     * Je nachdem, wie es der Enduser mag, wechselt es sich zwischen dem Light- und
-     * Darkmode
-     */
+    // Diese Methode setzt den Theme fest
     public static void setAppTheme(Theme theme) {
         try {
             if (theme == Theme.DARK_MODE) {
@@ -128,14 +123,14 @@ public class GUI {
     }
 
     /*
-     * Updatet die dargestellte Sprache auf den GUI Komponenten
+     * Aktualisiert die dargestellte Sprache auf den GUI Komponenten
      */
     public static void updateDisplayedLanguage(boolean calledOnStartup) {
-        // update Programm Titel
+        // Aktualisiert den Programm Titel
         title = Language.getLangStringByKey("title");
         updateTitle(frame);
 
-        // update alle Hauptkomponenten
+        // Aktualisiert alle Hauptkomponenten
         headlineLabel.setText(Language.getLangStringByKey("title"));
         InputOutput.getSearchBarBaseCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getSearchBarTargetCur().setText(Language.getLangStringByKey("searchBar"));
@@ -153,7 +148,7 @@ public class GUI {
     }
 
     /*
-     * Diese Methode nimmt die Länge der HeadlineLabel raus
+     * Diese Methode nimmt die Länge der HeadlineLabel
      * und setzt es in eine Variable. Dies wird verwendet, um den Label
      * mittig zu halten.
      */

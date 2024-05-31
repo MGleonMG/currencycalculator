@@ -15,6 +15,10 @@ import java.awt.event.*;
 
 public class InputOutput {
 
+    /*
+     * TODO: Parametern in Methoden einsetzen?
+     */
+
     private static JTextField inputField = new JTextField();
     public static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
             searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
@@ -28,7 +32,7 @@ public class InputOutput {
     private static String inputValue;
     private static double inputValueResult;
 
-    // Diese Variablen speichern die ISO-codes von den Währungen
+    // Diese Variablen speichern den ISO-code von Währungen
     private static String baseCurResult, targetCurResult;
 
     public static void addAllComponents() {
@@ -41,6 +45,9 @@ public class InputOutput {
         setComponentBounds();
     }
 
+    /*
+     * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
+     */
     private static void setComponentBounds() {
         calculateBtn.setBounds(400, 250, 100, 25);
         dropdownBaseCur.setBounds(50, 250, 290, 50);
@@ -143,7 +150,7 @@ public class InputOutput {
     /*
      * Erstellt eine Suchleiste
      * 
-     * Mit dieser Methode kann man eine Währung suchen und dadurch schnell finden
+     * Mit dieser Methode kann man eine Währung suchen und schnell finden
      */
     private static void addSearchBars() {
 
@@ -260,7 +267,7 @@ public class InputOutput {
     }
 
     /*
-     * Fügt Komponenten hinzu die für input des users und output verantwortlich sind
+     * Fügt Komponenten hinzu die für den Input und Output verantwortlich sind
      */
     private static void addInputOutput() {
         setOutput(Language.getLangStringByKey("outputLabel"));
@@ -270,14 +277,14 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode fügt ein GIF hinzu,
-     * sobald der User auf "umrechnen" gedrückt hat
+     * Diese Methode fügt einen GIF hinzu,
+     * sobald der Nutzer auf "umrechnen" drückt
      */
     private static void addLoadingCircleGIF() {
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));
         Image scaledImage = originalIcon.getImage().getScaledInstance(150, 100, Image.SCALE_FAST);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
-        // Image.SCALE_FAST damit es das GIF anzeigt
+        // Image.SCALE_FAST damit das GIF angezeigt wird
         loadingGIFLbl.setIcon(scaledIcon);
         GUI.getAppWindow().add(loadingGIFLbl);
         loadingGIFLbl.setVisible(false);
@@ -296,8 +303,8 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode zeigt dem Endnutzer, dass das Programm am Arbeiten ist und den
-     * Wechselkurs herausfindet
+     * Diese Methode zeigt dem Nutzer, dass das Programm am laufen ist und zurzeit
+     * am Rechnen ist bzw. den Wechselkurs herausfindet
      */
     public static void displayAsLoading(boolean isLoading) {
         if (isLoading) {

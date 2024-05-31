@@ -9,7 +9,6 @@ import java.util.Properties;
 
 import GUI.GUI;
 import GUI.Popups.PopupDisplay;
-import Utils.RestartHelper;
 import Utils.Data.Config.Settings.AppLanguage;
 
 public class Language {

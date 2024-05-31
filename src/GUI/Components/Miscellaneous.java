@@ -29,7 +29,7 @@ public class Miscellaneous {
     private static JLabel presetLbl = new JLabel();
     private static JLabel fadeLbl = new JLabel();
     private static JLabel clipboardLbl = new JLabel();
-    private static JLabel authorLbl = new JLabel(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
+    private static JLabel authorLbl = new JLabel();
 
     public static void addAllComponents() {
         addCopyOutputLbl();
@@ -42,6 +42,9 @@ public class Miscellaneous {
         setComponentBounds();
     }
 
+    /*
+     * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
+     */
     private static void setComponentBounds() {
         clipboardLbl.setBounds(420, 405, 100, 30);
 
@@ -55,11 +58,11 @@ public class Miscellaneous {
     /*
      * Erstellt einen "Kopier" Knopf
      * 
-     * Es nimmt das Ergebnis und steckt es in den Clipboard
+     * Das Ergebnis wird für den Nutzer in das Clipboard gespeichert
      */
 
     /*
-     * TODO Implement Language, fix Broken
+     * TODO Implement Language
      */
     private static void addCopyOutputLbl() {
         /*
@@ -79,7 +82,7 @@ public class Miscellaneous {
                     runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
                 } else {
                     // TODO: Add language support here
-                    PopupDisplay.throwErrorPopup("Derzeit liegt kein Ergebnis zum kopieren vor.");
+                    PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_copy"));
                 }
             }
         });
@@ -119,13 +122,14 @@ public class Miscellaneous {
     }
 
     private static void addFooter() {
+        authorLbl.setText(CurrencyCalculator.getAppVersion() + " by Leon, Jonas, Ewin");
         authorLbl.setForeground(Color.GRAY);
 
         GUI.getAppWindow().add(authorLbl);
     }
 
     /*
-     * Diese Methode erstellt einen Knopf, um die Daten zu speichern
+     * Diese Methode erstellt einen Knopf, um Daten zu speichern
      */
     private static void addSaveCalculationButton() {
         saveBtn.setBounds(50, 450, 100, 25);
@@ -140,8 +144,7 @@ public class Miscellaneous {
                         } else {
                             LastCalculation.setConfigLastCalc(InputOutput.getBaseCur(), InputOutput.getTargetCur(),
                                     InputOutput.getInputVal());
-                            // TODO: Add Lang support below
-                            runCustomFadeLabel("Gespeichert", 200, 450, 100, 25);
+                            runCustomFadeLabel(Language.getLangStringByKey("fadeLabel"), 200, 450, 100, 25);
                         }
                     }
                 });

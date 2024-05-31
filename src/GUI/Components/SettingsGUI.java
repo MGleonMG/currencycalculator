@@ -25,11 +25,10 @@ import java.io.IOException;
 */
 public class SettingsGUI {
     // Komponenten
-    // private static final int FRAME_WIDTH = 400, FRAME_HEIGHT = 280;
     private static JLabel settingsLbl = new JLabel();
     private static JLabel settingsSliderLbl;
     private static JLabel themeLblBtn = new JLabel();
-    private static JButton configResetBtn = new JButton(Language.getLangStringByKey("reset"));
+    private static JButton configResetBtn = new JButton();
     private static JComboBox<String> languageDropdown = new JComboBox<String>();
 
     // Icons
@@ -60,6 +59,9 @@ public class SettingsGUI {
         minimizeSettingsSlider();
     }
 
+    /*
+     * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
+     */
     private static void setComponentBounds() {
         settingsLbl.setBounds(GUI.getWindowWidth() - 80, GUI.getWindowHeight() - 95, 50, 50);
         languageDropdown.setBounds(GUI.getWindowWidth() - 260, settingsLbl.getY() + 12,
@@ -112,6 +114,8 @@ public class SettingsGUI {
      * auf die Standardeinstellungen zurücksetzen kann
      */
     private static void addConfigDefaultsButton() {
+        configResetBtn.setText(Language.getLangStringByKey("reset"));
+
         configResetBtn.setBackground(Color.WHITE);
         configResetBtn.setForeground(Color.BLACK);
         configResetBtn.addActionListener(new ActionListener() {
@@ -128,8 +132,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Diese Methode fügt die "Theme" Knöpfe hinzu,
-     * sodass man die einzelnen Themes ändern kann
+     * Diese Methode fügt den "Theme" Knopf hinzu.
+     * Dadurch kann man zwischen den dem Light- und Darkmode wechseln
      */
     private static void addThemeSwitchButton() {
         setThemeIcon();
@@ -192,6 +196,9 @@ public class SettingsGUI {
         GUI.getAppWindow().add(settingsLbl);
     }
 
+    /*
+     * Erstellt die Einstellungen mithilfe eines Sliders
+     */
     private static void addSettingsSlider() {
         settingsSliderLbl = new JLabel() {
             @Override
@@ -210,6 +217,9 @@ public class SettingsGUI {
         GUI.getAppWindow().add(settingsSliderLbl);
     }
 
+    /*
+     * "Öffnet" die Einstellungen
+     */
     private static void extendSettingsSlider() {
         settingsSliderLbl.setVisible(true);
 
@@ -221,6 +231,9 @@ public class SettingsGUI {
         GUI.getAppWindow().repaint();
     }
 
+    /*
+     * "Schließt" die Einstellungen
+     */
     private static void minimizeSettingsSlider() {
         settingsSliderLbl.setVisible(false);
 
@@ -231,37 +244,6 @@ public class SettingsGUI {
         GUI.getAppWindow().revalidate();
         GUI.getAppWindow().repaint();
     }
-
-    public static void confirmWindow() {
-        JFrame frame = new JFrame();
-        JLabel headline = new JLabel();
-        JLabel info = new JLabel();
-
-        int width = 500;
-        int height = 400;
-
-        frame.setSize(width, height);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLayout(null);
-        frame.setVisible(true);
-
-        headline.setText(Language.getLangStringByKey("test1"));
-        info.setText(Language.getLangStringByKey("test2"));
-
-        // headline.setBounds((width - getTextWidth()) / 2, 300, getTextWidth(), 50);
-
-    }
-
-    /*
-     * private static int getTextWidth() {
-     * FontMetrics fontMetrics =
-     * headlineLabel.getFontMetrics(headlineLabel.getFont());
-     * textWidth = fontMetrics.stringWidth(headlineLabel.getText());
-     * return textWidth;
-     * }
-     */
 
     public static JButton getConfigResetBtn() {
         return configResetBtn;
