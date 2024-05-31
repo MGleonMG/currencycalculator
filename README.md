@@ -26,7 +26,7 @@
 
 ## :dart: Einführung ##
 
-In diesem Projekt geht es darum, Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
+In diesem Projekt geht es darum Währungen umzurechnen, beispielsweise "Euro" auf "Amerikanische Dollar". Derzeit gibt es weltweit über 160 Währungen mit ständig schwankenden Wechselkursen. Das Ziel ist es dem Benutzer beim Umwandeln die Rechnungen zu erleichtern. Dazu wählt der Benutzer die Ausgangswährung und die Zielwährung aus und gibt den Geldbetrag ein, den er umtauschen möchte.
 
 ## :sparkles: Features ##
 
@@ -50,7 +50,7 @@ Git lässt sich mit Hilfe des unten genannten commands auch über Windows Powers
 winget install --id Git.Git -e --source winget
 ```
 
-Wir empfehlen "Visual Studio Code" als Umgebungsentwicklung. Nachdem das erledigt ist, erstellst du dir einen Ordner (am besten auf dem Desktop). In Visual Studio Code musst du diesen Ordner erstmals öffnen. Dafür gehst du auf "File -> Open Folder" und wählst dementsprechend den neu erstellten Ordner aus. Die unten stehenden Git Commands kannst du nutzen, um die aktuellste Version des Codes zu erhalten und daran zu arbeiten.
+Wir empfehlen "Visual Studio Code" als Umgebungsentwicklung. Nachdem das erledigt ist, sollte man sich einen Ordner erstellen lassen (am besten auf dem Desktop). Im Visual Studio Code muss man den neu erstellten Ordner öffnen. Die unten stehenden Git Commands sind für die Nutzung des Programmes wichtig.
 
 ## :checkered_flag: Nützliche Git Commands ##
 ```bash
@@ -68,8 +68,8 @@ $ git pull origin main
 ```
 
 ## :arrow_down: Download
-JAR Datei noch in Arbeit.\
-Zur Zeit nur durch Code Kompilierung ausführbar.
+
+See [releases](https://github.com/MGleonMG/currencycalculator/releases)
 
 ## :deciduous_tree: Projektstruktur ##
 ```
@@ -81,8 +81,10 @@ Zur Zeit nur durch Code Kompilierung ausführbar.
    │    ├─ GUI.java                  // Hauptklasse für die GUI
    │    ├─ Popups                    // Paket für Popup-Fenster
    │    │    └─ PopupDisplay.java    // Klasse für die Anzeige von Popup-Fenstern
-   │    └─ Settings                  // Paket für das Einstellungs-GUI
-   │         └─ SettingsGUI.java     // Klasse für das Einstellungs-GUI
+   │    └─ Components                // Paket für die GUI-Komponenten
+   │         ├─ SettingsGUI.java     // Klasse für die Einstellungen
+   │         ├─ Miscellaneous.java   // Klasse für diverse Inhalte
+   │         └─ InputOutput.java     // Klasse für den Input-Output
    ├─ lang                           // Paket für Sprachunterstützung
    │    └─ Language.java             // Klasse für Spracheinstellungen
    ├─ lib                            // Bibliotheksordner für externe JAR-Dateien
@@ -116,7 +118,9 @@ Zur Zeit nur durch Code Kompilierung ausführbar.
          │    │         ├─ AppTheme.java          // Klasse fürs Lesen und Schreiben des AppThemes
          │    │         └─ LastCalculation.java   // Klasse fürs Lesen und Schreiben der letzen Umrechnung
          │    └─ ExchangeRateFetcher.java         // Klasse für den Abruf von Wechselkursen
-         └─ Utils.java                            // Hilfsklasse mit allgemeinen Hilfsmethoden
+         ├─ Utils.java                            // Hilfsklasse mit allgemeinen Hilfsmethoden
+         └─ RestartHelper.java                    // Klasse für den Neustart
+
 ```
 
 ## :trollface: Autoren
