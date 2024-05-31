@@ -61,9 +61,8 @@ public class Utils {
     }
 
     /*
-     * Diese Methode leert die Dropdowns und befüllt sie wieder mit allen Währungen
-     * damit bei einer Sprachänderung diese auch in der korrekten Sprache angegeben
-     * sind
+     * Diese Methode leert den Inhalt der Dropdowns und füllt diese wieder auf.
+     * Bei einer Sprachänderung werden diese in der korrekten Sprache ausgegeben.
      */
     @SuppressWarnings("unchecked")
     public static void refreshCurrencyDropdowns() {
@@ -80,8 +79,7 @@ public class Utils {
     }
 
     /*
-     * Diese Methode kopiert das Ergebnis in das Clipboard des Benutzers
-     * siehe src\GUI\GUI.java\addCopyOutputButton()
+     * Diese Methode kopiert das Ergebnis in das Clipboard des Nutzers.
      */
     public static void copyToClipboard() {
         if (Calculations.finalResult != 0.0) {

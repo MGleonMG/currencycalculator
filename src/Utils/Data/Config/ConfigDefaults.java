@@ -26,6 +26,9 @@ public class ConfigDefaults {
         return defaults;
     }
 
+    /*
+     * Setzt die Benutzereinstellungen zurück
+     */
     public static void restoreAllDefaults() {
         AppLanguage.setConfigAppLanguage(Languages.GERMAN);
         AppTheme.setConfigAppTheme(Theme.DARK_MODE);
