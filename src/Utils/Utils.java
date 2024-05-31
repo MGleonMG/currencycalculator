@@ -13,7 +13,6 @@ import Utils.Data.Calculations;
 import Utils.Data.Filter;
 
 import java.awt.datatransfer.StringSelection;
-import java.io.File;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 

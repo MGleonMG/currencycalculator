@@ -3,6 +3,7 @@ package GUI.Components;
 import java.util.Map;
 
 import GUI.GUI;
+import GUI.Popups.PopupDisplay;
 import Utils.Utils;
 import Utils.Data.Calculations;
 import lang.Language;
@@ -64,10 +65,16 @@ public class InputOutput {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        inputValue = inputField.getText();
-                        inputValueResult = Double.parseDouble(InputOutput.inputValue);
+                        try {
+                            inputValue = inputField.getText();
+                            inputValueResult = Double.parseDouble(InputOutput.inputValue);
 
-                        Calculations.runThreadedCalculation();
+                            Calculations.runThreadedCalculation();
+
+                        } catch (NumberFormatException nfe) {
+
+                            PopupDisplay.throwErrorPopup(Language.getLangStringByKey("invalid_input"));
+                        }
                     }
                 });
             }
