@@ -73,12 +73,7 @@ public class Language {
         }
 
         Locale.setDefault(locale);
-
-        // try {
         GUI.updateDisplayedLanguage(onStartup);
-        // } catch (NullPointerException npe) {
-        // // tu nichts.
-        // }
     }
 
     // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus
