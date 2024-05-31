@@ -61,9 +61,6 @@ public class Miscellaneous {
      * Das Ergebnis wird für den Nutzer in das Clipboard gespeichert
      */
 
-    /*
-     * TODO Implement Language
-     */
     private static void addCopyOutputLbl() {
         /*
          * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
@@ -90,7 +87,7 @@ public class Miscellaneous {
     }
 
     /*
-     * Diese Methode erstellt ein Label, dass dem Benutzer zurückgibt,
+     * Diese Methode erstellt ein Label, dass dem Nutzer zurückgibt,
      * dass die eingegebenen Daten gespeichert sind.
      */
     public static void runCustomFadeLabel(String text, int locactionX, int locactionY, int width, int height) {
@@ -128,7 +125,7 @@ public class Miscellaneous {
     }
 
     /*
-     * Diese Methode erstellt einen Knopf, um Daten zu speichern
+     * Diese Methode erstellt einen Knopf, um eingegebene Daten zu speichern
      */
     private static void addSaveCalculationButton() {
         saveBtn.setBounds(50, 450, 100, 25);
@@ -166,7 +163,7 @@ public class Miscellaneous {
                     config[0] = config[0].replace("\"", "");
                     config[1] = config[1].replace("\"", "");
                     config[2] = config[2].replace("\"", "");
-
+                    // Setzt die gespeicherten Daten in die Variable ein
                     InputOutput.setBaseCur(config[0]);
                     InputOutput.setTargetCur(config[1]);
                     InputOutput.setInputVal(config[2]);

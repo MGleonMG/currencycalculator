@@ -40,8 +40,7 @@ public class SettingsGUI {
                             .getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
 
     /*
-     * Diese Methode führt andere Methoden aus und
-     * fügt dadurch die einzelnen Objekte hinzu
+     * Diese Methode fügt einzelne Objekte in der GUI hinzu
      */
     public static void addAllComponents() {
         // Komponenten
@@ -110,8 +109,8 @@ public class SettingsGUI {
     }
 
     /*
-     * Diese Methode fügt einen Knopf hinzu, womit man Config Einstellungen
-     * auf die Standardeinstellungen zurücksetzen kann
+     * Diese Methode erstellt einen Knopf, womit man die Konfigurationen
+     * zurücksetzen kann
      */
     private static void addConfigDefaultsButton() {
         configResetBtn.setText(Language.getLangStringByKey("reset"));
@@ -133,7 +132,7 @@ public class SettingsGUI {
 
     /*
      * Diese Methode fügt den "Theme" Knopf hinzu.
-     * Dadurch kann man zwischen den dem Light- und Darkmode wechseln
+     * Dadurch kann man zwischen dem Light- und Darkmode wechseln
      */
     private static void addThemeSwitchButton() {
         setThemeIcon();
@@ -197,7 +196,7 @@ public class SettingsGUI {
     }
 
     /*
-     * Erstellt die Einstellungen mithilfe eines Sliders
+     * Zeigt die Einstellungen mithilfe eines Sliders an
      */
     private static void addSettingsSlider() {
         settingsSliderLbl = new JLabel() {
