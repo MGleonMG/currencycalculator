@@ -29,7 +29,7 @@ public class Miscellaneous {
     private static JButton loadBtn = new JButton();
     private static JLabel presetLbl = new JLabel();
     private static JLabel fadeLbl = new JLabel();
-    private static JLabel clipboardLbl = new JLabel();
+    private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel authorLbl = new JLabel();
 
     public static void addAllComponents() {
@@ -47,7 +47,7 @@ public class Miscellaneous {
      * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
      */
     private static void setComponentBounds() {
-        clipboardLbl.setBounds(420, 405, 100, 30);
+        clipboardLblBtn.setBounds(420, 405, 100, 30);
 
         loadBtn.setBounds(50, 480, 100, 25);
         authorLbl.setBounds(15, GUI.getWindowHeight() - 60, 200, 20);
@@ -71,15 +71,15 @@ public class Miscellaneous {
         Image scaledImage = originalIcon.getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipboardLbl.setIcon(scaledIcon);
-        clipboardLbl.addMouseListener((MouseListener) new MouseAdapter() {
+        clipboardLblBtn.setIcon(scaledIcon);
+        clipboardLblBtn.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ClickAnimation.runCustomClickAnimation(clipboardLbl, () -> {
+                ClickAnimation.runCustomClickAnimation(clipboardLblBtn, () -> {
                     
                     if (InputOutput.getTargetCur() != null) {
                         Utils.copyToClipboard();
-                        runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
+                        runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
                     } else {
                         PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_copy"));
                     }
@@ -87,7 +87,7 @@ public class Miscellaneous {
             }
         });
 
-        GUI.getAppWindow().add(clipboardLbl);
+        GUI.getAppWindow().add(clipboardLblBtn);
     }
 
     /*

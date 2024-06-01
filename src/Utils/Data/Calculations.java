@@ -5,13 +5,15 @@ import Utils.Utils;
 import lang.Language;
 
 /*
- * Diese Klasse ist für Rechnung zuständig 
+ * Diese Klasse ist für Berechnungen zuständig 
  */
 public class Calculations {
     public static double finalResult;
 
-    // Diese Methode rechnet den Betrag mit dem Wechselkurs aus und gibt das
-    // Endergebnis zurück
+    /*
+     * Diese Methode rechnet den Betrag mit dem
+     * Wechselkurs aus und gibt das Endergebnis zurück
+     */
     private static double convertCurrencies(String baseCur, String targetCur, double amount) {
         ExchangeRateFetcher.fetchExchangeRate(baseCur, targetCur);
 
@@ -28,14 +30,16 @@ public class Calculations {
      * Diese Methode ist der Hauptprozess für die Rechnung
      */
     public static void runThreadedCalculation() {
-        // lambda funktion in der runCalcThread() funktion um asynchrones ausführen zu
-        // ermöglichen (=> GUI kann sich dadurch updaten)
+        /*
+         * Berechnung wird asynchron in einem Thread ausgeführt
+         * um Änderungen im GUI zuzulassen
+         */
         Thread thread = new Thread(() -> {
             InputOutput.displayAsLoading(true);
 
             convertCurrencies(InputOutput.getBaseCur(), InputOutput.getTargetCur(), InputOutput.getAmount());
 
-            if (ExchangeRateFetcher.getFailed() == false) {
+            if (ExchangeRateFetcher.hasFailed() == false) {
                 InputOutput.setOutput(Language.getLangStringByKey("outputComponent1") + " " + InputOutput.getAmount()
                         + " "
                         + InputOutput.getBaseCur()
@@ -54,7 +58,7 @@ public class Calculations {
             }
 
             InputOutput.displayAsLoading(false);
-            ExchangeRateFetcher.setFailed();
+            ExchangeRateFetcher.clearFailedStatus();
         });
 
         thread.start();

@@ -26,7 +26,7 @@ public class ClickAnimation {
         ImageIcon originalImageIcon = (ImageIcon) originalIcon;
         Image originalImage = originalImageIcon.getImage();
 
-        // Skalierung des Icons auf dem Label
+        // Größe des Icons auf dem Label wird runter skaliert
         int newWidth = (int) (originalImageIcon.getIconWidth() * scaleFactor);
         int newHeight = (int) (originalImageIcon.getIconHeight() * scaleFactor);
         Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);

@@ -102,6 +102,10 @@ public class Filter {
             "UYI"
     };
 
+    /*
+     * Wandelt das String Array in ein Set von Strings
+     * um und gibt diese Filter Liste dann zurück
+     */
     public static Set<String> getCurrencyFilter() {
         Set<String> currencyFilterSet = new HashSet<>(Arrays.asList(irrelevantCurrencies));
         return currencyFilterSet;

@@ -34,7 +34,8 @@ public class Config {
      * Überprüft ob der Konfigurations Ordner mit der Datei schon existieren
      * und versucht gegebenenfalls diese zu erstellen.
      * 
-     * Das Programm endet mit dem vorherigem Popup, falls ein Fehler auftreten sollte.
+     * Das Programm endet mit dem vorherigem Popup,
+     * falls ein Fehler auftreten sollte.
      */
     public static void runFirstTimeSetupCheck() {
         File settingsFile = new File(getFilePath());

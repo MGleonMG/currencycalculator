@@ -25,11 +25,11 @@ public class GUI {
 
     // Grundinformationen für das JFrame, wie die Größe und das Icon
     private static final int FRAME_WIDTH = 900, FRAME_HEIGHT = 600;
-    private static final ImageIcon icon = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
+    private static final ImageIcon APP_ICON = new ImageIcon(GUI.class.getResource("/resources/app_icon/app_icon.png"));
 
     // Komponenten
-    public static JFrame frame = new JFrame();
-    private static JLabel headlineLabel = new JLabel(Language.getLangStringByKey("title"));
+    private static JFrame frame = new JFrame();
+    private static JLabel headlineLbl = new JLabel(Language.getLangStringByKey("title"));
 
     // Diese Variable wird für das Headline benutzt.
     private static int textWidth;
@@ -76,19 +76,19 @@ public class GUI {
      */
     private static void setBasicFrameProps() {
         updateTitle(frame);
-        frame.setIconImage(icon.getImage());
+        frame.setIconImage(APP_ICON.getImage());
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(null);
 
-        headlineLabel.setFont(headlineLabel.getFont().deriveFont(30f));
+        headlineLbl.setFont(headlineLbl.getFont().deriveFont(30f));
 
         // Durch die Länge der Headline wird das Label mittig gesetzt
-        headlineLabel.setBounds((FRAME_WIDTH - getTextWidth()) / 2, 25, getTextWidth(), 50);
+        headlineLbl.setBounds((FRAME_WIDTH - getTextWidth()) / 2, 25, getTextWidth(), 50);
 
-        frame.add(headlineLabel);
+        frame.add(headlineLbl);
     }
 
     // Diese Methode setzt den Theme fest
@@ -117,7 +117,7 @@ public class GUI {
         updateTitle(frame);
 
         // Aktualisiert alle Hauptkomponenten
-        headlineLabel.setText(Language.getLangStringByKey("title"));
+        headlineLbl.setText(Language.getLangStringByKey("title"));
         InputOutput.getSearchBarBaseCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getSearchBarTargetCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getCalculateButton().setText(Language.getLangStringByKey("calculateBtn"));
@@ -142,8 +142,8 @@ public class GUI {
      * mittig zu halten.
      */
     private static int getTextWidth() {
-        FontMetrics fontMetrics = headlineLabel.getFontMetrics(headlineLabel.getFont());
-        textWidth = fontMetrics.stringWidth(headlineLabel.getText());
+        FontMetrics fontMetrics = headlineLbl.getFontMetrics(headlineLbl.getFont());
+        textWidth = fontMetrics.stringWidth(headlineLbl.getText());
         return textWidth;
     }
 }
