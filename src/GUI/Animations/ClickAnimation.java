@@ -43,7 +43,7 @@ public class ClickAnimation {
                 isAnimationBlocked = false;
                 ((Timer) e.getSource()).stop();
 
-                // Im zweiten Parameter kann beliebiger Code asugeführt werden
+                // Im zweiten Parameter kann beliebiger Code ausgeführt werden
                 runnable.run();
             }
         });
