@@ -3,6 +3,7 @@ package GUI.Components;
 import javax.swing.*;
 
 import GUI.GUI;
+import GUI.Animations.ClickAnimation;
 import GUI.Popups.PopupDisplay;
 import Utils.RestartHelper;
 import Utils.Data.Config.ConfigDefaults;
@@ -143,15 +144,18 @@ public class SettingsGUI {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Theme currentTheme = AppTheme.getConfigAppTheme();
+                    ClickAnimation.runCustomClickAnimation(themeLblBtn, () -> {
 
-                    if (currentTheme == Theme.DARK_MODE) {
-                        GUI.setAppTheme(Theme.LIGHT_MODE);
-                    } else if (currentTheme == Theme.LIGHT_MODE) {
-                        GUI.setAppTheme(Theme.DARK_MODE);
-                    }
+                        Theme currentTheme = AppTheme.getConfigAppTheme();
 
-                    setThemeIcon();
+                        if (currentTheme == Theme.DARK_MODE) {
+                            GUI.setAppTheme(Theme.LIGHT_MODE);
+                        } else if (currentTheme == Theme.LIGHT_MODE) {
+                            GUI.setAppTheme(Theme.DARK_MODE);
+                        }
+
+                        setThemeIcon();
+                    });
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -189,11 +193,14 @@ public class SettingsGUI {
         settingsLbl.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (settingsSliderLbl.isVisible()) {
-                    minimizeSettingsSlider();
-                } else {
-                    extendSettingsSlider();
-                }
+                ClickAnimation.runCustomClickAnimation(settingsLbl, () -> {
+
+                    if (settingsSliderLbl.isVisible()) {
+                        minimizeSettingsSlider();
+                    } else {
+                        extendSettingsSlider();
+                    }
+                });
             }
         });
 
