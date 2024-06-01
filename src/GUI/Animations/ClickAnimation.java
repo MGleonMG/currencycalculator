@@ -1,37 +1,54 @@
 package GUI.Animations;
 
-import javax.swing.ImageIcon;
-//import javax.swing.JComponent;
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class ClickAnimation extends Thread {
+public class ClickAnimation {
+    private static boolean isAnimationBlocked = false;
+    private static final float scaleFactor = 0.85F;
+    private static final int animationSpeedInMs = 180;
 
-    public static void runCustomClickAnimation(JLabel guiComponent, ImageIcon icon) {
-        new Thread(new Runnable() {
+    public static void runCustomClickAnimation(JLabel label, Runnable runnable) {
+        if (isAnimationBlocked) {
+            /*
+             * Abfrage ob eine Animation schon läuft und
+             * breche die Funktion ab falls dies der Fall ist
+             */
+            return;
+        }
+
+        // Blocke weitere Animationen
+        isAnimationBlocked = true;
+
+        Icon originalIcon = label.getIcon();
+        ImageIcon originalImageIcon = (ImageIcon) originalIcon;
+        Image originalImage = originalImageIcon.getImage();
+
+        // Skalierung des Icons auf dem Label
+        int newWidth = (int) (originalImageIcon.getIconWidth() * scaleFactor);
+        int newHeight = (int) (originalImageIcon.getIconHeight() * scaleFactor);
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+        label.setIcon(new ImageIcon(scaledImage));
+
+        /*
+         * Timer um nach x Millisekunden wieder auf die Originalgröße
+         * zu wechseln und Animationen wieder zuzulassen
+         */
+        Timer revertScalingTimer = new Timer(animationSpeedInMs, new ActionListener() {
             @Override
-            public void run() {
-                try {
-                    int originalWidth = icon.getIconWidth(), originalHeight = icon.getIconHeight();
-                    int newWidth, newHeight;
+            public void actionPerformed(ActionEvent e) {
+                label.setIcon(originalImageIcon);
+                isAnimationBlocked = false;
+                ((Timer) e.getSource()).stop();
 
-                    for (int i = 0; i < 3; i++) {
-                        newWidth = (int) (originalWidth * 0.9);
-                        newHeight = (int) (originalHeight * 0.9);
-
-                        // icon.setSize();
-                        // guiComponent.setIcon(icon);
-                        // icon.setSize(newWidth, newHeight);
-                        Thread.sleep(50);
-                    }
-
-                    guiComponent.setSize(originalWidth, originalHeight);
-
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                    // Kein Popup for User nötig
-                    // TODO: ..
-                }
+                // Im zweiten Parameter kann beliebiger Code asugeführt werden
+                runnable.run();
             }
-        }).start(); // Animation wird gestartet
+        });
+
+        revertScalingTimer.setRepeats(false); // Der Timer soll sich nicht wiederholen
+        revertScalingTimer.start(); // Der Timer wird hier gestartet
     }
 }

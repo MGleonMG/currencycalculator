@@ -15,6 +15,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import GUI.GUI;
+import GUI.Animations.ClickAnimation;
 import GUI.Popups.PopupDisplay;
 import Main.CurrencyCalculator;
 import Utils.Utils;
@@ -74,12 +75,15 @@ public class Miscellaneous {
         clipboardLbl.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (InputOutput.getTargetCur() != null) {
-                    Utils.copyToClipboard();
-                    runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
-                } else {
-                    PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_copy"));
-                }
+                ClickAnimation.runCustomClickAnimation(clipboardLbl, () -> {
+                    
+                    if (InputOutput.getTargetCur() != null) {
+                        Utils.copyToClipboard();
+                        runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
+                    } else {
+                        PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_copy"));
+                    }
+                });
             }
         });
 
