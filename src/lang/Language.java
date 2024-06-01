@@ -13,7 +13,6 @@ import Utils.Data.Config.Settings.AppLanguage;
 
 public class Language {
     private static Locale locale;
-    private static Properties langBundle;
     private static String fileName;
     private static Properties properties = new Properties();
 
@@ -35,33 +34,24 @@ public class Language {
     public static void setAppLanguage(Languages language, boolean updateConfig, boolean onStartup) {
         fileName = "/resources/languages/lang_" + language.name().toLowerCase() + ".properties";
 
-        try (InputStream inputStream = Language.class.getResourceAsStream(fileName)) {
-            try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-                properties.load(reader);
-
-            }
+        try (InputStream inputStream = Language.class.getResourceAsStream(fileName);
+                InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+            properties.load(reader);
         } catch (IOException e) {
-            PopupDisplay.throwErrorPopup(getLangStringByKey("error_setapplanguage"),
-                    e.getMessage());
+            PopupDisplay.throwErrorPopup(getLangStringByKey("error_setapplanguage"), e.getMessage());
             System.exit(1);
         }
-
-        // TODO for @Leon end of project: is this needed?
-        langBundle = properties;
 
         switch (language) {
             case ENGLISH:
                 locale = Locale.ENGLISH;
                 break;
-
             case GERMAN:
                 locale = new Locale("de", "DE");
                 break;
-
             case SPANISH:
                 locale = new Locale("es", "ES");
                 break;
-
             case DANISH:
                 locale = new Locale("da", "DK");
                 break;
@@ -76,8 +66,7 @@ public class Language {
         GUI.updateDisplayedLanguage(onStartup);
     }
 
-    // Gibt den jeweiligen Inhalt nach key aus der gewünschten properties Datei aus
     public static String getLangStringByKey(String key) {
-        return langBundle.getProperty(key);
+        return properties.getProperty(key);
     }
 }

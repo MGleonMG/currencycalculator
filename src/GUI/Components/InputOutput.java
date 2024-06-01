@@ -80,7 +80,7 @@ public class InputOutput {
             }
         });
 
-        GUI.frame.add(calculateBtn);
+        GUI.getAppWindow().add(calculateBtn);
     }
 
     /*
@@ -232,6 +232,7 @@ public class InputOutput {
 
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "UpAction");
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "DownAction");
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "CloseAction");
 
         actionMap.put("UpAction", new AbstractAction() {
             @Override
@@ -252,6 +253,13 @@ public class InputOutput {
                 }
             }
         });
+
+        actionMap.put("CloseAction", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comboBox.hidePopup();
+            }
+        });
     }
 
     /*
@@ -265,7 +273,8 @@ public class InputOutput {
     }
 
     /*
-     * Diese Methode fügt ein GIF hinzu, welches eine Ladeanimation anzeigt symbolisiert
+     * Diese Methode fügt ein GIF hinzu,
+     * welches eine Ladeanimation anzeigt symbolisiert
      */
     private static void addLoadingCircleGIF() {
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/button_loading.gif"));

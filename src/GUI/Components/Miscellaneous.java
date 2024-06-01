@@ -29,7 +29,7 @@ public class Miscellaneous {
     private static JButton loadBtn = new JButton();
     private static JLabel presetLbl = new JLabel();
     private static JLabel fadeLbl = new JLabel();
-    private static JLabel clipboardLbl = new JLabel();
+    private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel authorLbl = new JLabel();
 
     public static void addAllComponents() {
@@ -37,7 +37,7 @@ public class Miscellaneous {
         addPresetLbl();
         addSaveCalculationButton();
         addLoadLastCalculationButton();
-        addFadeLbl();
+        addCustomFadeLbl();
         addFooter();
 
         setComponentBounds();
@@ -47,7 +47,7 @@ public class Miscellaneous {
      * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
      */
     private static void setComponentBounds() {
-        clipboardLbl.setBounds(420, 405, 100, 30);
+        clipboardLblBtn.setBounds(420, 405, 100, 30);
 
         loadBtn.setBounds(50, 480, 100, 25);
         authorLbl.setBounds(15, GUI.getWindowHeight() - 60, 200, 20);
@@ -71,15 +71,15 @@ public class Miscellaneous {
         Image scaledImage = originalIcon.getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-        clipboardLbl.setIcon(scaledIcon);
-        clipboardLbl.addMouseListener((MouseListener) new MouseAdapter() {
+        clipboardLblBtn.setIcon(scaledIcon);
+        clipboardLblBtn.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ClickAnimation.runCustomClickAnimation(clipboardLbl, () -> {
+                ClickAnimation.runCustomClickAnimation(clipboardLblBtn, () -> {
                     
                     if (InputOutput.getTargetCur() != null) {
                         Utils.copyToClipboard();
-                        runCustomFadeLabel("Kopiert!", clipboardLbl.getX() + 50, clipboardLbl.getY(), 70, 25);
+                        runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
                     } else {
                         PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_copy"));
                     }
@@ -87,7 +87,7 @@ public class Miscellaneous {
             }
         });
 
-        GUI.getAppWindow().add(clipboardLbl);
+        GUI.getAppWindow().add(clipboardLblBtn);
     }
 
     /*
@@ -162,15 +162,15 @@ public class Miscellaneous {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
 
-                    String[] config = LastCalculation.getConfigLastCalc();
+                    String[] lastCalcEntries = LastCalculation.getConfigLastCalc();
                     // Es löscht die "" im String
-                    config[0] = config[0].replace("\"", "");
-                    config[1] = config[1].replace("\"", "");
-                    config[2] = config[2].replace("\"", "");
+                    lastCalcEntries[0] = lastCalcEntries[0].replace("\"", "");
+                    lastCalcEntries[1] = lastCalcEntries[1].replace("\"", "");
+                    lastCalcEntries[2] = lastCalcEntries[2].replace("\"", "");
                     // Setzt die gespeicherten Daten in die Variable ein
-                    InputOutput.setBaseCur(config[0]);
-                    InputOutput.setTargetCur(config[1]);
-                    InputOutput.setInputVal(config[2]);
+                    InputOutput.setBaseCur(lastCalcEntries[0]);
+                    InputOutput.setTargetCur(lastCalcEntries[1]);
+                    InputOutput.setInputVal(lastCalcEntries[2]);
 
                     InputOutput.setInputValRes();
                     Calculations.runThreadedCalculation();
@@ -184,7 +184,7 @@ public class Miscellaneous {
         GUI.getAppWindow().add(presetLbl);
     }
 
-    private static void addFadeLbl() {
+    private static void addCustomFadeLbl() {
         fadeLbl.setVisible(false);
 
         GUI.getAppWindow().add(fadeLbl);

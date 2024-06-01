@@ -13,7 +13,7 @@ import lang.Language;
  * Diese Klasse ruft die Wechselkurse von Google Finances ab
  */
 public class ExchangeRateFetcher {
-    private static double latestRate;
+    private static double latestExchangerate;
     private static long lastStartMillis, lastEndMillis;
     private static boolean hasFailed = false;
 
@@ -23,27 +23,25 @@ public class ExchangeRateFetcher {
         try {
             lastStartMillis = System.currentTimeMillis();
 
-            // Roher HTML code als String von 'google.com/finance/'
+            // Roher HTML code als String von 'google.com/finance/' ..
             Scanner webScanner = new Scanner(
                     new URL("https://www.google.com/finance/quote/" + baseCur + "-" + targetCur).openStream(), "UTF-8");
             String htmlOutput = webScanner.useDelimiter("\\A").next();
 
-            // Stelle finden an der der Wechselkurs angegeben ist
-            // und den String darauf zuschneiden
+            /*
+             * ..stelle finden an der der Wechselkurs angegeben ist
+             * und den String darauf zuschneiden
+             */
             htmlOutput = htmlOutput.substring(htmlOutput.indexOf("YMlKec fxKbKc\">"));
             htmlOutput = htmlOutput.substring(15, htmlOutput.indexOf("<"));
 
             lastEndMillis = System.currentTimeMillis();
 
-            latestRate = Utils.adjustDecimal(Double.parseDouble(htmlOutput), 4);
+            latestExchangerate = Utils.adjustDecimal(Double.parseDouble(htmlOutput), 4);
 
             webScanner.close();
 
-            /*
-             * Die Catch Methoden geben dem Nutzer die jeweilige Fehlermeldung zurück.
-             * Auf genauere Beschreibung wird verzichtet da die Strings
-             * für die Popup Message eine ausreichende Bezeichnung bieten.
-             */
+            // Die Catch-Blöcke geben dem Nutzer die jeweilige Fehlermeldung zurück.
         } catch (UnknownHostException uhExc) {
             PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_exchangeratefetcher_uhe"),
                     uhExc.getMessage());
@@ -69,7 +67,7 @@ public class ExchangeRateFetcher {
 
     // Gibt den zu letzt gespeicherten Wechselkurs zurück
     public static double getLatestExchangeRate() {
-        return latestRate;
+        return latestExchangerate;
     }
 
     /*
@@ -78,17 +76,17 @@ public class ExchangeRateFetcher {
      */
     public static void clearDataOnError() {
         hasFailed = true;
-        latestRate = 0.0;
+        latestExchangerate = 0.0;
         lastStartMillis = 0;
         lastEndMillis = 0;
         InputOutput.setOutput("");
     }
 
-    public static boolean getFailed() {
+    public static boolean hasFailed() {
         return hasFailed;
     }
 
-    public static void setFailed() {
+    public static void clearFailedStatus() {
         hasFailed = false;
     }
 }

@@ -34,8 +34,8 @@ public class PopupDisplay {
     }
 
     /*
-     * Gibt dem Nutzer einen Bestätigungs Popup, worauf man "Ja" und "Nein" drücken
-     * kann.
+     * Gibt dem Nutzer ein Bestätigungs-Popup,
+     * auf das mit "Ja" oder "Nein" geantwortet werden kann
      */
     public static void throwUserConfirmPopup(String popupTitle, String popupMessage, Runnable runnableConfirmAction) {
         int userChoice = JOptionPane.showConfirmDialog(null, popupMessage, popupTitle, JOptionPane.YES_NO_OPTION);

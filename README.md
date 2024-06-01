@@ -100,10 +100,8 @@ Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
    │  │  ├─ button_loading.gif                // Ladeanimation für Schaltflächen
    │  │  ├─ button_settings.png               // Schaltflächenbild für Einstellungen
    │  │  └─ themes                            // Paket für Theme Knöpfe
-   │  │     ├─ button_darkmode_dark.png       // Schaltflächenbild Mond als Darkmode
-   │  │     ├─ button_darkmode_light.png      // Schaltflächenbild Sonne als Darkmode
-   │  │     ├─ button_lightmode_dark.png      // Schaltflächenbild Mond als Lightmode
-   │  │     └─ button_lightmode_light.png     // Schaltflächenbild Sonne als Lightmode
+   │  │     ├─ button_darkmode_dark.png       // Schaltflächenbild (Mond)
+   │  │     └─ button_lightmode_light.png     // Schaltflächenbild (Sonne)
    │  └─ languages                            // Paket für alle Sprachen
    │     ├─ lang_danish.properties            // Sprachpaket: Dänsich
    │     ├─ lang_english.properties           // Sprachpaket: Englisch

@@ -10,8 +10,8 @@ import Main.CurrencyCalculator;
 public class RestartHelper {
 
     /*
-     * Diese Methode öffnet im Hintergrund eine neue Instanz und schließt die
-     * offene Instanz
+     * Diese Methode öffnet im Hintergrund eine
+     * neue Instanz und schließt die offene Instanz
      */
     public static void restartApplication() throws IOException {
         String javaBin = System.getProperty("java.home") + "/bin/java";
