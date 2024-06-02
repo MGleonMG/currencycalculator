@@ -49,7 +49,7 @@ public class Miscellaneous {
      * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
      */
     private static void setComponentBounds() {
-        swapLblBtn.setBounds(434, 200, 80, 20);
+        swapLblBtn.setBounds((GUI.getWindowWidth() - 40) / 2, 200, 80, 20);
 
         clipboardLblBtn.setBounds(420, 405, 100, 30);
 
