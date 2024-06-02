@@ -34,6 +34,7 @@ public class Miscellaneous {
     private static JLabel authorLbl = new JLabel();
 
     public static void addAllComponents() {
+        addSwapCurrenciesLbl();
         addCopyOutputLbl();
         addPresetLbl();
         addSaveCalculationButton();
@@ -48,6 +49,8 @@ public class Miscellaneous {
      * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
      */
     private static void setComponentBounds() {
+        swapLblBtn.setBounds(434, 200, 80, 20);
+
         clipboardLblBtn.setBounds(420, 405, 100, 30);
 
         loadBtn.setBounds(50, 480, 100, 25);
@@ -62,7 +65,31 @@ public class Miscellaneous {
      * 
      * Das Ergebnis wird für den Nutzer in das Clipboard gespeichert
      */
+    private static void addSwapCurrenciesLbl() {
+        swapLblBtn.setText("↔");
+        swapLblBtn.setFont(swapLblBtn.getFont().deriveFont(36f));
+        swapLblBtn.setComponentPopupMenu(null);
 
+        swapLblBtn.addMouseListener((MouseListener) new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String temp1, temp2; // TODO: remove prior to merge
+                temp1 = InputOutput.getBaseCur();
+                temp2 = InputOutput.getTargetCur();
+
+                // InputOutput.getComboBoxes()[0].setSelectedIndex(InputOutput.getComboBoxes()[0].get);
+                // TODO @Leon: use getItemIndexPerDropdown()
+            }
+        });
+
+        GUI.getAppWindow().add(swapLblBtn);
+    }
+
+    /*
+     * Erstellt einen "Kopier" Knopf
+     * 
+     * Das Ergebnis wird für den Nutzer in das Clipboard gespeichert
+     */
     private static void addCopyOutputLbl() {
         /*
          * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
@@ -77,7 +104,7 @@ public class Miscellaneous {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ClickAnimation.runCustomClickAnimation(clipboardLblBtn, () -> {
-                    
+
                     if (InputOutput.getTargetCur() != null) {
                         Utils.copyToClipboard();
                         runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
