@@ -30,6 +30,7 @@ public class Miscellaneous {
     private static JLabel presetLbl = new JLabel();
     private static JLabel fadeLbl = new JLabel();
     private static JLabel clipboardLblBtn = new JLabel();
+    private static JLabel swapLblBtn = new JLabel();
     private static JLabel authorLbl = new JLabel();
 
     public static void addAllComponents() {
