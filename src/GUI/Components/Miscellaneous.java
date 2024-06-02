@@ -67,9 +67,7 @@ public class Miscellaneous {
     }
 
     /*
-     * Erstellt einen "Kopier" Knopf
-     * 
-     * Das Ergebnis wird für den Nutzer in das Clipboard gespeichert
+     * TODO
      */
     private static void addSwapCurrenciesLbl() {
         swapLblBtn.setText("↔");
@@ -79,12 +77,12 @@ public class Miscellaneous {
         swapLblBtn.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String temp1, temp2; // TODO: remove prior to merge
-                temp1 = InputOutput.getBaseCur();
-                temp2 = InputOutput.getTargetCur();
+                Object selectedItem1 = InputOutput.getComboBoxes()[0].getSelectedItem();
+                Object selectedItem2 = InputOutput.getComboBoxes()[1].getSelectedItem();
 
-                // InputOutput.getComboBoxes()[0].setSelectedIndex(InputOutput.getComboBoxes()[0].get);
-                // TODO @Leon: use getItemIndexPerDropdown()
+                // Set the selected items to the opposite combo boxes
+                InputOutput.getComboBoxes()[0].setSelectedItem(selectedItem2);
+                InputOutput.getComboBoxes()[1].setSelectedItem(selectedItem1);
             }
         });
 

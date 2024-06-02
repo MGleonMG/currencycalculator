@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.swing.JComboBox;
+
 import GUI.Components.InputOutput;
 import Utils.Data.Calculations;
 import Utils.Data.Filter;
@@ -102,5 +104,19 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    // TODO: @Leon ..
+    @SuppressWarnings("rawtypes")
+    public static int getItemIndexPerDropdown(JComboBox dropdown, String entry) {
+        for (int i = 0; i < dropdown.getItemCount(); i++) {
+            if (dropdown.getItemAt(i).equals(entry)) {
+                // index zurück wenn gefunden
+                return i;
+            }
+        }
+    
+        // -1 wenn fehler
+        return -1;
     }
 }
