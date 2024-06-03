@@ -61,7 +61,6 @@ public class Miscellaneous {
      * 
      * Das Ergebnis wird für den Nutzer in das Clipboard gespeichert
      */
-
     private static void addCopyOutputLbl() {
         /*
          * Nimmt das originale .png und skaliert es runter zu der angegebenen Auflösung
@@ -76,7 +75,7 @@ public class Miscellaneous {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ClickAnimation.runCustomClickAnimation(clipboardLblBtn, () -> {
-                    
+
                     if (InputOutput.getTargetCur() != null) {
                         Utils.copyToClipboard();
                         runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);

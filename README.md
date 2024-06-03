@@ -78,6 +78,8 @@ Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
 ├─ README.md                                  // Readme-Datei mit Projektinformationen
 └─ src                        
    ├─ GUI                                     // Paket für die grafische Benutzeroberfläche
+   │  ├─ Animations                           // Paket für Animationen
+   │  │  └─ ClickAnimation.java               // Klasse für Animationen
    │  ├─ Components                           // Paket für die GUI-Komponenten
    │  │  ├─ InputOutput.java                  // Klasse für den Input-Output
    │  │  ├─ Miscellaneous.java                // Klasse für diverse Inhalte
@@ -117,7 +119,8 @@ Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
       │  │     ├─ AppLanguage.java            // Klasse fürs Lesen und Schreiben der Spracheinstellungen
       │  │     ├─ AppTheme.java               // Klasse fürs Lesen und Schreiben des AppThemes
       │  │     └─ LastCalculation.java        // Klasse fürs Lesen und Schreiben der letzen Umrechnung
-      │  └─ ExchangeRateFetcher.java          // Klasse für den Abruf von Wechselkursen
+      │  ├─ ExchangeRateFetcher.java          // Klasse für den Abruf von Wechselkursen
+      │  └─ Filter.java                       // Klasse fürs Filtrieren der nicht benutzten Währungen
       ├─ RestartHelper.java                   // Klasse für den Neustart
       └─ Utils.java                           // Hilfsklasse mit allgemeinen Hilfsmethoden
 
