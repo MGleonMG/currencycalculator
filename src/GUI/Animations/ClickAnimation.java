@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class ClickAnimation {
     private static boolean isAnimationBlocked = false;
     private static final float scaleFactor = 0.85F;
-    private static final int animationSpeedInMs = 180;
+    private static final int animationSpeedInMs = 130;
 
     public static void runCustomClickAnimation(JLabel label, Runnable runnable) {
         if (isAnimationBlocked) {
