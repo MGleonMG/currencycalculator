@@ -105,18 +105,4 @@ public class Utils {
         }
         return false;
     }
-
-    // TODO: @Leon ..
-    @SuppressWarnings("rawtypes")
-    public static int getItemIndexPerDropdown(JComboBox dropdown, String entry) {
-        for (int i = 0; i < dropdown.getItemCount(); i++) {
-            if (dropdown.getItemAt(i).equals(entry)) {
-                // index zurück wenn gefunden
-                return i;
-            }
-        }
-    
-        // -1 wenn fehler
-        return -1;
-    }
 }
