@@ -49,13 +49,7 @@ public class Miscellaneous {
      * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
      */
     private static void setComponentBounds() {
-
-        /*
-         * TODO @Leon hab das ganze jetzt mittig zentriert. Es müsste eigentlich auf -40
-         * sein, habe es jetzt aber auf -45 gemacht, weil es mir so vorkam, als
-         * wäre es nicht zentriert -> Kannst den Kommentar danach löschen
-         */
-        swapLblBtn.setBounds((GUI.getWindowWidth() - 45) / 2, 200, 80, 20);
+        swapLblBtn.setBounds((GUI.getWindowWidth() - 31) / 2, 200, 80, 20);
 
         clipboardLblBtn.setBounds(420, 405, 100, 30);
 
