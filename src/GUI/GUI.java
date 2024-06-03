@@ -91,7 +91,7 @@ public class GUI {
         frame.add(headlineLbl);
     }
 
-    // Diese Methode setzt den Theme fest
+    // Diese Methode setzt das Theme fest
     public static void setAppTheme(Theme theme) {
         try {
             if (theme == Theme.DARK_MODE) {
@@ -103,9 +103,9 @@ public class GUI {
             }
             SwingUtilities.updateComponentTreeUI(frame);
 
-        } catch (Exception e) {
+        } catch (UnsupportedLookAndFeelException themeExc) {
             PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_theme_get") + "\n" +
-                    Language.getLangStringByKey("error_theme_look"), e.getMessage());
+                    Language.getLangStringByKey("error_theme_look"), themeExc.getMessage());
         }
     }
 
@@ -118,8 +118,8 @@ public class GUI {
 
         // Aktualisiert alle Hauptkomponenten
         headlineLbl.setText(Language.getLangStringByKey("title"));
-        InputOutput.getSearchBarBaseCur().setText(Language.getLangStringByKey("searchBar"));
-        InputOutput.getSearchBarTargetCur().setText(Language.getLangStringByKey("searchBar"));
+        InputOutput.getSearchbarBaseCur().setText(Language.getLangStringByKey("searchBar"));
+        InputOutput.getSearchbarTargetCur().setText(Language.getLangStringByKey("searchBar"));
         InputOutput.getCalculateButton().setText(Language.getLangStringByKey("calculateBtn"));
         SettingsGUI.getConfigResetBtn().setText(Language.getLangStringByKey("reset"));
         Miscellaneous.getPresetLbl().setText(Language.getLangStringByKey("presetLabel"));

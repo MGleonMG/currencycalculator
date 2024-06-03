@@ -14,11 +14,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class InputOutput {
-    private static JTextField inputField = new JTextField();
-    private static JTextField searchBarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
-            searchBarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
+    private static JTextField searchbarBaseCur = new JTextField(Language.getLangStringByKey("searchBar")),
+    searchbarTargetCur = new JTextField(Language.getLangStringByKey("searchBar"));
     private static JComboBox<String> dropdownBaseCur = new JComboBox<>();
     private static JComboBox<String> dropdownTargetCur = new JComboBox<>();
+    private static JTextField inputField = new JTextField();
     private static JButton calculateBtn = new JButton();
     private static JLabel outputLbl = new JLabel(Language.getLangStringByKey("outputLabel"), SwingConstants.CENTER);
     private static JLabel loadingGIFLbl = new JLabel();
@@ -47,8 +47,8 @@ public class InputOutput {
         calculateBtn.setBounds(400, 250, 100, 25);
         dropdownBaseCur.setBounds(50, 250, 290, 50);
         dropdownTargetCur.setBounds(GUI.getWindowWidth() - 340, 250, 290, 50);
-        searchBarBaseCur.setBounds(50, 215, 290, 20);
-        searchBarTargetCur.setBounds(GUI.getWindowWidth() - 340, 215, 290, 20);
+        searchbarBaseCur.setBounds(50, 215, 290, 20);
+        searchbarTargetCur.setBounds(GUI.getWindowWidth() - 340, 215, 290, 20);
 
         outputLbl.setBounds(300, 285, 300, 150);
         inputField.setBounds(405, 290, 90, 30);
@@ -128,8 +128,8 @@ public class InputOutput {
         addArrowKeyNavigationToComboBox(dropdownBaseCur);
         addArrowKeyNavigationToComboBox(dropdownTargetCur);
 
-        GUI.getAppWindow().add(searchBarBaseCur);
-        GUI.getAppWindow().add(searchBarTargetCur);
+        GUI.getAppWindow().add(searchbarBaseCur);
+        GUI.getAppWindow().add(searchbarTargetCur);
 
         GUI.getAppWindow().add(dropdownBaseCur);
         GUI.getAppWindow().add(dropdownTargetCur);
@@ -143,27 +143,27 @@ public class InputOutput {
     private static void addSearchBars() {
 
         // Erstellt links eine Suchleiste
-        searchBarBaseCur.setHighlighter(null);
-        searchBarBaseCur.addFocusListener(new FocusAdapter() {
+        searchbarBaseCur.setHighlighter(null);
+        searchbarBaseCur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBarBaseCur.getText().equals(Language.getLangStringByKey("searchBar"))) {
-                    searchBarBaseCur.setText("");
+                if (searchbarBaseCur.getText().equals(Language.getLangStringByKey("searchBar"))) {
+                    searchbarBaseCur.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (searchBarBaseCur.getText().isEmpty()) {
-                    searchBarBaseCur.setText(Language.getLangStringByKey("searchBar"));
+                if (searchbarBaseCur.getText().isEmpty()) {
+                    searchbarBaseCur.setText(Language.getLangStringByKey("searchBar"));
                 }
             }
         });
 
-        searchBarBaseCur.addKeyListener(new KeyAdapter() {
+        searchbarBaseCur.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String searchText = searchBarBaseCur.getText().toLowerCase();
+                String searchText = searchbarBaseCur.getText().toLowerCase();
                 DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownBaseCur.getModel();
                 model.removeAllElements();
 
@@ -184,26 +184,26 @@ public class InputOutput {
         /*
          * Erstellt rechts eine Suchleiste
          */
-        searchBarTargetCur.addFocusListener(new FocusAdapter() {
+        searchbarTargetCur.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (searchBarTargetCur.getText().equals(Language.getLangStringByKey("searchBar"))) {
-                    searchBarTargetCur.setText("");
+                if (searchbarTargetCur.getText().equals(Language.getLangStringByKey("searchBar"))) {
+                    searchbarTargetCur.setText("");
                 }
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (searchBarTargetCur.getText().isEmpty()) {
-                    searchBarTargetCur.setText(Language.getLangStringByKey("searchBar"));
+                if (searchbarTargetCur.getText().isEmpty()) {
+                    searchbarTargetCur.setText(Language.getLangStringByKey("searchBar"));
                 }
             }
         });
 
-        searchBarTargetCur.addKeyListener(new KeyAdapter() {
+        searchbarTargetCur.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String searchText = searchBarTargetCur.getText().toLowerCase();
+                String searchText = searchbarTargetCur.getText().toLowerCase();
                 DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dropdownTargetCur.getModel();
                 model.removeAllElements();
 
@@ -325,12 +325,12 @@ public class InputOutput {
         return inputField;
     }
 
-    public static JTextField getSearchBarBaseCur() {
-        return searchBarBaseCur;
+    public static JTextField getSearchbarBaseCur() {
+        return searchbarBaseCur;
     }
 
-    public static JTextField getSearchBarTargetCur() {
-        return searchBarTargetCur;
+    public static JTextField getSearchbarTargetCur() {
+        return searchbarTargetCur;
     }
 
     public static JButton getCalculateButton() {

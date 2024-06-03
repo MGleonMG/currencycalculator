@@ -92,11 +92,12 @@ public class SettingsGUI {
                             false);
 
                     PopupDisplay.throwUserConfirmPopup(Language.getLangStringByKey("restart"),
-                            Language.getLangStringByKey("recommended"), () -> {
+                            Language.getLangStringByKey("recommended"),
+                            () -> {
                                 try {
                                     RestartHelper.restartApplication();
-                                } catch (IOException e1) {
-                                    e1.printStackTrace();
+                                } catch (IOException ioExc) {
+                                    ioExc.printStackTrace();
                                 }
                             });
                 }
