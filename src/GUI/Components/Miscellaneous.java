@@ -30,11 +30,9 @@ public class Miscellaneous {
     private static JLabel presetLbl = new JLabel();
     private static JLabel fadeLbl = new JLabel();
     private static JLabel clipboardLblBtn = new JLabel();
-    private static JLabel swapLblBtn = new JLabel();
     private static JLabel authorLbl = new JLabel();
 
     public static void addAllComponents() {
-        addSwapCurrenciesLbl();
         addCopyOutputLbl();
         addPresetLbl();
         addSaveCalculationButton();
@@ -49,8 +47,6 @@ public class Miscellaneous {
      * Diese Methode setzt die Größen und Positionen der jeweiligen Komponenten
      */
     private static void setComponentBounds() {
-        swapLblBtn.setBounds((GUI.getWindowWidth() - 31) / 2, 200, 80, 20);
-
         clipboardLblBtn.setBounds(420, 405, 100, 30);
 
         loadBtn.setBounds(50, 480, 100, 25);
@@ -58,28 +54,6 @@ public class Miscellaneous {
 
         presetLbl.setBounds(50, 420, 100, 25);
         fadeLbl.setBounds(200, 450, 100, 25);
-    }
-
-    /*
-     * TODO
-     */
-    private static void addSwapCurrenciesLbl() {
-        swapLblBtn.setText("↔");
-        swapLblBtn.setFont(swapLblBtn.getFont().deriveFont(36f));
-
-        swapLblBtn.addMouseListener((MouseListener) new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Object selectedItem1 = InputOutput.getComboBoxes()[0].getSelectedItem();
-                Object selectedItem2 = InputOutput.getComboBoxes()[1].getSelectedItem();
-
-                // Set the selected items to the opposite combo boxes
-                InputOutput.getComboBoxes()[0].setSelectedItem(selectedItem2);
-                InputOutput.getComboBoxes()[1].setSelectedItem(selectedItem1);
-            }
-        });
-
-        GUI.getAppWindow().add(swapLblBtn);
     }
 
     /*
