@@ -1,8 +1,11 @@
 package Utils.Data.Config;
 
-import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import com.google.gson.Gson;
 
@@ -15,8 +18,7 @@ import lang.Language;
 public class Config {
     // static final vars
     private static final String FOLDER_PATH = System.getProperty("user.home") +
-            FileSystems.getDefault().getSeparator()
-            + "currencycalculator";
+            FileSystems.getDefault().getSeparator() + "currencycalculator";
     private static final String FILE_PATH = FOLDER_PATH +
             FileSystems.getDefault().getSeparator() + "settings.json";
 
@@ -38,30 +40,25 @@ public class Config {
      * falls ein Fehler auftreten sollte.
      */
     public static void runFirstTimeSetupCheck() {
-        File settingsFile = new File(getFilePath());
+        Path settingsFilePath = Paths.get(getFilePath());
+        Path folderPath = Paths.get(getFolderPath());
 
-        if (!settingsFile.exists()) {
-            new File(getFolderPath()).mkdir(); // mkdir() = "make directory"
+        if (Files.notExists(settingsFilePath)) {
+            try {
+                Files.createDirectories(folderPath);
 
-            try (FileWriter writer = new FileWriter(getFilePath())) {
-                settingsFile.createNewFile();
+                try (FileWriter writer = new FileWriter(settingsFilePath.toFile())) {
+                    ConfigDefaults defaults = new ConfigDefaults();
+                    gson.toJson(defaults.getAllConfigDefaults(), writer);
+                }
 
-                // Lädt ConfigDefaults, und speichert diese mit Hilfe Gson lib
-                ConfigDefaults defaults = new ConfigDefaults();
-                gson.toJson(defaults.getAllConfigDefaults(), writer);
-
-                // "Best practice" - readers und writers schließen
-                writer.flush();
-                writer.close();
-
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
                 PopupDisplay.throwErrorPopup(
                         Language.getLangStringByKey("error_config_fatal"),
                         e.getMessage());
                 System.exit(1);
             }
-
         }
     }
 }

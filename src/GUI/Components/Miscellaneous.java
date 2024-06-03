@@ -38,7 +38,7 @@ public class Miscellaneous {
         addSaveCalculationButton();
         addLoadLastCalculationButton();
         addCustomFadeLbl();
-        addFooter();
+        addFooterLbl();
 
         setComponentBounds();
     }
@@ -120,7 +120,7 @@ public class Miscellaneous {
         timer.start();
     }
 
-    private static void addFooter() {
+    private static void addFooterLbl() {
         authorLbl.setText(CurrencyCalculator.getAppVersion() + "  by Leon, Jonas, Ewin");
         authorLbl.setForeground(Color.GRAY);
 
