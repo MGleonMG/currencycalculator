@@ -12,6 +12,9 @@ import com.google.gson.Gson;
 import GUI.Popups.PopupDisplay;
 import lang.Language;
 
+/*
+ * Diese Klasse stellt einfache Config Funktionen und Variabeln zur Verfügung
+ */
 public class Config {
     // static final vars
     private static final String FOLDER_PATH = System.getProperty("user.home") +
