@@ -72,7 +72,6 @@ public class Miscellaneous {
     private static void addSwapCurrenciesLbl() {
         swapLblBtn.setText("↔");
         swapLblBtn.setFont(swapLblBtn.getFont().deriveFont(36f));
-        swapLblBtn.setComponentPopupMenu(null);
 
         swapLblBtn.addMouseListener((MouseListener) new MouseAdapter() {
             @Override
