@@ -119,7 +119,8 @@ Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
       │  │     ├─ AppLanguage.java            // Klasse fürs Lesen und Schreiben der Spracheinstellungen
       │  │     ├─ AppTheme.java               // Klasse fürs Lesen und Schreiben des AppThemes
       │  │     └─ LastCalculation.java        // Klasse fürs Lesen und Schreiben der letzen Umrechnung
-      │  └─ ExchangeRateFetcher.java          // Klasse für den Abruf von Wechselkursen
+      │  ├─ ExchangeRateFetcher.java          // Klasse für den Abruf von Wechselkursen
+      │  └─ Filter.java                       // Klasse fürs Filtrieren der nicht benutzten Währungen
       ├─ RestartHelper.java                   // Klasse für den Neustart
       └─ Utils.java                           // Hilfsklasse mit allgemeinen Hilfsmethoden
 
