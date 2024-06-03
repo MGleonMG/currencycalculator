@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.swing.JComboBox;
-
 import GUI.Components.InputOutput;
 import Utils.Data.Calculations;
 import Utils.Data.Filter;
