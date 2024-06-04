@@ -10,7 +10,7 @@ import lang.Language;
  */
 public class CurrencyCalculator {
     private static final String VERSION = "v1.0.0";
-    private static final String GITHUB_URL = "https://github.com/MGleonMG/currencycalculator/";
+    private static final String REPOSITORY_URI = "https://github.com/MGleonMG/currencycalculator/";
 
     public static void main(String[] args) {
         Config.runFirstTimeSetupCheck();
@@ -22,7 +22,7 @@ public class CurrencyCalculator {
         return VERSION;
     }
 
-    public static String getRepoURL() {
-        return GITHUB_URL;
+    public static String getRepoURI() {
+        return REPOSITORY_URI;
     }
 }
