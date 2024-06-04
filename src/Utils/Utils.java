@@ -13,6 +13,10 @@ import Utils.Data.Calculations;
 import Utils.Data.Filter;
 
 import java.awt.datatransfer.StringSelection;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 
@@ -102,5 +106,14 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static void openBrowserURL(String uri) {
+        try {
+            Desktop.getDesktop().browse(new URI(uri));
+            
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }

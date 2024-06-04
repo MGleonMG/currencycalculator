@@ -101,6 +101,7 @@ Siehe [releases](https://github.com/MGleonMG/currencycalculator/releases)
    │  │  ├─ button_copy.png                   // Schaltflächenbild zum Kopieren
    │  │  ├─ button_loading.gif                // Ladeanimation für Schaltflächen
    │  │  ├─ button_settings.png               // Schaltflächenbild für Einstellungen
+   |  │  ├─ logo_github.png                   // Schaltflächenbild für GitHub
    │  │  └─ themes                            // Paket für Theme Knöpfe
    │  │     ├─ button_darkmode_dark.png       // Schaltflächenbild (Mond)
    │  │     └─ button_lightmode_light.png     // Schaltflächenbild (Sonne)
