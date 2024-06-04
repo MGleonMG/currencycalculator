@@ -31,6 +31,7 @@ public class Miscellaneous {
     private static JLabel fadeLbl = new JLabel();
     private static JLabel clipboardLblBtn = new JLabel();
     private static JLabel authorLbl = new JLabel();
+    private static JLabel githubLblBtn = new JLabel();
 
     public static void addAllComponents() {
         addCopyOutputLbl();
@@ -38,6 +39,7 @@ public class Miscellaneous {
         addSaveCalculationButton();
         addLoadLastCalculationButton();
         addCustomFadeLbl();
+        addGitHubLinkLbl();
         addFooterLbl();
 
         setComponentBounds();
@@ -49,11 +51,15 @@ public class Miscellaneous {
     private static void setComponentBounds() {
         clipboardLblBtn.setBounds(420, 405, 100, 30);
 
-        loadBtn.setBounds(50, 480, 100, 25);
-        authorLbl.setBounds(15, GUI.getWindowHeight() - 60, 200, 20);
-
         presetLbl.setBounds(50, 420, 100, 25);
+        saveBtn.setBounds(50, 450, 100, 25);
+        loadBtn.setBounds(50, 480, 100, 25);
         fadeLbl.setBounds(200, 450, 100, 25);
+
+        authorLbl.setBounds(50, GUI.getWindowHeight() - 62, 200, 20);
+        githubLblBtn.setBounds(10, GUI.getWindowHeight() - 75, 
+        githubLblBtn.getIcon().getIconWidth(),
+                githubLblBtn.getIcon().getIconHeight());
     }
 
     /*
@@ -78,7 +84,7 @@ public class Miscellaneous {
 
                     if (InputOutput.getTargetCur() != null) {
                         Utils.copyToClipboard();
-                        runCustomFadeLabel("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
+                        runCustomFadeLbl("Kopiert!", clipboardLblBtn.getX() + 50, clipboardLblBtn.getY(), 70, 25);
                     } else {
                         PopupDisplay.throwErrorPopup(Language.getLangStringByKey("error_copy"));
                     }
@@ -93,7 +99,7 @@ public class Miscellaneous {
      * Diese Methode erstellt ein Label, dass dem Nutzer zurückgibt,
      * dass die eingegebenen Daten gespeichert sind.
      */
-    public static void runCustomFadeLabel(String text, int locactionX, int locactionY, int width, int height) {
+    public static void runCustomFadeLbl(String text, int locactionX, int locactionY, int width, int height) {
         fadeLbl.setText(text);
         fadeLbl.setBounds(locactionX, locactionY, width, height);
 
@@ -128,10 +134,31 @@ public class Miscellaneous {
     }
 
     /*
+     * TODO ..
+     */
+    private static void addGitHubLinkLbl() {
+        ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/logo_github.png"));
+        Image scaledImage = originalIcon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+        githubLblBtn.setIcon(scaledIcon);
+        githubLblBtn.addMouseListener((MouseListener) new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ClickAnimation.runCustomClickAnimation(githubLblBtn, () -> {
+
+                    Utils.openBrowserURL(CurrencyCalculator.getRepoURL());
+                });
+            }
+        });
+
+        GUI.getAppWindow().add(githubLblBtn);
+    }
+
+    /*
      * Diese Methode erstellt einen Knopf, um eingegebene Daten zu speichern
      */
     private static void addSaveCalculationButton() {
-        saveBtn.setBounds(50, 450, 100, 25);
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
@@ -143,7 +170,7 @@ public class Miscellaneous {
                         } else {
                             LastCalculation.setConfigLastCalc(InputOutput.getBaseCur(), InputOutput.getTargetCur(),
                                     InputOutput.getInputVal());
-                            runCustomFadeLabel(Language.getLangStringByKey("fadeLabel"), 200, 450, 100, 25);
+                            runCustomFadeLbl(Language.getLangStringByKey("fadeLabel"), 200, 450, 100, 25);
                         }
                     }
                 });
