@@ -57,8 +57,8 @@ public class Miscellaneous {
         fadeLbl.setBounds(200, 450, 100, 25);
 
         authorLbl.setBounds(50, GUI.getWindowHeight() - 62, 200, 20);
-        githubLblBtn.setBounds(10, GUI.getWindowHeight() - 75, 
-        githubLblBtn.getIcon().getIconWidth(),
+        githubLblBtn.setBounds(10, GUI.getWindowHeight() - 75,
+                githubLblBtn.getIcon().getIconWidth(),
                 githubLblBtn.getIcon().getIconHeight());
     }
 
@@ -134,7 +134,8 @@ public class Miscellaneous {
     }
 
     /*
-     * TODO ..
+     * Diese Methode erstellt einen Label-Button mit dem
+     * das GitHub Repository geöffnet werden kann
      */
     private static void addGitHubLinkLbl() {
         ImageIcon originalIcon = new ImageIcon(GUI.class.getResource("/resources/buttons/logo_github.png"));

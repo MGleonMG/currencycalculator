@@ -111,7 +111,7 @@ public class Utils {
     public static void openBrowserURL(String uri) {
         try {
             Desktop.getDesktop().browse(new URI(uri));
-
+            
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
