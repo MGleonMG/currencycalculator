@@ -148,7 +148,7 @@ public class Miscellaneous {
             public void mouseClicked(MouseEvent e) {
                 ClickAnimation.runCustomClickAnimation(githubLblBtn, () -> {
 
-                    Utils.openBrowserURL(CurrencyCalculator.getRepoURL());
+                    Utils.openBrowserURL(CurrencyCalculator.getRepoURI());
                 });
             }
         });
